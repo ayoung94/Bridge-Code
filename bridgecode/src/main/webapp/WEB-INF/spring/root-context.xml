@@ -5,12 +5,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-<!-- 
-	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
-		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesViewResolver" />
-		<property name="order" value="0" />
-	</bean>
-	 -->
 	
 	
 </beans>
