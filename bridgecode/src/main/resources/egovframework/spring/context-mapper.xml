@@ -6,12 +6,18 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/egovframework/sqlmap/example/sql-mapper-config.xml" />
-		<property name="mapperLocations" value="classpath:/egovframework/sqlmap/example/mappers/*.xml" />
+		<property name="mapperLocations" value="classpath:/egovframework/sqlmap/mappers/*.xml" />
+		<!-- ↑classpath:/egovframework/sqlmap/example/mappers/*에서 경로 수정했습니다. 차후 example폴더 삭제 예정.-김아영- -->
 	</bean>
 
 	<!-- MapperConfigurer setup for MyBatis Database Layer with @Mapper("deptMapper") in DeptMapper Interface -->
  	<bean class="egovframework.rte.psl.dataaccess.mapper.MapperConfigurer">
-		<property name="basePackage" value="egovframework.example.sample.service.impl" />
+		<property name="basePackage" value="egovframework.example.sample.service.impl" /> <!-- egovframework.example.sample.service.impl -->
+	</bean>
+    
+    <!-- MapperConfigurer setup for MyBatis Database Layer with @MapperScan("boardMapper") in BoardMapper Interface -->
+ 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.yedam.bridgecode" />
 	</bean>
     
 </beans>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.bridgecode.member.MemberMapper">
+<!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
+
+
+	<insert id="insertMember" parameterType="member"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
+        <![CDATA[  
+        INSERT INTO member(member_id,member_password,member_nickname,member_sex,
+        					member_country,member_birth,member_introduction,member_level) 
+        VALUES(#{member_id},
+        	#{member_password},
+        	#{member_nickname},
+        	#{member_sex},
+        	#{member_country},
+        	#{member_birth},
+        	#{member_introduction},
+        	1)
+        ]]>
+	</insert>
+
+	<update id="updateUser">
+        <![CDATA[
+        UPDATE user SET
+            name = #{name}, 
+            password = #{password} 
+        WHERE id = #{id}
+        ]]>
+	</update>
+
+	<delete id="deleteUser">
+        <![CDATA[
+        DELETE users
+        WHERE id = #{id}
+        ]]>
+	</delete>
+
+	<select id="getUser" resultType="member">
+        <![CDATA[
+        SELECT * 
+        FROM users
+        WHERE id = #{id}
+        ]]>
+	</select>
+
+	<select id="getMemberList" resultType="map">
+		SELECT *
+		FROM member
+	</select> 
+	
+	
+	<!-- <select id="getUserListVO" resultMap="userMap">
+		SELECT *
+		FROM users
+		ORDER BY id DESC
+	</select>
+	
+	
+	<resultMap type="member" id="userMap">
+		<result property="name" column="NAME" />
+		<result property="id" column="ID" />
+		<result property="password" column="PASSWORD" />
+		<result property="role" column="ROLE" />
+	</resultMap> -->
+
+</mapper>
