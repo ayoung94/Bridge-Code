@@ -48,7 +48,7 @@
     
 	<servlet-mapping>
 		<servlet-name>action</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/</url-pattern> <!-- *.do에서 /로 변경(아영) -->
 	</servlet-mapping>
     
 	 <!-- <welcome-file-list>
