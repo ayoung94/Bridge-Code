@@ -20,7 +20,7 @@
 <tr>
 <td>${user.MEMBER_ID} </td>
 <td>${user.MEMBER_NICKNAME} </td>
-<td>${user.COUNTRY} </td>
+<td>${user.MEMBER_COUNTRY} </td>
 
 </tr>
 </c:forEach>

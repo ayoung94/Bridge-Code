@@ -13,7 +13,8 @@
             <AppenderRef ref="console" />
         </Logger>
           <!-- log SQL with timing information, post execution -->
-        <Logger name="jdbc.sqltiming" level="INFO" additivity="false">
+ <!--  <Logger name="jdbc.sqltiming" level="INFO" additivity="false"> 쿼리로그위해 level 디버그로 변경(아영) -->
+       <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
         </Logger>
         <Logger name="org.springframework" level="INFO" additivity="false">

@@ -53,7 +53,7 @@
 	<!--Don't add suffix or prefix like you do with .jsp files-->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" > 
 	<property name="definitions"> 
-    <value>/WEB-INF/tiles/tiles.xml</value>
+    <value>/WEB-INF/jsp/tiles/tiles.xml</value>
     </property>
     </bean>
     <!-- 타일즈3 끝(아영) -->
