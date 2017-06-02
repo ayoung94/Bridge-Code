@@ -3,15 +3,29 @@
 2.1//EN"
 	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions> 
+
 <definition name="mainTemplate" template="/WEB-INF/jsp/tiles/layout.jsp"> 
 <put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" /> 
+<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu.jsp" /> 
 <put-attribute name="content" value="/WEB-INF/jsp/tiles/content.jsp" /> 
 <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" /> 
 </definition> 
+
+<definition name="home" extends="mainTemplate"> 
+ <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />  
+</definition> 
+
+<definition name="/popup/*/*" template="/WEB-INF/jsp/tiles/layoutBlank.jsp" >
+<put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp" />
+</definition>
+
+
 <definition name="*/*" extends="mainTemplate"> 
  <put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp" />  
 </definition> 
+
 <definition name="*/*/*" extends="mainTemplate">
 <put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" /> 
 </definition> 
+
 </tiles-definitions>

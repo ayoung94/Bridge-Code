@@ -1,9 +1,10 @@
 package com.yedam.bridgecode.member;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,12 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
+	
+	@RequestMapping("/")
+	public String home(Model model) {
+		return "home";
+	}
+	
 	@RequestMapping("/member/memberInsert.do")
 	public String memberInsert(){
 		return "member/memberInsert";

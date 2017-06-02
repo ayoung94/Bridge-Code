@@ -47,15 +47,25 @@ article {
 <body>
 	<!-- include_directive.jsp -->
 	<div class="container">
+		<script>
+		
+		function goOpen(url,title,w,h){
+			var context = '${pageContext.request.contextPath}';
+			var option = 'width='+w + ',height=' +h;
+			window.open(context+url,title,option);
+		}
+		
+		</script>
 		<header>
 			
-			<c:if test="${empty sessionScope.login}">
+		<%-- 	<c:if test="${empty sessionScope.login}">
 				<a href="../login/login_form.tile">로그인</a>
 			</c:if>
 			<c:if test="${not empty sessionScope.login}">
 				${sessionScope.login.id}님 
 				<a href="../login/LogoutControl.do">로그아웃</a>
-			</c:if>
+			</c:if> --%>
+			
 		</header>
 		<nav>
 			<tiles:insertAttribute name="menu"/>
