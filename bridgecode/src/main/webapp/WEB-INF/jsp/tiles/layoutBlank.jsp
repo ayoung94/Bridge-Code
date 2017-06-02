@@ -47,25 +47,9 @@ article {
 <body>
 	<!-- include_directive.jsp -->
 	<div class="container">
-		<header>
-			
-			<c:if test="${empty sessionScope.login}">
-				<a href="../login/login_form.tile">로그인</a>
-			</c:if>
-			<c:if test="${not empty sessionScope.login}">
-				${sessionScope.login.id}님 
-				<a href="../login/LogoutControl.do">로그아웃</a>
-			</c:if>
-		</header>
-		<nav>
-			<tiles:insertAttribute name="menu"/>
-		</nav>
-		<article>
+
 			<tiles:insertAttribute name="content"/>
-		</article>
-		<footer>
-			<tiles:insertAttribute name="footer"/>
-		</footer>
+	
 	</div>
 </body>
 </html>
