@@ -58,9 +58,9 @@
     </bean>
     <!-- 타일즈3 끝(아영) -->
 
-    <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
+  <!--   <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1"
 	    p:viewClass="org.springframework.web.servlet.view.JstlView"
-	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/> <!-- 김아영 -->
+	    p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/> 타일즈 추가위해 주석처리 --><!-- 김아영 -->
 
     <!-- For Pagination Tag -->
     <bean id="imageRenderer" class="egovframework.example.cmmn.web.EgovImgPaginationRenderer"/>
