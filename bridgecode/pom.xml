@@ -12,6 +12,7 @@
 	<properties>
 	    <spring.maven.artifact.version>4.0.9.RELEASE</spring.maven.artifact.version>
 		<egovframework.rte.version>3.5.0</egovframework.rte.version>
+		<org.apache.tiles-version>3.0.3</org.apache.tiles-version> <!-- tiles 변수 -->
 	</properties>
 
 	<repositories>
@@ -38,6 +39,75 @@
 	</repositories>
 
 	<dependencies>
+		 <!-- jsp tiles  시작 --> 
+		<dependency> 
+		<groupId>org.apache.tiles</groupId> 
+		<artifactId>tiles-core</artifactId> 
+		<version>${org.apache.tiles-version}</version> 
+		<!-- needed to exclude slf4j which causes incompatibilities --> 
+		<exclusions> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-nop</artifactId> 
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-api</artifactId> 
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>jcl-over-slf4j</artifactId> 
+		</exclusion> 
+		</exclusions> 
+		</dependency> 
+		                <dependency> 
+		<groupId>org.apache.tiles</groupId> 
+		<artifactId>tiles-servlet</artifactId> 
+		<version>${org.apache.tiles-version}</version> 
+		<!-- needed to exclude slf4j which causes incompatibilities --> 
+		<exclusions> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-nop</artifactId> 
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-api</artifactId> 
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>jcl-over-slf4j</artifactId> 
+		</exclusion> 
+		</exclusions> 
+		</dependency> 
+		                <dependency> 
+		<groupId>org.apache.tiles</groupId> 
+		<artifactId>tiles-extras</artifactId> 
+		<version>${org.apache.tiles-version}</version> 
+		<!-- needed to exclude slf4j which causes incompatibilities --> 
+		<exclusions> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-nop</artifactId>
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>slf4j-api</artifactId> 
+		</exclusion> 
+		<exclusion> 
+		<groupId>org.slf4j</groupId> 
+		<artifactId>jcl-over-slf4j</artifactId> 
+		</exclusion> 
+		</exclusions> 
+		</dependency>
+		 <!-- jsp tiles  끝 -->
+		  
+		<!-- 쿼리로그 (아영) -->
+		<dependency>
+		    <groupId>org.lazyluke</groupId>
+		    <artifactId>log4jdbc-remix</artifactId>
+		    <version>0.2.7</version>
+		</dependency>
 		<!-- 표준프레임워크 실행환경 -->
         <dependency>
 		    <groupId>egovframework.rte</groupId>
