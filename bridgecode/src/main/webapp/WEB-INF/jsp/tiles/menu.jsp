@@ -1,7 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" errorPage="error.jsp"%>
-<a href="${pageContext.request.contextPath}/user/getUserList.do">사용자관리</a><br>
-<a href="" onclick="window.open('${pageContext.request.contextPath}/user/userInsert.do','userInsert','width=300')">사용자등록</a><br>
-<a href="${pageContext.request.contextPath}/getBoardList.do">게시판</a>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bridge Code</title>
+</head>
+<body>
 
  
+
+  <div id="id01" class="w3-modal" >
+    <div class="w3-modal-content w3-animate-top w3-card-4" style="height: 400px; width: 300px;">
+      <header class="w3-container w3-pupple"> 
+        <span onclick="document.getElementById('id01').style.display='none'" 
+        class="w3-button w3-display-topright">&times;</span>
+        <h2>로그인</h2>
+      </header>
+      <div class="w3-container" style="height: 300px;">
+        	<form action="login.do" method="post">
+        	아이디 <input type="text" name="member_id"><br>
+        	비밀번호<input type="password" name="member_password"><br>
+        	<button>로그인</button><br>
+        	</form>
+      </div>
+      <div class="w3-container w3-teal">
+        <p>bridge code</p>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:1px;">
+  <a href="#" onclick="document.getElementById('id01').style.display='block'" >로그인 해주세요.</a>
+    <!-- Right-sided navbar links. Hide them on small screens -->
+    <div class="w3-right w3-hide-small">
+      <a href="${pageContext.request.contextPath}/member/memberInsert.do" class="w3-bar-item w3-button">회원매칭</a>
+      <a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">마이페이지</a>
+      <a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">공지사항</a>
+    </div>
+  </div>
+
+</body>
+</html>

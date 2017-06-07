@@ -1,17 +1,15 @@
 package com.yedam.bridgecode.member;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 
 
 @Controller
@@ -46,6 +44,38 @@ public class MemberController {
 		System.out.println(list);
 		return "member/memberList";
 	}
+	
+	//로그인
+	@RequestMapping(value="/login.do", 
+	                method = RequestMethod.POST )
+	public String login(
+			 MemberVO member,
+			 Model model,
+			 HttpSession session) {
+		System.out.println("로그인 시도");
+		System.out.println(member);
+
+		MemberVO result = memberService.login(member);
+		
+		if ( result != null ) {
+			session.setAttribute("login", result);
+			//페이지이동
+			//return "redirect:/getBoardList.do";
+			//스크립트 실행 후 이동
+			model.addAttribute("msg", "로그인되었습니다.");
+			model.addAttribute("url", "/memberList.do");
+			System.out.println("로그인 성공");
+			return "/";
+		} else {
+			return "/";
+		}
+	}
+	//로그아웃
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "/user/login";
+	}	
 	/*
 	//등록하기
 	@RequestMapping(value="/user/userInsert.do",method= RequestMethod.POST)

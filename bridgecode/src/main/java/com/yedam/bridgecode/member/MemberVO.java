@@ -3,7 +3,8 @@ package com.yedam.bridgecode.member;
 public class MemberVO {
 	@Override
 	public String toString() {
-		return "MemberVO [member_id=" + member_id + "]";
+		return "MemberVO [member_id=" + member_id + ", member_password="
+				+ member_password + ", member_name=" + member_name + "]";
 	}
 	private String member_img1;
 	private String member_img2;

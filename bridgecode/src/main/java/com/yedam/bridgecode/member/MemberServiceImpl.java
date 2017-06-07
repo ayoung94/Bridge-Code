@@ -45,4 +45,21 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAO.getMemberListVO(vo);
 	}
 
+	@Override
+	public MemberVO login(MemberVO vo) {
+		//1. id로 단건조회
+				MemberVO result = MemberDAO.getMember(vo);
+				//2. ID 체크하고 
+				if( result != null) {
+				//3. 패스워드 검사해서 일치하면 UsersVO
+					if( result.getMember_password().equals(vo.getMember_password()) ) {
+						return result;
+					}
+				}
+				//4. 아니면 null 리턴
+		return null;
+	}
+	
+	
+
 }

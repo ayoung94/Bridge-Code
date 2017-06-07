@@ -7,12 +7,6 @@
 <BODY>
 
 <div>
-Contact Us
-대구광역시 중구 국채보상로 537
-(수동, 5층)
-TEL.053-421-2460 / 428-2460
-FAX.053-356-3939
-Email.ask@yedam.ac
 </div>
 
 Copyright © Yedam Vocational Training Institute. All rights reserved.

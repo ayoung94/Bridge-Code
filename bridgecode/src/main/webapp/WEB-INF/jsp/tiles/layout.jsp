@@ -5,14 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insert title here</title>
-<style>
-div.container {
-	width: 100%;
-	border: 1px solid gray;
-}
+<title>Bridge Code</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
-header, footer {
+<!-- 부가적인 테마 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<style>
+body {
+background-color: #bbb;
+}
+footer {
 	padding: 1em;
 	color: white;
 	background-color: black;
@@ -20,62 +28,23 @@ header, footer {
 	text-align: center;
 }
 
-nav {
-	float: left;
-	max-width: 160px;
-	margin: 0;
-	padding: 1em;
-}
-
-nav ul {
-	list-style-type: none;
-	padding: 0;
-}
-
-nav ul a {
-	text-decoration: none;
-}
-
-article {
-	margin-left: 170px;
-	border-left: 1px solid gray;
-	padding: 1em;
-	overflow: hidden;
-}
 </style>
 </head>
 <body>
-	<!-- include_directive.jsp -->
-	<div class="container">
-		<script>
-		
-		function goOpen(url,title,w,h){
-			var context = '${pageContext.request.contextPath}';
-			var option = 'width='+w + ',height=' +h;
-			window.open(context+url,title,option);
-		}
-		
-		</script>
-		<header>
-			
-		<%-- 	<c:if test="${empty sessionScope.login}">
-				<a href="../login/login_form.tile">로그인</a>
-			</c:if>
-			<c:if test="${not empty sessionScope.login}">
-				${sessionScope.login.id}님 
-				<a href="../login/LogoutControl.do">로그아웃</a>
-			</c:if> --%>
-			
-		</header>
-		<nav>
-			<tiles:insertAttribute name="menu"/>
-		</nav>
+<!-- 메뉴 -->
+<div class="w3-top">
+  <tiles:insertAttribute name="menu"/>
+</div>
+<!-- 본문 -->
 		<article>
+		<div class="w3-panel w3-white w3-round-large" style="margin-top: 65px; min-height: 500px;">
 			<tiles:insertAttribute name="content"/>
+		</div>
 		</article>
+<!-- 푸터 -->
 		<footer>
 			<tiles:insertAttribute name="footer"/>
 		</footer>
-	</div>
+
 </body>
 </html>
