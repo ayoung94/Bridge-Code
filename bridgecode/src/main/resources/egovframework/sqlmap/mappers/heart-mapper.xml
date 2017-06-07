@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yedam.bridgecode.member.MemberMapper">
+<mapper namespace="com.yedam.bridgecode.heart.HeartMapper">
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 
@@ -42,11 +42,16 @@
         ]]>
 	</delete>
 
-	<select id="getMember" resultType="member">
+	<select id="getFromHeart" resultType="heart"> 
         <![CDATA[
-        SELECT *
-        FROM member
-        WHERE member_id = #{member_id}
+ SELECT 	   heart_to_id,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time,
+			   heart_confirm_time
+        FROM heart
+        WHERE heart_from_id = #{member_id}
+        and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
         ]]>
 	</select>
 
