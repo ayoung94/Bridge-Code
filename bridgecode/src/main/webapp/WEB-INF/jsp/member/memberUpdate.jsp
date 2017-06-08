@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-회원 가입
+내 회원 정보
 <hr>
 <form method="post">
 아이디 : <input type="text" name="member_id" value="${member.member_id }"> <br>
