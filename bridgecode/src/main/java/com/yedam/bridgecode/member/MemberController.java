@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -39,7 +41,6 @@ public class MemberController {
 	
 	@RequestMapping(value="/member/memberInsert.do",method= RequestMethod.POST)
 	public String userInsert(MemberVO memberVO){
-		
 		System.out.println("command 객체" + memberVO);
 		memberService.insertMember(memberVO);
 		return "redirect:/member/memberList.do";
@@ -47,11 +48,30 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberList.do")
 	public String getUserList(MemberVO vo,Model model){
-		System.out.println("들어옴");
 		List<Map<String,Object>> list = memberService.getMemberList(vo);
 		model.addAttribute("list",list);
 		System.out.println(list);
 		return "member/memberList";
+	}
+	
+	@RequestMapping("/member/memberSelect.do")
+	public String memberSelect(MemberVO vo,
+					@RequestParam String id,
+							  Model model){
+
+		vo.setMember_id(id);
+		MemberVO member = memberService.getMember(vo);
+		model.addAttribute("member",member);
+		
+		return "member/memberSelect";
+	}
+	
+	@RequestMapping("/member/memberMatchingList.do")
+	public String getUserMatchingList(MemberVO vo,Model model){
+		List<Map<String,Object>> list = memberService.getMemberList(vo);
+		model.addAttribute("list",list);
+		System.out.println(list);
+		return "member/memberMatchingList";
 	}
 	
 
@@ -70,7 +90,7 @@ public class MemberController {
 		HeartVO heart = heartService.getFromHeart(member);
 		
 		model.addAttribute("member",member);
-		model.addAttribute("heart",heart);
+		model.addAttribute("heartfrom",heart);
 
 		return "member/mypage";
 	}

@@ -11,16 +11,26 @@
 <script>
 function startTime() {
 	var heartColor=document.getElementById("heartColor");
-	heartColor.style.height='50%';
-	
-	var 충전시간 = new Date('${heart.heart_from_time}');
+	//heartColor.style.height='50%';
+	console.log("★"+'${heartfrom.heart_from_time}');
+	var 충전시간 = new Date('${heartfrom.heart_from_time}');
 	충전시간.setHours(충전시간.getHours()+24);
+	var today = new Date();
 	 
+	var 남은시간 = 충전시간 - today;
+	var 남은시간퍼센트 = (남은시간/(24*60*60*1000))*100;
+	console.log(남은시간퍼센트);
+	heartColor.style.height= 남은시간퍼센트+'%';
+	
+	var currHour = 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+	var currMinute = 60 * 1000;// 월 만듬
+	var currSecond = 1000; // 년 만듬
+
 	//충전시간(마지막 하트시간+24시간) - 현재시간
-    var today = new Date();
-    var h = 충전시간.getHours() - today.getHours();
-    var m = 충전시간.getMinutes() - today.getMinutes();
-    var s = 충전시간.getSeconds() - today.getSeconds();
+    var h = parseInt(남은시간/currHour);
+    var m = parseInt(남은시간/currMinute) % 60;
+    var s = parseInt(남은시간/currSecond) % 60;
+    h = checkTime(h);
     m = checkTime(m);
     s = checkTime(s);
     document.getElementById('clock').innerHTML =
@@ -35,16 +45,15 @@ function checkTime(i) {
 </script>
 </head>
 <body onload="startTime()">
-
-<c:set var="Heart" value="${heart.heart_from_time}" />
-<%-- <c:if test="${!empty Heart }"> --%>
+<c:set var="Heart" value="${heartfrom.heart_from_time}" />
+<c:if test="${!empty Heart }">
 <div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heartColor.png') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 200px; PADDING-TOP: 0px; HEIGHT: 200px;">
 <p id="heartColor" style="WIDTH: 200px; PADDING-RIGHT:0px; PADDING-LEFT:0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heart.png') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; ">
 </p>
 </div>
 
 다음 하트 까지  <div id="clock"></div><br>
-<%-- </c:if> --%>
+</c:if>
 <c:if test="${empty Heart }"> 
 
 <img src="${pageContext.servletContext.contextPath}/images/heartColor.png">
@@ -62,6 +71,7 @@ ${member.member_nickname }님<br>
 
 <div>
 새로 도착한 ♥
+
 <div class="w3-container">
   <ul class="w3-ul w3-card-4">
     <li class="w3-display-container">Jill <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>

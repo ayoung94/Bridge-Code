@@ -40,7 +40,7 @@
   	 <a href="#" onclick="document.getElementById('id01').style.display='block'" >로그인 해주세요.</a>
   </c:if>
     <div class="w3-right w3-hide-small">
-      <a href="${pageContext.request.contextPath}/member/memberInsert.do" class="w3-bar-item w3-button">회원매칭</a>
+      <a href="${pageContext.request.contextPath}/member/memberMatchingList.do" class="w3-bar-item w3-button">회원매칭</a>
       <a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">마이페이지</a>
       <a href="${pageContext.request.contextPath}/couple/couplepage.do" class="w3-bar-item w3-button">커플페이지</a>
       <a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">공지사항</a>

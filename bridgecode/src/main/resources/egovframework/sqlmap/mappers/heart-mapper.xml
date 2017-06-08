@@ -6,18 +6,22 @@
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 
-	<insert id="insertMember" parameterType="member"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
+	<insert id="insertHeart" parameterType="heart"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
+        <!-- heart_confirm_time는 빠져있음. -->
         <![CDATA[  
-        INSERT INTO member(member_id,member_password,member_nickname,member_sex,
-        					member_country,member_birth,member_introduction,member_level) 
-        VALUES(#{member_id},
-        	#{member_password},
-        	#{member_nickname},
-        	#{member_sex},
-        	#{member_country},
-        	TO_DATE(#{member_birth}, 'YYYY-MM-DD'),
-        	#{member_introduction},
-        	1)
+        INSERT INTO heart(
+        	   heart_id,
+        	   heart_to_id,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time) 
+			   
+        VALUES(
+        	   heart_seq.nextval,
+        	   #{heart_to_id},
+        	   #{heart_from_id},
+        	   0,
+        	   sysdate)
         ]]>
 	</insert>
 
@@ -54,6 +58,22 @@
         and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
         ]]>
 	</select>
+	
+		<select id="checkHeart" resultType="heart"> 
+        <![CDATA[
+ 
+ SELECT 	   heart_to_id,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time,
+			   heart_confirm_time
+        FROM heart
+        WHERE heart_from_id = #{member_id}
+        and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
+        ]]>
+	</select>
+	
+	
 
 	<select id="getMemberList" resultType="map">
 		SELECT *

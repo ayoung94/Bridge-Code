@@ -1,8 +1,15 @@
 package com.yedam.bridgecode.heart;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import com.yedam.bridgecode.member.MemberVO;
 
 @Controller
 @SessionAttributes("heart")
@@ -11,6 +18,38 @@ public class HeartController {
 	@Autowired
 	HeartService heartService;
 
+	@RequestMapping("/heart/heartInsert.do")
+	public String heartInsert(Model model,
+				  			  @RequestParam String id,
+				  			  HttpSession session){
+		
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/member/memberSelect.do?id="+id); 
+			
+			return "/popup/alert";
+		}
+		
+		if(){
+			model.addAttribute("msg", "가진 하트가 없습니다."); 
+			model.addAttribute("url", "/member/memberSelect.do?id="+id); 
+			
+			return "/popup/alert";
+		}
+		
+		
+		HeartVO vo = new HeartVO();
+		MemberVO me = (MemberVO)session.getAttribute("login");
+		
+		vo.setHeart_to_id(id);
+		vo.setHeart_from_id(me.getMember_id());
+		heartService.insertHeart(vo);
+		
+		model.addAttribute("msg", "하트 보내기 완료!"); 
+		model.addAttribute("url", "/member/memberSelect.do?id="+id); 
+		
+		return "/popup/alert";
+	}
 
 /*	@RequestMapping("/member/memberInsert.do")
 	public String memberInsert(){

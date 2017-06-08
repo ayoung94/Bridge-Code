@@ -47,6 +47,11 @@ public class HeartServiceImpl implements HeartService{
 		return HeartDAO.getHeartListVO(vo);
 	}
 
+	@Override
+	public boolean checkHeart(HeartVO vo) {
+		return HeartDAO.checkHeart(vo);
+	}
+
 	
 
 }

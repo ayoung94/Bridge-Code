@@ -50,6 +50,11 @@
 		<servlet-name>action</servlet-name>
 		<url-pattern>/</url-pattern> <!-- *.do에서 /로 변경(아영) -->
 	</servlet-mapping>
+	
+		<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>*.png</url-pattern> <!-- *.png파일 읽기 위해 추가.(아영) -->
+	</servlet-mapping>
     
 	 <!-- <welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
