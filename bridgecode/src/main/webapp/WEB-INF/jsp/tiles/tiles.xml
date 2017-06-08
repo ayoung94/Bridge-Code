@@ -11,6 +11,14 @@
 <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" /> 
 </definition> 
 
+<definition name="otherTemplate" template="/WEB-INF/jsp/tiles/layout2.jsp"> 
+<put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" /> 
+<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu2.jsp" /> 
+<put-attribute name="content" value="/WEB-INF/jsp/tiles/content.jsp" /> 
+<put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" /> 
+</definition> 
+
+
 <definition name="home" extends="mainTemplate"> 
  <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />  
 </definition> 
@@ -24,11 +32,11 @@
 </definition>
 
 
-<definition name="*/*" extends="mainTemplate"> 
+<definition name="*/*" extends="otherTemplate"> 
  <put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp" />  
 </definition> 
 
-<definition name="*/*/*" extends="mainTemplate">
+<definition name="*/*/*" extends="otherTemplate">
 <put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}/{3}.jsp" /> 
 </definition> 
 
