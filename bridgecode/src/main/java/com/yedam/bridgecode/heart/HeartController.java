@@ -30,12 +30,12 @@ public class HeartController {
 			return "/popup/alert";
 		}
 		
-		if(){
+		/*if(){
 			model.addAttribute("msg", "가진 하트가 없습니다."); 
 			model.addAttribute("url", "/member/memberSelect.do?id="+id); 
 			
 			return "/popup/alert";
-		}
+		}*/
 		
 		
 		HeartVO vo = new HeartVO();
