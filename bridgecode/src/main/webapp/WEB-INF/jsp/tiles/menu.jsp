@@ -47,7 +47,7 @@
 						<i class="material-icons">dashboard</i> 회원매칭 </a>
 				</li>
 				<li>
-					<a href="${pageContext.request.contextPath}/matching/mypage.do" class="w3-bar-item w3-button">
+					<a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">
 						<i class="material-icons">unarchive</i> 마이페이지 </a>
 				</li>
 				<li>
