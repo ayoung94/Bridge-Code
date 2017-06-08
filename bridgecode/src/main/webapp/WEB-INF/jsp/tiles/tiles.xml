@@ -13,7 +13,7 @@
 
 <definition name="otherTemplate" template="/WEB-INF/jsp/tiles/layout2.jsp"> 
 <put-attribute name="header" value="/WEB-INF/jsp/tiles/header.jsp" /> 
-<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu2.jsp" /> 
+<put-attribute name="menu" value="/WEB-INF/jsp/tiles/menu.jsp" /> 
 <put-attribute name="content" value="/WEB-INF/jsp/tiles/content.jsp" /> 
 <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" /> 
 </definition> 

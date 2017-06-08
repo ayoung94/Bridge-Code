@@ -9,7 +9,7 @@
 </head>
 <body class="index-page">
 <!-- Navbar -->
-<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll" >
+<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
 	<div class="container">
         <div class="navbar-header">
 	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
@@ -18,26 +18,28 @@
 	        	<span class="icon-bar"></span>
 	        	<span class="icon-bar"></span>
 	    	</button>
-	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	
 	        	<div class="logo-container">
 	                <div class="logo">
 	                    <img src="${pageContext.request.contextPath}/resources/img/logo.png" 
-	                    	alt="Creative Tim Logo"
+	                    	alt="Creative Tim Logo" rel="tooltip" 
 	                    	title="<b>Material Kit</b> was Designed & Coded with care by the staff from <b>Creative Tim</b>" 
 	                    	data-placement="bottom" data-html="true">
 	                </div>
 	                <div class="brand">
 	                	<c:set var="loginSession" value="${login}" />
   							<c:if test="${!empty loginSession }"> 
- 								 ${login.member_nickname } 님 환영합니다!
+ 								 ${login.member_nickname } 님 환영합니다!<br>
  								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
   							</c:if>
   							<c:if test="${empty loginSession }"> 
+  	 							<a href="#" data-toggle="modal" data-target="#myModal">
   	 							로그인 해주세요.
+  	 							</a>
   							</c:if>
 	                </div>
 				</div>
-	      	</a>
+
 	    </div>
 
 	    <div class="collapse navbar-collapse" id="navigation-index">

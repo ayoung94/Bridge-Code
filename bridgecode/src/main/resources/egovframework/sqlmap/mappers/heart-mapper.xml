@@ -47,8 +47,9 @@
 	</delete>
 
 	<select id="getFromHeart" resultType="heart"> 
-        <![CDATA[
- SELECT 	   heart_to_id,
+        <![CDATA[ 
+		 SELECT
+  	 		   heart_to_id,
 			   heart_from_id,
 			   heart_status,
 			   heart_from_time,
@@ -61,18 +62,27 @@
 	
 		<select id="checkHeart" resultType="heart"> 
         <![CDATA[
- 		SELECT 
- 	   		   heart_to_id,
-			   heart_from_id,
-			   heart_status,
-			   heart_from_time,
-			   heart_confirm_time
+        	SELECT 
+ 	   		   * 
         FROM heart
-        WHERE heart_from_id = #{member_id}
+        WHERE heart_from_id = #{member_id} 
+        and heart_from_time+1 > sysdate
         and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
         ]]>
 	</select>
 	
+	<select id="getMyHeartList" resultType="map">
+		SELECT *
+		FROM heart
+		where heart_from_id = #{member_id}
+	</select> 
+
+	<select id="getToHeartList" resultType="map">
+		SELECT *
+		FROM heart
+		where heart_to_id = #{member_id}
+	</select> 
+
 	
 
 	<select id="getMemberList" resultType="map">

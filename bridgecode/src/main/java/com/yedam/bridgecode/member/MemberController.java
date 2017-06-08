@@ -87,10 +87,10 @@ public class MemberController {
 		}
 		
 		MemberVO member = memberService.getMember(((MemberVO)session.getAttribute("login")));
-		HeartVO heart = heartService.getFromHeart(member);
-		
+		HeartVO heartfrom = heartService.checkHeart(member);
+		 
 		model.addAttribute("member",member);
-		model.addAttribute("heartfrom",heart);
+		model.addAttribute("heartfrom",heartfrom);
 
 		return "member/mypage";
 	}

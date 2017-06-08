@@ -1,5 +1,8 @@
 package com.yedam.bridgecode.heart;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,18 +32,18 @@ public class HeartController {
 			
 			return "/popup/alert";
 		}
-		
-		/*if(){
+
+		HeartVO vo = new HeartVO();
+		MemberVO me = (MemberVO)session.getAttribute("login");
+
+		if(heartService.checkHeart(me) != null){
+			
 			model.addAttribute("msg", "가진 하트가 없습니다."); 
 			model.addAttribute("url", "/member/memberSelect.do?id="+id); 
 			
 			return "/popup/alert";
-		}*/
-		
-		
-		HeartVO vo = new HeartVO();
-		MemberVO me = (MemberVO)session.getAttribute("login");
-		
+		}
+
 		vo.setHeart_to_id(id);
 		vo.setHeart_from_id(me.getMember_id());
 		heartService.insertHeart(vo);
@@ -49,8 +52,19 @@ public class HeartController {
 		model.addAttribute("url", "/member/memberSelect.do?id="+id); 
 		
 		return "/popup/alert";
-	}
+	} 
 
+	
+
+	@RequestMapping("/heart/heartFromList.do")
+	public String heartFromList(MemberVO vo,Model model,HttpSession session){
+		vo = (MemberVO)session.getAttribute("login");
+		List<Map<String,Object>> list = heartService.getMyHeartList(vo);
+		model.addAttribute("list",list);
+
+		return "heart/heartFromList";
+	}
+	
 /*	@RequestMapping("/member/memberInsert.do")
 	public String memberInsert(){
 		return "member/memberInsert";

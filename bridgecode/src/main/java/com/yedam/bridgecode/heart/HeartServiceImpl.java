@@ -37,10 +37,6 @@ public class HeartServiceImpl implements HeartService{
 		return HeartDAO.getFromHeart(vo);
 	}
 
-	@Override
-	public List<Map<String, Object>> getHeartList(HeartVO vo) {
-		return HeartDAO.getHeartList(vo);
-	}
 
 	@Override
 	public List<HeartVO> getHeartListVO(HeartVO vo) {
@@ -48,8 +44,18 @@ public class HeartServiceImpl implements HeartService{
 	}
 
 	@Override
-	public boolean checkHeart(HeartVO vo) {
+	public HeartVO checkHeart(MemberVO vo) {;
+		if(HeartDAO.checkHeart(vo) == null){
+			return null;
+		} 
+		
 		return HeartDAO.checkHeart(vo);
+
+	}
+
+	@Override
+	public List<Map<String, Object>> getMyHeartList(MemberVO vo) {
+		return HeartDAO.getMyHeartList(vo);
 	}
 
 	

@@ -12,14 +12,14 @@
 function startTime() {
 	var heartColor=document.getElementById("heartColor");
 	//heartColor.style.height='50%';
-	console.log("★"+'${heartfrom.heart_from_time}');
+
 	var 충전시간 = new Date('${heartfrom.heart_from_time}');
 	충전시간.setHours(충전시간.getHours()+24);
 	var today = new Date();
 	 
 	var 남은시간 = 충전시간 - today;
 	var 남은시간퍼센트 = (남은시간/(24*60*60*1000))*100;
-	console.log(남은시간퍼센트);
+
 	heartColor.style.height= 남은시간퍼센트+'%';
 	
 	var currHour = 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
@@ -46,19 +46,23 @@ function checkTime(i) {
 </head>
 <body onload="startTime()">
 <c:set var="Heart" value="${heartfrom.heart_from_time}" />
-<c:if test="${!empty Heart }">
+<c:choose>
+<c:when test="${!empty Heart }">
 <div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heartColor.png') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 200px; PADDING-TOP: 0px; HEIGHT: 200px;">
 <p id="heartColor" style="WIDTH: 200px; PADDING-RIGHT:0px; PADDING-LEFT:0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heart.png') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; ">
 </p>
 </div>
 
 다음 하트 까지  <div id="clock"></div><br>
-</c:if>
-<c:if test="${empty Heart }"> 
-
+</c:when>
+<c:otherwise>
 <img src="${pageContext.servletContext.contextPath}/images/heartColor.png">
 하트를 사용해보세요!<br>
-</c:if>
+</c:otherwise>
+</c:choose>
+
+<a href="${pageContext.request.contextPath}/heart/heartFromList.do">하트 사용 내역</a>
+
 
 <div>
 my information<br>
