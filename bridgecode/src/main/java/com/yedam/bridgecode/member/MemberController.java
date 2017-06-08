@@ -55,8 +55,8 @@ public class MemberController {
 		System.out.println(list);
 		return "member/memberList";
 	}
-	
-	@RequestMapping("/member/memberSelect.do")
+	// 경민
+	@RequestMapping("/matching/memberSelect.do")
 	public String memberSelect(MemberVO vo,
 					@RequestParam String id,
 							  Model model){
@@ -65,15 +65,15 @@ public class MemberController {
 		MemberVO member = memberService.getMember(vo);
 		model.addAttribute("member",member);
 		
-		return "member/memberSelect";
+		return "matching/memberSelect";
 	}
-	
-	@RequestMapping("/member/memberMatchingList.do")
+	// 경민
+	@RequestMapping("/matching/memberMatchingList.do")
 	public String getUserMatchingList(MemberVO vo,Model model){
 		List<Map<String,Object>> list = memberService.getMemberList(vo);
 		model.addAttribute("list",list);
 		System.out.println(list);
-		return "member/memberMatchingList";
+		return "matching/memberMatchingList";
 	}
 	
 
