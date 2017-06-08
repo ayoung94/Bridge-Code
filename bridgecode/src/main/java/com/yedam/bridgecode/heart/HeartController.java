@@ -53,7 +53,35 @@ public class HeartController {
 		
 		return "/popup/alert";
 	} 
-
+	
+	
+	@RequestMapping("/heart/heartYES.do")
+	public String heartYES(Model model,
+				  			  @RequestParam String heart_id,
+				  			  HttpSession session){
+		HeartVO vo = new HeartVO();
+		vo.setHeart_id(heart_id);
+		heartService.heartYES(vo);
+		
+		model.addAttribute("msg", "하트 수락 완료!"); 
+		model.addAttribute("url", "/member/mypage.do"); 
+		
+		return "/popup/alert";
+	} 
+	
+	@RequestMapping("/heart/heartNO.do")
+	public String heartNO(Model model,
+				  			  @RequestParam String heart_id,
+				  			  HttpSession session){
+		HeartVO vo = new HeartVO();
+		vo.setHeart_id(heart_id);
+		heartService.heartNO(vo);
+		
+		model.addAttribute("msg", "하트 거절 완료!"); 
+		model.addAttribute("url", "/member/mypage.do"); 
+		
+		return "/popup/alert";
+	} 
 	
 
 	@RequestMapping("/heart/heartFromList.do")

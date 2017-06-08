@@ -39,6 +39,12 @@ public class MemberServiceImpl implements MemberService{
 	public List<Map<String, Object>> getMemberList(MemberVO vo) {
 		return MemberDAO.getMemberList(vo);
 	}
+	
+	@Override
+	public List<Map<String, Object>> getBestMemberList(MemberVO vo) {
+		return MemberDAO.getBestMemberList(vo);
+	}
+	
 
 	@Override
 	public List<MemberVO> getMemberListVO(MemberVO vo) {
@@ -59,6 +65,7 @@ public class MemberServiceImpl implements MemberService{
 				//4. 아니면 null 리턴
 		return null;
 	}
+
 	
 	
 

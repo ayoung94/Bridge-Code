@@ -30,8 +30,10 @@ public class MemberController {
 
 	
 	@RequestMapping("/")
-	public String home(Model model) {
-		return "home";
+	public String home(MemberVO vo,Model model) {
+		List<Map<String,Object>> list = memberService.getBestMemberList(vo);
+		model.addAttribute("list",list);
+		return "home"; 
 	}
 	
 	@RequestMapping("/member/memberInsert.do")
@@ -88,9 +90,12 @@ public class MemberController {
 		
 		MemberVO member = memberService.getMember(((MemberVO)session.getAttribute("login")));
 		HeartVO heartfrom = heartService.checkHeart(member);
-		 
+		List<Map<String,Object>> heartTo = heartService.getToHeartList(member);
+		
 		model.addAttribute("member",member);
 		model.addAttribute("heartfrom",heartfrom);
+		model.addAttribute("heartto",heartTo);
+		
 
 		return "member/mypage";
 	}

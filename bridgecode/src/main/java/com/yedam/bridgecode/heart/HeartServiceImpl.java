@@ -11,7 +11,7 @@ import com.yedam.bridgecode.member.MemberVO;
 
 @Service("heartService") 
 public class HeartServiceImpl implements HeartService{
-	
+	 
 	
 	//DAO를 호출하는 부분
 	@Autowired
@@ -56,6 +56,21 @@ public class HeartServiceImpl implements HeartService{
 	@Override
 	public List<Map<String, Object>> getMyHeartList(MemberVO vo) {
 		return HeartDAO.getMyHeartList(vo);
+	}
+
+	@Override 
+	public List<Map<String, Object>> getToHeartList(MemberVO vo) {
+		return HeartDAO.getToHeartList(vo); 
+	}
+
+	@Override
+	public void heartYES(HeartVO vo) {
+		HeartDAO.heartYES(vo);
+	}
+
+	@Override
+	public void heartNO(HeartVO vo) {
+		HeartDAO.heartNO(vo);
 	}
 
 	

@@ -74,16 +74,24 @@ ${member.member_nickname }님<br>
 </div>
 
 <div>
-새로 도착한 ♥
+새로 도착한 ♥ 
 
 <div class="w3-container">
-  <ul class="w3-ul w3-card-4">
-    <li class="w3-display-container">Jill <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
-    <li class="w3-display-container">Adam <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
-    <li class="w3-display-container">Eve <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+  <ul class="w3-ul w3-card-4" style="width: 500px;">
+   <c:forEach items="${heartto}" var="heartTo" >
+    <li class="w3-display-container">
+    <br>
+    ${heartTo.HEART_FROM_ID}님께서 하트를 보내셨습니다.
+    <br>
+    <div class="w3-right-align">
+    <button class="btn btn-white btn-sm" onclick="location.href='${pageContext.request.contextPath}/heart/heartYES.do?heart_id=${heartTo.HEART_ID}'">수락</button>
+    <button class="btn btn-white btn-sm" onclick="location.href='${pageContext.request.contextPath}/heart/heartNO.do?heart_id=${heartTo.HEART_ID}'">거절</button>
+    </div>
+    <span onclick="this.parentElement.style.display='none'" class="w3-button w3-transparent w3-display-right">&times;</span></li>
+  </c:forEach>
   </ul>
 </div>
-
 </div>
+
 </body>
 </html>

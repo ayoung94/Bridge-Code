@@ -25,19 +25,24 @@
         ]]>
 	</insert>
 
-	<update id="updateMember" parameterType="member">
+	<update id="heartYES" parameterType="heart">
         <![CDATA[
-        UPDATE member SET
-            member_id = #{member_id}, 
-        	member_password = #{member_password},
-        	member_nickname = #{member_nickname},
-        	member_sex = #{member_sex},
-        	member_country = #{member_country},
-        	member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'),
-        	member_introduction = #{member_introduction}
-        WHERE member_id = #{member_id}
+        UPDATE heart SET
+           heart_status = 1,
+           heart_confirm_time = sysdate
+        WHERE heart_id = #{heart_id}
+        ]]>
+	</update> 
+	
+	<update id="heartNO" parameterType="heart">
+        <![CDATA[
+        UPDATE heart SET
+           heart_status = 2,
+           heart_confirm_time = sysdate
+        WHERE heart_id = #{heart_id}
         ]]>
 	</update>
+	
 
 	<delete id="deleteUser">
         <![CDATA[
@@ -60,6 +65,8 @@
         ]]>
 	</select>
 	
+	
+	
 		<select id="checkHeart" resultType="heart"> 
         <![CDATA[
         	SELECT 
@@ -78,9 +85,10 @@
 	</select> 
 
 	<select id="getToHeartList" resultType="map">
-		SELECT *
+		SELECT * 
 		FROM heart
 		where heart_to_id = #{member_id}
+		and heart_status = 0
 	</select> 
 
 	

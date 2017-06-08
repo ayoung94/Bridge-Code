@@ -2,25 +2,26 @@ package com.yedam.bridgecode.heart;
 
 public class HeartVO {
 
-	private String heart_to;
+	private String heart_id;
 	private String heart_from_id;
 	private String heart_status;
 	private String heart_from_time;
 	private String heart_confirm_time;
 	private String heart_to_id;
-	public String getHeart_to() {
-		return heart_to;
-	}
-	@Override
+
+	@Override 
 	public String toString() {
-		return "HeartVO [heart_to=" + heart_to + ", heart_from_id="
+		return "HeartVO [heart_id=" + heart_id + ", heart_from_id="
 				+ heart_from_id + ", heart_status=" + heart_status
 				+ ", heart_from_time=" + heart_from_time
 				+ ", heart_confirm_time=" + heart_confirm_time
 				+ ", heart_to_id=" + heart_to_id + "]";
 	}
-	public void setHeart_to(String heart_to) {
-		this.heart_to = heart_to;
+	public String getHeart_id() {
+		return heart_id;
+	}
+	public void setHeart_id(String heart_id) {
+		this.heart_id = heart_id;
 	}
 	public String getHeart_from_id() {
 		return heart_from_id;
