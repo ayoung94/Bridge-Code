@@ -78,5 +78,6 @@
     </bean>
 	<!-- /For Pagination Tag -->
 
+	<mvc:default-servlet-handler />
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>

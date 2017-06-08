@@ -5,46 +5,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Bridge Code</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/resources/img/apple-icon.png">
+	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	
+<!--     Fonts and icons     -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<!-- CSS Files -->
+    <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link href="${pageContext.request.contextPath}/resources/css/material-kit.css" rel="stylesheet"/>
+    
+    <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
 
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<style>
-body {
-background-color: #bbb;
-}
-footer {
-	padding: 1em;
-	color: white;
-	background-color: black;
-	clear: left;
-	text-align: center;
-}
-
-</style>
 </head>
 <body>
+
 <!-- 메뉴 -->
-<div class="w3-top">
-  <tiles:insertAttribute name="menu"/>
-</div>
-<!-- 본문 -->
-		<article>
-		<div class="w3-panel w3-white w3-round-large" style="margin-top: 65px; min-height: 500px;">
-			<tiles:insertAttribute name="content"/>
+		<div>
+		  <tiles:insertAttribute name="menu"/>
 		</div>
-		</article>
-<!-- 푸터 -->
-		<footer>
+<!-- 본문 -->
+<div class="wrapper">
+	<div class="header header-filter" style="background-image: url('${pageContext.request.contextPath}/resources/img/bg2.jpeg');">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="brand">
+						<h1>Material Kit.</h1>
+						<h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main main-raised">
+		<div class="section section-basic">
+			<div class="container">
+				<tiles:insertAttribute name="content"/>
+			</div>
+		</div>	
+	</div>
+	<!-- 푸터 -->
+</div>
+	<footer>
 			<tiles:insertAttribute name="footer"/>
-		</footer>
+	</footer>
 
 </body>
+
+<!--   Core JS Files   -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
+
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+	<script src="${pageContext.request.contextPath}/resources/js/material-kit.js" type="text/javascript"></script>
+
 </html>

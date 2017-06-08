@@ -7,45 +7,101 @@
 <head>
 <title>Bridge Code</title>
 </head>
-<body>
+<body class="index-page">
+<!-- Navbar -->
+<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
+	<div class="container">
+        <div class="navbar-header">
+	    	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
+	        	<span class="sr-only">Toggle navigation</span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	        	<span class="icon-bar"></span>
+	    	</button>
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	        	<div class="logo-container">
+	                <div class="logo">
+	                    <img src="${pageContext.request.contextPath}/resources/img/logo.png" 
+	                    	alt="Creative Tim Logo" rel="tooltip" 
+	                    	title="<b>Material Kit</b> was Designed & Coded with care by the staff from <b>Creative Tim</b>" 
+	                    	data-placement="bottom" data-html="true">
+	                </div>
+	                <div class="brand">
+	                	<c:set var="loginSession" value="${login}" />
+  							<c:if test="${!empty loginSession }"> 
+ 								 ${login.member_nickname } 님 환영합니다!
+ 								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+  							</c:if>
+  							<c:if test="${empty loginSession }"> 
+  	 							로그인 해주세요.
+  							</c:if>
+	                </div>
+				</div>
+	      	</a>
+	    </div>
 
- 
-  <div id="id01" class="w3-modal" >
-    <div class="w3-modal-content w3-animate-top w3-card-4" style="height: 400px; width: 300px;">
-      <header class="w3-container w3-pupple"> 
-        <span onclick="document.getElementById('id01').style.display='none'" 
-        class="w3-button w3-display-topright">&times;</span>
-        <h2>로그인</h2>
-      </header>
-      <div class="w3-container" style="height: 300px;">
-        	<form action="${pageContext.request.contextPath}/login.do" method="post">
-        	아이디 <input type="text" name="member_id"><br>
-        	비밀번호<input type="password" name="member_password"><br>
-        	<button>로그인</button><br>
-        	</form>
+	    <div class="collapse navbar-collapse" id="navigation-index">
+	    	<ul class="nav navbar-nav navbar-right">
+				<li>
+					<a href="${pageContext.request.contextPath}/member/memberInsert.do" target="_blank" class="w3-bar-item w3-button">
+						<i class="material-icons">dashboard</i> 회원매칭 </a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/member/mypage.do" target="_blank" class="w3-bar-item w3-button">
+						<i class="material-icons">unarchive</i> 마이페이지 </a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/couple/couplepage.do" target="_blank" class="w3-bar-item w3-button">
+						<i class="material-icons">unarchive</i> 커플페이지 </a>
+				</li>
+				<li>
+					<a href="${pageContext.request.contextPath}/notice/noticeList.do" target="_blank" class="w3-bar-item w3-button">
+						<i class="material-icons">unarchive</i> 공지사항 </a>
+				</li>
+				<li>
+					<a rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+						<i class="fa fa-twitter"></i> </a>
+				</li>
+				<li>
+					<a rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+						<i class="fa fa-facebook-square"></i> </a>
+				</li>
+				<li>
+					<a rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-white btn-simple btn-just-icon">
+						<i class="fa fa-instagram"></i> </a>
+				</li>
+	    	</ul>
+	    </div>
+	</div>
+</nav>
+<!-- End Navbar -->
+
+<!-- Modal Core(로그인) -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">로그인</h4>
       </div>
-      <div class="w3-container w3-teal">
-        <p>bridge code</p>
-      </div>
-    </div>
+		<form action="${pageContext.request.contextPath}/login.do" method="post">
+			<div class="modal-body">
+				<div class="input-group">
+					<span class="input-group-addon"> <i class="material-icons">email</i>
+					</span> <input type="text" class="form-control" placeholder="Email..." name="member_id">
+				</div>
+				<div class="input-group">
+					<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
+					</span> <input type="password" placeholder="Password..." name="member_password" class="form-control" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<input type="submit" class="btn btn-info btn-simple" value="로그인">
+			</div>
+		</form>
+	</div>
   </div>
-  
-	
-  <div class="w3-bar w3-white w3-padding w3-card-2" style="letter-spacing:1px;">
-  <c:set var="loginSession" value="${login}" />
-  <c:if test="${!empty loginSession }"> 
- 	 ${login.member_id } 님 환영합니다! <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
-  </c:if>
-  <c:if test="${empty loginSession }"> 
-  	 <a href="#" onclick="document.getElementById('id01').style.display='block'" >로그인 해주세요.</a>
-  </c:if>
-    <div class="w3-right w3-hide-small">
-      <a href="${pageContext.request.contextPath}/member/memberMatchingList.do" class="w3-bar-item w3-button">회원매칭</a>
-      <a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">마이페이지</a>
-      <a href="${pageContext.request.contextPath}/couple/couplepage.do" class="w3-bar-item w3-button">커플페이지</a>
-      <a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">공지사항</a>
-    </div>
-  </div>
+</div>
 
 </body>
 </html>
