@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.heart;
+package com.yedam.bridgecode.chat;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import com.yedam.bridgecode.member.MemberVO;
 
 public interface HeartService {
 	public HeartVO checkHeart(MemberVO vo); // 마지막으로 보낸 하트가 24이 지났는지 체크하여 가장 나중에 보낸하트정보를 가져온다.
-	public void heartYES(HeartVO vo,MemberVO from,MemberVO to); //하트 수락 
+	public void heartYES(HeartVO vo); //하트 수락 
 	public void heartNO(HeartVO vo); //하트 거절
 	public void insertHeart(HeartVO vo);
 	public void updateHeart(HeartVO vo); 

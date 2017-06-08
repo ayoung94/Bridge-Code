@@ -140,7 +140,7 @@ public class MemberController {
 		if ( result != null ) {
 			session.setAttribute("login", result);
 
-			return "home";
+			return "redirect:/";
 			
 		} else {
 
@@ -154,7 +154,7 @@ public class MemberController {
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "home";
+		return "redirect:/";
 	}	
 
 }

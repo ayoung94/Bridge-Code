@@ -23,7 +23,7 @@
 	                <div class="logo">
 	                    <img src="${pageContext.request.contextPath}/resources/img/logo.png">
 	                </div>
-	                   
+	                  
 	                <div class="brand" style="width: 300px;">
 	                	<c:set var="loginSession" value="${login}" />
   							<c:if test="${!empty loginSession }"> 
@@ -43,6 +43,10 @@
 	    <div class="collapse navbar-collapse" id="navigation-index">
 	    	<ul class="nav navbar-nav navbar-right">
 				<li>
+					<a href="${pageContext.request.contextPath}/" class="w3-bar-item w3-button">
+						Bridge Code </a>
+				</li>
+				<li>
 					<a href="${pageContext.request.contextPath}/matching/memberMatchingList.do" class="w3-bar-item w3-button">
 						<i class="material-icons">dashboard</i> 회원매칭 </a>
 				</li>
@@ -58,18 +62,7 @@
 					<a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">
 						<i class="material-icons">unarchive</i> 공지사항 </a>
 				</li>
-				<li>
-					<a rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-						<i class="fa fa-twitter"></i> </a>
-				</li>
-				<li>
-					<a rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-						<i class="fa fa-facebook-square"></i> </a>
-				</li>
-				<li>
-					<a rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-white btn-simple btn-just-icon">
-						<i class="fa fa-instagram"></i> </a>
-				</li>
+
 	    	</ul>
 	    </div>
 	</div>

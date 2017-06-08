@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.heart;
+package com.yedam.bridgecode.chat;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.yedam.bridgecode.member.MemberVO;
 
- 
+
 @Service("heartService") 
 public class HeartServiceImpl implements HeartService{
 	 
@@ -64,10 +64,8 @@ public class HeartServiceImpl implements HeartService{
 	}
 
 	@Override
-	public void heartYES(HeartVO vo,MemberVO from,MemberVO to) {
+	public void heartYES(HeartVO vo) {
 		HeartDAO.heartYES(vo);
-		HeartDAO.heartYES2(vo);
-		HeartDAO.heartYES3(vo);
 	}
 
 	@Override

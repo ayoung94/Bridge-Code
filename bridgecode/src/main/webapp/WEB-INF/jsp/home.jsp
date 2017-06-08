@@ -13,7 +13,7 @@
 
 <table border="1">
 <tr>
-<c:forEach items="${list}" var="best" >
+<c:forEach items="${list}" var="best" end="5" >
 <td>
 ${best.member_id}<br>
 하트${best.heart_count}개

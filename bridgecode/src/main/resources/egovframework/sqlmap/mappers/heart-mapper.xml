@@ -34,6 +34,22 @@
         ]]>
 	</update> 
 	
+	<update id="heartYES2" parameterType="member">
+        <![CDATA[
+        UPDATE member SET
+           member_partner_id = #{}
+        WHERE heart_id = #{heart_id}
+        ]]>
+	</update> 
+	 
+	<update id="heartYES3" parameterType="member">
+        <![CDATA[
+        UPDATE member SET
+           member_partner_id = #{}
+        WHERE heart_id = #{heart_id}
+        ]]>
+	</update> 
+	
 	<update id="heartNO" parameterType="heart">
         <![CDATA[
         UPDATE heart SET
