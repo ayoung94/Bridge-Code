@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class ChatController {
 	
 	@Autowired
-	ChatService heartService;
+	ChatService chatService;
 
 	
 

@@ -4,7 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 
 
 
-@MapperScan
+//@MapperScan
 public interface ChatMapper {
 	
 }
