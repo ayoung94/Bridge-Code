@@ -27,14 +27,14 @@
 										class="img-circle img-responsive img-raised" >
 								</div>
 								<div class="name">
-									<h3 class="title" style="text-align:center">${member.member_nickname }(${member.member_country})</h3>
-									<h5 style="text-align: center">${member.member_birth }</h5>
+									<h3 class="title" style="text-align:center">${profile.member_nickname }(${profile.member_country})</h3>
+									<h5 style="text-align: center">${profile.member_birth }</h5>
 									<h6 style="text-align: center">자기소개란</h6>
 								</div>
 							</div>
 						</div>
 						<div class="description text-center" style="width:700px; height:200px; display:center;">
-							<textarea class="form-control" placeholder="${member.member_introduction }" rows="3" cols="5"></textarea> <a href="#" >수정하기</a>						
+							<textarea class="form-control" placeholder="${profile.member_introduction }" rows="3" cols="5"></textarea> <a href="#" >수정하기</a>						
 						</div>
 
 						<div class="row">
@@ -46,7 +46,7 @@
 												<li><a href=""><img src="${pageContext.request.contextPath}/resources/img/examples/chris9.jpg"/></a></li>
 											</ul>	
 										<ul class="nav nav-pills">
-											<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${member.member_id}"> <i
+											<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}"> <i
 													class="material-icons">favorite</i> 하트보내기
 											</a></li>
 										</ul>

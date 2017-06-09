@@ -63,10 +63,9 @@ table td {
 					<c:forEach items="${member}" var="user">
 						<td>
 							<div>
-								<a
-									href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${user.MEMBER_ID}">
-									${user.MEMBER_ID} </a><br> ${user.MEMBER_NICKNAME} <br> <img
-									src="${pageContext.request.contextPath}/WEB-INF/imeges/${ussr.MEMBER_PROFILE_IMG}"
+								<a href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${user.MEMBER_ID}">
+									${user.MEMBER_ID} </a><br> ${user.MEMBER_NICKNAME} <br> 
+									<img src="${pageContext.request.contextPath}/WEB-INF/imeges/${user.MEMBER_PROFILE_IMG}"
 									class="img-circle"> <br>
 							</div>
 						</td>
