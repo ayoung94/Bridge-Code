@@ -1,5 +1,7 @@
 package com.yedam.bridgecode.member;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.yedam.bridgecode.heart.HeartService;
 import com.yedam.bridgecode.heart.HeartVO;
@@ -31,9 +32,11 @@ public class MemberController {
 	
 	@RequestMapping("/")
 	public String home(MemberVO vo,Model model) {
+		
 		List<Map<String,Object>> list = memberService.getBestMemberList(vo);
 		model.addAttribute("list",list);
 		return "home"; 
+		
 	}
 	
 	@RequestMapping("/member/memberInsert.do")
@@ -42,9 +45,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/memberInsert.do",method= RequestMethod.POST)
-	public String memberInsert(MemberVO memberVO){
-		System.out.println("command 객체" + memberVO);
-		memberService.insertMember(memberVO);
+	public String memberInsert(MemberVO vo) throws IOException{
+		
+		/*MultipartFile profile_img = vo.getMember_profile_img();
+		if(!profile_img.isEmpty()){
+			String fileName = profile_img.getOriginalFilename();
+			profile_img.transferTo(new File("D:/egov/본프로젝트/bridgecode/src/main/webapp/WEB-INF/profile_img/"+fileName)); 
+		}
+		*/
+		memberService.insertMember(vo);
 		return "redirect:/member/memberList.do";
 	}
 	

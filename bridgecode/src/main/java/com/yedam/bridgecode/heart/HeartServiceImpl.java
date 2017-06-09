@@ -88,6 +88,15 @@ public class HeartServiceImpl implements HeartService{
 		return HeartDAO.getHeart(vo);
 	}
 
-	
+	@Override
+	public void coupleDelete(MemberVO from, MemberVO to) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("from",from);
+		map.put("to", to);
+
+		HeartDAO.coupleDelete(map);  
+		HeartDAO.coupleDelete2(map);
+		HeartDAO.coupleDelete3(map);
+	}
 
 }

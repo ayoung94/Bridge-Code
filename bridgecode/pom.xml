@@ -39,7 +39,13 @@
 	</repositories>
 
 	<dependencies>
-		 <!-- jsp tiles  시작 --> 
+		<!-- file upload 시작 -->
+		<dependency> 
+		<groupId>commons-fileupload</groupId> 
+		<artifactId>commons-fileupload</artifactId> 
+		<version>1.3.1</version> 
+		</dependency>
+		<!-- jsp tiles --> 
 		<dependency> 
 		<groupId>org.apache.tiles</groupId> 
 		<artifactId>tiles-core</artifactId> 

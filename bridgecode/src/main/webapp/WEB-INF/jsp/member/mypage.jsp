@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 function startTime() {
 	var heartColor=document.getElementById("heartColor");
@@ -45,6 +45,7 @@ function checkTime(i) {
 </script>
 </head>
 <body onload="startTime()">
+
 <c:set var="Heart" value="${heartfrom.heart_from_time}" />
 <c:choose>
 <c:when test="${!empty Heart }">
