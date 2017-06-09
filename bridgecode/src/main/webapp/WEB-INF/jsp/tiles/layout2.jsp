@@ -9,7 +9,7 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/resources/img/apple-icon.png">
 	<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	
 <!--     Fonts and icons     -->
@@ -48,10 +48,6 @@
 <footer>
 		<tiles:insertAttribute name="footer"/>
 </footer>
-
-
-</body>
-
 <!--   Core JS Files   -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
@@ -65,5 +61,9 @@
 
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="${pageContext.request.contextPath}/resources/js/material-kit.js" type="text/javascript"></script>
+
+</body>
+
+
 
 </html>

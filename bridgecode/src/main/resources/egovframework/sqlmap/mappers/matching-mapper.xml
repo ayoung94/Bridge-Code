@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.yedam.bridgecode.code.CodeMapper">
+<mapper namespace="com.yedam.bridgecode.matching.MatchingMapper">
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 

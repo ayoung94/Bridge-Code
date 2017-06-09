@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.code;
+package com.yedam.bridgecode.matching;
 
 import java.util.List;
 import java.util.Map;
@@ -14,11 +14,11 @@ import com.yedam.bridgecode.member.MemberService;
 import com.yedam.bridgecode.member.MemberVO;
 
 @Controller
-@SessionAttributes("code")
-public class CodeController {
+@SessionAttributes("matching")
+public class MatchingController {
 
 	@Autowired
-	CodeService CodeService;
+	MatchingService MatchingService;
 	@Autowired
 	MemberService memberService;
 	
@@ -28,7 +28,7 @@ public class CodeController {
 		MemberVO me = new MemberVO();
 		List<Map<String, Object>> list = memberService.getMemberList(me);
 		model.addAttribute("member", list);
-		List<Map<String, Object>> interest = CodeService.getCodeList(vo);
+		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
 		model.addAttribute("list", interest);
 		return "matching/memberMatchingList";
 	}

@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.code;
+package com.yedam.bridgecode.matching;
 
 import java.util.List;
 import java.util.Map;
@@ -6,6 +6,6 @@ import java.util.Map;
 import org.mybatis.spring.annotation.MapperScan;
 
 @MapperScan
-public interface CodeMapper {
+public interface MatchingMapper {
 	public List<Map<String, Object>> getCodeList(CodeVO vo);
 }

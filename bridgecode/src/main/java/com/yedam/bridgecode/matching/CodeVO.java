@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.code;
+package com.yedam.bridgecode.matching;
 
 public class CodeVO {
 
