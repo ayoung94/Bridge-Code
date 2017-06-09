@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 function startTime() {
 	var heartColor=document.getElementById("heartColor");
@@ -45,6 +45,7 @@ function checkTime(i) {
 </script>
 </head>
 <body onload="startTime()">
+
 <c:set var="Heart" value="${heartfrom.heart_from_time}" />
 <c:choose>
 <c:when test="${!empty Heart }">
@@ -76,7 +77,7 @@ ${member.member_nickname }님<br>
 <fmt:formatDate value="${memberBirth}" pattern="yyyy" var="birth" />
 <!-- 나이 처리 끝 -->
 ${date - birth +1}세 / ${member.member_country }<br>
-<a href="${pageContext.request.contextPath}/member/memberUpdate.do"> 내 정보 수정하기 </a>
+<a href="${pageContext.request.contextPath}/member/memberSelect.do"> 상세 보기</a>
 </div>
 
 <div style="margin-top: 50px; width: 500px; height: 130px;">

@@ -59,13 +59,32 @@
         ]]>
 	</update>
 	
-
-	<delete id="deleteUser">
+	<update id="coupleDelete" parameterType="hashmap">
         <![CDATA[
-        DELETE users
-        WHERE id = #{id}
+        UPDATE heart SET
+           heart_status = 2,
+           heart_confirm_time = sysdate
+        WHERE heart_from_id in(#{from.member_id},#{to.member_id})
+        and heart_to_id in (#{to.member_id},#{from.member_id})
         ]]>
-	</delete>
+	</update>
+	
+	<update id="coupleDelete2" parameterType="hashmap">
+        <![CDATA[
+        UPDATE member SET
+           member_partner_id = null 
+        WHERE member_id = #{from.member_id}
+        ]]>
+	</update>
+	
+	<update id="coupleDelete3" parameterType="hashmap">
+        <![CDATA[
+        UPDATE member SET
+           member_partner_id = null 
+        WHERE member_id = #{to.member_id}
+        ]]>
+	</update>
+	
 
 	<select id="getFromHeart" resultType="heart"> 
         <![CDATA[ 
@@ -77,7 +96,7 @@
 			   heart_confirm_time
         FROM heart
         WHERE heart_from_id = #{member_id}
-        and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
+        and heart_from_time = (select max(heart_from_time) from heart where heart_from_id = #{member_id})
         ]]>
 	</select>
 	 

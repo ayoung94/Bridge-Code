@@ -11,7 +11,7 @@
 <hr>
 <form method="post">
 아이디 : <input type="text" name="member_id" value="${member.member_id }"> <br>
-비밀번호: <input type="password" name="member_password" > <br>
+비밀번호: <input type="password" name="member_password" required> <br>
 닉네임: <input type="text" name="member_nickname" value="${member.member_nickname }"> <br>
 <!-- 성별: 남<input type="radio" name="member_sex" value="1"> 여<input type="radio" name="member_sex" value="2"> <br>
 국적: <select name="member_country" >

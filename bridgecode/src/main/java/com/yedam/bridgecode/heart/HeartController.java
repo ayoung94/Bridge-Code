@@ -57,6 +57,28 @@ public class HeartController {
 		return "/popup/alert";
 	} 
 	
+	@RequestMapping("/couple/coupleDelete.do")
+	public String coupleDelete(Model model,
+				  			  MemberVO from,
+				  			  MemberVO to,
+				  			  HttpSession session){
+
+		to = (MemberVO)session.getAttribute("login");
+		from.setMember_id(to.getMember_partner_id());
+		from = memberService.getMember(from);
+		
+		//heart, from_member, to_member
+		heartService.coupleDelete(from,to); 
+		
+		model.addAttribute("msg", "커플 해제가 완료되었습니다!"); 
+		model.addAttribute("url", "/member/mypage.do"); 
+		
+		to = memberService.getMember(to);
+		session.setAttribute("login", to);
+		
+		return "/popup/url";
+	} 
+	
 	
 	@RequestMapping("/heart/heartYES.do")
 	public String heartYES(Model model,
@@ -77,8 +99,14 @@ public class HeartController {
 		//heart, from_member, to_member
 		heartService.heartYES(vo,from,to); 
 		
+		List<Map<String,Object>> heartTo = heartService.getToHeartList(to);
+		session.setAttribute("heartto",heartTo);
+		
 		model.addAttribute("msg", "하트 수락 완료!"); 
 		model.addAttribute("url", "/member/mypage.do"); 
+		
+		to = memberService.getMember(to);
+		session.setAttribute("login", to);
 		
 		return "/popup/alert";
 	} 
@@ -87,9 +115,17 @@ public class HeartController {
 	public String heartNO(Model model,
 				  			  @RequestParam String heart_id,
 				  			  HttpSession session){
+		
 		HeartVO vo = new HeartVO();
 		vo.setHeart_id(heart_id);
+		
 		heartService.heartNO(vo);
+		
+		MemberVO to = new MemberVO();
+		to.setMember_id(vo.getHeart_to_id());
+		
+		List<Map<String,Object>> heartTo = heartService.getToHeartList(to);
+		session.setAttribute("heartto",heartTo);
 		
 		model.addAttribute("msg", "하트 거절 완료!"); 
 		model.addAttribute("url", "/member/mypage.do"); 
@@ -100,6 +136,7 @@ public class HeartController {
 
 	@RequestMapping("/heart/heartFromList.do")
 	public String heartFromList(MemberVO vo,Model model,HttpSession session){
+		
 		vo = (MemberVO)session.getAttribute("login");
 		List<Map<String,Object>> list = heartService.getMyHeartList(vo);
 		model.addAttribute("list",list);
@@ -117,15 +154,19 @@ public class HeartController {
 			model.addAttribute("msg", "로그인 해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
-		}
+		} 
+		
+		vo = (MemberVO)session.getAttribute("login");
+		
 		
 		if(vo.getMember_partner_id() == null){
 			return "couple/noCouplePage";
 		}
-		vo = (MemberVO)session.getAttribute("login");
+		
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
 		
+
 		model.addAttribute("partner", partner);
 		
 		return "couple/couplePage";

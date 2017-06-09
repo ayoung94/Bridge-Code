@@ -1,5 +1,7 @@
 package com.yedam.bridgecode.member;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
 	@Override
 	public String toString() {
@@ -19,7 +21,7 @@ public class MemberVO {
 	private String member_interest1;
 	private String member_interest2;
 	private String member_interest3;
-	private String member_profile_img;
+	private MultipartFile member_profile_img;
 	private String member_level;
 	private String member_warning;
 	private String member_sex;
@@ -105,10 +107,11 @@ public class MemberVO {
 	public void setMember_interest3(String member_interest3) {
 		this.member_interest3 = member_interest3;
 	}
-	public String getMember_profile_img() {
+
+	public MultipartFile getMember_profile_img() {
 		return member_profile_img;
 	}
-	public void setMember_profile_img(String member_profile_img) {
+	public void setMember_profile_img(MultipartFile member_profile_img) {
 		this.member_profile_img = member_profile_img;
 	}
 	public String getMember_level() {

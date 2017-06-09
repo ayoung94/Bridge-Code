@@ -35,10 +35,10 @@
         ]]>
 	</update>
 
-	<delete id="deleteUser">
+	<delete id="deleteMember" parameterType="member">
         <![CDATA[
-        DELETE users
-        WHERE id = #{id}
+        DELETE member
+        WHERE member_id = #{member_id}
         ]]>
 	</delete>
 
