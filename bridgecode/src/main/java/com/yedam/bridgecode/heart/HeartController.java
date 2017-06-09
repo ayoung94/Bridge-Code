@@ -119,6 +119,9 @@ public class HeartController {
 			return "/popup/alert";
 		}
 		
+		if(vo.getMember_partner_id() == null){
+			return "couple/noCouplePage";
+		}
 		vo = (MemberVO)session.getAttribute("login");
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
