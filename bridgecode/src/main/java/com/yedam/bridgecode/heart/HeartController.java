@@ -117,15 +117,19 @@ public class HeartController {
 			model.addAttribute("msg", "로그인 해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
-		}
+		} 
+		
+		vo = (MemberVO)session.getAttribute("login");
+		
 		
 		if(vo.getMember_partner_id() == null){
 			return "couple/noCouplePage";
 		}
-		vo = (MemberVO)session.getAttribute("login");
+		
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
 		
+
 		model.addAttribute("partner", partner);
 		
 		return "couple/couplePage";

@@ -37,12 +37,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberInsert.do")
-	public String memberInsert(){
+	public String memberInsertForm(){
 		return "member/memberInsert";
 	}
 	
 	@RequestMapping(value="/member/memberInsert.do",method= RequestMethod.POST)
-	public String userInsert(MemberVO memberVO){
+	public String memberInsert(MemberVO memberVO){
 		System.out.println("command 객체" + memberVO);
 		memberService.insertMember(memberVO);
 		return "redirect:/member/memberList.do";
@@ -55,6 +55,17 @@ public class MemberController {
 		System.out.println(list);
 		return "member/memberList";
 	}
+	
+	@RequestMapping("/member/memberSelect.do")
+	public String memberSelect(MemberVO vo,
+							   Model model,
+							   HttpSession session){
+		
+		vo = (MemberVO)session.getAttribute("login");
+		model.addAttribute("member",vo);
+		
+		return "member/memberSelect";
+	} 
 
 
 	@RequestMapping("/member/mypage.do")
@@ -83,12 +94,10 @@ public class MemberController {
 	public String memberUpdateForm(MemberVO vo
 						,Model model
 						,HttpSession session){
-		MemberVO member = memberService.getMember(((MemberVO)session.getAttribute("login")));
-		model.addAttribute("member",member);
-		System.out.println(member);
 		
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		model.addAttribute("member", member);
 		session.setAttribute("member", member);
-		
 		return "member/memberUpdate";
 	}
 	
@@ -97,10 +106,26 @@ public class MemberController {
 	public String memberUpdate(@ModelAttribute("member") MemberVO member
 						,Model model
 						,SessionStatus status){
-		
 		memberService.updateMember(member);
 		status.setComplete();
-		return "member/memberUpdate";
+		return "redirect:/member/memberSelect.do";
+	}
+	
+	@RequestMapping("/member/memberDelete.do")
+	public String memberDelete(@ModelAttribute("member") MemberVO member
+					,Model model
+					,HttpSession session){
+		
+		
+		member = (MemberVO)session.getAttribute("login");
+		memberService.deleteMember(member);
+		
+		model.addAttribute("msg", "정상적으로 처리되었습니다. 이용해주셔서 감사합니다."); 
+		model.addAttribute("url", "/"); 
+		
+		session.invalidate();
+		
+		return "/popup/url";
 	}
 	
 	//로그인
@@ -110,9 +135,6 @@ public class MemberController {
 			 MemberVO member,
 			 Model model,
 			 HttpSession session) {
-		
-		System.out.println("로그인 시도");
-		System.out.println(member);
 
 		MemberVO result = memberService.login(member);
 		

@@ -27,6 +27,10 @@
 <put-attribute name="content" value="/WEB-INF/jsp/tiles/alert.jsp" />
 </definition>
 
+<definition name="/popup/url" template="/WEB-INF/jsp/tiles/layoutBlank.jsp" >
+<put-attribute name="content" value="/WEB-INF/jsp/tiles/alert2.jsp" />
+</definition>
+
 <definition name="/login" template="/WEB-INF/jsp/tiles/layoutBlank.jsp" >
 <put-attribute name="content" value="/WEB-INF/jsp/tiles/login.jsp" />
 </definition>
