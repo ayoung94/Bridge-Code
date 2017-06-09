@@ -6,7 +6,7 @@
     <artifactId>sample</artifactId>
     <packaging>war</packaging>
     <version>3.5.0</version>
-    <name>test</name>
+    <name>bridgecode</name>
     <url>http://maven.apache.org</url>
 
 	<properties>
