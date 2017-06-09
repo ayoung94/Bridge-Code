@@ -63,8 +63,11 @@ public class HeartController {
 				  			  @RequestParam String heart_id,
 				  			  HttpSession session,
 				  			  MemberVO to,
-				  			  MemberVO from){
-		HeartVO vo = new HeartVO();
+				  			  MemberVO from,
+				  			  HeartVO vo){
+		vo.setHeart_id(heart_id);
+		vo = heartService.getHeart(vo);
+
 		to = (MemberVO)session.getAttribute("login");
 		from.setMember_id(vo.getHeart_from_id());
 		 
@@ -105,15 +108,23 @@ public class HeartController {
 	}
 	
 	@RequestMapping("/couple/couplepage.do")
-	public String couplePage(MemberVO vo
-							,Model model
-							,HttpSession session){
+	public String couplePage(MemberVO vo,
+							 MemberVO partner,
+							 Model model,
+							 HttpSession session){
 		
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		
+		vo = (MemberVO)session.getAttribute("login");
+		partner.setMember_id(vo.getMember_partner_id());
+		partner = memberService.getMember(partner);
 		
+		model.addAttribute("partner", partner);
 		
 		return "couple/couplePage";
 	}
-
-
 }

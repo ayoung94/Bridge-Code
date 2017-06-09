@@ -55,27 +55,7 @@ public class MemberController {
 		System.out.println(list);
 		return "member/memberList";
 	}
-	// 경민
-	@RequestMapping("/matching/memberSelect.do")
-	public String memberSelect(MemberVO vo,
-					@RequestParam String id,
-							  Model model){
 
-		vo.setMember_id(id);
-		MemberVO member = memberService.getMember(vo);
-		model.addAttribute("member",member);
-		
-		return "matching/memberSelect";
-	}
-	// 경민
-	@RequestMapping("/matching/memberMatchingList.do")
-	public String getUserMatchingList(MemberVO vo,Model model){
-		List<Map<String,Object>> list = memberService.getMemberList(vo);
-		model.addAttribute("list",list);
-		System.out.println(list);
-		return "matching/memberMatchingList";
-	}
-	
 
 	@RequestMapping("/member/mypage.do")
 	public String myPage(MemberVO vo
@@ -84,7 +64,6 @@ public class MemberController {
 		if(session.getAttribute("login") == null){
 			model.addAttribute("msg", "로그인 해주세요"); 
 			model.addAttribute("url", "/"); 
-			
 			return "/popup/alert";
 		}
 		
@@ -139,8 +118,10 @@ public class MemberController {
 		
 		if ( result != null ) {
 			session.setAttribute("login", result);
+			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);
+			session.setAttribute("heartto",heartTo);
 
-			return "redirect:/";
+			return "/login";
 			
 		} else {
 

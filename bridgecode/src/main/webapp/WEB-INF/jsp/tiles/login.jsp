@@ -4,9 +4,6 @@
 <head>
 <title>alert</title>
 <script type="text/javascript"> 
-var message = '${msg}'; 
-var returnUrl = '${pageContext.request.contextPath}${url}'; 
-alert(message); 
 history.go(-1);
 </script>
 

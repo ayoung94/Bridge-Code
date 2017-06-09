@@ -27,7 +27,22 @@
 	                <div class="brand" style="width: 300px;">
 	                	<c:set var="loginSession" value="${login}" />
   							<c:if test="${!empty loginSession }"> 
- 								 ${login.member_nickname } 님<br>
+  							
+  							<!-- 알람 처리 시작 -->
+  							  <c:forEach var="heartto" items="${heartto}" varStatus="i">
+		       				  <c:set var="heartcount" value="${i.count}" />
+		  					   </c:forEach>
+  							<!-- 알람처리 끝 -->
+  							
+ 								 ${login.member_nickname } 님 
+ 								 
+ 							<!-- 알람 뱃지 시작 -->
+ 								 <c:if test="${!empty heartcount }"> 
+ 								 <span class="w3-badge w3-tiny w3-red">${heartcount}</span>
+ 								 </c:if>
+ 							<!-- 알람 뱃지 끝 -->	 
+ 								 
+ 								 <br>
  								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
   							</c:if>
   							<c:if test="${empty loginSession }"> 
@@ -87,6 +102,9 @@
 					<span class="input-group-addon"> <i class="material-icons">lock_outline</i>
 					</span> <input type="password" placeholder="Password..." name="member_password" class="form-control" />
 				</div>
+			</div>
+			<div style="margin-left: 30px;">
+			<a href="${pageContext.request.contextPath}/member/memberInsert.do">저희 사이트를 처음 이용하시나요?</a>
 			</div>
 			<div class="modal-footer">
 				<input type="submit" class="btn btn-info btn-simple" value="로그인">

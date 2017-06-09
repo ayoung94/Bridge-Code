@@ -48,32 +48,38 @@ function checkTime(i) {
 <c:set var="Heart" value="${heartfrom.heart_from_time}" />
 <c:choose>
 <c:when test="${!empty Heart }">
+<div style="border:1px solid black; margin-top: 50px; width: 500px; height: 130px;">
 <div style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heartColor.png') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100px; PADDING-TOP: 0px; HEIGHT: 100px;">
 <p id="heartColor" style="WIDTH: 100px; PADDING-RIGHT:0px; PADDING-LEFT:0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heart.png') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; ">
 </p>
 </div>
-
-다음 하트 까지  <div id="clock"></div><br>
+<br><br>
+다음 하트 까지  <div id="clock" style="font-size:20px;"></div><br>
+<a href="${pageContext.request.contextPath}/heart/heartFromList.do" style="margin-left: 100px;">하트 사용 내역</a>
+</div> 
 </c:when>
 <c:otherwise>
 <img src="${pageContext.servletContext.contextPath}/images/heartColor.png">
 하트를 사용해보세요!<br>
+<a href="${pageContext.request.contextPath}/heart/heartFromList.do">하트 사용 내역</a>
 </c:otherwise>
 </c:choose>
-
-<a href="${pageContext.request.contextPath}/heart/heartFromList.do">하트 사용 내역</a>
-
-
-<div>
+<div style="border:1px solid black; margin-top: 50px; width: 500px; height: 130px;">
 my information<br>
 
 ${member.member_nickname }님<br> 
-<fmt:parseDate value="${member.member_birth }" pattern="yyyymmdd" var="member_birth" scope="page"/>
-<fmt:formatDate value="${member_birth}" pattern="yyyy-MM-dd" />/${member.member_country }<br>
+<!-- 나이 처리 시작-->
+<jsp:useBean id="toDay" class="java.util.Date" />
+<fmt:formatDate value="${toDay}" pattern="yyyy" var="date" />
+
+<fmt:parseDate value="${member.member_birth }" pattern="yyyy-mm-dd" var="memberBirth" scope="page"/>
+<fmt:formatDate value="${memberBirth}" pattern="yyyy" var="birth" />
+<!-- 나이 처리 끝 -->
+${date - birth +1}세 / ${member.member_country }<br>
 <a href="${pageContext.request.contextPath}/member/memberUpdate.do"> 내 정보 수정하기 </a>
 </div>
 
-<div>
+<div style="margin-top: 50px; width: 500px; height: 130px;">
 새로 도착한 ♥ 
 
 <div class="w3-container">

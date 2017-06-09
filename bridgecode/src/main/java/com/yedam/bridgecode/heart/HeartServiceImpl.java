@@ -1,5 +1,6 @@
 package com.yedam.bridgecode.heart;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -65,14 +66,26 @@ public class HeartServiceImpl implements HeartService{
 
 	@Override
 	public void heartYES(HeartVO vo,MemberVO from,MemberVO to) {
-		HeartDAO.heartYES(vo);
-		HeartDAO.heartYES2(vo);
-		HeartDAO.heartYES3(vo);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo);
+		map.put("from",from);
+		map.put("to", to);
+		
+		 
+		HeartDAO.heartYES(map);  
+		HeartDAO.heartYES2(map);
+		HeartDAO.heartYES3(map);
 	}
 
 	@Override
 	public void heartNO(HeartVO vo) {
 		HeartDAO.heartNO(vo);
+	}
+ 
+	@Override
+	public HeartVO getHeart(HeartVO vo) {
+		return HeartDAO.getHeart(vo);
 	}
 
 	

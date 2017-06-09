@@ -25,31 +25,31 @@
         ]]>
 	</insert>
 
-	<update id="heartYES" parameterType="heart">
+	<update id="heartYES" parameterType="hashmap">
         <![CDATA[
         UPDATE heart SET
            heart_status = 1,
            heart_confirm_time = sysdate
-        WHERE heart_id = #{heart_id}
+        WHERE heart_id = #{vo.heart_id}
         ]]>
 	</update> 
 	
-	<!-- <update id="heartYES2" parameterType="member">
+	<update id="heartYES2" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = #{}
-        WHERE heart_id = #{heart_id}
+           member_partner_id = #{to.member_id}
+        WHERE member_id = #{from.member_id}
         ]]>
 	</update> 
 	 
-	<update id="heartYES3" parameterType="member">
+	<update id="heartYES3" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = #{}
-        WHERE heart_id = #{heart_id}
+           member_partner_id = #{from.member_id}
+        WHERE member_id = #{to.member_id}
         ]]>
 	</update> 
-	 -->
+
 	<update id="heartNO" parameterType="heart">
         <![CDATA[
         UPDATE heart SET
@@ -78,6 +78,20 @@
         FROM heart
         WHERE heart_from_id = #{member_id}
         and heart_from_time = (select max(heart_from_time) from heart 	where heart_from_id = #{member_id})
+        ]]>
+	</select>
+	 
+	<select id="getHeart" resultType="heart"> 
+        <![CDATA[ 
+		 SELECT
+  	 		   heart_to_id,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time,
+			   heart_confirm_time,
+			   heart_id
+        FROM heart
+        WHERE heart_id = #{heart_id}
         ]]>
 	</select>
 	

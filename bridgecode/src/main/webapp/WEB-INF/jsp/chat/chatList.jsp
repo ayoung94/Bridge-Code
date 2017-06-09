@@ -7,18 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-커플페이지<br>
 
-<div style="border: 1px solid black;">
-내 커플 <br> 
-이름 ${partner.member_id }<br>
-${partner.member_birth }<br>
-${partner.member_country }<br>
-<br>
-커플 된지 00일째! <br>
-
-<a href="">1:1대화</a> <a href="">커플 해제</a>
-
-</div>
 </body>
 </html>
