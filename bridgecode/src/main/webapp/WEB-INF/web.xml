@@ -58,9 +58,9 @@
 	
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
-		<url-pattern>/WEB-INF/profile_img/*</url-pattern> <!-- profile_img 읽기 위해 추가.(아영) -->
+		<url-pattern>/profile_img/*</url-pattern> <!-- profile_img 읽기 위해 추가.(아영) -->
 	</servlet-mapping>
-    
+
 	 <!-- <welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>  -->

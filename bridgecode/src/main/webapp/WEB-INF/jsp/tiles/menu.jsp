@@ -21,12 +21,12 @@
 	    	
 	        	<div class="logo-container">   
 	        	<c:set var="loginSession" value="${login}" />
-	        	<c:if test="${!empty loginSession }"> 
+	        	<c:if test="${!empty loginSession }">  
 	        	<div class="logo" style="height: 50px; border: none;">
 	                <img src="${pageContext.request.contextPath}/profile_img/${login.member_profile_img}" style="height: 50px;">
 			    </div>
 	        	</c:if>
-	        	
+	        	 
 	        	<c:if test="${empty loginSession }"> 
 	        	<div class="logo" style="height: 50px; border: none;">
 	                <img src="${pageContext.request.contextPath}/profile_img/logout.jpg" style="height: 50px;">

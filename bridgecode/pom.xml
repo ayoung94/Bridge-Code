@@ -10,12 +10,17 @@
     <url>http://maven.apache.org</url>
 
 	<properties>
-	    <spring.maven.artifact.version>4.0.9.RELEASE</spring.maven.artifact.version>
-		<egovframework.rte.version>3.5.0</egovframework.rte.version>
+  		<spring.maven.artifact.version>4.0.9.RELEASE</spring.maven.artifact.version>
+  		<!-- <org.springframwork-version>4.1.7.RELEASE</org.springframwork-version> -->
+  		<egovframework.rte.version>3.5.0</egovframework.rte.version>
 		<org.apache.tiles-version>3.0.3</org.apache.tiles-version> <!-- tiles 변수 -->
 	</properties>
 
+	
+
+
 	<repositories>
+
 		<repository>
 			<id>mvn2</id>
 			<url>http://repo1.maven.org/maven2/</url>
@@ -39,6 +44,29 @@
 	</repositories>
 
 	<dependencies>
+
+			<!--  웹 소캣 -->
+	
+			<dependency>
+		           <groupId>org.springframework</groupId> 
+		           <artifactId>spring-websocket</artifactId> 
+		           <version>${spring.maven.artifact.version}</version>
+		          <!--  <version>${org.springframework-version}</version> -->
+			</dependency>
+			
+		<dependency>
+			    <groupId>javax.websocket</groupId>
+			    <artifactId>javax.websocket-api</artifactId>
+			    <version>1.1</version>
+			    <scope>provided</scope> 
+			</dependency> 
+			 
+			<dependency>
+			    <groupId>org.apache.tomcat</groupId>
+			    <artifactId>tomcat-websocket</artifactId>
+			    <version>8.0.44</version>
+			</dependency>
+			
 		<!-- file upload 시작 -->
 		<dependency> 
 		<groupId>commons-fileupload</groupId> 

@@ -56,8 +56,9 @@ public class MemberController {
 		String realPath = request.getSession().getServletContext().getRealPath("/"); //서블릿 내의 realPath 
 
 		MultipartFile file = vo.getUploadFile();
-		File saveFile = new File(realPath+"/profile_img/",randomName);
-		//★여기 경로 자신에게 맞게 수정해야해요. 프로젝트 경로로. 
+		
+		System.out.println("★★★★"+realPath);
+		File saveFile = new File(realPath+"profile_img/",randomName);
 		
 		file.transferTo(saveFile);  //서버에 파일 저장
 		vo.setMember_profile_img(randomName); //파일명 저장 file.getOriginalFilename()
