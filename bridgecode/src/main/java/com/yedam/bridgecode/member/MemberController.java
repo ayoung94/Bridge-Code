@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,15 +47,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/memberInsert.do",method= RequestMethod.POST)
-	public String memberInsert(MemberVO vo) throws IOException{
+	public String memberInsert(MemberVO vo,
+							   HttpServletRequest request) throws IllegalStateException,IOException{
 		
-		/*MultipartFile profile_img = vo.getMember_profile_img();
-		if(!profile_img.isEmpty()){
-			String fileName = profile_img.getOriginalFilename();
-			profile_img.transferTo(new File("D:/egov/본프로젝트/bridgecode/src/main/webapp/WEB-INF/profile_img/"+fileName)); 
-		}
-		*/
+		long t = System.currentTimeMillis();
+		String randomName = t+""; 				//랜덤 이름 정하기
+		
+		String realPath = request.getSession().getServletContext().getRealPath("/"); //서블릿 내의 realPath 
+
+		MultipartFile file = vo.getUploadFile();
+		File saveFile = new File(realPath+"/profile_img/",randomName);
+		//★여기 경로 자신에게 맞게 수정해야해요. 프로젝트 경로로. 
+		
+		file.transferTo(saveFile);  //서버에 파일 저장
+		vo.setMember_profile_img(randomName); //파일명 저장 file.getOriginalFilename()
+
 		memberService.insertMember(vo);
+		
 		return "redirect:/member/memberList.do";
 	}
 	

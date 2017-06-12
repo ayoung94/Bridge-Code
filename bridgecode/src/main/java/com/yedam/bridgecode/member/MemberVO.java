@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberVO {
 	@Override
 	public String toString() {
-		return "MemberVO [member_id=" + member_id + ", member_password="
+		return "[member_id=" + member_id + ", member_password="
 				+ member_password + ", member_name=" + member_name + "]";
 	}
 	private String member_img1;
@@ -21,12 +21,27 @@ public class MemberVO {
 	private String member_interest1;
 	private String member_interest2;
 	private String member_interest3;
-	private MultipartFile member_profile_img;
+	private String member_profile_img;
+	private MultipartFile uploadFile;
+	
+	public MultipartFile getUploadFile() {
+		return uploadFile;
+	}
+	public void setUploadFile(MultipartFile uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 	private String member_level;
 	private String member_warning;
 	private String member_sex;
-	private String member_partner_id;
+	private String member_partner_id; 
 	private String member_introduction;
+	
+	public String getMember_profile_img() {
+		return member_profile_img;
+	}
+	public void setMember_profile_img(String member_profile_img) {
+		this.member_profile_img = member_profile_img;
+	}
 	
 	
 	public String getMember_img1() {
@@ -108,12 +123,6 @@ public class MemberVO {
 		this.member_interest3 = member_interest3;
 	}
 
-	public MultipartFile getMember_profile_img() {
-		return member_profile_img;
-	}
-	public void setMember_profile_img(MultipartFile member_profile_img) {
-		this.member_profile_img = member_profile_img;
-	}
 	public String getMember_level() {
 		return member_level;
 	}

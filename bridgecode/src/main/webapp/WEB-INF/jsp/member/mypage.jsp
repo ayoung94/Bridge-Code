@@ -67,7 +67,7 @@ function checkTime(i) {
 </c:choose>
 <div style="border:1px solid black; margin-top: 50px; width: 500px; height: 130px;">
 my information<br>
-
+<img src="${pageContext.request.contextPath}/profile_img/${member.member_profile_img }" width="100px">
 ${member.member_nickname }님<br> 
 <!-- 나이 처리 시작-->
 <jsp:useBean id="toDay" class="java.util.Date" />

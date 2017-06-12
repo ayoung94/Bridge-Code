@@ -19,13 +19,24 @@
 	        	<span class="icon-bar"></span>
 	    	</button>
 	    	
-	        	<div class="logo-container">
-	                <div class="logo">
-	                    <img src="${pageContext.request.contextPath}/resources/img/logo.png">
-	                </div>
-	                  
+	        	<div class="logo-container">   
+	        	<c:set var="loginSession" value="${login}" />
+	        	<c:if test="${!empty loginSession }"> 
+	        	<div class="logo" style="height: 50px; border: none;">
+	                <img src="${pageContext.request.contextPath}/profile_img/${login.member_profile_img}" style="height: 50px;">
+			    </div>
+	        	</c:if>
+	        	
+	        	<c:if test="${empty loginSession }"> 
+	        	<div class="logo" style="height: 50px; border: none;">
+	                <img src="${pageContext.request.contextPath}/profile_img/logout.jpg" style="height: 50px;">
+			    </div>
+	        	</c:if>
+	        	
+	        	
+	        	
+	        	
 	                <div class="brand" style="width: 300px;">
-	                	<c:set var="loginSession" value="${login}" />
   							<c:if test="${!empty loginSession }"> 
   							
   							<!-- 알람 처리 시작 -->
@@ -33,7 +44,6 @@
 		       				  <c:set var="heartcount" value="${i.count}" />
 		  					   </c:forEach>
   							<!-- 알람처리 끝 -->
-  							
  								 ${login.member_nickname } 님 
  								 
  							<!-- 알람 뱃지 시작 -->
@@ -46,6 +56,7 @@
  								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
   							</c:if>
   							<c:if test="${empty loginSession }"> 
+
   	 							<a href="#" data-toggle="modal" data-target="#myModal">
   	 							로그인 해주세요.
   	 							</a>

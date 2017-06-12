@@ -9,9 +9,9 @@
 <body>
 회원 가입
 <hr>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
 아이디 : <input type="text" name="member_id" > <br>
-<!-- 프로필 사진: <input type="file" name="member_profile_img" ><br> -->
+프로필 사진: <input type="file" name="uploadFile" ><br>
 비밀번호: <input type="password" name="member_password" > <br>
 닉네임: <input type="text" name="member_nickname" > <br>
 성별: 남<input type="radio" name="member_sex" value="1"> 여<input type="radio" name="member_sex" value="2"> <br>
