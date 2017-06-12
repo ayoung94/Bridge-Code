@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,10 +9,13 @@
 table td {
 	padding: 10px;
 }
-/* #sliderDouble { width: 300px;} */
+#sliderDouble { width: 300px;
+			margin : 15px;}
 </style>
 <!-- In <head> -->
 <link href="${pageContext.request.contextPath}/resources/css/nouislider.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -46,14 +49,15 @@ table td {
 		<p>국적선택</p>
 		<div class="radio">
 			<label> <input type="radio" name="optionsRadios"
-				checked="true"> 한국
-			</label> <label> <input type="radio" name="optionsRadios"> 일본
-			</label> <label> <input type="radio" name="optionsRadios"> 중국
-			</label>
+				checked="true"> 한국</label> 
+			<label> <input type="radio" name="optionsRadios"> 일본</label> 
+			<label> <input type="radio" name="optionsRadios"> 중국</label>
 		</div>
 
 		<div>연령선택</div>
 		<div id="sliderDouble" class="slider slider-info"></div>
+		
+		
 		
  	<!--Javascript -->
 
@@ -63,13 +67,15 @@ table td {
 					start : [10, 50],
 					connect : true,
 					range : {
-						min : 10,
-						max : 50 }
+						'min' : [10],
+						'max' : [50] }
 				});
 			})
+			console.log($('#sliderDouble').val());
 		</script> 
-		<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
+		
+
+		
 <!-- 	<script>	
 		var tooltipSlider  = document.getElementById('sliderDouble');
 

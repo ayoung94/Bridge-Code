@@ -3,11 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-<style>
+<style>	
+ul, menu, dir {
+    display: inline-block;
+    list-style-type: disc;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
 #subimg li {
 	list-style: none;
+	display: inline-block;
 }
 
 #subimg img {
@@ -56,20 +66,16 @@
 						<a href="#">수정하기</a>
 					</div>
 
-					<div class="row">
+					<div>
 						<div class="col-md-6 col-md-offset-3">
 							<div class="nav-align-center">
-								<ul class="row" id="subimg">
-									<li><a href=""><img
-											src="${pageContext.request.contextPath}/resources/img/examples/chris7.jpg" /></a></li>
-									<li><a href=""><img
-											src="${pageContext.request.contextPath}/resources/img/examples/chris5.jpg" /></a></li>
-									<li><a href=""><img
-											src="${pageContext.request.contextPath}/resources/img/examples/chris9.jpg" /></a></li>
+								<ul id="subimg">
+									<li><a href=""><img	src="${pageContext.request.contextPath}/resources/img/examples/chris7.jpg" /></a></li>
+									<li><a href=""><img src="${pageContext.request.contextPath}/resources/img/examples/chris5.jpg" /></a></li>
+									<li><a href=""><img src="${pageContext.request.contextPath}/resources/img/examples/chris9.jpg" /></a></li>
 								</ul>
 								<ul class="nav nav-pills">
-									<li><a
-										href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
+									<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
 											<i class="material-icons">favorite</i> 하트보내기
 									</a></li>
 								</ul>

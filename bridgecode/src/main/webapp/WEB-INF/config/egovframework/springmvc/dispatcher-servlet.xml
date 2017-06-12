@@ -15,6 +15,7 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 	
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- 웹 바인딩 처리 시작-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
@@ -78,6 +79,5 @@
     </bean>
 	<!-- /For Pagination Tag -->
 
-	<mvc:default-servlet-handler />
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>
