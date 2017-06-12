@@ -8,5 +8,6 @@
 		<typeAlias alias="sampleVO" type="egovframework.example.sample.service.SampleVO"/>
 		<typeAlias alias="member" type="com.yedam.bridgecode.member.MemberVO"/>
 		<typeAlias alias="heart" type="com.yedam.bridgecode.heart.HeartVO"/>
+		<typeAlias alias="chat" type="com.yedam.bridgecode.chat.ChatVO"/>
     </typeAliases>
 </configuration>

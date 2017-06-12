@@ -159,6 +159,12 @@ public class MemberController {
 		MemberVO result = memberService.login(member);
 		
 		if ( result != null ) {
+			
+			if ( result.getMember_level().equals("0")){
+				session.setAttribute("login", result);			//admin처리 할 부분 ★임시★
+				return "/admin/memberList";  
+			}
+			
 			session.setAttribute("login", result);
 			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);
 			session.setAttribute("heartto",heartTo);
