@@ -5,6 +5,23 @@
 <mapper namespace="com.yedam.bridgecode.matching.MatchingMapper">
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
+	<!-- 관심사 리스트 출력 -->
+	<select id="getCodeList" resultType="map">
+		SELECT CODE_ID AS "code_id"
+			 , CODE_NAME AS "code_name"
+			 , CODE_CATEGORY AS "code_category"
+		FROM CODE
+		WHERE CODE_CATEGORY IN ('0B')
+	</select> 
+	
+	<!-- 프로필 사진 추가 및 변경  -->
+	<update id="profileUpdate" parameterType="member">
+		<![CDATA[
+        UPDATE MEMBER SET
+            MEMBER_IMG1 = #{member_img1}, 
+        WHERE MEMBER_ID = #{member_id}
+        ]]>
+	</update>
 
 <!-- 	<insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 타입 alias정의
         <![CDATA[  
@@ -50,13 +67,6 @@
         ]]>
 	</select> -->
 
-	<select id="getCodeList" resultType="map">
-		SELECT CODE_ID AS "code_id"
-			 , CODE_NAME AS "code_name"
-			 , CODE_CATEGORY AS "code_category"
-		FROM CODE
-		WHERE CODE_CATEGORY IN ('0B')
-	</select> 
 	
 <!-- 	<select id="getBestMemberList" resultType="map">
 		SELECT m.member_id as "member_id", count(1) as "heart_count"

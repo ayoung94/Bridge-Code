@@ -5,7 +5,12 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.yedam.bridgecode.member.MemberVO;
+
 @MapperScan
 public interface MatchingMapper {
 	public List<Map<String, Object>> getCodeList(CodeVO vo);
+	
+	//서브 프로필 사진추가
+	public void profileUpdate(MemberVO vo);
 }

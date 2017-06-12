@@ -6,6 +6,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yedam.bridgecode.member.MemberVO;
+
 @Service("MatchingService")
 public class MatchingServiceImpl implements MatchingService{
 
@@ -14,9 +16,16 @@ public class MatchingServiceImpl implements MatchingService{
 	@Autowired
 	private MatchingMapper MatchingDAO; 
 	
+	//관심사 리스트 출력
 	@Override
 	public List<Map<String, Object>> getCodeList(CodeVO vo) {
 		return MatchingDAO.getCodeList(vo);
+	}
+	//서브 프로필 사진추가
+	@Override
+	public void profileUpdate(MemberVO vo) {
+		MatchingDAO.profileUpdate(vo);
+		
 	}
 
 }
