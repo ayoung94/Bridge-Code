@@ -16,6 +16,7 @@ table td {
 <link href="${pageContext.request.contextPath}/resources/css/nouislider.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
+
 </head>
 <body>
 	<div class="wrapper">
