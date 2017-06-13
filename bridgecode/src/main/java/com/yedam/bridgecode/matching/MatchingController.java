@@ -48,14 +48,22 @@ public class MatchingController {
 
 		return "matching/memberSelect";
 	}
-
+	// 서브프로필 이미지 추가 폼으로 
+	@RequestMapping("/profile/profileUpdate.do")
+	public String profileUpdateForm(MemberVO vo
+								, Model model
+								, HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		model.addAttribute("member", member);
+		session.setAttribute("member", member);
+		return "profile/profileUpdate";
+	}
 	
 	// 서브프로필 이미지추가 
 		@RequestMapping(value="/profile/profileUpdate.do" ,method=RequestMethod.POST)
 		public String profileUpdate(MemberVO vo,
 									@RequestParam String img,
-									HttpServletRequest request,
-									HttpSession session) 
+									HttpServletRequest request) 
 				throws IllegalStateException,IOException{
 			
 			long t = System.currentTimeMillis();
@@ -65,7 +73,19 @@ public class MatchingController {
 			File saveFile = new File(realPath+"profile_img/",randomName);
 			file.transferTo(saveFile);  //서버에 파일 저장
 			vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()
-			MatchingService.profileUpdate(vo);
+			
+			if(img.equals("img1")){
+				vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()
+				}
+				if(img.equals("img2")){
+				vo.setMember_img2(randomName); //파일명 저장 file.getOriginalFilename()
+				}
+				if(img.equals("img3")){
+				vo.setMember_img3(randomName); //파일명 저장 file.getOriginalFilename()
+				}
+					
+				MatchingService.profileUpdate(vo);
+			
 			
 			return "redirect:/matching/memberSelect.jsp";
 		}
