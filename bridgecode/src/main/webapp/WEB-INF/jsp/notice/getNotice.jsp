@@ -29,7 +29,7 @@ function goNoticeList(){
 			
 		</tr>
 		<tr>
-			<td><div>${notice.noticeContent }</div></td>
+			<td colspan="3">${notice.noticeContent }</td>
 		</tr>
 
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yedam.bridgecode.admin.AdminMapper">
+
+
+	<select id="getUserList" resultType="Map">
+		<!-- <참고> map :java.util.map -->
+		<!-- 쿼리부분의 컴럼명을 소문자로 하고 싶을때 as 'alias'를 사용 -->
+		SELECT *
+		FROM member
+		WHERE member_level = 2
+		ORDER BY member_id DESC
+	</select>
+
+</mapper>

@@ -7,33 +7,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>유저 리스트 목록</title>
-<script
-	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js">
-	
-</script>
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <script>
 	$(function() {
 		$("#userListTable").DataTable({
 			"columns" : [ {
-				"data" : "memberId"
+				"data" : "member_id"
 			}, {
-				"data" : "memberPassword"
+				"data" : "member_password"
 			}, {
-				"data" : "memberNickname"
+				"data" : "member_nickname"
 			}, {
-				"data" : "memberName"
+				"data" : "member_name"
 			}, {
-				"data" : "memberBirth"
+				"data" : "member_birth"
 			}, {
-				"data" : "memberLastConnection"
+				"data" : "member_last_connection"
 			}, {
-				"data" : "memberWarning"
+				"data" : "member_warning"
 			}, {
-				"data" : "memberSex"
+				"data" : "member_sex"
 			}, {
-				"data" : "memberPartnerId"
+				"data" : "member_partner_id"
 			}, {
-				"data" : "memberCountry"
+				"data" : "member_country"
 			} ]
 		});
 	})
@@ -59,16 +57,16 @@
 		<tbody>
 			<c:forEach items="${userList}" var="userList">
 				<tr>
-					<td>${userList.memberId}</td>
-					<td>${userList.memberPassword}</td>
-					<td>${userList.memberNickname}</td>
-					<td>${userList.memberName}</td>
-					<td>${userList.memberBirth}</td>
-					<td>${userList.memberLastConnection}</td>
-					<td>${userList.memberWarning}</td>
-					<td>${userList.memberSex}</td>
-					<td>${userList.memberPartnerId}</td>
-					<td>${userList.memberCountry}</td>
+					<td>${userList.member_id}</td>
+					<td>${userList.member_password}</td>
+					<td>${userList.member_nickname}</td>
+					<td>${userList.member_name}</td>
+					<td>${userList.member_birth}</td>
+					<td>${userList.member_last_connection}</td>
+					<td>${userList.member_warning}</td>
+					<td>${userList.member_sex}</td>
+					<td>${userList.member_partner_id}</td>
+					<td>${userList.member_country}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

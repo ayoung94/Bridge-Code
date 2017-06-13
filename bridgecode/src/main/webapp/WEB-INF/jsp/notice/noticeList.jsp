@@ -9,10 +9,6 @@
 <title>공지사항</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-
-
-	
-</script>
 <script>
 	$(function() {
 		$("#noticeListTable").DataTable({

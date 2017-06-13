@@ -21,9 +21,10 @@
 		INSERT INTO NOTICE(
 		NOTICE_ID,
 		NOTICE_TITLE,
-		NOTICE_CONTENT
+		NOTICE_CONTENT,
+		NOTICE_TIME
 		)
-		VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent} )
+		VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, SYSDATE )
 	   <!--  <![CDATA[  
         INSERT INTO NOTICE(NOTICE_ID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_TIME) 
         VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeTime})
@@ -49,7 +50,7 @@
 
 	<select id="getNotice" resultMap="noticeMap">
        
-        SELECT * 
+        SELECT *
         FROM NOTICE
         WHERE NOTICE_ID = #{noticeId}
         
@@ -61,7 +62,7 @@
 		SELECT *
 		FROM NOTICE
 		WHERE 1 = 1
-		ORDER BY NOTICE_ID DESC
+		ORDER BY 1
 	</select>
 
 </mapper>
