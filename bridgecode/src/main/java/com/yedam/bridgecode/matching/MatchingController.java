@@ -26,7 +26,7 @@ public class MatchingController {
 	@RequestMapping("/matching/memberMatchingList.do")
 	public String getCodeList(CodeVO vo, Model model) {
 		MemberVO me = new MemberVO();
-		List<Map<String, Object>> list = memberService.getMemberList(me);
+		List<Map<String, Object>> list = memberService.getMemberList();
 		model.addAttribute("member", list);
 		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
 		model.addAttribute("list", interest);

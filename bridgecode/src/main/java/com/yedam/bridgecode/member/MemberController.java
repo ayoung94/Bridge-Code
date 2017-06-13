@@ -70,11 +70,20 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberList.do")
 	public String getUserList(MemberVO vo,Model model){
-		List<Map<String,Object>> list = memberService.getMemberList(vo);
+		List<Map<String,Object>> list = memberService.getMemberList();
 		model.addAttribute("list",list);
 		System.out.println(list);
 		return "member/memberList";
 	}
+	
+	@RequestMapping("/member/memberNewList.do")
+	public String getMemberNewList(MemberVO vo,Model model){
+		List<Map<String,Object>> list = memberService.getNewMemberList();
+		model.addAttribute("list",list);
+		System.out.println(list);
+		return "member/memberNewList";
+	}
+	
 	
 	@RequestMapping("/member/memberSelect.do")
 	public String memberSelect(MemberVO vo,

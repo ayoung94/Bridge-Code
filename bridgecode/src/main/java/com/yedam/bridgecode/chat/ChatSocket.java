@@ -24,9 +24,16 @@ public class ChatSocket{
 	private static Set<Session> clients = Collections.synchronizedSet(new 
 			HashSet<Session>());
 	@OnMessage
-	public void onMessage(String message, Session session,ChatVO vo) throws IOException { 
+	public void onMessage(String message, Session session) throws IOException { 
+		
+		
 		
 		String[] ar = message.split(",");
+		
+		System.out.println(ar[0]); 
+		System.out.println(ar[1]); 
+		
+		ChatVO vo = new ChatVO();
 		
 		vo.setChat_content(ar[0]);
 		vo.setChat_from_id(ar[1]);
