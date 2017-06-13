@@ -6,23 +6,30 @@
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 	<insert id="insertChat" parameterType="chat"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
-        <!-- heart_confirm_time는 빠져있음. -->
         <![CDATA[  
         INSERT INTO chat(
         			chat_id,
 					chat_content,
-					chat_group,
-					chat_time,
-					chat_from_id) 
+					chat_from_id,
+					chat_to_id,
+					chat_time) 
 			   
         VALUES(
-        	   chat_seq.nextval
+			   chat_seq.nextval,
         	   #{chat_content},
-        	   COALESCE(select chat_id from chat where chat_from_id = #{chat_from_id},chatgroup_seq.nextval,chatgroup_seq.currval),
-        	   sysdate,
-        	   #{chat_from_id})
+        	   #{chat_from_id},
+        	   #{chat_to_id},
+        	   sysdate)
         ]]>
 	</insert>
-
 	
+	<select id="getCoupleChatList" resultType="map">
+		SELECT *
+		FROM chat
+		where (chat_from_id = #{member_id}
+		and chat_to_id = #{member_partner_id})
+		or (chat_from_id = #{member_partner_id}
+		and chat_to_id = #{member_id})
+		order by chat_time
+	</select> 
 </mapper>

@@ -16,6 +16,8 @@ public interface HeartMapper {
 	public void heartYES(Map<String, Object> map); //하트 수락 status 변경
 	public void heartYES2(Map<String, Object> map); //하트 수락 from_id(보낸사람) 의 member_partner_id 변경
 	public void heartYES3(Map<String, Object> map); //하트 수락 to_id(받는사람) 의 member_partner_id 변경
+	public void heartYES4(Map<String, Object> map); //보냈던 하트들 모두 만료 시키기.
+	public void heartYES5(Map<String, Object> map); //보냈던 하트들 모두 만료 시키기.
 	
 	public void heartNO(HeartVO vo); //하트 거절
 	

@@ -5,7 +5,13 @@
 <!doctype html>
 <html>
 <head>
-<style>	
+<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+
+<style>
+    .modal-backdrop {
+        z-index: -1;
+    }
+
 #form-control {
 	width : 50%;
 	height: 50px;	
@@ -34,8 +40,9 @@ ul, menu, dir {
 <title>Profile Page - Material Kit by Creative Tim</title>
 </head>
 <body class="profile-page">
+	
 
-<!-- 	<div class="wrapper"> -->
+ 	<div class="wrapper">
 
 		<div class="main main-raised">
 				<div class="container">
@@ -75,55 +82,68 @@ ul, menu, dir {
 						
 					</div><br>
 
+<script>
+$(function(){
+	$('#profileModal').on('show.bs.modal', function(event) {
+		var button =$(event.relatedTarget)
+		var recipient = button.data('whatever')
+		
+		var modal = $(this)
+		modal.find('#img').val(recipient)
+	})
+})
 
-								<!-- Modal Core -->
-								<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								  <div class="modal-dialog">
-								    <div class="modal-content">
-								      <div class="modal-header">
-								        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-								        <h4 class="modal-title" id="myModalLabel">프로필 상세보기</h4>
-								      </div>
-								      <div class="modal-body">
-								      		<form method="post" enctype="multipart/form-data">
-												프로필 사진: <input type="file" name="uploadFile" ><br>
-												<input type="submit" alt="등록">
-											</form>
-								      </div>
-								      <div class="modal-footer">
-								        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
-								        <button type="button" class="btn btn-info btn-simple">Save</button>
-								      </div>
-								    </div>
-								  </div>
-								</div>
-								<!-- Modal Core end-->
+</script>				
 					<div>
 						<div class="col-md-6 col-md-offset-3">
 							<div class="nav-align-center">	
 								<ul id="subimg">	
-									<c:set var="subimg"	value="${profile }"	/>				
+								  <c:if test="${loginSession.member_id == profile.member_id }">
+									<c:set var="subimg"	value="${profile }"	/>	
 										<c:if test="${empty subimg.member_img1 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail" /></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img1"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img2 }">
-											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img2"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img3 }">
-											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img3"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img1 }">
-											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img1"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
 										</c:if>	
 										<c:if test="${!empty subimg.member_img2 }">
-											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img2"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img3 }">
-											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
-										</c:if>									
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img3"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
+										</c:if>		
+									</c:if>	
 									
-								</ul>
-	
+									<c:if test="${loginSession.member_id != profile.member_id }">
+									<c:set var="subimg"	value="${profile }"	/>	
+										<c:if test="${empty subimg.member_img1 }">
+											<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${empty subimg.member_img2 }">
+											<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${empty subimg.member_img3 }">
+											<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${!empty subimg.member_img1 }">
+											<li><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
+										</c:if>	
+										<c:if test="${!empty subimg.member_img2 }">
+											<li><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${!empty subimg.member_img3 }">
+											<li><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
+										</c:if>		
+									</c:if>	
+																
+								  </ul>
+
 								<ul class="nav nav-pills">
 									<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
 											<i class="material-icons">favorite</i> 하트보내기
@@ -133,10 +153,38 @@ ul, menu, dir {
 
 							</div>
 							<!-- End Profile Tabs -->
+							<!-- Modal Core -->
+							<div class="modal fade" id="profileModal" tabindex="-1" role="dialog"
+								aria-labelledby="profileModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">&times;</button>
+											<h4 class="modal-title" id="profileModalLabel">프로필 상세보기</h4>
+										</div>
+										<form action="${pageContext.request.contextPath}/profile/profileUpdate.do?"
+													method="post" enctype="multipart/form-data">
+											<div class="modal-body">
+												
+													<label for="img" ><input type="hidden" id="img" name="img"></label><br>
+													프로필 사진: <input type="file" name="uploadFile"><br>
+												
+											</div>
+											<div class="modal-footer">
+												<!-- <input type="button" class="btn btn-default btn-simple"	data-dismiss="modal" value="취소"> -->
+												<input type="submit" class="btn btn-info btn-simple" value="사진등록">
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<!-- Modal Core end-->	
 						</div>
 					</div>
 				</div>
 			</div>
-<!-- 	</div> -->
+			
+ 	</div> 
 </body>
 </html>

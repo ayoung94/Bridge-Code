@@ -23,6 +23,12 @@ public class MemberVO {
 	private String member_interest3;
 	private String member_profile_img;
 	private MultipartFile uploadFile;
+	private String member_level;
+	private String member_warning;
+	private String member_sex;
+	private String member_partner_id; 
+	private String member_introduction;
+	
 	
 	public MultipartFile getUploadFile() {
 		return uploadFile;
@@ -30,11 +36,6 @@ public class MemberVO {
 	public void setUploadFile(MultipartFile uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-	private String member_level;
-	private String member_warning;
-	private String member_sex;
-	private String member_partner_id; 
-	private String member_introduction;
 	
 	public String getMember_profile_img() {
 		return member_profile_img;
