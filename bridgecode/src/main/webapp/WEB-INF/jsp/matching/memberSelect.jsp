@@ -75,31 +75,55 @@ ul, menu, dir {
 						
 					</div><br>
 
+
+								<!-- Modal Core -->
+								<div class="modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								        <h4 class="modal-title" id="myModalLabel">프로필 상세보기</h4>
+								      </div>
+								      <div class="modal-body">
+								      		<form method="post" enctype="multipart/form-data">
+												프로필 사진: <input type="file" name="uploadFile" ><br>
+												<input type="submit" alt="등록">
+											</form>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Close</button>
+								        <button type="button" class="btn btn-info btn-simple">Save</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- Modal Core end-->
 					<div>
 						<div class="col-md-6 col-md-offset-3">
 							<div class="nav-align-center">	
 								<ul id="subimg">	
 									<c:set var="subimg"	value="${profile }"	/>				
 										<c:if test="${empty subimg.member_img1 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail" /></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img2 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img3 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img1 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
+											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
 										</c:if>	
 										<c:if test="${!empty subimg.member_img2 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
+											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img3 }">
-											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
+											<li><a href="../profile/profileUpdate.do" data-toggle="modal" data-target="#profileModal"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
 										</c:if>									
 									
 								</ul>
+	
 								<ul class="nav nav-pills">
 									<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
 											<i class="material-icons">favorite</i> 하트보내기
