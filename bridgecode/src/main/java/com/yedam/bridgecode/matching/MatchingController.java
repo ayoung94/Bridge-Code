@@ -48,21 +48,14 @@ public class MatchingController {
 
 		return "matching/memberSelect";
 	}
-	// 서브프로필 이미지 추가 폼으로 
-	@RequestMapping("/profile/profileUpdate.do")
-	public String profileUpdateForm(MemberVO vo
-								, Model model
-								, HttpSession session) {
-		MemberVO member = (MemberVO)session.getAttribute("login");
-		model.addAttribute("member", member);
-		session.setAttribute("member", member);
-		return "profile/profileUpdate";
-	}
+
 	
 	// 서브프로필 이미지추가 
 		@RequestMapping(value="/profile/profileUpdate.do" ,method=RequestMethod.POST)
 		public String profileUpdate(MemberVO vo,
-									HttpServletRequest request) 
+									@RequestParam String img,
+									HttpServletRequest request,
+									HttpSession session) 
 				throws IllegalStateException,IOException{
 			
 			long t = System.currentTimeMillis();
