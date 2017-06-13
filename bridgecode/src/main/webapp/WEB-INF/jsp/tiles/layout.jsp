@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +38,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
-					<div class="brand">
-						<h1>Material Kit.</h1>
+					<div class="brand"> 
+						<h1><spring:message code="test.test" /></h1> 
 						<h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
 					</div>
 				</div>

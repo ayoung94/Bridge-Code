@@ -88,8 +88,19 @@
 					<a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">
 						<i class="material-icons">unarchive</i> 공지사항 </a>
 				</li>
-
+				
+				
+				<li class="dropdown">
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">language<b class="caret"></b></a>
+        			<ul class="dropdown-menu">
+					  <li><a href="${pageContext.request.contextPath}/?language=ko"><img src="resources/img/flags/KR.png"/>Korea</a></li>
+					  <li><a href="${pageContext.request.contextPath}/?language=cn"><img src="resources/img/flags/CN.png"/>China</a></li>
+					  <li><a href="${pageContext.request.contextPath}/?language=jp"><img src="resources/img/flags/JP.png"/>Japan</a></li>
+        			</ul>
+        		</li>
+				
 	    	</ul>
+	    	
 	    </div>
 	</div>
 </nav>

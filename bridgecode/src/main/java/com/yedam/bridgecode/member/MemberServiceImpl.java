@@ -35,9 +35,14 @@ public class MemberServiceImpl implements MemberService{
 		return MemberDAO.getMember(vo);
 	}
 
+	@Override 
+	public List<Map<String, Object>> getMemberList() {
+		return MemberDAO.getMemberList();
+	}
+	
 	@Override
-	public List<Map<String, Object>> getMemberList(MemberVO vo) {
-		return MemberDAO.getMemberList(vo);
+	public List<Map<String, Object>> getNewMemberList() {
+		return MemberDAO.getNewMemberList();
 	}
 	
 	@Override
@@ -65,6 +70,8 @@ public class MemberServiceImpl implements MemberService{
 				//4. 아니면 null 리턴
 		return null;
 	}
+
+
 
 	
 	
