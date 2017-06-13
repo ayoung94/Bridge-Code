@@ -31,6 +31,7 @@ public class ChatController {
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
 		
+		model.addAttribute("chatlist",chatService.getCoupleChatList(vo));
 		model.addAttribute("partner", partner);	
 		return "/popup/chat/coupleChat";
 	}

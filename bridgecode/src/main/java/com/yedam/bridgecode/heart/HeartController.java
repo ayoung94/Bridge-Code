@@ -103,6 +103,13 @@ public class HeartController {
 		 
 		vo.setHeart_id(heart_id);
 		
+		if(to.getMember_partner_id() != null){
+			model.addAttribute("msg", "이미 커플이 존재합니다. 커플을 해제한 후 시도해주세요."); 
+			model.addAttribute("url", "/member/mypage.do"); 
+			
+			return "/popup/alert";
+		}
+		
 		
 		//heart, from_member, to_member
 		heartService.heartYES(vo,from,to); 

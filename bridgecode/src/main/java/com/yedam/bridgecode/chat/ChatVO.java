@@ -6,8 +6,16 @@ public class ChatVO {
 	private String chat_group;
 	private String chat_time;
 	private String chat_from_id;
+	private String chat_to_id;
 	private String chat_id;
 	
+	
+	public String getChat_to_id() {
+		return chat_to_id;
+	}
+	public void setChat_to_id(String chat_to_id) {
+		this.chat_to_id = chat_to_id;
+	}
 	
 	public String getChat_content() {
 		return chat_content;
