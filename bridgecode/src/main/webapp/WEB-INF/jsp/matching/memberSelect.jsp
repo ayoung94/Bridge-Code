@@ -6,9 +6,14 @@
 <html>
 <head>
 <style>	
+#form-control {
+	width : 50%;
+	height: 50px;	
+	margin : 0 auto;
+	text-align: center;
+}
 ul, menu, dir {
     display: inline-block;
-    list-style-type: disc;
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
     -webkit-margin-start: 0px;
@@ -24,15 +29,15 @@ ul, menu, dir {
 	height: 150px;
 	display: inline-block;
 }
+
 </style>
 <title>Profile Page - Material Kit by Creative Tim</title>
 </head>
 <body class="profile-page">
 
-	<div class="wrapper">
+<!-- 	<div class="wrapper"> -->
 
 		<div class="main main-raised">
-			<div class="profile-content">
 				<div class="container">
 					<div class="row">
 						<div class="profile">
@@ -55,24 +60,45 @@ ul, menu, dir {
 									<!-- 나이 처리 끝 -->
 									${date - birth +1}세
 								</h5>
+								<br>
 								<h6 style="text-align: center">자기소개란</h6>
 							</div>
 						</div>
 					</div>
-					<div class="description text-center"
-						style="width: 700px; height: 200px; display: center;">
-						<textarea class="form-control"
-							placeholder="${profile.member_introduction }" rows="3" cols="5"></textarea>
-						<a href="#">수정하기</a>
-					</div>
+					<div class="description text-center">
+						<textarea id="form-control" class="form-control"	
+							placeholder="${profile.member_introduction }" rows="2" cols="3"></textarea>
+							<c:set var="loginSession" value="${login}" />
+							<c:if test="${loginSession.member_id == profile.member_id }">
+								<a href="#">수정하기</a>
+							</c:if>			
+						
+					</div><br>
 
 					<div>
 						<div class="col-md-6 col-md-offset-3">
-							<div class="nav-align-center">
-								<ul id="subimg">
-									<li><a href=""><img	src="${pageContext.request.contextPath}/resources/img/examples/chris7.jpg" /></a></li>
-									<li><a href=""><img src="${pageContext.request.contextPath}/resources/img/examples/chris5.jpg" /></a></li>
-									<li><a href=""><img src="${pageContext.request.contextPath}/resources/img/examples/chris9.jpg" /></a></li>
+							<div class="nav-align-center">	
+								<ul id="subimg">	
+									<c:set var="subimg"	value="${profile }"	/>				
+										<c:if test="${empty subimg.member_img1 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${empty subimg.member_img2 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${empty subimg.member_img3 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.jpg" class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${!empty subimg.member_img1 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
+										</c:if>	
+										<c:if test="${!empty subimg.member_img2 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
+										</c:if>
+										<c:if test="${!empty subimg.member_img3 }">
+											<li><a href="/profile/profileUpdate.do"><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
+										</c:if>									
+									
 								</ul>
 								<ul class="nav nav-pills">
 									<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
@@ -87,7 +113,6 @@ ul, menu, dir {
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+<!-- 	</div> -->
 </body>
 </html>
