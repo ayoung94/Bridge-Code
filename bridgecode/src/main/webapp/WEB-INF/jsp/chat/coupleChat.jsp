@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <style>
 .meTalk{
 margin-left: 180px;
@@ -26,6 +28,29 @@ width: 200px;
 padding: 10px;
 }
 </style>
+<script>
+$(function(){
+	$(".youTalk").mouseover(function(){
+		console.log($(this).text());
+		var request = $(this).text();/* {
+					'X-Naver-Client-Id' : 'Yq8eXfIrImd6XBx6QhUs',
+					'X-Naver-Client-Secret' : 'xwZV9UFHNJ',
+					'source' : 'ko',
+					'target' : 	'en',
+					'text' : $(this).value
+						}; */
+		
+		$.getJSON('${pageContext.request.contextPath}/chat/chatTranslate.do',
+				   request,
+				   function(data,status){
+			if(status == "success") {
+					$(this).innerHTML = data;
+				}	
+		});
+		
+	});
+});
+</script>
 </head>
 <body style="width: 400px; height:600px;">
 <ul class="w3-ul w3-card-4">
