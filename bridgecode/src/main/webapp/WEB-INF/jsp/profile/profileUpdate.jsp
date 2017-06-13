@@ -7,10 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="profile/profileUpdate.do" method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data">
 프로필 사진: <input type="file" name="uploadFile" ><br>
 <button> 등록 </button>
-
 </form>
 </body>
 </html>

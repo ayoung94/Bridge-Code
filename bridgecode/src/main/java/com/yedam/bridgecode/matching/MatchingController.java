@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,12 +50,17 @@ public class MatchingController {
 	}
 	// 서브프로필 이미지 추가 폼으로 
 	@RequestMapping("/profile/profileUpdate.do")
-	public String profileInsertForm() {
+	public String profileUpdateForm(MemberVO vo
+								, Model model
+								, HttpSession session) {
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		model.addAttribute("member", member);
+		session.setAttribute("member", member);
 		return "profile/profileUpdate";
 	}
 	
 	// 서브프로필 이미지추가 
-		@RequestMapping(value="/profile/profileUpdate.do" ,method= RequestMethod.POST)
+		@RequestMapping(value="/profile/profileUpdate.do" ,method=RequestMethod.POST)
 		public String profileUpdate(MemberVO vo,
 									HttpServletRequest request) 
 				throws IllegalStateException,IOException{
