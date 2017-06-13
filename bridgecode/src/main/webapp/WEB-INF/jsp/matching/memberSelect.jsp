@@ -163,7 +163,7 @@ $(function(){
 												aria-hidden="true">&times;</button>
 											<h4 class="modal-title" id="profileModalLabel">프로필 상세보기</h4>
 										</div>
-										<form action="${pageContext.request.contextPath}/profile/profileUpdate.do?"
+										<form action="${pageContext.request.contextPath}/profile/profileUpdate.do"
 													method="post" enctype="multipart/form-data">
 											<div class="modal-body">
 												
