@@ -43,8 +43,6 @@ padding: 10px;
 </body>
 
 <script type="text/javascript"> 
-		var me = '${login.member_id}';
-		var partner = '${partner.member_id}';
 		
         var textarea = document.getElementById("messageWindow"); 
         var webSocket = new WebSocket('ws://localhost:8085/bridgecode/coupleChat'); 
@@ -74,7 +72,7 @@ padding: 10px;
     } 
     function send() { 
         textarea.innerHTML += "<div class='meTalk'>" + inputMessage.value + "</div>"; 
-        webSocket.send(inputMessage.value+','+me); 
+        webSocket.send(inputMessage.value); 
         inputMessage.value = ""; 
         textarea.scrollTop = textarea.scrollHeight;
     } 

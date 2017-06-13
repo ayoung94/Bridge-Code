@@ -39,6 +39,14 @@ public class HeartController {
 		HeartVO vo = new HeartVO();
 		MemberVO me = (MemberVO)session.getAttribute("login");
 
+		if(me.getMember_partner_id() != null){
+			model.addAttribute("msg", "이미 커플이 존재합니다. 커플을 해제한 후 시도해주세요."); 
+			model.addAttribute("url", "/matching/memberSelect.do?id="+id); 
+			
+			return "/popup/alert";
+		}
+		
+		
 		if(heartService.checkHeart(me) != null){
 			
 			model.addAttribute("msg", "가진 하트가 없습니다."); 

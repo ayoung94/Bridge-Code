@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 public class ChatServiceImpl implements ChatService{
 
 	@Autowired
-	private ChatMapper ChatDAO;
+	private ChatMapper chatDAO;
 
 
 	@Override
 	public void insertChat(ChatVO vo) {
-		ChatDAO.insertChat(vo);
+		chatDAO.insertChat(vo);
 	}
 	
 }

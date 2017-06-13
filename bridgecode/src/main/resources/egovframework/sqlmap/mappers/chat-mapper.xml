@@ -6,7 +6,32 @@
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 	<insert id="insertChat" parameterType="chat"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
-        <!-- heart_confirm_time는 빠져있음. -->
+        <![CDATA[  
+        INSERT INTO chat(
+        			chat_id,
+					chat_content,
+					chat_from_id) 
+			   
+        VALUES(
+			   chat_seq.nextval,
+        	   #{chat_content},
+        	   #{chat_from_id})
+        ]]>
+	</insert>
+<!--  COALESCE(select chat_id from chat where chat_from_id = #{chat_from_id},chatgroup_seq.nextval,chatgroup_seq.currval), -->
+	
+</mapper>
+
+<!-- 
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.bridgecode.chat.ChatMapper">
+반드시 패키지명 이름 제대로 확인하세요..!
+
+	<insert id="insertChat" parameterType="chat">sql-map-config-spring.xml에서 타입 alias정의
         <![CDATA[  
         INSERT INTO chat(
         			chat_id,
@@ -18,11 +43,12 @@
         VALUES(
         	   chat_seq.nextval
         	   #{chat_content},
-        	   COALESCE(select chat_id from chat where chat_from_id = #{chat_from_id},chatgroup_seq.nextval,chatgroup_seq.currval),
+        	   chat_seq.nextval,
         	   sysdate,
         	   #{chat_from_id})
         ]]>
 	</insert>
-
+ COALESCE(select chat_id from chat where chat_from_id = #{chat_from_id},chatgroup_seq.nextval,chatgroup_seq.currval),
 	
 </mapper>
+ -->

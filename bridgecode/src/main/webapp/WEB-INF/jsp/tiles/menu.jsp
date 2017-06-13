@@ -74,28 +74,39 @@
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/matching/memberMatchingList.do" class="w3-bar-item w3-button">
-						<i class="material-icons">dashboard</i> 회원매칭 </a>
+						<i class="material-icons">wc</i> 회원매칭 </a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">
-						<i class="material-icons">unarchive</i> 마이페이지 </a>
+						<i class="material-icons">perm_contact_calendar</i> 마이페이지 </a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/couple/couplepage.do"  class="w3-bar-item w3-button">
-						<i class="material-icons">unarchive</i> 커플페이지 </a>
+						<i class="material-icons">favorite</i> 커플페이지 </a>
 				</li>
+				
+				<li class="dropdown">
+        			
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">description</i>게시판<b class="caret"></b></a>
+        			<ul class="dropdown-menu">
+					  <li><a href="#">공지사항</a></li>
+					  <li><a href="#">이벤트</a></li>
+        			</ul>
+        		</li>
+				
+		<%-- 		
 				<li>
 					<a href="${pageContext.request.contextPath}/notice/noticeList.do" class="w3-bar-item w3-button">
 						<i class="material-icons">unarchive</i> 공지사항 </a>
-				</li>
+				</li> --%>
 				
 				
 				<li class="dropdown">
         			<a href="#" class="dropdown-toggle" data-toggle="dropdown">language<b class="caret"></b></a>
         			<ul class="dropdown-menu">
-					  <li><a href="${pageContext.request.contextPath}/?language=ko"><img src="resources/img/flags/KR.png"/>Korea</a></li>
-					  <li><a href="${pageContext.request.contextPath}/?language=cn"><img src="resources/img/flags/CN.png"/>China</a></li>
-					  <li><a href="${pageContext.request.contextPath}/?language=jp"><img src="resources/img/flags/JP.png"/>Japan</a></li>
+					  <li><a href="${pageContext.request.contextPath}/?language=ko"><img src="${pageContext.request.contextPath}/resources/img/flags/KR.png"/>Korea</a></li>
+					  <li><a href="${pageContext.request.contextPath}/?language=cn"><img src="${pageContext.request.contextPath}/resources/img/flags/CN.png"/>China</a></li>
+					  <li><a href="${pageContext.request.contextPath}/?language=jp"><img src="${pageContext.request.contextPath}/resources/img/flags/JP.png"/>Japan</a></li>
         			</ul>
         		</li>
 				

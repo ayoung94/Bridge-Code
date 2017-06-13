@@ -11,37 +11,45 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen; 
 import javax.websocket.Session; 
 import javax.websocket.server.ServerEndpoint;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.yedam.bridgecode.member.MemberVO;
 
 @ServerEndpoint(value="/coupleChat",configurator = GetHttpSessionConfigurator.class) 
 public class ChatSocket{
-	
 
 	@Autowired
 	ChatService chatService;
-
 	
 	private static Set<Session> clients = Collections.synchronizedSet(new 
 			HashSet<Session>());
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException { 
 		
+		HttpSession httpsession = (HttpSession)session.getUserProperties().get("httpSession");
 		
-		
-		String[] ar = message.split(",");
-		
-		System.out.println(ar[0]); 
-		System.out.println(ar[1]); 
+		MemberVO me = (MemberVO)httpsession.getAttribute("login");
+		System.out.println("httpsession login의 member_id ="+me.getMember_id());
+		System.out.println("message ="+message); 
+
 		
 		ChatVO vo = new ChatVO();
 		
-		vo.setChat_content(ar[0]);
-		vo.setChat_from_id(ar[1]);
+		try {
+			
+		vo.setChat_content(message);
+		vo.setChat_from_id(me.getMember_id());
+		
 		
 		chatService.insertChat(vo);
 		
+		} catch(Exception e) {
+			System.out.println("오류 발생1");
+			e.printStackTrace();
+		}
+
 		
-		System.out.println(message); 
 		
 		
 		synchronized (clients) { 
@@ -62,7 +70,7 @@ public class ChatSocket{
 		clients.add(session);
 		session.getUserProperties().put("httpSession", httpSession);
 
-		System.out.println(session); 
+		System.out.println("session="+session); 
 	}
 	@OnClose 
 	public void onClose(Session session) { 

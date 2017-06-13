@@ -49,6 +49,26 @@
         WHERE member_id = #{to.member_id}
         ]]>
 	</update> 
+	
+	<update id="heartYES4" parameterType="hashmap">
+        <![CDATA[
+         UPDATE heart SET
+           heart_status = 3,
+           heart_confirm_time = sysdate
+        WHERE heart_from_id = #{from.member_id}
+        and heart_status = 0
+        ]]>
+	</update> 
+	
+	<update id="heartYES5" parameterType="hashmap">
+        <![CDATA[
+       UPDATE heart SET
+           heart_status = 3,
+           heart_confirm_time = sysdate
+        WHERE heart_from_id = #{to.member_id}
+        and heart_status = 0
+        ]]>
+	</update> 
 
 	<update id="heartNO" parameterType="heart">
         <![CDATA[
