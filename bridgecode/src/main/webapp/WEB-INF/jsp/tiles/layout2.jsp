@@ -22,6 +22,21 @@
     <link href="${pageContext.request.contextPath}/resources/css/material-kit.css" rel="stylesheet"/>
     
     <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
+    
+    <!--   Core JS Files   -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
+	<script	src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+	<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
+
+	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
+
+	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
+	<script src="${pageContext.request.contextPath}/resources/js/material-kit.js" type="text/javascript"></script>
+    	
 </head>
 <body>
 
@@ -47,19 +62,6 @@
 <footer>
 		<tiles:insertAttribute name="footer"/>
 </footer>
-<!--   Core JS Files   -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
-
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-	<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
-
-	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
-
-	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-	<script src="${pageContext.request.contextPath}/resources/js/material-kit.js" type="text/javascript"></script>
 
 </body>
 
