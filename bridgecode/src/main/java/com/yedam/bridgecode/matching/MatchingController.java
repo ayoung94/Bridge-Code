@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,21 +60,32 @@ public class MatchingController {
 	// 서브프로필 이미지추가 
 		@RequestMapping(value="/profile/profileUpdate.do" ,method=RequestMethod.POST)
 		public String profileUpdate(MemberVO vo,
-									@RequestParam String img,
+									//@RequestParam String img,
 									HttpServletRequest request) 
 				throws IllegalStateException,IOException{
 			
 			long t = System.currentTimeMillis();
 			String randomName = t+""; 				//랜덤 이름 정하기
 			String realPath = request.getSession().getServletContext().getRealPath("/");//서블릿 내의 realPath 
-			System.out.println(request.getParameter(img)); 
+			String image = request.getParameter("img"); 
+			System.out.println(image);
 			MultipartFile file = vo.getUploadFile();
 			File saveFile = new File(realPath+"profile_img/",randomName);
 			file.transferTo(saveFile);  //서버에 파일 저장
-			vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()	
-				
+			if(image.equals("member_img1")){
+				vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()	
+				System.out.println("1번11111111");
+			}
+			if(image.equals("member_img2")){
+				vo.setMember_img2(randomName); //파일명 저장 file.getOriginalFilename()	
+				System.out.println("2번222222222");
+			}
+			if(image.equals("member_img3")){
+				vo.setMember_img3(randomName); //파일명 저장 file.getOriginalFilename()	
+				System.out.println("3번333333333");
+			}
 			MatchingService.profileUpdate(vo);
 				
-			return "redirect:/matching/memberSelect.do";
+			return "/login";
 		}
 }
