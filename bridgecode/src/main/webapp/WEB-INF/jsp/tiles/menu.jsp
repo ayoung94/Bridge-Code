@@ -89,7 +89,7 @@
         			
         			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">description</i>게시판<b class="caret"></b></a>
         			<ul class="dropdown-menu">
-					  <li><a href="#">공지사항</a></li>
+					  <li><a href="${pageContext.request.contextPath}/getNoticeList.do">공지사항</a></li>
 					  <li><a href="#">이벤트</a></li>
         			</ul>
         		</li>

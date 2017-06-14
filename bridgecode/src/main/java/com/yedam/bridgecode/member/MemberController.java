@@ -177,8 +177,9 @@ public class MemberController {
 			session.setAttribute("login", result);
 			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);
 			session.setAttribute("heartto",heartTo);
-
-			return "/login";
+			
+			
+			return "redirect:/loginOK.do?language="+result.getMember_country();
 			
 		} else {
 
@@ -188,6 +189,12 @@ public class MemberController {
 			return "/popup/alert";
 		}
 	}
+	
+	@RequestMapping(value="/loginOK.do")
+		public String loginOK() {
+			return "/login";
+		}
+
 	//로그아웃
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) {
