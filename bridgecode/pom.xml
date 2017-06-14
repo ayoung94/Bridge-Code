@@ -46,7 +46,6 @@
 	<dependencies>
 
 		<!-- 웹 소캣 -->
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-websocket</artifactId>

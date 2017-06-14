@@ -18,15 +18,12 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
          Map<String, Object> attributes) throws Exception {
     	
     	// 위의 파라미터 중, attributes 에 값을 저장하면 웹소켓 핸들러 클래스의 WebSocketSession에 전달된다
-        System.out.println("Before Handshake");
-          
-          
-        ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
-        System.out.println("URI:"+request.getURI());
-  
-        HttpServletRequest req =  ssreq.getServletRequest();
-
-        return super.beforeHandshake(request, response, wsHandler, attributes);
+    	/* ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request; 
+         HttpServletRequest req =  ssreq.getServletRequest();
+         LoginVO loginvo = (LoginVO) req.getSession().getAttribute("loginInfo");
+ 		 attributes.put("loginvo", loginvo);*/
+       
+         return super.beforeHandshake(request, response, wsHandler, attributes);
     }
   
     @Override

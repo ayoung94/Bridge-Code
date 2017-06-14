@@ -14,24 +14,24 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 
 public class SocketHandler extends TextWebSocketHandler implements InitializingBean {
-	
-	private Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();
-	
-	@Resource(name = "chatService")
-    private ChatService chatService;
 
-	
-	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		//OnClose
-		super.afterConnectionClosed(session, status);
+	private Set<WebSocketSession> sessionSet = new HashSet<WebSocketSession>();
+
+	@Resource(name = "chatService")
+	private ChatService chatService;
+
+
+	@Override 
+	//onClose 
+	public void afterConnectionClosed(WebSocketSession session,CloseStatus status) throws Exception { 
+		super.afterConnectionClosed(session, status); 
 		sessionSet.remove(session);
 	}
-	
+
 	@Override
-	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		//OnOpen
-		super.afterConnectionEstablished(session);
+	//onOpen 
+	public void afterConnectionEstablished(WebSocketSession session) throws Exception { 
+		super.afterConnectionEstablished(session); 
 		sessionSet.add(session);
 	}
 
@@ -42,59 +42,48 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 		System.out.println(message.getPayload());
 		String msg = (String)message.getPayload();
 		String[] ar = msg.split(",");
-		
+
 		ChatVO vo = new ChatVO();
 		vo.setChat_from_id(ar[0]);
 		vo.setChat_to_id(ar[1]);
 		vo.setChat_content(ar[2]);
 		chatService.insertChat(vo);
-		
+
 		sendMessage(msg);
 
 	}
-	
+
 	@Override
 	public void handleTransportError(WebSocketSession session, Throwable exceiption) throws Exception {
-		
+
 	}
-	
+
 	@Override
 	public boolean supportsPartialMessages() {
 		return super.supportsPartialMessages();
 	}
-	
+
 	@Override
-    public void afterPropertiesSet() throws Exception {
+	public void afterPropertiesSet() throws Exception { 
+		Thread thread = new Thread(){
+			int i=0;
+			@Override 
+			public void run() { 
+				while (true){ 
+					try {
+						sendMessage ("send message index "+i++); 
+						Thread.sleep(1000); 
+					} catch (InterruptedException e) { 
+						e.printStackTrace(); 
+						break; 
+					} 
+				} 
+			}
+		}; 
+		thread.start();
+	}
 
-          Thread thread = new Thread(){
-                 @Override
-                 public void run() {
-                        while (true){
 
-                              try {
-	          					/*SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-          						String time = fm.format(new Date());
-          						ObjectMapper mapper = new ObjectMapper();
-          						
-          						HashMap<String,Object> map = new HashMap<String,Object>();
-          						map.put("cmdS", "timeS");
-          						map.put("timeS", time);
-          						time = mapper.writeValueAsString(map);
-          						
-          						idList();
-          						
-          						sendMessage(time);
-                                Thread.sleep(1000);*/
-                              } catch (Exception e) {
-                                     e.printStackTrace();
-                                     break;
-                              }
-                        }
-                 }
-          };
-          thread.start();
-    }
-	
 	public void sendMessage(String message) {
 		synchronized (sessionSet) {
 			for(WebSocketSession session: this.sessionSet) {
@@ -107,13 +96,13 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 			}
 		}
 	}
-	
+
 	/*public void idList() throws Exception {
 		Map<String, Object> map = new HashMap<String,Object>();
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String,Object> map2 = new HashMap<String,Object>();
 		List<String> list = new ArrayList<String>();
-		
+
 		for(WebSocketSession session: this.sessionSet) {
 			if(session.isOpen()) {
 				try {

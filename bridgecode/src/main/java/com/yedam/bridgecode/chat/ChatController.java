@@ -1,7 +1,5 @@
 package com.yedam.bridgecode.chat;
 
-import java.util.List;
-import java.util.Map;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -66,6 +64,7 @@ public class ChatController {
         } catch (Exception e) {
             System.out.println(e);
         }
+        
 	}
 	
 	
