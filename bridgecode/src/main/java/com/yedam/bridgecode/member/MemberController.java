@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.yedam.bridgecode.heart.HeartService;
 import com.yedam.bridgecode.heart.HeartVO;
+import com.yedam.bridgecode.matching.CodeVO;
+import com.yedam.bridgecode.matching.MatchingService;
 
 @Controller
 @SessionAttributes("member")
@@ -30,6 +32,8 @@ public class MemberController {
 	MemberService memberService;
 	@Autowired
 	HeartService heartService;
+	@Autowired
+	MatchingService MatchingService;
 
 	
 	@RequestMapping("/")
@@ -42,7 +46,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/memberInsert.do")
-	public String memberInsertForm(){
+	public String memberInsertForm(Model model){
+		CodeVO vo = new CodeVO();
+		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
+		model.addAttribute("list", interest);
+		
 		return "member/memberInsert";
 	}
 	

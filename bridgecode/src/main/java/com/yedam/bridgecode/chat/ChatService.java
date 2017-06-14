@@ -8,6 +8,6 @@ import com.yedam.bridgecode.member.MemberVO;
 public interface ChatService {
 	public List<Map<String,Object>> getCoupleChatList(MemberVO vo);
 	public void insertChat(ChatVO vo);
-	public void insertWarning(Map<String,Object> map);
+	public void insertWarning(MemberVO vo,String content);
 	
 }

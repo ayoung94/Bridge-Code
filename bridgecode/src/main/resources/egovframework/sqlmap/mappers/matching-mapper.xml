@@ -3,7 +3,33 @@
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.bridgecode.matching.MatchingMapper">
+
 <!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
+
+<!--  	<resultMap id="memberResult" type="member">
+		property:VO필드명과 동일(대소문자) / column은 컬럼명과동일
+		<id property="member_id" column="MEMBER_ID" /> 
+		<result property="member_img1" column="MEMBER_IMG1" />
+		<result property="member_img2" column="MEMBER_IMG2" />
+		<result property="member_img3" column="MEMBER_IMG3" />
+		<result property="member_password" column="MEMBER_PASSWORD" />
+		<result property="member_nickname" column="MEMBER_NICKNAME" />
+		<result property="member_name" column="MEMBER_NAME" />
+		<result property="member_birth" column="MEMBER_BIRTH" />
+		<result property="member_last_connection" column="MEMBER_LAST_CONNECTION" />
+		<result property="member_country" column="MEMBER_COUNTRY" />
+		<result property="member_interest1" column="MEMBER_INTEREST1" />
+		<result property="member_interest2" column="MEMBER_INTEREST2" />
+		<result property="member_interest3" column="MEMBER_INTEREST3" />
+		<result property="member_profile_img" column="MEMBER_PROFILE_IMG" />
+		<result property="uploadFile" column="UPLOADFILE" />
+		<result property="member_level" column="MEMBER_LEVEL" />
+		<result property="member_warning" column="MEMBER_WARNING" />
+		<result property="member_sex" column="MEMBER_SEX" />
+		<result property="member_partner_id" column="MEMBER_PARTNER_ID" />
+		<result property="member_introduction" column="MEMBER_INTRODUCTION" />
+	</resultMap> -->
+
 
 	<!-- 관심사 리스트 출력 -->
 	<select id="getCodeList" resultType="map">
@@ -14,13 +40,21 @@
 		WHERE CODE_CATEGORY IN ('0B')
 	</select> 
 	
-	<!-- 프로필 사진 추가 및 변경  -->
+	<!-- 프로필 사진 추가 및 변경 -->
 	<update id="profileUpdate" parameterType="member">
-		<![CDATA[
+		
         UPDATE MEMBER SET
+        	<if test="member_img1 != null and member_img1 !='' ">
             MEMBER_IMG1 = #{member_img1} 
+            </if>
+            <if test="member_img2 != null  and member_img2 !='' ">
+            MEMBER_IMG2 = #{member_img2} 
+            </if>
+            <if test="member_img3 != null and member_img3 !='' ">
+            MEMBER_IMG3 = #{member_img3} 
+            </if>
         WHERE MEMBER_ID = #{member_id}
-        ]]>
+        
 	</update>
 
 <!-- 	<insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 타입 alias정의
