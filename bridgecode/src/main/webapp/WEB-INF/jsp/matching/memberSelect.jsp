@@ -6,7 +6,7 @@
 <html>
 <head>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
 <style>
     .modal-backdrop {
         z-index: -1;
@@ -50,7 +50,7 @@ ul, menu, dir {
 						<div class="profile">
 							<div class="avatar">
 								<img style="max-width: 180px; margin: -80px auto 0;"
-									src="${pageContext.request.contextPath}/resources/img/1474435596-90-org.jpg"
+									src="${pageContext.request.contextPath}/profile_img/1474435596-90-org.jpg"
 									class="img-circle img-responsive img-raised">
 							</div>
 							<div class="name">
@@ -101,22 +101,22 @@ $(function(){
 								  <c:if test="${loginSession.member_id == profile.member_id }">
 									<c:set var="subimg"	value="${profile }"	/>	
 										<c:if test="${empty subimg.member_img1 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img1"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img1"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img2 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img2"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img2"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${empty subimg.member_img3 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img3"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img3"> <img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"  class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img1 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img1"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img1"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img1}" class="img-thumbnail"/></a></li>
 										</c:if>	
 										<c:if test="${!empty subimg.member_img2 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img2"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img2"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img2}" class="img-thumbnail"/></a></li>
 										</c:if>
 										<c:if test="${!empty subimg.member_img3 }">
-											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="img3"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
+											<li><a href="#" data-toggle="modal" data-target="#profileModal" data-whatever="member_img3"> <img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></a></li> --%>
 										</c:if>		
 									</c:if>	
 									
@@ -167,12 +167,13 @@ $(function(){
 													method="post" enctype="multipart/form-data">
 											<div class="modal-body">
 												
-													<label for="img" ><input type="hidden" id="img" name="img"></label><br>
-													프로필 사진: <input type="file" name="uploadFile"><br>
+													<input type="text" id="img" name="img"><br>
+													<input type="text" name="member_id" value="${loginSession.member_id}">
+													 프로필 사진: <input type="file" name="uploadFile"><br>
 												
 											</div>
 											<div class="modal-footer">
-												<!-- <input type="button" class="btn btn-default btn-simple"	data-dismiss="modal" value="취소"> -->
+												<!-- <input type="button" class="btn btn-default btn-simple" data-dismiss="modal" value="취소"> -->
 												<input type="submit" class="btn btn-info btn-simple" value="사진등록">
 											</div>
 										</form>
@@ -186,5 +187,9 @@ $(function(){
 			</div>
 			
  	</div> 
+ 	
+ 	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+ 	
 </body>
 </html>

@@ -18,7 +18,7 @@
 	<update id="profileUpdate" parameterType="member">
 		<![CDATA[
         UPDATE MEMBER SET
-            MEMBER_IMG1 = #{member_img1}, 
+            MEMBER_IMG1 = #{member_img1} 
         WHERE MEMBER_ID = #{member_id}
         ]]>
 	</update>

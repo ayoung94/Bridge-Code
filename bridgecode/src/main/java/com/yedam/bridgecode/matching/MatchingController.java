@@ -49,7 +49,7 @@ public class MatchingController {
 		return "matching/memberSelect";
 	}
 	// 서브프로필 이미지 추가 폼으로 
-	@RequestMapping("/profile/profileUpdate.do")
+/*	@RequestMapping("/profile/profileUpdate.do")
 	public String profileUpdateForm(MemberVO vo
 								, Model model
 								, HttpSession session) {
@@ -57,7 +57,7 @@ public class MatchingController {
 		model.addAttribute("member", member);
 		session.setAttribute("member", member);
 		return "profile/profileUpdate";
-	}
+	}*/
 	
 	// 서브프로필 이미지추가 
 		@RequestMapping(value="/profile/profileUpdate.do" ,method=RequestMethod.POST)
@@ -69,24 +69,14 @@ public class MatchingController {
 			long t = System.currentTimeMillis();
 			String randomName = t+""; 				//랜덤 이름 정하기
 			String realPath = request.getSession().getServletContext().getRealPath("/");//서블릿 내의 realPath 
+			System.out.println(request.getParameter(img)); 
 			MultipartFile file = vo.getUploadFile();
 			File saveFile = new File(realPath+"profile_img/",randomName);
 			file.transferTo(saveFile);  //서버에 파일 저장
-			vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()
-			
-			if(img.equals("img1")){
-				vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()
-				}
-				if(img.equals("img2")){
-				vo.setMember_img2(randomName); //파일명 저장 file.getOriginalFilename()
-				}
-				if(img.equals("img3")){
-				vo.setMember_img3(randomName); //파일명 저장 file.getOriginalFilename()
-				}
-					
-				MatchingService.profileUpdate(vo);
-			
-			
-			return "redirect:/matching/memberSelect.jsp";
+			vo.setMember_img1(randomName); //파일명 저장 file.getOriginalFilename()	
+				
+			MatchingService.profileUpdate(vo);
+				
+			return "redirect:/matching/memberSelect.do";
 		}
 }
