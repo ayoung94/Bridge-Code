@@ -18,6 +18,7 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
     
+
 	<filter>
 		<filter-name>HTMLTagFilter</filter-name>
 		<filter-class>egovframework.rte.ptl.mvc.filter.HTMLTagFilter</filter-class>
@@ -50,6 +51,13 @@
 		<servlet-name>action</servlet-name>
 		<url-pattern>/</url-pattern> <!-- *.do에서 /로 변경(아영) -->
 	</servlet-mapping>
+	
+	<servlet-mapping>
+	    <servlet-name>action</servlet-name> <!-- json 객체 반환위해 추가 -->
+		<url-pattern>*.json</url-pattern>
+	</servlet-mapping>
+
+    
 	
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
