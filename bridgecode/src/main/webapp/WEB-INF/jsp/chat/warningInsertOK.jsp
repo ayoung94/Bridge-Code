@@ -7,13 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<br>
- 　　신고 사유를 입력해주세요.
-<div style="text-align: center;">
-<form name="frm" action="${pageContext.request.contextPath}/warning/warningInsert.do" method="post">
-<textarea cols="40" rows="5" name="reason"></textarea>
-<input type="submit" value="신고하기">
-</form>
-</div>
+<script>
+
+	alert("신고가 완료 되었습니다. 빠른 시일내로 처리해드리겠습니다.");
+	window.open("about:blank","_self").close();
+
+</script>
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -111,17 +112,13 @@ public class ChatController {
 	
 	@RequestMapping(value="/warning/warningInsert.do",method= RequestMethod.POST)
 	public String warningInsert(Model model,
-							  MemberVO partner,
-							  MemberVO vo,
+								@RequestParam String reason,
 							  HttpSession session) {
+		System.out.println(reason);
+		MemberVO vo = (MemberVO)session.getAttribute("login");
+		chatService.insertWarning(vo, reason);
 		
-		vo = (MemberVO)session.getAttribute("login");
-		partner.setMember_id(vo.getMember_partner_id());
-		partner = memberService.getMember(partner);
-		
-		
-		
-		return "";
+		return "/popup/chat/warningInsertOK";
 	}
 	
 	@RequestMapping("/warning/warningInsert.do")

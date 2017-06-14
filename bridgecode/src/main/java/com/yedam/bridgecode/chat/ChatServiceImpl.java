@@ -1,5 +1,6 @@
 package com.yedam.bridgecode.chat;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,12 @@ public class ChatServiceImpl implements ChatService{
 	}
 
 	@Override
-	public void insertWarning(Map<String, Object> map) {
+	public void insertWarning(MemberVO vo,String content) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo);
+		map.put("reason",content);
+
 		chatDAO.insertWarning(map);
 	}
 

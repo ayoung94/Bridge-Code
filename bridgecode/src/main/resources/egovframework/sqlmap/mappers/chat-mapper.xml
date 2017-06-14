@@ -35,7 +35,7 @@
 	
 	
 	<insert id="insertWarning" parameterType="hashmap"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
-        <![CDATA[  
+        <![CDATA[   
         INSERT INTO warning(
         			warning_id,
 					warning_to_id,
@@ -48,12 +48,12 @@
 			   
         VALUES(
 			   warning_seq.nextval,
-        	   #{member_partner_id},
+        	   #{vo.member_partner_id},
         	   null,
         	   #{reason},
         	   sysdate,
         	   'd1',
-        	   #{member_id})
+        	   #{vo.member_id})
         ]]>
 	</insert>
 	
