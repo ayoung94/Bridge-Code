@@ -22,7 +22,7 @@
     <link href="${pageContext.request.contextPath}/resources/css/material-kit.css" rel="stylesheet"/>
     
     <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
-
+ 
     	
 </head>
 <body>
@@ -42,6 +42,7 @@
 		  <tiles:insertAttribute name="menu"/>
 		</div>
 <!-- 본문 -->
+
 <div class="wrapper">
 	<div class="header header-filter" style="background-image:url('${pageContext.request.contextPath}/resources/img/bg2.jpeg'); height:10px;">
 	</div>
@@ -53,6 +54,7 @@
 			</div>
 		</div>	
 	</div>	
+	
 	<!-- 푸터 -->
 </div>
 

@@ -13,33 +13,38 @@
 	$(function() {
 		$("#userListTable").DataTable({
 			"columns" : [ {
-				"data" : "member_id"
+				"data" : "MEMBER_ID"
 			}, {
-				"data" : "member_password"
+				"data" : "MEMBER_PASSWORD"
 			}, {
-				"data" : "member_nickname"
+				"data" : "MEMBER_NICKNAME"
 			}, {
-				"data" : "member_name"
+				"data" : "MEMBER_NAME"
 			}, {
-				"data" : "member_birth"
+				"data" : "MEMBER_BIRTH"
 			}, {
-				"data" : "member_last_connection"
+				"data" : "MEMBER_LAST_CONNECTION"
 			}, {
-				"data" : "member_warning"
+				"data" : "MEMBER_WARNING"
 			}, {
-				"data" : "member_sex"
+				"data" : "MEMBER_SEX"
 			}, {
-				"data" : "member_partner_id"
+				"data" : "MEMBER_PARTNER_ID"
 			}, {
-				"data" : "member_country"
+				"data" : "MEMBER_COUNTRY"
 			} ]
 		});
 	})
 </script>
+<style>
+    .modal-backdrop {
+        z-index: -1;
+    }
+</style>
 </head>
 <body>
 	<h1>유저 리스트 목록</h1>
-	<table id="userListTable">
+	<table id="userListTable" >
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -55,21 +60,30 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${userList}" var="userList">
+			<c:forEach items="${userList}" var="user">
 				<tr>
-					<td>${userList.member_id}</td>
-					<td>${userList.member_password}</td>
-					<td>${userList.member_nickname}</td>
-					<td>${userList.member_name}</td>
-					<td>${userList.member_birth}</td>
-					<td>${userList.member_last_connection}</td>
-					<td>${userList.member_warning}</td>
-					<td>${userList.member_sex}</td>
-					<td>${userList.member_partner_id}</td>
-					<td>${userList.member_country}</td>
+					<td><a href="getUserSel.do?member_id=${user.MEMBER_ID}"
+						data-toggle="modal" data-target="#userSelModal" onclick="${'#userSelModal'}.modal({backdrop:false})">${user.MEMBER_ID}</a></td>
+					<td>${user.MEMBER_PASSWORD}</td>
+					<td>${user.MEMBER_NICKNAME}</td>
+					<td>${user.MEMBER_NAME}</td>
+					<td>${user.MEMBER_BIRTH}</td>
+					<td>${user.MEMBER_LAST_CONNECTION}</td>
+					<td>${user.MEMBER_WARNING}</td>
+					<td>${user.MEMBER_SEX}</td>
+					<td>${user.MEMBER_PARTNER_ID}</td>
+					<td>${user.MEMBER_COUNTRY}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+
+	<!-- Modal -->
+	<div class="modal fade" id="userSelModal" style="padding: 20px 35px;" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<!-- Modal content-->
+			<div class="modal-content" ></div>
+		</div>
+	</div>
 </body>
 </html>
