@@ -8,6 +8,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var newName, n=0;
+    //팝업 창 제목 만들기 함수(다중 팝업을 위한..)    
+    function newWindow(value)
+    {
+       n = n + 1;
+       newName = value + n;     
+    }
+ 
+    function MyOpenWindow()
+    {
+        newWindow("MyWindow");
+        window.open('${pageContext.request.contextPath}/warning/warningInsert.do',
+				newName,
+				'width=450,height=200,left=1000,top=200');
+    }
+</script>   
 <style>
 .meTalk{
 margin-left: 180px;
@@ -30,26 +47,64 @@ padding: 10px;
 </style>
 <script>
 $(function(){
-	$(".youTalk").mouseover(function(){
-		console.log($(this).text());
-		var request = $(this).text();/* {
-					'X-Naver-Client-Id' : 'Yq8eXfIrImd6XBx6QhUs',
-					'X-Naver-Client-Secret' : 'xwZV9UFHNJ',
-					'source' : 'ko',
-					'target' : 	'en',
-					'text' : $(this).value
-						}; */
-		
-		$.getJSON('${pageContext.request.contextPath}/chat/chatTranslate.do',
-				   request,
-				   function(data,status){
-			if(status == "success") {
-					$(this).innerHTML = data;
+	$(".youTalk").on({"mouseenter":function(){
+									var THIS = $(this);
+									
+									var partnerLang = "${partner.member_country}";
+									var myLang = "${login.member_country}";
+									
+									var reqStr = "";
+									var translateText = "";
+									
+									if(partnerLang != "ko" && myLang != "ko"){
+									console.log("TEXT = "+THIS.children().first().text());
+									reqStr = "value="+THIS.children().first().text()+"&source=${partner.member_country}&target=ko";
+									//1.한국어로 번역
+									$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
+												   reqStr,
+												   function(data,status){
+													if(status == "success") {
+															console.log(translateText);
+														    translateText = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+														    
+														  //2.해당 언어로 번역	
+															reqStr = "value="+translateText+"&source=ko&target=${login.member_country}";
+															$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
+																		   reqStr,
+																		   function(data,status){
+																			if(status == "success") {
+																					text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+																					THIS.children().last().text(text);
+																					THIS.children().last().show();
+																				}
+															});	
+														}
+									});	
+									}else{
+									
+									reqStr = "value="+THIS.children().first().text()+"&source=${partner.member_country}&target=${login.member_country}";
+									$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
+											   reqStr,
+											   function(data,status){
+												if(status == "success") {
+													    
+														text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+														THIS.children().last().text(text);
+														THIS.children().last().show();
+													}
+											});
+									}
+					}
 				}	
-		});
-		
-	});
+				);
+
+	$(".youTalk").on({"mouseleave":function(){
+		var THIS = $(this);
+		THIS.children().last().hide();
+	  }});
+	
 });
+
 </script>
 </head>
 <body style="width: 400px; height:600px;">
@@ -57,7 +112,10 @@ $(function(){
   <li class="w3-padding-16">
     <img src="img_avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
     <span class="w3-large">${partner.member_nickname }</span><br>
-    <span>${partner.member_id }</span><span style="float: right;"><a href="">신고하기</a></span>
+    <span>${partner.member_id }</span><span style="float: right;">
+    
+    <a href="#" onclick="MyOpenWindow()">신고하기</a>
+    </span>
   </li>
 </ul>
 
@@ -69,7 +127,10 @@ $(function(){
 <div class='meTalk'>${chat.CHAT_CONTENT }</div>
 </c:if>
 <c:if test="${sender ne login.member_id }">  
-<div class='youTalk'>${chat.CHAT_CONTENT }</div>
+<div class='youTalk'>
+<p>${chat.CHAT_CONTENT }</p>
+<p></p>
+</div>
 </c:if>
 
 </c:forEach>
@@ -104,7 +165,7 @@ $(function(){
     	if(msg[0] == me){
     		textarea.innerHTML += "<div class='meTalk'>" + msg[2] + "</div>"; 
     	}else{
-    		textarea.innerHTML += "<div class='youTalk'>" + msg[2] + "</div>"; 
+    		textarea.innerHTML += "<div class='youTalk'><p>" + msg[2] + "</p></div>"; 
     	}
         textarea.scrollTop = textarea.scrollHeight;
     } 

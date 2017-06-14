@@ -66,12 +66,12 @@ public class SocketHandler extends TextWebSocketHandler implements InitializingB
 	@Override
 	public void afterPropertiesSet() throws Exception { 
 		Thread thread = new Thread(){
-			int i=0;
+			//int i=0;
 			@Override 
 			public void run() { 
 				while (true){ 
 					try {
-						sendMessage ("send message index "+i++); 
+						//sendMessage ("send message index "+i++); 
 						Thread.sleep(1000); 
 					} catch (InterruptedException e) { 
 						e.printStackTrace(); 

@@ -21,10 +21,17 @@ public class ChatServiceImpl implements ChatService{
 		chatDAO.insertChat(vo);
 	}
 
+	@Override
+	public void insertWarning(Map<String, Object> map) {
+		chatDAO.insertWarning(map);
+	}
 
 	@Override
 	public List<Map<String, Object>> getCoupleChatList(MemberVO vo) {
 		return chatDAO.getCoupleChatList(vo);
 	}
+
+
+	
 	
 }

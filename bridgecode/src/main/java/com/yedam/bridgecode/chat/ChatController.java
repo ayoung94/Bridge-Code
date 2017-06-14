@@ -6,12 +6,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yedam.bridgecode.member.MemberService;
@@ -27,13 +31,27 @@ public class ChatController {
 	@Autowired
 	MemberService memberService;
 	
-	@RequestMapping("/chat/chatTranslate.do")
-	public void chatTranslate(String tt) {
+	@RequestMapping("/chat/chatTranslate.json")
+	public @ResponseBody String chatTranslate(HttpServletRequest request) {
+		String value = request.getParameter("value");
+		String source = request.getParameter("source");
+		String target = request.getParameter("target");
+
+		if(source.equals("jp")){source = "ja";}
+		if(source.equals("cn")){source = "zh-CN";}
+		if(target.equals("jp")){target = "ja";}
+		if(target.equals("cn")){target = "zh-CN";}
 		
-		String clientId = "Yq8eXfIrImd6XBx6QhUs";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "xwZV9UFHNJ";//애플리케이션 클라이언트 시크릿값";
+		System.out.println("text="+value+"  source="+source+"  target="+target);
+		
+		String result = null;
+		String result2 = null;
+		
+		String clientId = "39RaYZCZYozCqIczMVmJ";//애플리케이션 클라이언트 아이디값";
+        String clientSecret = "UYrfrl7T73";//애플리케이션 클라이언트 시크릿값";
         try {
-            String text = URLEncoder.encode("만나서 반갑습니다.", "UTF-8");
+        	
+            String text = URLEncoder.encode(value, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/language/translate";
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -41,7 +59,7 @@ public class ChatController {
             con.setRequestProperty("X-Naver-Client-Id", clientId);
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
-            String postParams = "source=ko&target=en&text=" + text;
+            String postParams = "source="+source+"&target="+target+"&text=" + text;
             con.setDoOutput(true);
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             wr.writeBytes(postParams);
@@ -59,12 +77,21 @@ public class ChatController {
             while ((inputLine = br.readLine()) != null) {
                 response.append(inputLine);
             }
+            
             br.close();
-            System.out.println(response.toString());
+            result = response.toString();
+            int i = result.indexOf("translatedText");
+            result2 = result.substring(i+17, result.length());
+            result2 = result2.substring(0,result2.length()-4);
+            
+            result2 = URLEncoder.encode(result2,"UTF-8");
+
         } catch (Exception e) {
             System.out.println(e);
         }
-        
+        System.out.println("result="+result2);
+		
+        return result2; 
 	}
 	
 	
@@ -80,6 +107,26 @@ public class ChatController {
 		model.addAttribute("chatlist",chatService.getCoupleChatList(vo));
 		model.addAttribute("partner", partner);	
 		return "/popup/chat/coupleChat";
+	}
+	
+	@RequestMapping(value="/warning/warningInsert.do",method= RequestMethod.POST)
+	public String warningInsert(Model model,
+							  MemberVO partner,
+							  MemberVO vo,
+							  HttpSession session) {
+		
+		vo = (MemberVO)session.getAttribute("login");
+		partner.setMember_id(vo.getMember_partner_id());
+		partner = memberService.getMember(partner);
+		
+		
+		
+		return "";
+	}
+	
+	@RequestMapping("/warning/warningInsert.do")
+	public String warningInsertForm() {
+		return "/popup/chat/warningInsert";
 	}
 
 }

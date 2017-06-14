@@ -32,4 +32,29 @@
 		and chat_to_id = #{member_id})
 		order by chat_time
 	</select> 
+	
+	
+	<insert id="insertWarning" parameterType="hashmap"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
+        <![CDATA[  
+        INSERT INTO warning(
+        			warning_id,
+					warning_to_id,
+					warning_return,
+					warning_reason,
+					warning_time,
+					warning_status,
+					warning_from_id
+					) 
+			   
+        VALUES(
+			   warning_seq.nextval,
+        	   #{member_partner_id},
+        	   null,
+        	   #{reason},
+        	   sysdate,
+        	   'd1',
+        	   #{member_id})
+        ]]>
+	</insert>
+	
 </mapper>
