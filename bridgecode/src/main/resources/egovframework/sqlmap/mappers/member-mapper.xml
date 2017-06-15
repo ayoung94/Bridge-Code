@@ -9,7 +9,8 @@
 	<insert id="insertMember" parameterType="member"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
         <![CDATA[  
         INSERT INTO member(member_id,member_password,member_nickname,member_sex,
-        					member_country,member_birth,member_introduction,member_level,member_profile_img) 
+        					member_country,member_birth,member_introduction,member_level,member_profile_img,
+        					member_interest1,member_interest2,member_interest3) 
         VALUES(#{member_id},
         	#{member_password},
         	#{member_nickname},
@@ -18,9 +19,21 @@
         	TO_DATE(#{member_birth}, 'YYYY-MM-DD'),
         	#{member_introduction},
         	1,
-        	#{member_profile_img})
+        	#{member_profile_img},
+        	#{member_interest1},
+        	#{member_interest2},
+        	#{member_interest3})
         ]]>
 	</insert>
+	<update id="updateLastConnection" parameterType="member">
+        <![CDATA[
+        UPDATE member SET
+           	   member_last_connection = sysdate
+        WHERE member_id = #{member_id}
+        ]]>
+	</update>
+
+
 
 	<update id="updateMember" parameterType="member">
         <![CDATA[

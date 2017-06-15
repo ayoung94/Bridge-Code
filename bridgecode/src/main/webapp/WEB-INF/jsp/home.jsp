@@ -13,7 +13,7 @@
 
 <table border="1">
 <tr>
-<c:forEach items="${list}" var="best" end="5" >
+<c:forEach items="${list}" var="best" end="4" > <!-- end="4"는 5명까지만 출력한다는 뜻 -->
 <td>
 ${best.member_id}<br>
 하트${best.heart_count}개

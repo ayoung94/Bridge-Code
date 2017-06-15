@@ -6,6 +6,7 @@ import java.util.Map;
 public interface MemberService {
 	public void insertMember(MemberVO vo);
 	public void updateMember(MemberVO vo);
+	public void updateLastConnection(MemberVO vo);
 	public void deleteMember(MemberVO vo);
 	public MemberVO getMember(MemberVO vo);
 	public MemberVO login(MemberVO vo); 

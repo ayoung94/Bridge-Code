@@ -71,6 +71,11 @@ public class MemberServiceImpl implements MemberService{
 		return null;
 	}
 
+	@Override
+	public void updateLastConnection(MemberVO vo) {
+		MemberDAO.updateLastConnection(vo);
+	}
+
 
 
 	

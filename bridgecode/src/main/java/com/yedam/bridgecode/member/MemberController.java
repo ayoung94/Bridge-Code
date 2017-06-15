@@ -176,16 +176,15 @@ public class MemberController {
 		MemberVO result = memberService.login(member);
 		
 		if ( result != null ) {
-			
 			if ( result.getMember_level().equals("0")){
 				session.setAttribute("login", result);			//admin처리 할 부분 ★임시★
-				return "/admin/memberList";  
+				return "redirect:/goAdminMain.do";  
 			}
 			
 			session.setAttribute("login", result);
-			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);
+			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);	//로그인 되었을때 부분
 			session.setAttribute("heartto",heartTo);
-			
+			memberService.updateLastConnection(result);
 			
 			return "redirect:/loginOK.do?language="+result.getMember_country();
 			

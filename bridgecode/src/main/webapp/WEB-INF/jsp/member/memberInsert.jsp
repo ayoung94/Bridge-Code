@@ -8,19 +8,37 @@
 <script>
 $(function(){ 
 	$(':checkbox').click(function(){
-		var checkboxs = $(" :checked");
-		console.log(checkboxs);
-		console.log(checkboxs[0]);
+		var checkboxs = $("[name='interest']:checked"); // :checked
+		var checkValue = "";
+		for(i=0;i<checkboxs.length;i++){
+			checkValue += checkboxs[i].value;
+			if(i != checkboxs.length-1 ){checkValue += ",";}
+		}
+		
+		$("#interestLength").attr('value',checkboxs.length);
+		var arr = checkValue.split(',');
+		$("#member_interest1").attr('value',arr[0]);
+		$("#member_interest2").attr('value',arr[1]);
+		$("#member_interest3").attr('value',arr[2]);
 	});
 });
+
+function aa(){
+	if($("#interestLength").attr('value')>3){
+	alert("관심사는 최대 3개까지 등록 가능합니다.");
+	return false;
+	}else{
+	return true;
+	}
+}
 </script>
 </head>
 
 <body>
 회원 가입
 <hr>
-<form method="post" enctype="multipart/form-data">
-아이디 : <input type="text" name="member_id" > <br>
+<form method="post" enctype="multipart/form-data" onsubmit="return aa();">
+아이디 : <input type="text" name="member_id"  > <br> <!-- required -->
 프로필 사진: <input type="file" name="uploadFile" ><br>
 비밀번호: <input type="password" name="member_password" > <br>
 닉네임: <input type="text" name="member_nickname" > <br>
@@ -40,7 +58,7 @@ $(function(){
 				<c:forEach items="${list}" var="interest">
 					<td>
 						<div class="checkbox">
-							<label> <input type="checkbox" name="interest">
+							<label> <input type="checkbox" name="interest" value="${interest.code_id }">
 								${interest.code_name }
 							</label>
 						</div>
@@ -51,9 +69,13 @@ $(function(){
 								out.print("</tr><tr>");
 							}
 					%>
-				</c:forEach>
+				</c:forEach> 
 			</tr>
 		</table>
+<input type="hidden" id="interestLength" >
+<input type="hidden" id="member_interest1" name="member_interest1">
+<input type="hidden" id="member_interest2" name="member_interest2">
+<input type="hidden" id="member_interest3" name="member_interest3">
 
 <br>
 자기소개:<textarea cols="30" rows="6" name="member_introduction"></textarea>
