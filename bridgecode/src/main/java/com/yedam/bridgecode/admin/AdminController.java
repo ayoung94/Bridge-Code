@@ -26,4 +26,11 @@ public class AdminController {
 		model.addAttribute("userList", adminService.getUserSel(vo));
 		return "/popup/admin/adminUserSel";
 	}
+	
+	//관리자 페이지 이동
+	@RequestMapping("/goAdminMain.do")
+	public String goAdminMain(){
+		return "/popup/admin/adminMain";
+	}
+	
 }

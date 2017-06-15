@@ -5,15 +5,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>유저 상세보기</title>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <style>
 .modal-backdrop {
 	z-index: -1;
-	backdrop:false;
 	}
 </style>
-
+<style>	
+.test th{border:1px solid blue; text-align: center; padding: 5px;}
+.test td{border:1px solid black; text-align: center; padding: 5px;}
+}	
+</style>
 </head>
 <body>
 	<div class="modal-header">

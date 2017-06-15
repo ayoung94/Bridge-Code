@@ -63,7 +63,7 @@
 			<c:forEach items="${userList}" var="user">
 				<tr>
 					<td><a href="getUserSel.do?member_id=${user.MEMBER_ID}"
-						data-toggle="modal" data-target="#userSelModal" onclick="${'#userSelModal'}.modal({backdrop:false})">${user.MEMBER_ID}</a></td>
+						data-toggle="modal" data-target="#userSelModal">${user.MEMBER_ID}</a></td>
 					<td>${user.MEMBER_PASSWORD}</td>
 					<td>${user.MEMBER_NICKNAME}</td>
 					<td>${user.MEMBER_NAME}</td>
