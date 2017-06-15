@@ -85,6 +85,9 @@ ${date - birth +1}세 / ${member.member_country }<br>
 
 <div class="w3-container">
   <ul class="w3-ul w3-card-4" style="width: 500px;">
+	<c:if test="${empty heartto}">
+	새로 도착한 하트가 없습니다. 
+	</c:if>
    <c:forEach items="${heartto}" var="heartTo" >
     <li class="w3-display-container">
     <br>

@@ -10,19 +10,22 @@
         <![CDATA[  
         INSERT INTO member(member_id,member_password,member_nickname,member_sex,
         					member_country,member_birth,member_introduction,member_level,member_profile_img,
-        					member_interest1,member_interest2,member_interest3) 
+        					member_interest1,member_interest2,member_interest3,
+        					member_name,member_warning) 
         VALUES(#{member_id},
         	#{member_password},
         	#{member_nickname},
         	#{member_sex},
         	#{member_country},
-        	TO_DATE(#{member_birth}, 'YYYY-MM-DD'),
+        	TO_DATE(#{member_birth},'YYYY-MM-DD'),
         	#{member_introduction},
         	1,
         	#{member_profile_img},
         	#{member_interest1},
         	#{member_interest2},
-        	#{member_interest3})
+        	#{member_interest3},
+        	#{member_name},
+        	0)
         ]]>
 	</insert>
 	<update id="updateLastConnection" parameterType="member">
@@ -48,6 +51,22 @@
         WHERE member_id = #{member_id}
         ]]>
 	</update>
+
+	<update id="updateRejectMember" parameterType="member">
+        <![CDATA[
+        UPDATE member SET
+            member_id = #{member_id}, 
+        	member_password = #{member_password},
+        	member_nickname = #{member_nickname},
+        	member_sex = #{member_sex},
+        	member_country = #{member_country},
+        	member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'),
+        	member_introduction = #{member_introduction},
+        	member_level = 1
+        WHERE member_id = #{member_id}
+        ]]>
+	</update>
+
 
 	<delete id="deleteMember" parameterType="member">
         <![CDATA[

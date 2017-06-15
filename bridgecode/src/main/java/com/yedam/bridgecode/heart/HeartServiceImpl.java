@@ -102,4 +102,13 @@ public class HeartServiceImpl implements HeartService{
 		HeartDAO.coupleDelete3(map);
 	}
 
+	@Override
+	public HeartVO getCoupleHeart(MemberVO from, MemberVO to) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("from",from);
+		map.put("to", to);
+
+		return HeartDAO.getCoupleHeart(map);
+	}
+
 }

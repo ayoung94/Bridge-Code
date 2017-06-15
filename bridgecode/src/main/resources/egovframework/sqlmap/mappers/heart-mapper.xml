@@ -134,6 +134,23 @@
         ]]>
 	</select>
 	
+	<select id="getCoupleHeart" resultType="heart" parameterType="hashmap"> 
+        <![CDATA[  
+		 SELECT
+  	 		   heart_to_id,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time,
+			   heart_confirm_time,
+			   heart_id
+        FROM heart
+        WHERE (heart_from_id = #{from.member_id}
+        and heart_to_id = #{to.member_id}) OR
+        (heart_from_id = #{to.member_id}
+        and heart_to_id = #{from.member_id})
+        ]]>
+	</select>
+	
 	
 	
 		<select id="checkHeart" resultType="heart"> 

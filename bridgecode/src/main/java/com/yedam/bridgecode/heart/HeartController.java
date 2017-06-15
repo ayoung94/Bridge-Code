@@ -180,10 +180,10 @@ public class HeartController {
 		
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
-		
+		HeartVO heart = heartService.getCoupleHeart(vo, partner);
 
 		model.addAttribute("partner", partner);
-		
+		model.addAttribute("heart",heart);
 		return "couple/couplePage";
 	}
 }

@@ -10,6 +10,7 @@ import org.mybatis.spring.annotation.MapperScan;
 public interface MemberMapper { 
 	public void insertMember(MemberVO vo);
 	public void updateMember(MemberVO vo);
+	public void updateRejectMember(MemberVO vo);
 	public void updateLastConnection(MemberVO vo);
 	public void deleteMember(MemberVO vo);
 	public MemberVO getMember(MemberVO vo);

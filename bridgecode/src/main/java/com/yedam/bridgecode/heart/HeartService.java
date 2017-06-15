@@ -18,5 +18,6 @@ public interface HeartService {
 	public List<Map<String, Object>> getToHeartList(MemberVO vo);
 	public List<Map<String,Object>> getMyHeartList(MemberVO vo);
 	public List<HeartVO> getHeartListVO(HeartVO vo);
+	public HeartVO getCoupleHeart(MemberVO from,MemberVO to); 
 	//user-mapper.xml의 내용 확인해서 return값, 클래스 이름 같게하기.
 }

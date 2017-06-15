@@ -21,6 +21,30 @@ $(function(){
 		$("#member_interest2").attr('value',arr[1]);
 		$("#member_interest3").attr('value',arr[2]);
 	});
+
+	$("#fileUpload").on('change', function () {
+
+        if (typeof (FileReader) != "undefined") {
+
+            var image_holder = $("#image-holder");
+            image_holder.empty();
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image",
+                    "width" : "200px",
+                    "height" : "200px"
+                }).appendTo(image_holder);
+
+            }
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("This browser does not support FileReader.");
+        }
+    });
 });
 
 function aa(){
@@ -39,8 +63,14 @@ function aa(){
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
 아이디 : <input type="text" name="member_id"  > <br> <!-- required -->
-프로필 사진: <input type="file" name="uploadFile" ><br>
+프로필 사진: 
+<div id="wrapper">       
+   <input id="fileUpload" type="file" name="uploadFile" /><br />
+   <div id="image-holder"> </div>
+ </div>
+
 비밀번호: <input type="password" name="member_password" > <br>
+이름 : <input type="text" name="member_name"  ><br>
 닉네임: <input type="text" name="member_nickname" > <br>
 성별: 남<input type="radio" name="member_sex" value="1"> 여<input type="radio" name="member_sex" value="2"> <br>
 국적: <select name="member_country">

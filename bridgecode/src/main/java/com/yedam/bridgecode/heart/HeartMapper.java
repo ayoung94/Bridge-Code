@@ -30,6 +30,7 @@ public interface HeartMapper {
 	public void deleteHeart(HeartVO vo);
 	
 	public HeartVO getFromHeart(MemberVO vo); //이거 왜있지..?나중에도 필요없으면 삭제예정
+	public HeartVO getCoupleHeart(Map<String, Object> map); 
 	
 	public List<Map<String,Object>> getToHeartList(MemberVO vo); //보낸 하트 리스트 (이때까지)
 	public List<Map<String,Object>> getMyHeartList(MemberVO vo); //받은 하트 리스트(승인 대기중인 하트만)

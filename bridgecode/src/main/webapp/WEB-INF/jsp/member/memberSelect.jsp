@@ -22,6 +22,9 @@ function memberDelete(){
 
 </head>
 <body>
+<img src="${pageContext.request.contextPath}/profile_img/${login.member_profile_img}" style="height: 100px;">
+<br><input type="button" value="프로필 수정하기">
+<br>
 아이디: ${member.member_id}<br>
 닉네임: ${member.member_nickname}<br>
 이름: ${member.member_name}<br>

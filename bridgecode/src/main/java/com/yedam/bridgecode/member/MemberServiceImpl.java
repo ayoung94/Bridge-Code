@@ -76,6 +76,11 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAO.updateLastConnection(vo);
 	}
 
+	@Override
+	public void updateRejectMember(MemberVO vo) {
+		MemberDAO.updateRejectMember(vo);
+	}
+
 
 
 	

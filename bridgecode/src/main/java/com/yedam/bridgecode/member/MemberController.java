@@ -73,7 +73,7 @@ public class MemberController {
 
 		memberService.insertMember(vo);
 		
-		return "redirect:/member/memberList.do";
+		return "member/memberBeforeJoin";
 	}
 	
 	@RequestMapping("/member/memberList.do")
@@ -148,6 +148,16 @@ public class MemberController {
 		return "redirect:/member/memberSelect.do";
 	}
 	
+	@RequestMapping(value="member/memberRejectJoin.do", 
+				method = RequestMethod.POST)
+	public String rejectMemberUpdate(@ModelAttribute("member") MemberVO member
+					,Model model
+					,SessionStatus status){
+	memberService.updateRejectMember(member);
+	status.setComplete();
+	return "member/memberBeforeJoin";
+	}
+	
 	@RequestMapping("/member/memberDelete.do")
 	public String memberDelete(@ModelAttribute("member") MemberVO member
 					,Model model
@@ -176,15 +186,26 @@ public class MemberController {
 		MemberVO result = memberService.login(member);
 		
 		if ( result != null ) {
+			
+			memberService.updateLastConnection(result); //마지막 접속시간 저장
+			
 			if ( result.getMember_level().equals("0")){
-				session.setAttribute("login", result);			//admin처리 할 부분 ★임시★
-				return "redirect:/goAdminMain.do";  
+				session.setAttribute("login", result);	
+				return "redirect:/goAdminMain.do";  	
 			}
+			
+			if( result.getMember_level().equals("1") ){
+				return "member/memberBeforeJoin";
+			}else if( result.getMember_level().equals("3") ){
+				model.addAttribute("member", result);
+				session.setAttribute("member", result);
+				return "member/memberRejectJoin";
+			}
+			
 			
 			session.setAttribute("login", result);
 			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);	//로그인 되었을때 부분
 			session.setAttribute("heartto",heartTo);
-			memberService.updateLastConnection(result);
 			
 			return "redirect:/loginOK.do?language="+result.getMember_country();
 			
