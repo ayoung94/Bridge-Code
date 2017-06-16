@@ -62,6 +62,7 @@ public class NoticeController {
 	//단건조회
 	@RequestMapping(value="/getNotice.do")
 	public String getUser(NoticeVO vo, Model model) {
+		noticeService.updateCnt(vo);
 		NoticeVO list = noticeService.getNotice(vo);
 		model.addAttribute("notice", list);
 		return "notice/getNotice";

@@ -7,6 +7,7 @@ public class NoticeVO {
 	private String noticeTitle;
 	private String noticeContent;
 	private Date noticeTime;
+	private int noticeCnt;
 	
 	
 	public int getNoticeId() {
@@ -33,11 +34,17 @@ public class NoticeVO {
 	public void setNoticeTime(Date noticeTime) {
 		this.noticeTime = noticeTime;
 	}
+	public int getNoticeCnt() {
+		return noticeCnt;
+	}
+	public void setNoticeCnt(int noticeCnt) {
+		this.noticeCnt = noticeCnt;
+	}
 	@Override
 	public String toString() {
 		return "NoticeVO [noticeId=" + noticeId + ", noticeTitle="
-				+ noticeTitle + ", noticeContent=" + noticeContent + "]";
+				+ noticeTitle + ", noticeContent=" + noticeContent
+				+ ", noticeTime=" + noticeTime + ", noticeCnt=" + noticeCnt
+				+ "]";
 	}
-	
-	
 }

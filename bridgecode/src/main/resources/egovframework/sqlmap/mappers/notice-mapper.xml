@@ -11,10 +11,11 @@
 		<result property="noticeTitle" column="NOTICE_TITLE" />
 		<result property="noticeContent" column="NOTICE_CONTENT" />
 		<result property="noticeTime" column="NOTICE_TIME" />
+		<result property="noticeCnt" column="NOTICE_CNT" />
 	</resultMap>
 
 	<insert id="insertNotice" parameterType="notice">
-	<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
+		<selectKey keyProperty="noticeId" resultType="int" order="BEFORE">
 			SELECT NVL(MAX(NOTICE_ID), 0) + 1 FROM NOTICE
 		</selectKey>
 
@@ -22,16 +23,46 @@
 		NOTICE_ID,
 		NOTICE_TITLE,
 		NOTICE_CONTENT,
-		NOTICE_TIME
+		NOTICE_TIME,
+		NOTICE_CNT
 		)
-		VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, SYSDATE )
-	   <!--  <![CDATA[  
-        INSERT INTO NOTICE(NOTICE_ID, NOTICE_TITLE, NOTICE_CONTENT, NOTICE_TIME) 
-        VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeTime})
-        ]]> -->
+		VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, SYSDATE, 0 )
+		<!-- <![CDATA[ INSERT INTO NOTICE(NOTICE_ID, NOTICE_TITLE, NOTICE_CONTENT, 
+			NOTICE_TIME) VALUES(#{noticeId}, #{noticeTitle}, #{noticeContent}, #{noticeTime}) 
+			]]> -->
 	</insert>
 
+	<select id="getNotice" resultMap="noticeMap">
+
+		SELECT *
+		FROM NOTICE
+		WHERE
+		NOTICE_ID = #{noticeId}
+
+	</select>
+
+	<select id="getNoticeList" resultMap="noticeMap">
+		<!-- <참고> map :java.util.map -->
+		<!-- 쿼리부분의 컴럼명을 소문자로 하고 싶을때 as 'alias'를 사용 -->
+		SELECT *
+		FROM NOTICE
+		WHERE 1 = 1
+		ORDER BY 1
+	</select>
+
+	<update id="updateCnt">
+	  <![CDATA[
+        UPDATE NOTICE SET
+        NOTICE_CNT = NOTICE_CNT + 1
+        WHERE NOTICE_ID = #{noticeId}
+        
+        
+	   ]]>
+	</update>
 	<update id="updateNotice">
+	
+	
+	
         <![CDATA[
         UPDATE NOTICE SET
         	NOTICE_TITLE = #{noticeTitle},
@@ -48,21 +79,6 @@
         ]]>
 	</delete>
 
-	<select id="getNotice" resultMap="noticeMap">
-       
-        SELECT *
-        FROM NOTICE
-        WHERE NOTICE_ID = #{noticeId}
-        
-	</select>
 
-	<select id="getNoticeList" resultMap="noticeMap">
-		<!-- <참고> map :java.util.map -->
-		<!-- 쿼리부분의 컴럼명을 소문자로 하고 싶을때 as 'alias'를 사용 -->
-		SELECT *
-		FROM NOTICE
-		WHERE 1 = 1
-		ORDER BY 1
-	</select>
 
 </mapper>

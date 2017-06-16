@@ -22,6 +22,8 @@
 				"data" : "noticeTitle"
 			}, {
 				"data" : "noticeTime"
+			}, {
+				"data" : "noticeCnt"
 			} ]
 		});
 	})
@@ -40,7 +42,7 @@
 				<th>글번호</th>
 				<th>제목</th>
 				<th>작성일</th>
-				<th></th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -49,6 +51,7 @@
 					<td>${notice.noticeId}</td>
 					<td><a href="getNotice.do?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></td>
 					<td>${notice.noticeTime}</td>
+					<td>${notice.noticeCnt}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -56,36 +59,5 @@
 	<div>
 		<input type="button" value="등록" onclick="goNoticeInsertForm()" />
 	</div>
-
-	<%-- 	<form action="<%=request.getContextPath()%>/getNoticeList.do"
-		method="post">
-		<!-- <input type="hidden" name="action" value="list" /> -->
-		<div>
-			<h1>공지사항</h1>
-		</div>
-		<table>
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
-			</tr>
-			<c:forEach var="notice" items="${noticeList}">
-				<tr>
-					<td>${notice.noticeId}</td>
-					<td><a href="getNotice.do?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></td>
-			</c:forEach>
-		</table>
-	</form> --%>
-	<!-- 
-	<form action="">
-		<input type="hidden" name="action" value="list" /> <input type="text"
-			name="title" size="15" style="margin-top: 10px; margin-right: 5px;" />
-		<input type="submit" value="검색" class="btn btn-template-main" /> <input
-			type="button" value="글쓰기" onclick=""
-			class="btn btn-template-main pull-right" />
-	</form> -->
-
 </body>
 </html>

@@ -17,5 +17,6 @@ public interface NoticeMapper {
 	public List<NoticeVO> getNoticeList();
 	//부서별 인원수 차트에 뿌릴 때 사용
 	//public List<Map<String, Object>> getNoticeCount();
+	public void updateCnt(NoticeVO vo);
 	
 }
