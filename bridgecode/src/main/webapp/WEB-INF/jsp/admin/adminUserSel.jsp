@@ -65,7 +65,7 @@
 			</tr>
 			<tr>
 				<th>프로필 이미지</th>
-				<td>${userList.member_profile_img}</td>
+				<td><img src="${pageContext.request.contextPath}/profile_img/${userList.member_profile_img}"></td>
 			</tr>
 			<tr>
 				<th>경고횟수</th>

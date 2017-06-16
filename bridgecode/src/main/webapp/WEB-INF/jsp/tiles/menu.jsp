@@ -54,6 +54,9 @@
  								 
  								 <br>
  								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+ 								<c:if test="${login.member_id == 'admin'}">
+ 								 <a href="${pageContext.request.contextPath}/goAdminMain.do">관리자페이지</a>
+ 								</c:if>
   							</c:if>
   							<c:if test="${empty loginSession }"> 
 

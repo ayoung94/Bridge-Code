@@ -10,7 +10,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
 <style>
 .modal-body img{
-	width:550px; height:auto; max-width:550px; max-height: 450px;
+	width:auto; height:auto; max-width:550px; max-height: 450px;
 	}
 .modal-backdrop {
     z-index: -1;
@@ -114,31 +114,7 @@ ul, menu, dir {
 			$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img3}'); 
 			}
 		})
-/* 		$("#btnUpdate").click(function(event){   //버튼 주소
-	         // 파라미터 -> 쿼리문자열 만들기
-	         event.preventDefault();
-	         var params = $("#btnUpdate").serialize();   //폼태그 주소
-	         console.log(params)
-	         // 등록 ajax 요청
-	         $.post("../DeptInsertServ.do", params, function(data,status){  //서버 url주소
-	            var jData = eval("(" + data +")");  //json으로 변환
-	            if(status == "success") {
-	               if( jData.length == 1) {
-	                  alert("등록완료");
-	                  var div =  "<div id='"+jData[0].departmentId+"'>" + 
-	                     "<span>" +jData[0].departmentId +"</span>" +
-	                     "<span>" + jData[0].departmentName +"</span>" +
-	                     "</div>"
-	                  $(div).prependTo("#deptList");
-	               } else {
-	                  alert("등록에러");
-	               }
-	            } 
-	         });
-	         return false;    //
-	      }); 
-	   });*/
-	   
+   
 	   $("#introEdit").click(function(event){
 		   
 		 	 if($('#form-control').attr("readonly") == "readonly") { 
@@ -151,6 +127,30 @@ ul, menu, dir {
 		 		}
 		 	event.preventDefault()
 	   })
+	   
+	  /*  $("#uploadFile").on('change', function () {
+
+        if (typeof (FileReader) != "undefined") {
+
+            var imgchange = $("#imgchange");
+            imgchange.empty();
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image",
+                    "width" : "150px",
+                    "height" : "150px"
+                }).appendTo(imgchange);
+
+            }
+            imgchange.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            alert("This browser does not support FileReader.");
+        }
+    }); */
 	});
 
 </script>				
@@ -239,7 +239,9 @@ ul, menu, dir {
 													method="post" enctype="multipart/form-data">
 												<div class="modal-body">
 												
-														<input type="hidden" id="img" name="img"><img>
+														<input type="hidden" id="img" name="img">
+														<img>
+														<div id="imgchange"></div>
 														<br>
 													
 														<input type="hidden" name="member_id" value="${loginSession.member_id}"><br><br>
