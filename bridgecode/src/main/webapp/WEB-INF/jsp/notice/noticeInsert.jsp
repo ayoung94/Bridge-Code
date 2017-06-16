@@ -6,20 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>공지사항 등록</title>
+<script>
+	function getNoticeList() {
+		location.href = "getNoticeList.do"
+	}
+</script>
 </head>
 <body>
-<form class="w3-container w3-card-4" action="noticeInsert.do" method="post">
-  <h2 class="w3-text-blue">공지사항 등록</h2>
-  <p>      
-  <label class="w3-text-blue"><b>제목</b></label>
-  <input class="w3-input w3-border" name="noticeTitle" type="text"></p>
-  <p>      
-  <label class="w3-text-blue"><b>내용</b></label>
-  <textarea class="w3-input w3-border" name="noticeContent"></textarea></p>
-  <p>      
-  <button type="submit" class="w3-btn w3-blue">Register</button>
-  <button type="reset" class="w3-btn w3-blue">reset</button></p>
-  <button type="button" class="w3-btn w3-blue" a href="getNoticeList.do">list</button></p>
-</form>
+	<form class="w3-container w3-card-4" action="noticeInsert.do"
+		method="post" style="width: 80%; margin: auto;">
+		<h2 class="w3-text-blue">공지사항 등록</h2>
+		<p>
+			<label class="w3-text-blue"><b>제목</b></label> <input
+				class="w3-input w3-border" name="noticeTitle" type="text">
+		</p>
+		<p>
+			<label class="w3-text-blue"><b>내용</b></label>
+			<textarea class="w3-input w3-border" name="noticeContent" style="height:200px"></textarea>
+		</p>
+		<p>
+			<button type="submit" class="w3-btn w3-blue">Register</button>
+			<button type="reset" class="w3-btn w3-blue">reset</button>
+			<button type="button" class="w3-btn w3-blue"
+				onclick="getNoticeList()">list</button>
+		</p>
+	</form>
 </body>
 </html>
