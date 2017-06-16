@@ -15,14 +15,15 @@ public class AdminController {
 	@Autowired AdminService adminService;
 	@Autowired AdminMapper adminDAO;
 
-	//정식 등록 인가된 유저 리스트 조회
+	//유저 리스트 조회
 	@RequestMapping("/getUserList.do")
 	public String getUserList(Model model, MemberVO vo, HttpServletRequest rq) {
+		//정식 등록 인가된 유저 리스트 조회
 		if(rq.getParameter("member_level").equals("2")) {
 			model.addAttribute("userList", adminDAO.getUserList(vo));
 			return "admin/adminUserList";
 		}
-
+		//새로운 회원 신청인 조회 리스트
 		else if(rq.getParameter("member_level").equals("1")) {
 			model.addAttribute("userList", adminDAO.getUserList(vo));
 			return "admin/adminUserApplication";
@@ -38,17 +39,23 @@ public class AdminController {
 		return "/popup/admin/adminUserSel";
 	}
 
-	//새로운 회원 신청인 조회 리스트
-	/*@RequestMapping("/getAdminUserApplicationList.do")
-	public String getUserList(Model model) {
-		model.addAttribute("userList", adminDAO.getUserList());
-		return "admin/adminUserList";
-	}*/
-
 	//관리자 페이지 이동
 	@RequestMapping("/goAdminMain.do")
 	public String goAdminMain(){
 		return "/popup/admin/adminMain";
 	}
 
+	//회원 신청 승인
+	@RequestMapping("/updateUserApplication.do")
+	public String updateUserApplication(MemberVO vo){
+		adminService.updateUserApplication(vo);
+		return "redirect:/getUserList.do?member_level=1";
+	}
+	
+	//회원 신청 거부
+	@RequestMapping("updateUserReject.do")
+	public String updateUserReject(MemberVO vo){
+		adminService.updateUserReject(vo);
+		return "redirect:/getUserList.do?member_level=1";
+	}
 }

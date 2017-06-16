@@ -19,4 +19,15 @@ public class AdminServiceImpl implements AdminService{
 		return adminDAO.getUserSel(vo);
 	}
 
+	@Override
+	public void updateUserApplication(MemberVO vo) {
+		adminDAO.updateUserApplication(vo);
+	}
+
+	@Override
+	public void updateUserReject(MemberVO vo) {
+		adminDAO.updateUserReject(vo);
+		
+	}
+
 }

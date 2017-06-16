@@ -11,7 +11,7 @@
 		FROM member
 		WHERE member_level = #{member_level}
 	</select>
-	
+
 	<select id="getUserSel" resultType="com.yedam.bridgecode.member.MemberVO">
         <![CDATA[
         SELECT 
@@ -36,4 +36,20 @@
         ]]>
 	</select>
 
+	<select id="updateUserApplication">
+        <![CDATA[
+        UPDATE MEMBER SET
+        	MEMBER_LEVEL = 2
+         WHERE member_id = #{member_id}
+         ]]>
+	</select>
+
+	<select id="updateUserReject">
+        <![CDATA[
+         UPDATE MEMBER SET
+        	MEMBER_LEVEL = 3
+         WHERE member_id = #{member_id}
+         ]]>
+	</select>
+	
 </mapper>

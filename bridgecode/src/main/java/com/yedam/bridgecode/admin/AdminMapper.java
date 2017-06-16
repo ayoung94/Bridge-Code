@@ -10,4 +10,6 @@ import com.yedam.bridgecode.member.MemberVO;
 public interface AdminMapper {
 	public List<MemberVO> getUserList(MemberVO vo);
 	public MemberVO getUserSel(MemberVO vo);
+	public void updateUserApplication(MemberVO vo);
+	public void updateUserReject(MemberVO vo);
 }

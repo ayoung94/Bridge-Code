@@ -23,11 +23,11 @@
 			}, {
 				"data" : "MEMBER_COUNTRY"
 			}, {
-				"data" : ""
+				"data" : "상세보기"
 			}, {
-				"data" : ""
+				"data" : "승인"
 			}, {
-				"data" : ""
+				"data" : "d"
 			} ]
 		});
 	})
@@ -43,9 +43,9 @@
 				<th>생년월일</th>
 				<th>성별</th>
 				<th>국적</th>
-				<th></th>
-				<th></th>
-				<th></th>
+				<th>상세보기</th>
+				<th>승인</th>
+				<th>거부</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,8 +57,8 @@
 					<td>${userList.MEMBER_SEX}</td>
 					<td>${userList.MEMBER_COUNTRY}</td>
 					<td><a href="getUserSel.do?member_id=${userList.MEMBER_ID}">상세보기</a></td>
-					<td></td>
-					<td></td>
+					<td><a href="updateUserApplication.do?member_id=${userList.MEMBER_ID}">승인</a></td>
+					<td><a href="updateUserReject.do?member_id=${userList.MEMBER_ID}">거부</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
