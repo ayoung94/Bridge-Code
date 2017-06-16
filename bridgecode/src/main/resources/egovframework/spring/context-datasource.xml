@@ -28,9 +28,12 @@
 
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-       <property name="url" value="jdbc:oracle:thin:@192.168.0.79:1521:xe" /> 
-        <property name="username" value="code"/>
-        <property name="password" value="code"/>
+       <!-- <property name="url" value="jdbc:oracle:thin:@192.168.0.79:1521:xe" />  -->
+       <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> 
+        <!-- <property name="username" value="code"/> -->
+        <!-- <property name="password" value="code"/> -->
+        <property name="username" value="egov"/>
+        <property name="password" value="egov"/>
     </bean>
 
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
