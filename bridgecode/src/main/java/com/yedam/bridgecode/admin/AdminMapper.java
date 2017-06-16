@@ -8,6 +8,6 @@ import com.yedam.bridgecode.member.MemberVO;
 
 @MapperScan
 public interface AdminMapper {
-	public List<MemberVO> getUserList();
+	public List<MemberVO> getUserList(MemberVO vo);
 	public MemberVO getUserSel(MemberVO vo);
 }

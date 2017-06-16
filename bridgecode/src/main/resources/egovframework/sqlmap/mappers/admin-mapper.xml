@@ -9,8 +9,7 @@
 		<!-- 쿼리부분의 컴럼명을 소문자로 하고 싶을때 as 'alias'를 사용 -->
 		SELECT *
 		FROM member
-		WHERE member_level = 2
-		ORDER BY member_id DESC
+		WHERE member_level = #{member_level}
 	</select>
 	
 	<select id="getUserSel" resultType="com.yedam.bridgecode.member.MemberVO">

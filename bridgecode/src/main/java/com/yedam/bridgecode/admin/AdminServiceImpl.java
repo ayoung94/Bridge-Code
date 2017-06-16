@@ -15,11 +15,6 @@ public class AdminServiceImpl implements AdminService{
 	private AdminMapper adminDAO;
 
 	@Override
-	public List<MemberVO> getUserList(MemberVO vo) {
-		return adminDAO.getUserList();
-	}
-
-	@Override
 	public MemberVO getUserSel(MemberVO vo) {
 		return adminDAO.getUserSel(vo);
 	}
