@@ -56,6 +56,14 @@
         WHERE MEMBER_ID = #{member_id}
         
 	</update>
+	
+	<update id="introductionUpdate" parameterType="member">
+	
+		UPDATE MEMBER SET
+			MEMBER_INTRODUCTION = #{member_introduction}
+		WHERE MEMBER_ID = #{member_id}
+	
+	</update>
 
 <!-- 	<insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 타입 alias정의
         <![CDATA[  

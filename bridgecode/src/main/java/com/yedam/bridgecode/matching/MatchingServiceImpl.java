@@ -27,5 +27,10 @@ public class MatchingServiceImpl implements MatchingService{
 		MatchingDAO.profileUpdate(vo);
 		
 	}
+	//자기 소개글 수정
+	@Override
+	public void introductionUpdate(MemberVO vo) {
+		MatchingDAO.introductionUpdate(vo);
+	}
 
 }

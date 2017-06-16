@@ -12,4 +12,7 @@ public interface MatchingService {
 	
 	//서브 프로필 사진 추가 
 	public void profileUpdate(MemberVO vo);
+	
+	//자기 소개 수정
+	public void introductionUpdate(MemberVO vo);
 }

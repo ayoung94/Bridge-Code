@@ -10,18 +10,22 @@
 <script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
 <style>
 .modal-body img{
-	width:550px; height:500px;
+	width:550px; height:auto; max-width:550px; max-height: 450px;
 	}
 .modal-backdrop {
     z-index: -1;
     }
 
 #form-control {
-	width : 50%;
-	height: 50px;	
+	width : 40%;	
 	margin : 0 auto;
 	text-align: center;
+	border : none;
+	overflow: hidden;
 }
+#form-control a{
+	float:right;}
+	
 ul, menu, dir {
     display: inline-block;
     -webkit-margin-before: 0px;
@@ -76,16 +80,17 @@ ul, menu, dir {
 							</div>
 						</div>
 					</div>
-					<div class="description text-center">
-						<textarea id="form-control" class="form-control" readonly="readonly"	 
-							placeholder="${profile.member_introduction }" rows="2" cols="3"></textarea>
-							<c:set var="loginSession" value="${login}"/>
-							<c:if test="${loginSession.member_id == profile.member_id }">
-								<a href="#">수정하기</a>
-							</c:if>			
+					  <div class="description text-center">
+					  	<form action="${pageContext.request.contextPath}/profile/introductionUpdate.do?member_id=${profile.member_id}" id="introsubmit" method="post">
+							<textarea id="form-control" class="form-control" readonly="readonly"
+								 name="member_introduction" rows="2" cols="5">${profile.member_introduction }</textarea><br>
+								<c:set var="loginSession" value="${login}"/>
+								<c:if test="${loginSession.member_id == profile.member_id }">
+									<a href="#" id="introEdit">edit <input type="hidden" id="hidden" value="attr"></a>
+								</c:if>	
+						</form>		
+					  </div><br>
 						
-					</div><br>
-
 <script>
 	
 	$(function(){
@@ -95,8 +100,8 @@ ul, menu, dir {
 			
 			var modal = $(this)
 			modal.find('#img').val(recipient);
-			console.log($('#img'));
-			console.log($('#img').next());
+/* 			console.log($('#img'));
+			console.log($('#img').next()); */
 			
 			var imgNum = recipient;
 			if(imgNum == "member_img1"){			
@@ -109,6 +114,43 @@ ul, menu, dir {
 			$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img3}'); 
 			}
 		})
+/* 		$("#btnUpdate").click(function(event){   //버튼 주소
+	         // 파라미터 -> 쿼리문자열 만들기
+	         event.preventDefault();
+	         var params = $("#btnUpdate").serialize();   //폼태그 주소
+	         console.log(params)
+	         // 등록 ajax 요청
+	         $.post("../DeptInsertServ.do", params, function(data,status){  //서버 url주소
+	            var jData = eval("(" + data +")");  //json으로 변환
+	            if(status == "success") {
+	               if( jData.length == 1) {
+	                  alert("등록완료");
+	                  var div =  "<div id='"+jData[0].departmentId+"'>" + 
+	                     "<span>" +jData[0].departmentId +"</span>" +
+	                     "<span>" + jData[0].departmentName +"</span>" +
+	                     "</div>"
+	                  $(div).prependTo("#deptList");
+	               } else {
+	                  alert("등록에러");
+	               }
+	            } 
+	         });
+	         return false;    //
+	      }); 
+	   });*/
+	   
+	   $("#introEdit").click(function(event){
+		   
+		 	 if($('#form-control').attr("readonly") == "readonly") { 
+		 		document.getElementById('form-control').readOnly = false;
+				$('#form-control').css("border", "1px solid #f2f2f2")
+			   } 
+		 	 else {
+		 		document.getElementById('introsubmit').submit();
+		 		$('#form-control').attr("readonly", "readonly");
+		 		}
+		 	event.preventDefault()
+	   })
 	});
 
 </script>				
@@ -160,19 +202,26 @@ ul, menu, dir {
 										<c:if test="${!empty subimg.member_img3 }">
 											<li><img src="${pageContext.request.contextPath}/profile_img/${ profile.member_img3}" class="img-thumbnail"/></li>
 										</c:if>	
-											
-										
-											
 									</c:if>	
-																
+															
 								  </ul>
-
-								<ul class="nav nav-pills">
-									<li><a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
+								  <br><br><br><br>
+								
+								<ul class="nav nav-pills">									
+									<li>
+										<c:if test="${loginSession.member_id != profile.member_id }">
+											<a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
 											<i class="material-icons">favorite</i> 하트보내기
-									</a></li>
+											</a>
+										</c:if>
+										<c:if test="${loginSession.member_id == profile.member_id }">
+											<br><br><br><br>
+										</c:if>
+									</li>
+									
 								</ul>
-
+								
+								
 
 							</div>
 							<!-- End Profile Tabs -->
