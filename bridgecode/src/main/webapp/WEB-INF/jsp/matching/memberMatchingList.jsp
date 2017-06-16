@@ -42,7 +42,10 @@ $(function() {
 			cnt++
 		}
 			var arr = checkValue.split(',');
-			console.log(arr.length);
+			$("#member_interest1").attr('value',arr[0]);
+			$("#member_interest2").attr('value',arr[1]);
+			$("#member_interest3").attr('value',arr[2]);
+			
 		});
 /* 	for(j=0 ; j<arr.length ; j++){
 		if(arr[j].value == ${user.member_interest1} )
@@ -81,9 +84,12 @@ $(function() {
 				<c:forEach items="${list}" var="interest">
 					<td>
 						<div class="checkbox">
-							<label> <input type="checkbox" name="interest" value="${interest.code_id }" id="myCheck">
+							<label> <input type="checkbox" name="interest" value="${interest.code_id }" >
 								${interest.code_name }
 							</label>
+									<input type="hidden" id="member_interest1" name="member_interest1">
+									<input type="hidden" id="member_interest2" name="member_interest2">
+									<input type="hidden" id="member_interest3" name="member_interest3">
 						</div>
 					</td>
 					<%
@@ -100,8 +106,7 @@ $(function() {
 		<br>
 		<p>국적선택</p>
 		<div class="radio">
-			<label> <input type="radio" name="optionsRadios"
-				checked="true"> 한국</label> 
+			<label> <input type="radio" name="optionsRadios" checked="true"> 한국</label> 
 			<label> <input type="radio" name="optionsRadios"> 일본</label> 
 			<label> <input type="radio" name="optionsRadios"> 중국</label>
 		</div>
@@ -130,8 +135,8 @@ $(function() {
 									class="img-circle"></a>
 									${user.MEMBER_ID} <br> 
 									${user.MEMBER_NICKNAME} <br> 
-									<c:if test="${user.MEMBER_SEX == '1' or user.MEMBER_SEX == '3'}">남</c:if>
-									<c:if test="${user.MEMBER_SEX == '2' or user.MEMBER_SEX == '4'}">여</c:if>
+									<c:if test="${user.MEMBER_SEX == '1'}">남</c:if>
+									<c:if test="${user.MEMBER_SEX == '2'}">여</c:if>
 									<br>
 									<!-- 나이 처리 시작-->
 									<jsp:useBean id="toDay" class="java.util.Date" />

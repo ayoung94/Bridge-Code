@@ -128,7 +128,8 @@ ul, menu, dir {
 		 	event.preventDefault()
 	   })
 	   
-	  /*  $("#uploadFile").on('change', function () {
+	   /* 파일첨부시 사진 미리보기  시작*/
+	   	$("#uploadFile").on('change', function () {
 
         if (typeof (FileReader) != "undefined") {
 
@@ -140,17 +141,17 @@ ul, menu, dir {
                 $("<img />", {
                     "src": e.target.result,
                     "class": "thumb-image",
-                    "width" : "150px",
-                    "height" : "150px"
-                }).appendTo(imgchange);
 
+                }).appendTo(imgchange)
             }
             imgchange.show();
             reader.readAsDataURL($(this)[0].files[0]);
         } else {
             alert("This browser does not support FileReader.");
         }
-    }); */
+    });
+
+    
 	});
 
 </script>				
@@ -240,16 +241,19 @@ ul, menu, dir {
 												<div class="modal-body">
 												
 														<input type="hidden" id="img" name="img">
-														<img>
+														<img><hr>
+														
 														<div id="imgchange"></div>
+														
 														<br>
 													
 														<input type="hidden" name="member_id" value="${loginSession.member_id}"><br><br>
-														 프로필 사진: <input type="file" name="uploadFile"><br>
+														 프로필 사진: <input type="file" id="uploadFile" name="uploadFile" alt="이미지선택"><br>
 												</div>
 											<div class="modal-footer">
 												<!-- <input type="button" class="btn btn-default btn-simple" data-dismiss="modal" value="취소"> -->
-												<input type="submit" class="btn btn-info btn-simple" value="사진등록">
+												<input type="button" class="close btn btn-warning" data-dismiss="modal" value="취소">
+												<input type="submit" class="btn btn-success" value="사진등록 및 변경">
 											</div>
 										</form>
 									</div>
