@@ -81,6 +81,11 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAO.updateRejectMember(vo);
 	}
 
+	@Override
+	public void memberProfileUpdate(MemberVO vo) {
+		MemberDAO.memberProfileUpdate(vo);
+	}
+
 
 
 	

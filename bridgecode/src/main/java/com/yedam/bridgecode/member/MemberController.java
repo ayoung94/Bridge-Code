@@ -4,8 +4,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -76,6 +84,32 @@ public class MemberController {
 		return "member/memberBeforeJoin";
 	}
 	
+	@RequestMapping(value="/member/memberProfileUpdate.do",method= RequestMethod.POST)
+	public String memberProfileUpdate(MemberVO vo,HttpServletRequest request,HttpSession session) throws IllegalStateException,IOException{
+		try{
+
+		long t = System.currentTimeMillis();
+		String randomName = t+""; 				//랜덤 이름 정하기
+		String realPath = request.getSession().getServletContext().getRealPath("/"); //서블릿 내의 realPath 
+
+		MultipartFile file = vo.getUploadFile();
+		File saveFile = new File(realPath+"profile_img/",randomName);
+		
+		file.transferTo(saveFile);  //서버에 파일 저장
+		vo.setMember_profile_img(randomName); //파일명 저장 file.getOriginalFilename()
+
+		memberService.memberProfileUpdate(vo);
+		
+		vo = memberService.getMember(vo);
+		session.setAttribute("login", vo);
+		
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return "redirect:/member/memberSelect.do";
+	}
+	
 	@RequestMapping("/member/memberList.do")
 	public String getUserList(MemberVO vo,Model model){
 		List<Map<String,Object>> list = memberService.getMemberList();
@@ -104,6 +138,89 @@ public class MemberController {
 		return "member/memberSelect";
 	} 
 
+	@RequestMapping("/member/passwordMissing.do")
+	public String passwordMissingForm(){
+
+		return "member/passwordMissing";
+	} 
+	@RequestMapping(value="/member/passwordMissing.do",method= RequestMethod.POST)
+	public String passwordMissing(MemberVO vo,Model model){
+		
+		MemberVO result = memberService.getMember(vo);
+		if(result == null){
+			model.addAttribute("msg", vo.getMember_id()+"해당 회원이 존재하지 않습니다."); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
+		
+		
+		  long t = System.currentTimeMillis();
+		  String newPasswd = t+""; //새 임시 비밀번호 랜덤으로 지정.
+		  result.setMember_password(newPasswd);
+		  memberService.updateMember(result);
+		  
+		  
+	      // Recipient's email ID needs to be mentioned.
+	      String to = result.getMember_id();//change accordingly
+
+	      // Sender's email ID needs to be mentioned
+	      String from = "bridgecode";//change accordingly
+	      final String username = "bridgecode.com@gmail.com";//change accordingly
+	      final String password = "hfumddzxqrjgszmr";//change accordingly
+
+	      // Assuming you are sending email through relay.jangosmtp.net
+	      String host = "smtp.gmail.com";
+
+	      Properties props = new Properties();
+	      props.put("mail.smtp.auth", "true");
+	      props.put("mail.smtp.starttls.enable", "true");
+	      props.put("mail.smtp.host", host);
+	      props.put("mail.smtp.port", "587");
+
+	      // Get the Session object.
+	      Session session = Session.getInstance(props,
+	      new javax.mail.Authenticator() {
+	         protected PasswordAuthentication getPasswordAuthentication() {
+	            return new PasswordAuthentication(username, password);
+	         }
+	      });
+
+	      try {
+	         // Create a default MimeMessage object.
+	         Message message = new MimeMessage(session);
+
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
+
+	         // Set To: header field of the header.
+	         message.setRecipients(Message.RecipientType.TO,
+	         InternetAddress.parse(to));
+
+	         // Set Subject: header field
+	         message.setSubject("[Bridge Code]임시 비밀번호 안내 메일입니다.");
+
+	         // Now set the actual message
+	         message.setContent("<html><body>안녕하세요 회원님! Bridge Code입니다.<br>"
+	            + "신청하신 임시 비밀번호를 발급해 드렸습니다. <hr> <b>"+newPasswd+"</b><br>"
+	            		+ "확인해 주시고, 로그인 후 임시 비밀번호 변경 꼭! 하시길 바랍니다.</body></html>","text/html; charset=UTF-8");
+	         
+
+	         // Send message
+	         Transport.send(message);
+
+	         System.out.println("Sent message successfully....");
+
+	      } catch (MessagingException e) {
+	            throw new RuntimeException(e);
+	      }
+
+		
+		
+		
+		model.addAttribute("msg", vo.getMember_id()+"님께 임시 비밀번호를 발송했습니다."); 
+		model.addAttribute("url", "/"); 
+		return "/popup/url";
+	} 
 
 	@RequestMapping("/member/mypage.do")
 	public String myPage(MemberVO vo

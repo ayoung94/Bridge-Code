@@ -35,6 +35,14 @@
         WHERE member_id = #{member_id}
         ]]>
 	</update>
+	
+	<update id="memberProfileUpdate" parameterType="member">
+        <![CDATA[
+        UPDATE member SET
+           	   member_profile_img = #{member_profile_img}
+        WHERE member_id = #{member_id}
+        ]]>
+	</update>
 
 
 

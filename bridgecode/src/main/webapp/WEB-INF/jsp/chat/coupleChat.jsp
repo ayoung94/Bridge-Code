@@ -48,7 +48,7 @@ padding: 10px;
 </style>
 <script>
 $(function(){
-	$(".youTalk").on({"mouseenter":function(){
+	$("#messageWindow").on("mouseenter","div",function(){ //수정
 									var THIS = $(this);
 									
 									var partnerLang = "${partner.member_country}";
@@ -95,9 +95,7 @@ $(function(){
 													}
 											});
 									}
-					}
-				}	
-				);
+					});
 
 	$(".youTalk").on({"mouseleave":function(){
 		var THIS = $(this);

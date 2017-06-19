@@ -44,7 +44,12 @@
 	</repositories>
 
 	<dependencies>
-
+		<!-- 이메일 -->
+		<dependency> 
+			<groupId>org.apache.commons</groupId> 
+			<artifactId>commons-email</artifactId> 
+			<version>1.4</version> 
+		</dependency>
 		<!-- 웹 소캣 -->
 		<dependency>
 			<groupId>org.springframework</groupId>

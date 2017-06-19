@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,23 +78,23 @@
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/matching/memberMatchingList.do" class="w3-bar-item w3-button">
-						<i class="material-icons">wc</i> 회원매칭 </a>
+						<i class="material-icons">wc</i> <spring:message code="회원매칭" /> </a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/member/mypage.do" class="w3-bar-item w3-button">
-						<i class="material-icons">perm_contact_calendar</i> 마이페이지 </a>
+						<i class="material-icons">perm_contact_calendar</i>  <spring:message code="마이페이지" /> </a>
 				</li>
 				<li>
 					<a href="${pageContext.request.contextPath}/couple/couplepage.do"  class="w3-bar-item w3-button">
-						<i class="material-icons">favorite</i> 커플페이지 </a>
+						<i class="material-icons">favorite</i>  <spring:message code="커플페이지" /> </a>
 				</li>
 				
 				<li class="dropdown">
         			
-        			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">description</i>게시판<b class="caret"></b></a>
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">description</i> <spring:message code="게시판" /><b class="caret"></b></a>
         			<ul class="dropdown-menu">
-					  <li><a href="${pageContext.request.contextPath}/getNoticeList.do">공지사항</a></li>
-					  <li><a href="#">이벤트</a></li>
+					  <li><a href="${pageContext.request.contextPath}/getNoticeList.do"> <spring:message code="공지사항" /></a></li>
+					  <li><a href="#"> <spring:message code="이벤트" /></a></li>
         			</ul>
         		</li>
 				
@@ -105,7 +106,7 @@
 				
 				
 				<li class="dropdown">
-        			<a href="#" class="dropdown-toggle" data-toggle="dropdown">language<b class="caret"></b></a>
+        			<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <spring:message code="language" /><b class="caret"></b></a>
         			<ul class="dropdown-menu">
 					  <li><a href="${pageContext.request.contextPath}/?language=ko"><img src="${pageContext.request.contextPath}/resources/img/flags/KR.png"/>Korea</a></li>
 					  <li><a href="${pageContext.request.contextPath}/?language=cn"><img src="${pageContext.request.contextPath}/resources/img/flags/CN.png"/>China</a></li>
@@ -140,6 +141,7 @@
 				</div>
 			</div>
 			<div style="margin-left: 30px;">
+			<a href="${pageContext.request.contextPath}/member/passwordMissing.do">비밀번호를 잊으셨나요?</a><br>
 			<a href="${pageContext.request.contextPath}/member/memberInsert.do">저희 사이트를 처음 이용하시나요?</a>
 			</div>
 			<div class="modal-footer">
