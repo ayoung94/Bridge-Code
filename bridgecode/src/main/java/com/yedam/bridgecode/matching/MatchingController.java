@@ -30,15 +30,18 @@ public class MatchingController {
 	@Autowired
 	MemberService memberService;
 
-	// 조건에 맞는 회원 찾기
+	// 조건에 맞는 회원 찾기 및 코드리스트 출력
 	@RequestMapping("/matching/memberMatchingList.do")
 	public String getCodeList(CodeVO vo, Model model) {
-		MemberVO me = new MemberVO();
-		List<Map<String, Object>> list = memberService.getMemberList();
-		model.addAttribute("member", list);
 		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
 		model.addAttribute("list", interest);
+
+		/*MemberVO me = new MemberVO();*/
+		List<Map<String, Object>> list = memberService.getMemberList();
+		model.addAttribute("member", list);
+		
 		return "matching/memberMatchingList";
+
 	}
 
 	// 상세프로필 보기로 이동
