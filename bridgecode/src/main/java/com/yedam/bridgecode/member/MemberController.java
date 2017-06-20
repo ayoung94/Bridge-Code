@@ -2,6 +2,7 @@ package com.yedam.bridgecode.member;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -23,6 +24,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,6 +55,20 @@ public class MemberController {
 		return "home"; 
 		
 	}
+	
+	@RequestMapping("/ajaxMemberId.json")
+	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
+		MemberVO vo = new MemberVO();
+		vo.setMember_id(member_id);
+		MemberVO result = memberService.getMember(vo);
+		
+		if(result == null){ 
+			return "true";
+		}else{
+			return "false";
+		}
+	}
+	
 	
 	@RequestMapping("/member/memberInsert.do")
 	public String memberInsertForm(Model model){

@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항 상세보기</title>
+<title>Event detail</title>
 <script>
-	function getNoticeList() {
-		location.href = "getNoticeList.do";
+	function getEventList() {
+		location.href = "getEventList.do";
 	}
-	function modifyNotice() {
-		changeForm.action = "<c:url value='/modifyNotice.do'/>";
+	function modifyEvent() {
+		changeForm.action = "<c:url value='/modifyEvent.do'/>";
 		changeForm.submit();
 	}
-	function deleteNotice() {
-		changeForm.action = "<c:url value='/deleteNotice.do'/>";
+	function deleteEvent() {
+		changeForm.action = "<c:url value='/deleteEvent.do'/>";
 		changeForm.submit();
 	}
 </script>
@@ -39,7 +39,7 @@ input.size {
 <body>
 	<form class="w3-container w3-card-4 "
 		style="width: 100%; margin: auto;" id="changeForm">
-		<h2 class="w3-text-blue">공지사항 상세보기</h2>
+		<h2 class="w3-text-blue">Event 상세보기</h2>
 		<div class="w3-row">
 			<div class="w3-col m3 w3-green w3-center height">글번호</div>
 			<div class="w3-col m6 w3-blue w3-center height">제목</div>
@@ -48,15 +48,15 @@ input.size {
 		<div class="w3-row w3-cell-bottom">
 			<div class="w3-col m3 w3-white w3-center height">
 				<input type="text" size="10"
-					style="text-align: center; border: none;" name="noticeId"
-					value="${notice.noticeId}">
+					style="text-align: center; border: none;" name="eventId"
+					value="${event.eventId}">
 			</div>
 			<div class="w3-col m6 w3-white w3-center height">
-				<input type="text" value="${notice.noticeTitle}" size="80"
-					style="text-align: center; border: none;" name="noticeTitle">
+				<input type="text" value="${event.eventTitle}" size="80"
+					style="text-align: center; border: none;" name="eventTitle">
 			</div>
 			<div class="w3-col m3 w3-white w3-center height">
-				${notice.noticeTime}</div>
+				${event.eventTime}</div>
 		</div>
 		<div class="w3-row">
 			<div class="w3-col m12 w3-blue w3-center height">내용</div>
@@ -66,21 +66,21 @@ input.size {
 				<p>
 					<textarea cols="163" rows="10" style="border: none"
 						onkeydown="resize(this)" onkeyup="resize(this)"
-						name="noticeContent">${notice.noticeContent}</textarea>
+						name="eventContent">${event.eventContent}</textarea>
 				</p>
 			</div>
 		</div>
 		<br />
 		<div class="w3-row">
 			<button type="button" class="w3-button w3-blue size"
-				onclick="getNoticeList()">list</button>
+				onclick="getEventList()">list</button>
 			<c:if test="${login.member_id == 'admin'}">
 				<input type="submit" class="w3-button w3-green size" value="수정"
-					onclick="modifyNotice()">
+					onclick="modifyEvent()">
 			</c:if>
 			<c:if test="${login.member_id == 'admin'}">
 				<input type="button" class="w3-button w3-grey size"
-					onclick="deleteNotice()" value="삭제">
+					onclick="deleteEvent()" value="삭제">
 			</c:if>
 		</div>
 	</form>

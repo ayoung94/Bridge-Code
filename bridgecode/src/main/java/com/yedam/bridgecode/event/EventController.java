@@ -1,4 +1,4 @@
-package com.yedam.bridgecode.notice;
+package com.yedam.bridgecode.event;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,69 +20,69 @@ import com.googlecode.charts4j.Slice;
 
 
 @Controller
-public class NoticeController {
+public class EventController {
 
 	@Autowired
-	NoticeService noticeService;
-	@Autowired NoticeMapper noticeDAO;
+	EventService eventService;
+	@Autowired EventMapper eventDAO;
 
 	//등록폼
-	@RequestMapping(value="/noticeInsertForm.do")
+	@RequestMapping(value="/eventInsertForm.do")
 	//값(value)을 사용하면 배열로도 가능
-	public String noticeInsert() {
-		return "notice/noticeInsert";
+	public String eventInsert() {
+		return "event/eventInsert";
 	}
 
 	//등록
-	@RequestMapping(value="/noticeInsert.do", 
+	@RequestMapping(value="/eventInsert.do", 
 			method = RequestMethod.POST)
-	public String noticeInsert(NoticeVO noticeVO, 
+	public String eventInsert(EventVO eventVO, 
 			HttpServletRequest request) {
-		//noticeVO noticeVO, LoginVo loginvo 로 두개 이상의 VO에 파라미터 입력 가능
-		System.out.println("등록:" + noticeVO);
+		//eventVO eventVO, LoginVo loginvo 로 두개 이상의 VO에 파라미터 입력 가능
+		System.out.println("등록:" + eventVO);
 		/* 또다른 예시 : UserVO vo = new UserVO();
 			vo.setName(request.getParameter("name"));AI
 			vo.setId(request.getParameter("id"));
 			System.out.println("파라미터:" + vo);
 		 */		
-		noticeService.insertNotice(noticeVO);
-		return "redirect:/getNoticeList.do";
+		eventService.insertEvent(eventVO);
+		return "redirect:/getEventList.do";
 	}
 
 	//단건조회
-	@RequestMapping(value="/getNotice.do")
-	public String getUser(NoticeVO vo, Model model) {
-		noticeService.updateCnt(vo);
-		NoticeVO list = noticeService.getNotice(vo);
-		model.addAttribute("notice", list);
-		return "notice/getNotice";
+	@RequestMapping(value="/getEvent.do")
+	public String getUser(EventVO vo, Model model) {
+		eventService.updateCnt(vo);
+		EventVO list = eventService.getEvent(vo);
+		model.addAttribute("event", list);
+		return "event/getEvent";
 	}
 
 	//다건조회(datatable()사용)
-	@RequestMapping("/getNoticeList.do")
-	public String getNoticeList(Model model) {
-		model.addAttribute("noticeList", noticeDAO.getNoticeList());
-		return "notice/noticeList";
+	@RequestMapping("/getEventList.do")
+	public String getEventList(Model model) {
+		model.addAttribute("eventList", eventDAO.getEventList());
+		return "event/eventList";
 	}
 
 	//수정
-	@RequestMapping("/modifyNotice.do")
-	public String updateNotice(NoticeVO vo) {
-		noticeService.updateNotice(vo);
-		return "redirect:/getNotice.do?noticeId="+vo.getNoticeId();
+	@RequestMapping("/modifyEvent.do")
+	public String updateEvent(EventVO vo) {
+		eventService.updateEvent(vo);
+		return "redirect:/getEvent.do?eventId="+vo.getEventId();
 	}
 	
 	//삭제
-	@RequestMapping("deleteNotice.do")
-	public String deleteNotice(NoticeVO vo) {
-		noticeService.deleteNotice(vo);
-		return "redirect:/getNoticeList.do";
+	@RequestMapping("deleteEvent.do")
+	public String deleteEvent(EventVO vo) {
+		eventService.deleteEvent(vo);
+		return "redirect:/getEventList.do";
 	}
 	
 	/*-------------------------------------------------------*/
 	//chart시작
 
-	/*@RequestMapping("/getNoticeChart.do")
+	/*@RequestMapping("/getEventChart.do")
 	public String getChart(Model model) {
 
 		Slice s1 = Slice.newSlice(15, Color.newColor("CACACA"),"mac"); 

@@ -102,6 +102,12 @@
 		where member_level = 1
 	</select> 
 	
+	<select id="getMemberId" resultType="map">
+		SELECT member_id
+		from member 
+	</select> 
+	
+	
 	<select id="getBestMemberList" resultType="map">
 		SELECT m.member_id as "member_id", count(1) as "heart_count"
 		from member m, heart h

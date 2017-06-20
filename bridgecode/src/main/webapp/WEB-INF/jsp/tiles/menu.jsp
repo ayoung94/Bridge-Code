@@ -7,6 +7,7 @@
 <html>
 <head>
 <title>Bridge Code</title>
+ <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
 </head>
 <body class="index-page">
 <!-- Navbar -->

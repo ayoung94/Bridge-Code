@@ -6,37 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>공지사항</title>
+<title>event</title>
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <script>
 	$(function() {
-		$("#noticeListTable").DataTable({
+		$("#eventListTable").DataTable({
 			/*  "paging": false,
 				"ordering":  false,
 				"searching": false, */
 			//"ajax" : "ajaxGetEmpList.do",
 			"columns" : [ {
-				"data" : "noticeId"
+				"data" : "eventId"
 			}, {
-				"data" : "noticeTitle"
+				"data" : "eventTitle"
 			}, {
-				"data" : "noticeTime"
+				"data" : "eventTime"
 			}, {
-				"data" : "noticeCnt"
+				"data" : "eventCnt"
 			} ]
 		});
 	})
 </script>
 <script>
-	function goNoticeInsertForm() {
-		location.href = "noticeInsertForm.do"
+	function goEventInsertForm() {
+		location.href = "eventInsertForm.do"
 	}
 </script>
 </head>
 <body>
-	<h1>공지사항</h1>
-	<table id="noticeListTable">
+	<h1>EVENT</h1>
+	<table id="eventListTable">
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -46,19 +46,20 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${noticeList}" var="notice">
+			<c:forEach items="${eventList}" var="event">
 				<tr>
-					<td>${notice.noticeId}</td>
-					<td><a href="getNotice.do?noticeId=${notice.noticeId}">${notice.noticeTitle}</a></td>
-					<td>${notice.noticeTime}</td>
-					<td>${notice.noticeCnt}</td>
+					<td>${event.eventId}</td>
+					<td><a href="getEvent.do?eventId=${event.eventId}">${event.eventTitle}</a></td>
+					<td>${event.eventTime}</td>
+					<td>${event.eventCnt}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 	<div>
 		<c:if test="${login.member_id == 'admin'}">
-			<input type="button" class="w3-button w3-blue" value="등록" onclick="goNoticeInsertForm()">
+			<input type="button" class="w3-button w3-blue" value="등록"
+				onclick="goEventInsertForm()">
 		</c:if>
 	</div>
 </body>

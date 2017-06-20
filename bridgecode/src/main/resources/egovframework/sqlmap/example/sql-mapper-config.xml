@@ -10,5 +10,6 @@
 		<typeAlias alias="heart" type="com.yedam.bridgecode.heart.HeartVO"/>
 		<typeAlias alias="chat" type="com.yedam.bridgecode.chat.ChatVO"/>
 		<typeAlias alias="notice" type="com.yedam.bridgecode.notice.NoticeVO"/>
+		<typeAlias alias="event" type="com.yedam.bridgecode.event.EventVO"/>
     </typeAliases>
 </configuration>
