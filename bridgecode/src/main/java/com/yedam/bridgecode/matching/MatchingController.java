@@ -6,15 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,17 +29,19 @@ public class MatchingController {
 	@Autowired
 	MemberService memberService;
 
-	// 조건에 맞는 회원 찾기 및 코드리스트 출력
+	//코드리스트 출력
 	@RequestMapping("/matching/memberMatchingList.do")
 	public String getCodeList(CodeVO vo, Model model) {
 		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
 		model.addAttribute("list", interest);
-
-		/*MemberVO me = new MemberVO();*/
-		List<Map<String, Object>> list = memberService.getMemberList();
-		model.addAttribute("member", list);
-		
 		return "matching/memberMatchingList";
+		
+	}
+	//조건에 맞는 회원 찾기
+	@RequestMapping("/matching/memberMatching.do")
+	public @ResponseBody List<Map<String, Object>> getMemberList(MemberVO vo, Model model)throws Exception{
+		//model.addAttribute("member", MatchingService.getMemberList(vo));
+		return MatchingService.getMemberList(vo);
 
 	}
 

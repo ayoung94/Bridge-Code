@@ -16,4 +16,7 @@ public interface MatchingMapper {
 	
 	//자기 소개 수정
 	public void introductionUpdate(MemberVO vo);
+	
+	//매칭전체 리스트
+	public List<Map<String, Object>> getMemberList(MemberVO vo);
 }

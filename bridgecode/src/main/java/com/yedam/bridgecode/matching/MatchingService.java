@@ -10,6 +10,9 @@ public interface MatchingService {
 	//관심사 리스트 출력
 	public List<Map<String,Object>> getCodeList(CodeVO vo);
 	
+	//전체 매칭리스트
+	public List<Map<String,Object>> getMemberList(MemberVO vo);
+	
 	//서브 프로필 사진 추가 
 	public void profileUpdate(MemberVO vo);
 	
