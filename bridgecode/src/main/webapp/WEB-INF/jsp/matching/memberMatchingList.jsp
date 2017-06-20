@@ -10,86 +10,103 @@
 table td {
 	padding: 10px;
 }
-#sliderDouble { width: 300px;
-			margin : 15px;}
+#slider-range { width: 300px;
+				margin : 15px;
+				margin-left:0;}
 			
-img {width:200px; }
+img {	width:200px; }
+#age0  {width : 50px;
+		border:0; 
+		color:#f6931f; 
+		font-weight:bold;
+		text-align : center;
+		}
+#age1 {	width : 50px;
+		border:0; 
+		color:#f6931f; 
+		font-weight:bold;	
+		text-align : center;
+		}
+		
 </style>
 <!-- In <head> -->
-<link href="${pageContext.request.contextPath}/resources/css/nouislider.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+
 $(function() {
-		$('#sliderDouble').noUiSlider({
-		start : [10, 50],
-		connect : true,
-		range : {
-			'min' : [10],
-			'max' : [50] }
-	})
-	$(':checkbox').click(function(){
-		var checkboxs = $("[name='interest']:checked"); // :checked
-		var checkValue = "";
-		var cnt = 1; //관심항목 갯수 확인
-		for(i=0;i<checkboxs.length;i++){
-			if(cnt>3){alert("관심사는 최대 3개까지 등록 가능합니다.");
-					return false;}
-			checkValue += checkboxs[i].value;
-			if(i != checkboxs.length-1 ){checkValue += ",";}
-			cnt++
-		}
+	// 연령선택 바
+/*    	$('#sliderDouble').noUiSlider({
+	start : [10, 50],
+	connect : true,
+	range : {
+		'min' : [10],
+		'max' : [50] }
+	}) */
+	
+ $( "#slider-range" ).slider({
+      range: true,
+      min: 10,
+      max: 50,
+      values: [ 20, 40 ],
+      slide: function( event, ui ) {
+        $( "#age0" ).val( ui.values[ 0 ]) + "세 ~";
+        $( "#age1" ).val( ui.values[ 1 ]) + "세";
+      }
+    });
+    $( "#age0" ).val( $( "#slider-range" ).slider( "values", 0 )) + "세 - ";
+    $( "#age1" ).val( $( "#slider-range" ).slider( "values", 1 )) + "세";
+		//체크박스 등록 갯수 확인
+		$(':checkbox').click(function() {
+			var checkboxs = $("[name='interest']:checked"); // :checked
+			var checkValue = "";
+			var cnt = 1; //관심항목 갯수 확인
+			for (i = 0; i < checkboxs.length; i++) {
+				if (cnt > 3) {
+					alert("관심사는 최대 3개까지 등록 가능합니다.");
+					return false;
+				}
+				checkValue += checkboxs[i].value;
+				if (i != checkboxs.length - 1) {
+					checkValue += ",";
+				}
+				cnt++
+			}
+			//배열로 저장
 			var arr = checkValue.split(',');
-			$("#member_interest1").attr('value',arr[0]);
-			$("#member_interest2").attr('value',arr[1]);
-			$("#member_interest3").attr('value',arr[2]);
-			
+			$("#member_interest1").attr('value', arr[0]);
+			$("#member_interest2").attr('value', arr[1]);
+			$("#member_interest3").attr('value', arr[2]);
+
 		});
-/* 	for(j=0 ; j<arr.length ; j++){
-		if(arr[j].value == ${user.member_interest1} )
-	} */
-});
 
-
-
-	/* 	var tooltipSlider = document.getElementById('sliderDouble');
-
-	 noUiSlider.create(tooltipSlider, {
-	 start : [ 10, 50 ],
-	 tooltips : [ false, wNumb({
-	 decimals : 1
-	 }), true ],
-	 range : {
-	 min : 10,
-	 max : 50
-	 }
-	 });
-	 console.log($('#sliderDouble').val()); */
+	});
 </script>
 
 </head>
 <body>
+
  <form>
 
 	<div class="wrapper">
 		<h1>커플매칭</h1>
-		<h3>나의 짝을 찾아보세요!</h3>
-		<table>
+		<h3>나의 짝을 찾아보세요! </h3>
+			<table>
 			<tr>
 				<%
 					int j = 0;
-				%>
+				%>									
 				<c:forEach items="${list}" var="interest">
 					<td>
 						<div class="checkbox">
-							<label> <input type="checkbox" name="interest" value="${interest.code_id }" >
+							<label> <input type="checkbox" name="interest" value="${interest.code_id }"   
+							<c:if test="${login.member_interest1 == interest.code_id or login.member_interest2 == interest.code_id 
+						  				or login.member_interest3 == interest.code_id}">checked </c:if>>
 								${interest.code_name }
-							</label>
-									<input type="hidden" id="member_interest1" name="member_interest1">
-									<input type="hidden" id="member_interest2" name="member_interest2">
-									<input type="hidden" id="member_interest3" name="member_interest3">
+							</label>	
 						</div>
 					</td>
 					<%
@@ -101,23 +118,30 @@ $(function() {
 				</c:forEach>
 			</tr>
 		</table>
+ 				<input type="hidden" id="member_interest1" name="member_interest1">
+				<input type="hidden" id="member_interest2" name="member_interest2">
+				<input type="hidden" id="member_interest3" name="member_interest3"> 
+		<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br>
 
 
 		<br>
 		<p>국적선택</p>
 		<div class="radio">
-			<label> <input type="radio" name="optionsRadios" checked="true"> 한국</label> 
-			<label> <input type="radio" name="optionsRadios"> 일본</label> 
-			<label> <input type="radio" name="optionsRadios"> 중국</label>
-		</div>
+			<label> <input type="radio" name="optionsRadios" value="ko" checked="checked"> 한국</label> 
+			<label> <input type="radio" name="optionsRadios" value="jp"> 일본</label> 
+			<label> <input type="radio" name="optionsRadios" value="cn"> 중국</label>
+		</div><br>
 
 		<div>연령선택  </div>
-		<div id="sliderDouble" class="slider slider-info"></div>
+		  <label for="age"></label>
+  		  <input type="text" id="age0" name="age" readonly>세 ~
+  		  <input type="text" id="age1" name="age1" readonly>세
+		<div id="slider-range"></div>		
 		<br>
 		
 		<p>이성만 검색하기</p>
 		<div class="togglebutton">
-			<label> <input type="checkbox" checked="checked">
+			<label> <input type="checkbox" checked="checked" name="toggle">
 				on/off
 			</label>
 			

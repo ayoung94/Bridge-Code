@@ -100,20 +100,37 @@ ul, menu, dir {
 			
 			var modal = $(this)
 			modal.find('#img').val(recipient);
-/* 			console.log($('#img'));
-			console.log($('#img').next()); */
+ 			console.log($('#img'));
+			console.log($('#img').next()); 
 			
 			var imgNum = recipient;
-			if(imgNum == "member_img1"){			
- 			$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img1}');
-			}
+			if(imgNum == "member_img1"){	
+				$('#img').next().removeAttr('src');
+					 if("${profile.member_img1}" !=null && "${profile.member_img1}" != ""){ //값이 있을때
+						$('#img').next().show();
+						$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img1}');
+						} else {$('#img').next().hide();}
+				}
 			if(imgNum == "member_img2"){
-			$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img2}');
-			}
+				$('#img').next().removeAttr('src');
+					 if("${profile.member_img2}" !=null && "${profile.member_img2}" != ""){
+						$('#img').next().show();
+						$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img2}');
+						
+						} else {$('#img').next().hide();}
+				}		
 			if(imgNum == "member_img3"){
-			$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img3}'); 
-			}
-		})
+				$('#img').next().removeAttr('src');
+					  if("${profile.member_img3}" !=null && "${profile.member_img3}" != ""){
+						$('#img').next().show();
+						$('#img').next().attr('src','${pageContext.request.contextPath}/profile_img/${profile.member_img3}'); 
+						
+						} else {$('#img').next().hide();} 
+					}
+				})
+/* 		$('#profileModal').on('hide.bs.modal', function () {
+			$('#img').next().hide();
+		}) */
    
 	   $("#introEdit").click(function(event){
 		   
@@ -241,7 +258,7 @@ ul, menu, dir {
 												<div class="modal-body">
 												
 														<input type="hidden" id="img" name="img">
-														<img><hr>
+														<img id="tempimg"><hr>
 														
 														<div id="imgchange"></div>
 														
