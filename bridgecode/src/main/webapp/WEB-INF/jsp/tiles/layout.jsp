@@ -20,21 +20,22 @@
 
 	<!-- CSS Files -->
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+   <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css"> -->
     <link href="${pageContext.request.contextPath}/resources/css/material-kit.css" rel="stylesheet"/>
     
-    <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" />
-<!--   Core JS Files   -->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+   <%--  <link href="${pageContext.request.contextPath}/resources/css/demo.css" rel="stylesheet" /> --%>
+<%-- <!--   Core JS Files   -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script> --%>
 
-
-	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<%-- 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 	<script src="${pageContext.request.contextPath}/resources/js/nouislider.min.js" type="text/javascript"></script>
 
 	<!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap-datepicker.js" type="text/javascript"></script>
-
+ 
+ 충돌 일어나는 문제 수정. 6.20 앞으로도 이상 없으면 삭제 처리 -아영-
+ 
+ --%>
 
 </head>
 <body>
@@ -70,9 +71,14 @@
 			<tiles:insertAttribute name="footer"/>
 	</footer>
 	
+	
+	<!--   Core JS Files   -->
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/material.min.js"></script>
 	<!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 	<script src="${pageContext.request.contextPath}/resources/js/material-kit.js" type="text/javascript"></script>
+	
 </body>
 
 
