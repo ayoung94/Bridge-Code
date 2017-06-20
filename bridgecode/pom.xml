@@ -44,6 +44,22 @@
 	</repositories>
 
 	<dependencies>
+			<!-- json start -->
+			
+			<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.8.0</version>
+			</dependency>
+			
+			<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.0</version>
+			</dependency>
+			<!-- json end -->
+	
+	
 		<!-- 이메일 -->
 		<dependency> 
 			<groupId>org.apache.commons</groupId> 

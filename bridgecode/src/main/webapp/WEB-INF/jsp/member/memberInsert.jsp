@@ -50,6 +50,60 @@ $(function(){
             //alert("This browser does not support FileReader.");
         }
     });
+	
+	$("#member_id").bind("keyup",
+			function(){
+				var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if(regEmail.test($("#member_id").val())){	
+					$.get(
+							'${pageContext.request.contextPath}/ajaxMemberId.json',
+							{member_id:$("#member_id").val()},
+							function(data){
+								if(data == 'true'){ //중복 있음
+									console.log("중복 없음");
+									
+									$("#member_id_div").attr('class','form-group has-success');
+									$("#idNOTOK").hide();
+									$("#idOK").show();
+									
+									console.log("클래스 = "+$("#member_id_div").attr('class'));
+								
+								} 
+				}
+		 		/* var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+				if(regEmail.test($("#member_id").val())){	
+					//email형식이 맞을 시, member_id 중복 여부 확인
+					$.get(
+							'${pageContext.request.contextPath}/ajaxMemberId.json',
+							{member_id:$("#member_id").val()},
+							function(data){
+								if(data == 'true'){ //중복 있음
+									console.log("중복 없음");
+									
+									$("#member_id_div").attr('class','form-group has-success');
+									$("#idNOTOK").hide();
+									$("#idOK").show();
+									
+									console.log("클래스 = "+$("#member_id_div").attr('class'));
+								
+								} else{
+													//중복 없음
+								console.log("중복 있음");
+								$("#member_id_div").attr('class','form-group has-error');
+								$("#idOK").hide();
+								$("#idNOTOK").show();
+								
+								console.log("클래스 = "+$("#member_id_div").attr('class'));
+								} 
+							});
+				} *//* else{
+					console.log("메일 형식이 아닙ㄴ디ㅏ!~");
+					$("#member_id_div").attr('class','form-group has-error');
+					$("#idNOTOK").show();
+					console.log($("#member_id_div").attr('class'));
+				} */
+				
+			});
 });
 
 function aa(){
@@ -60,6 +114,8 @@ function aa(){
 	return true;
 	}
 }
+console.log($("input[name=member_id]"));
+
 </script>
 <style>
 .widthSmall{
@@ -99,11 +155,26 @@ padding: 10px;
 </div></td>
 </tr>
 <tr>
-<td>아이디 :</td><td><input type="text" name="member_id"  class="form-control widthSmall" placeholder="이메일 형식으로 입력해주세요."></td>
+<td>아이디 :</td><td>
+<div class="col-sm-4">
+<div class="form-group" id="member_id_div">
+<input type="email" name="member_id"  id="member_id" class="form-control" placeholder="이메일 형식으로 입력해주세요.">
+<span class="form-control-feedback">
+			<i id="idOK" class="material-icons" style="display: none;">done</i>
+			<i id="idNOTOK" class="material-icons" style="display: none;">clear</i>
+</span>
+
+</div>
+</div>
+</td>
 </tr>
 <tr>
 <td>비밀번호:</td>
-<td><input type="password" name="member_password" class="form-control widthSmall"></td>
+<td>
+<div class="col-sm-4">
+<input type="password" name="member_password" class="form-control widthSmall">
+</div>
+</td>
 </tr>
 <tr>
 <td>이름 :</td>
