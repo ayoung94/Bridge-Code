@@ -7,87 +7,82 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>공지사항 상세보기</title>
 <script>
-	function goNoticeList() {
-		location.href = "getNoticeList.do"
+	function getNoticeList() {
+		location.href = "getNoticeList.do";
+	}
+	function modifyNotice() {
+		changeForm.action = "<c:url value='/modifyNotice.do'/>";
+		changeForm.submit();
+	}
+	function deleteNotice() {
+		changeForm.action = "<c:url value='/deleteNotice.do'/>";
+		changeForm.submit();
 	}
 </script>
 <style>
-.getnotice th td{
-	border-bottom: 1px solid #ddd;
+div.height {
+	height: 40px;
 	text-align: center;
-	padding: 30px;
+	padding: 10px;
+	text-align: center;
 }
 
-.getnotice h1 {
-	border-bottom: 1px solid #ddd;
-	text-align: center;
-	padding: 30px;
+button.size {
+	padding: 10px 20px 10px 20px;
 }
 
-.getnotice tr:nth-child(even) {
-	background-color: #f2f2f2
+input.size {
+	padding: 10px 20px 10px 20px;
 }
 </style>
 </head>
 <body>
-	<form class="w3-container w3-card-4" action="noticeInsert.do" method="post">
+	<form class="w3-container w3-card-4 "
+		style="width: 100%; margin: auto;" id="changeForm">
 		<h2 class="w3-text-blue">공지사항 상세보기</h2>
-		<table class="getnotice">
-			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-			</tr>
-			<tr>
-				<td>${notice.noticeId}</td>
-				<td>${notice.noticeTitle}</td>
-				<td>${notice.noticeTime}</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-			</tr>
-			<tr>
-				<td colspan="3">${notice.noticeContent}</td>
-			</tr>
-		</table>
-
-		<button type="submit" class="w3-btn w3-blue">Register</button>
-		<button type="reset" class="w3-btn w3-blue">reset</button>
-		<button type="button" class="w3-btn w3-blue" onclick="getNoticeList()">list</button>
+		<div class="w3-row">
+			<div class="w3-col m3 w3-green w3-center height">글번호</div>
+			<div class="w3-col m6 w3-blue w3-center height">제목</div>
+			<div class="w3-col m3 w3-green w3-center height">작성일</div>
+		</div>
+		<div class="w3-row w3-cell-bottom">
+			<div class="w3-col m3 w3-white w3-center height">
+				<input type="text" size="10"
+					style="text-align: center; border: none;" name="noticeId"
+					value="${notice.noticeId}">
+			</div>
+			<div class="w3-col m6 w3-white w3-center height">
+				<input type="text" value="${notice.noticeTitle}" size="80"
+					style="text-align: center; border: none;" name="noticeTitle">
+			</div>
+			<div class="w3-col m3 w3-white w3-center height">
+				${notice.noticeTime}</div>
+		</div>
+		<div class="w3-row">
+			<div class="w3-col m12 w3-blue w3-center height">내용</div>
+		</div>
+		<div class="w3-row">
+			<div class="w3-col m12 w3-grey w3-center">
+				<p>
+					<textarea cols="163" rows="10" style="border: none"
+						onkeydown="resize(this)" onkeyup="resize(this)"
+						name="noticeContent">${notice.noticeContent}</textarea>
+				</p>
+			</div>
+		</div>
+		<br />
+		<div class="w3-row">
+			<button type="button" class="w3-button w3-blue size"
+				onclick="getNoticeList()">list</button>
+			<c:if test="${login.member_id == 'admin'}">
+				<input type="submit" class="w3-button w3-green size" value="수정"
+					onclick="modifyNotice()">
+			</c:if>
+			<c:if test="${login.member_id == 'admin'}">
+				<input type="button" class="w3-button w3-grey size"
+					onclick="deleteNotice()" value="삭제">
+			</c:if>
+		</div>
 	</form>
-
-
-
-
-
-
-
-	<%-- 	<h1>공지사항 상세보기</h1>
-	<table border="1">
-		<tr>
-			
-			<td>글번호</td>
-			<td>제목</td>
-			<td>작성일</td>
-			
-		</tr>
-		<tr>
-			
-			<td>${notice.noticeId}</td>
-			<td>${notice.noticeTitle}</td>
-			<td>${notice.noticeTime}</td>
-			
-		</tr>
-		<tr>
-			<td colspan="3">${notice.noticeContent }</td>
-		</tr>
-	</table>
-	<div>
-		<input type="button" value="목록으로" onclick="goNoticeList()" />
-		<input type="button" value="수정" onclick="" />
-		<input type="button" value="삭제" onclick="" />
-		
-	</div> --%>
-
 </body>
 </html>

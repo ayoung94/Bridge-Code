@@ -27,8 +27,7 @@
 		<p>
 			<button type="submit" class="w3-btn w3-blue">Register</button>
 			<button type="reset" class="w3-btn w3-blue">reset</button>
-			<button type="button" class="w3-btn w3-blue"
-				onclick="getNoticeList()">list</button>
+			<button type="button" class="w3-btn w3-blue" onclick="getNoticeList()">list</button>
 		</p>
 	</form>
 </body>

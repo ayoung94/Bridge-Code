@@ -33,7 +33,6 @@ public class NoticeController {
 		return "notice/noticeInsert";
 	}
 
-
 	//등록
 	@RequestMapping(value="/noticeInsert.do", 
 			method = RequestMethod.POST)
@@ -49,15 +48,6 @@ public class NoticeController {
 		noticeService.insertNotice(noticeVO);
 		return "redirect:/getNoticeList.do";
 	}
-/*
-	//다건조회
-	@RequestMapping(value="/getNoticeList.do")
-	public String getNoticeList(NoticeVO vo, Model model) {
-		//List<Map<String, Object>> list = userService.getUserList(vo);
-		//List<NoticeVO> list = noticeService.getNoticeListVO(vo);
-		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
-		return "notice/noticeList";
-	}*/
 
 	//단건조회
 	@RequestMapping(value="/getNotice.do")
@@ -67,9 +57,31 @@ public class NoticeController {
 		model.addAttribute("notice", list);
 		return "notice/getNotice";
 	}
-/*-------------------------------------------------------*/
-	//chart시작
+
+	//다건조회(datatable()사용)
+	@RequestMapping("/getNoticeList.do")
+	public String getNoticeList(Model model) {
+		model.addAttribute("noticeList", noticeDAO.getNoticeList());
+		return "notice/noticeList";
+	}
+
+	//수정
+	@RequestMapping("/modifyNotice.do")
+	public String updateNotice(NoticeVO vo) {
+		noticeService.updateNotice(vo);
+		return "redirect:/getNotice.do?noticeId="+vo.getNoticeId();
+	}
 	
+	//삭제
+	@RequestMapping("deleteNotice.do")
+	public String deleteNotice(NoticeVO vo) {
+		noticeService.deleteNotice(vo);
+		return "redirect:/getNoticeList.do";
+	}
+	
+	/*-------------------------------------------------------*/
+	//chart시작
+
 	/*@RequestMapping("/getNoticeChart.do")
 	public String getChart(Model model) {
 
@@ -84,15 +96,4 @@ public class NoticeController {
 		model.addAttribute("pieUrl",pieChart.toURLString());
 		return "chart/getChart";
 	}*/
-
-	//공지사항목록
-	@RequestMapping("/getNoticeList.do")
-	public String getNoticeList(Model model) {
-		model.addAttribute("noticeList", noticeDAO.getNoticeList());
-		return "notice/noticeList";
-	}
-
-	
-
-
 }
