@@ -38,8 +38,7 @@
 	<br> 이름: ${member.member_name}
 	<br> 성별 : ${member.member_sex}
 	<br> 생년월일 :
-	<fmt:parseDate value="${member.member_birth }" pattern="yyyy-mm-dd"
-		var="memberBirth" scope="page" />
+	<fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
 	<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" />
 	<br> 국적 : ${member.member_country }
 	<br> 자기소개: ${member.member_introduction }

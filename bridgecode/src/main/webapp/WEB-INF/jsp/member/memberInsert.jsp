@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script>
+$('[data-toggle="tooltip"]').tooltip();
 $(function(){ 
 	$(':checkbox').click(function(){
 		var checkboxs = $("[name='interest']:checked"); // :checked
@@ -23,9 +24,9 @@ $(function(){
 	});
 
 	$("#fileUpload").on('change', function () {
-
-        if (typeof (FileReader) != "undefined") {
-
+		
+        if ($('#fileUpload').val() != "") {
+  
             var image_holder = $("#image-holder");
             image_holder.empty();
 
@@ -35,14 +36,18 @@ $(function(){
                     "src": e.target.result,
                     "class": "thumb-image",
                     "width" : "200px",
-                    "height" : "200px"
+                    "height" : "200px",
+                    "onclick":"document.getElementById('fileUpload').click();",
+                    "title":"프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다."
+             
                 }).appendTo(image_holder);
 
             }
             image_holder.show();
             reader.readAsDataURL($(this)[0].files[0]);
         } else {
-            alert("This browser does not support FileReader.");
+			$(".thumb-image").attr('src','${pageContext.request.contextPath}/resources/img/examples/addimage.png');
+            //alert("This browser does not support FileReader.");
         }
     });
 });
@@ -56,59 +61,109 @@ function aa(){
 	}
 }
 </script>
+<style>
+.widthSmall{
+width:200px; 
+}
+#joinForm td:first-child{
+border: 1px solid black;
+text-align: right;
+margin: 10px;
+padding: 10px;
+}
+.thumb-image{
+ width: 200px;
+ height: 200px;
+ border:1px dotted black;
+ cursor:pointer;
+ }
+</style>
 </head>
 
 <body>
 회원 가입
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
-아이디 : <input type="text" name="member_id"  > <br> <!-- required -->
-프로필 사진: 
-<div id="wrapper">       
-   <input id="fileUpload" type="file" name="uploadFile" /><br />
-   <div id="image-holder"> </div>
- </div>
+<table id="joinForm">
+<tr>
+<td>프로필 사진 :</td>
+<td>
+<div id="wrapper">
+	<input id="fileUpload" type="file" name="uploadFile"  style="display: none;" /><br>
 
-비밀번호: <input type="password" name="member_password" > <br>
-이름 : <input type="text" name="member_name"  ><br>
-닉네임: <input type="text" name="member_nickname" > <br>
-성별: 남<input type="radio" name="member_sex" value="1"> 여<input type="radio" name="member_sex" value="2"> <br>
-국적: <select name="member_country">
+		<div id="image-holder"> 
+		<img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png" class="thumb-image" onclick="document.getElementById('fileUpload').click();"
+		data-toggle="tooltip" data-placement="top" title="프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다.">
+		</div>
+
+</div></td>
+</tr>
+<tr>
+<td>아이디 :</td><td><input type="text" name="member_id"  class="form-control widthSmall" placeholder="이메일 형식으로 입력해주세요."></td>
+</tr>
+<tr>
+<td>비밀번호:</td>
+<td><input type="password" name="member_password" class="form-control widthSmall"></td>
+</tr>
+<tr>
+<td>이름 :</td>
+<td><input type="text" name="member_name" class="form-control widthSmall" ></td>
+</tr>
+<tr>
+<td>닉네임:
+</td>
+<td><input type="text" name="member_nickname" class="form-control widthSmall">
+</td>
+</tr>
+<tr>
+<td>성별:</td>
+<td> 남<input type="radio" name="member_sex" value="1"> 여<input type="radio" name="member_sex" value="2"></td>
+</tr>
+<tr>
+<td>국적:</td>
+<td><select name="member_country">
 <option value="ko">한국</option>
 <option value="cn">중국</option>
 <option value="jp">일본</option>
-</select> <br>
-생년월일: <input type="date" name="member_birth" ><br>
-관심사:
-	<table>
-			<tr>
-				<%
-					int j = 0;
-				%>
-				<c:forEach items="${list}" var="interest">
-					<td>
-						<div class="checkbox">
-							<label> <input type="checkbox" name="interest" value="${interest.code_id }">
-								${interest.code_name }
-							</label>
-						</div>
-					</td>
-					<%
-						j++;
-							if (j % 5 == 0) {
-								out.print("</tr><tr>");
-							}
-					%>
-				</c:forEach> 
-			</tr>
-		</table>
+</select></td>
+</tr>
+<tr>
+<td>생년월일:</td>
+<td><input type="text" name="member_birth" class="datepicker form-control widthSmall" data-date-format="yyyy/mm/dd">
+</td>
+</tr>
+<tr>
+<td>관심사:</td>
+<td>
+<%
+	int j = 0;
+%>
+<c:forEach items="${list}" var="interest">
+<div class="checkbox" style="display: inline;padding: 10px; margin: 10px;" >
+<label style="width: 100px;"> <input type="checkbox" name="interest" value="${interest.code_id }">
+${interest.code_name }
+</label>
+</div>
+<%
+	j++;
+		if (j % 5 == 0) {
+			out.print("<br>");
+		}
+%>
+</c:forEach> 
+
+		
 <input type="hidden" id="interestLength" >
 <input type="hidden" id="member_interest1" name="member_interest1">
 <input type="hidden" id="member_interest2" name="member_interest2">
 <input type="hidden" id="member_interest3" name="member_interest3">
-
-<br>
-자기소개:<textarea cols="30" rows="6" name="member_introduction"></textarea>
+</td>
+</tr>
+<tr>
+<td>자기소개:</td>
+<td><textarea cols="30" rows="6" name="member_introduction"></textarea></td>
+</tr>
+</table>
 
 <button> 등록 </button>
 
