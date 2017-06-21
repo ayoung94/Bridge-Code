@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <style>
 table td {
 	padding: 10px;
 }
 
-#slider-range {
+#sliderRange {
 	width: 300px;
 	margin: 15px;
 	margin-left: 0;
@@ -39,19 +40,17 @@ img {
 </style>
 <!-- In <head> -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="${pageContext.request.contextPath}/resources/js/jquery.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
 <script>
 	$(function() {	
-		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){
-		    for(i=0 ; i<data.length; i++){
-		    	var birthday = new Date(data[i].MEMBER_BIRTH);
-		    	var today = new Date();
-		    	var years = today.getFullYear() - birthday.getFullYear() + 1;
-		    	
-		    	if(data[i].MEMBER_SEX == '1'){
+		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
+			for(i=0 ; i<data.length; i++){
+				var today = new Date();
+				var birthday = new Date(data[i].MEMBER_BIRTH);
+				var years = today.getFullYear() - birthday.getFullYear() + 1;
+				if(data[i].MEMBER_SEX == '1'){
 		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
@@ -65,13 +64,36 @@ img {
 				    		+data[i].MEMBER_NICKNAME +"<br>"
 				    		+years+"<br>"
 				    		+"여성</td>")  	}
-		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")}
+		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")
+		    		}
 					}
 				});
 
-		
-		// 슬라이드 범위바 시작
-		$("#slider-range").slider({
+		//체크박스 등록 갯수 확인
+		$(':checkbox').click(function() {
+			var checkboxs = $("[name='interest']:checked"); // :checked
+			var checkValue ="";			
+			for(i=0 ; i<checkboxs.length ; i++){
+				if(checkboxs.length >3){
+					alert("관심사는 최대 3개까지 등록 가능합니다.");
+					return false;	
+				}
+				checkValue += checkboxs[i].value;
+				if (i != checkboxs.length - 1) {
+					checkValue += ",";
+				}
+			}
+			//배열로 저장
+			var arr = checkValue.split(',');
+			$("#member_interest1").attr('value', arr[0]);
+			$("#member_interest2").attr('value', arr[1]);
+			$("#member_interest3").attr('value', arr[2]);
+			console.log(arr)
+	});
+
+
+	// 슬라이드 범위바 시작
+		$("#sliderRange").slider({
 			range : true,
 			min : 10,
 			max : 50,
@@ -81,33 +103,9 @@ img {
 				$("#age1").val(ui.values[1]) + "세";
 			}
 		});
-		$("#age0").val($("#slider-range").slider("values", 0)) + "세 - ";
-		$("#age1").val($("#slider-range").slider("values", 1)) + "세";
+		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
+		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
 
-		//체크박스 등록 갯수 확인
-		$(':checkbox').click(function() {
-			var checkboxs = $("[name='interest']:checked"); // :checked
-			var checkValue = "";
-			var cnt = 1; //관심항목 갯수 확인
-			for (i = 0; i < checkboxs.length; i++) {
-				if (cnt > 3) {
-					alert("관심사는 최대 3개까지 등록 가능합니다.");
-					return false;
-				}
-				checkValue += checkboxs[i].value;
-				if (i != checkboxs.length - 1) {
-					checkValue += ",";
-				}
-				cnt++
-			}
-			//배열로 저장
-			var arr = checkValue.split(',');
-			$("#member_interest1").attr('value', arr[0]);
-			$("#member_interest2").attr('value', arr[1]);
-			$("#member_interest3").attr('value', arr[2]);
-
-		});
-		
 	});
 </script>
 
@@ -141,9 +139,9 @@ img {
 					</c:forEach>
 				</tr>
 			</table>
-<!-- 			<input type="hidden" id="member_interest1" name="member_interest1">
+ 			<input type="hidden" id="member_interest1" name="member_interest1">
 			<input type="hidden" id="member_interest2" name="member_interest2">
-			<input type="hidden" id="member_interest3" name="member_interest3"> -->
+			<input type="hidden" id="member_interest3" name="member_interest3">
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
 			<p>국적선택</p>
@@ -155,9 +153,9 @@ img {
 			<br>
 
 			<div>연령선택</div>
-			<label for="age"></label> <input type="text" id="age0" name="age" readonly>세 ~ 
-			<input type="text" id="age1" name="age1" readonly>세
-			<div id="slider-range"></div>
+			<input type="text" id="age0" name="minage" readonly>세 ~ 
+			<input type="text" id="age1" name="maxage" readonly>세
+			<div id="sliderRange"></div>
 			<br>
 
 			<p>이성만 검색하기</p>
