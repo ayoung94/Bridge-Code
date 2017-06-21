@@ -5,8 +5,21 @@ import org.springframework.web.multipart.MultipartFile;
 public class MemberVO {
 	@Override
 	public String toString() {
-		return "[member_id=" + member_id + ", member_password="
-				+ member_password + ", member_name=" + member_name + "]";
+		return "MemberVO [member_img1=" + member_img1 + ", member_img2="
+				+ member_img2 + ", member_img3=" + member_img3 + ", member_id="
+				+ member_id + ", member_password=" + member_password
+				+ ", member_nickname=" + member_nickname + ", member_name="
+				+ member_name + ", member_birth=" + member_birth
+				+ ", member_last_connection=" + member_last_connection
+				+ ", member_country=" + member_country + ", member_interest1="
+				+ member_interest1 + ", member_interest2=" + member_interest2
+				+ ", member_interest3=" + member_interest3
+				+ ", member_profile_img=" + member_profile_img
+				+ ", uploadFile=" + uploadFile + ", member_level="
+				+ member_level + ", member_warning=" + member_warning
+				+ ", member_sex=" + member_sex + ", member_partner_id="
+				+ member_partner_id + ", member_introduction="
+				+ member_introduction + "]";
 	}
 	private String member_img1;
 	private String member_img2;

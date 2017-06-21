@@ -35,9 +35,7 @@
 <style>
 .appth th{text-align:center;}
 .apptd td{text-align:center;}
-
 </style>
-
 </head>
 <body>
 	<h1>새로운 회원 신청 리스트</h1>

@@ -39,7 +39,7 @@ a {
           
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Menu</b></p>
           <p><a href="getUserList.do?member_level=1">새로운 회원 신청 현황</a></p>
-          <p>신고 현황</p>
+          <p><a href="getWarningList.do">비매너 신고 현황</a></p>
           <p><a href="getNoticeList.do">공지사항</a></p>
           <p><a href="getEventList.do">이벤트</a></p>
           <p><a href="getUserList.do?member_level=2">유저 리스트</a></p>

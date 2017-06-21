@@ -53,7 +53,7 @@ public class AdminController {
 	}
 	
 	//회원 신청 거부
-	@RequestMapping("updateUserReject.do")
+	@RequestMapping("/updateUserReject.do")
 	public String updateUserReject(MemberVO vo){
 		adminService.updateUserReject(vo);
 		return "redirect:/getUserList.do?member_level=1";
