@@ -18,6 +18,7 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
     </context:component-scan>
 	
+	<mvc:annotation-driven></mvc:annotation-driven>
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- 웹 바인딩 처리 시작-->
@@ -93,6 +94,15 @@
 	<bean id="myHandler" class="com.yedam.bridgecode.chat.SocketHandler" />
 	<!-- 웹소켓 끝 -->
 	
+	<!-- json -->
+	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean> 
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+	<property name="messageConverters"> 
+	<list> 
+	<ref bean="jacksonMessageConverter"/> 
+	</list> 
+	</property> 
+	</bean> 
 	
 
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>

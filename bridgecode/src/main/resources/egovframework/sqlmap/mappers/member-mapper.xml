@@ -90,17 +90,18 @@
         WHERE member_id = #{member_id}
         ]]>
 	</select>
-
-	<select id="getMemberList" resultType="map">
-		SELECT *
-		FROM member
-	</select> 
 	
 	<select id="getNewMemberList" resultType="map">
 		SELECT *
 		FROM member
 		where member_level = 1
 	</select> 
+	
+	<select id="getMemberId" resultType="map">
+		SELECT member_id
+		from member 
+	</select> 
+	
 	
 	<select id="getBestMemberList" resultType="map">
 		SELECT m.member_id as "member_id", count(1) as "heart_count"

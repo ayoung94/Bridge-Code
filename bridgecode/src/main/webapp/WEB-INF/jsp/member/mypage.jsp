@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
 function startTime() {
 	var heartColor=document.getElementById("heartColor");
@@ -45,8 +46,35 @@ function checkTime(i) {
 </script>
 </head>
 <body onload="startTime()">
+<!--  <h3><i class="material-icons">account_circle</i>마이 페이지</h3> -->
 
-<c:set var="Heart" value="${heartfrom.heart_from_time}" />
+<div class="w3-bar">
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none;">마이 페이지</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none">내 하트 내역</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none">내 회원 정보</a>
+</div>
+<ul class="nav nav-tabs" style="background: white;width: 900px;" >
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">Menu 1</a></li>
+  <li><a href="#">Menu 2</a></li>
+  <li><a href="#">Menu 3</a></li>
+</ul>	
+<div class="w3-bar">
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue"
+  style="border-bottom: 3px solid red;">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue">Link 3</a>
+</div>
+<hr>
+<br>
+
+  <div class="row">
+    <div class="col-sm-4">
+    
+     <div class="panel panel-danger" style="width:350px;">
+      <div class="panel-heading" style="background-color:lavenderblush;">my heart</div>
+      <div class="panel-body" style="height: 180px;"> 
+      <c:set var="Heart" value="${heartfrom.heart_from_time}" />
 <c:choose>
 <c:when test="${!empty Heart }">
 <div style="border:1px solid black; margin-top: 50px; width: 500px; height: 130px;">
@@ -61,26 +89,69 @@ function checkTime(i) {
 </c:when>
 <c:otherwise>
 <img src="${pageContext.servletContext.contextPath}/images/heartColor.png">
-하트를 사용해보세요!<br>
-<a href="${pageContext.request.contextPath}/heart/heartFromList.do">하트 사용 내역</a>
+하트를 사용해보세요!<br><br>
+<button class="btn btn-simple btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
+		style="margin-left: 220px;">하트 사용 내역</button>
+
 </c:otherwise>
 </c:choose>
-<div style="border:1px solid black; margin-top: 50px; width: 500px; height: 130px;">
-my information<br>
-<img src="${pageContext.request.contextPath}/profile_img/${member.member_profile_img }" width="100px">
-${member.member_nickname }님<br> 
-<!-- 나이 처리 시작-->
-<jsp:useBean id="toDay" class="java.util.Date" />
-<fmt:formatDate value="${toDay}" pattern="yyyy" var="date" />
-
-<fmt:parseDate value="${member.member_birth }" pattern="yyyy-mm-dd" var="memberBirth" scope="page"/>
-<fmt:formatDate value="${memberBirth}" pattern="yyyy" var="birth" />
-<!-- 나이 처리 끝 -->
-${date - birth +1}세 / ${member.member_country }<br>
-<a href="${pageContext.request.contextPath}/member/memberSelect.do"> 상세 보기</a>
+      </div>
+    </div>
+     
+    
+    
+    </div>
+    <div class="col-sm-8" >
+     <div class="panel-group" style="width:500px;">
+    <div class="panel panel-default">
+      <div class="panel-heading" style="background-color:lavender;">my information</div>
+      <div class="panel-body" style="height: 180px;">
+      
+      <table>
+		<tr>
+		<td><img src="${pageContext.request.contextPath}/profile_img/${login.member_profile_img}"
+			style="height: 100px;" alt="Rounded Image" class="img-rounded img-responsive">
+		<button class="btn btn-primary btn-sm" onclick="document.getElementById('fileUpload').click();">프로필 사진 수정</button>
+		
+		<form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/member/memberProfileUpdate.do">
+			<input type="hidden" name="member_id" value="${member.member_id }">
+			<input type="file" name="uploadFile" id="fileUpload" style="display: none;" onchange="submit();" />
+		</form></td>
+		
+		<td width="400px;" style="padding:10px;padding-left: 20px;"><br>
+		${member.member_nickname }님<br><br>
+		
+		<!-- 나이 처리 시작-->
+		<jsp:useBean id="toDay" class="java.util.Date" />
+		<fmt:formatDate value="${toDay}" pattern="yyyy" var="date" />
+		
+		<fmt:parseDate value="${member.member_birth }" pattern="yyyy-mm-dd" var="memberBirth" scope="page"/>
+		<fmt:formatDate value="${memberBirth}" pattern="yyyy" var="birth" />
+		<!-- 나이 처리 끝 -->
+		${date - birth +1}세 / ${member.member_country }<br><br>
+		<button class="btn btn-simple btn-primary btn-sm" onclick="location.href='${pageContext.request.contextPath}/member/memberSelect.do'"
+		style="margin-left: 200px;">회원 정보 상세보기</button>
+		</td>
+		</tr>
+	</table>
+      </div>
+    </div>
 </div>
+    
+    
+    
+    
+    </div>
+  </div>
 
-<div style="margin-top: 50px; width: 500px; height: 130px;">
+ 
+ 
+
+<br>
+
+<div class="panel panel-default" style="width:890px">
+    <div class="panel-body">
+    <div style="margin-top: 50px; width: 500px; height: 130px;">
 새로 도착한 ♥ 
 
 <div class="w3-container">
@@ -102,6 +173,13 @@ ${date - birth +1}세 / ${member.member_country }<br>
   </ul>
 </div>
 </div>
+    
+    
+    </div>
+  </div>
+
+
+
 
 </body>
 </html>

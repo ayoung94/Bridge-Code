@@ -4,133 +4,136 @@
 
 <mapper namespace="com.yedam.bridgecode.matching.MatchingMapper">
 
-<!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
+	<!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
-<!--  	<resultMap id="memberResult" type="member">
-		property:VO필드명과 동일(대소문자) / column은 컬럼명과동일
-		<id property="member_id" column="MEMBER_ID" /> 
-		<result property="member_img1" column="MEMBER_IMG1" />
-		<result property="member_img2" column="MEMBER_IMG2" />
-		<result property="member_img3" column="MEMBER_IMG3" />
-		<result property="member_password" column="MEMBER_PASSWORD" />
-		<result property="member_nickname" column="MEMBER_NICKNAME" />
-		<result property="member_name" column="MEMBER_NAME" />
-		<result property="member_birth" column="MEMBER_BIRTH" />
-		<result property="member_last_connection" column="MEMBER_LAST_CONNECTION" />
-		<result property="member_country" column="MEMBER_COUNTRY" />
-		<result property="member_interest1" column="MEMBER_INTEREST1" />
-		<result property="member_interest2" column="MEMBER_INTEREST2" />
-		<result property="member_interest3" column="MEMBER_INTEREST3" />
-		<result property="member_profile_img" column="MEMBER_PROFILE_IMG" />
-		<result property="uploadFile" column="UPLOADFILE" />
-		<result property="member_level" column="MEMBER_LEVEL" />
-		<result property="member_warning" column="MEMBER_WARNING" />
-		<result property="member_sex" column="MEMBER_SEX" />
-		<result property="member_partner_id" column="MEMBER_PARTNER_ID" />
-		<result property="member_introduction" column="MEMBER_INTRODUCTION" />
-	</resultMap> -->
+	<!-- <resultMap id="memberResult" type="member"> property:VO필드명과 동일(대소문자) 
+		/ column은 컬럼명과동일 <id property="member_id" column="MEMBER_ID" /> <result property="member_img1" 
+		column="MEMBER_IMG1" /> <result property="member_img2" column="MEMBER_IMG2" 
+		/> <result property="member_img3" column="MEMBER_IMG3" /> <result property="member_password" 
+		column="MEMBER_PASSWORD" /> <result property="member_nickname" column="MEMBER_NICKNAME" 
+		/> <result property="member_name" column="MEMBER_NAME" /> <result property="member_birth" 
+		column="MEMBER_BIRTH" /> <result property="member_last_connection" column="MEMBER_LAST_CONNECTION" 
+		/> <result property="member_country" column="MEMBER_COUNTRY" /> <result property="member_interest1" 
+		column="MEMBER_INTEREST1" /> <result property="member_interest2" column="MEMBER_INTEREST2" 
+		/> <result property="member_interest3" column="MEMBER_INTEREST3" /> <result 
+		property="member_profile_img" column="MEMBER_PROFILE_IMG" /> <result property="uploadFile" 
+		column="UPLOADFILE" /> <result property="member_level" column="MEMBER_LEVEL" 
+		/> <result property="member_warning" column="MEMBER_WARNING" /> <result property="member_sex" 
+		column="MEMBER_SEX" /> <result property="member_partner_id" column="MEMBER_PARTNER_ID" 
+		/> <result property="member_introduction" column="MEMBER_INTRODUCTION" /> 
+		</resultMap> -->
 
 
 	<!-- 관심사 리스트 출력 -->
 	<select id="getCodeList" resultType="map">
 		SELECT CODE_ID AS "code_id"
-			 , CODE_NAME AS "code_name"
-			 , CODE_CATEGORY AS "code_category"
+		, CODE_NAME AS "code_name"
+		, CODE_CATEGORY AS "code_category"
 		FROM CODE
-		WHERE CODE_CATEGORY IN ('0B')
-	</select> 
-	
+		WHERE CODE_CATEGORY IN
+		('0B')
+	</select>
+
 	<!-- 프로필 사진 추가 및 변경 -->
 	<update id="profileUpdate" parameterType="member">
-		
-        UPDATE MEMBER SET
-        	<if test="member_img1 != null and member_img1 !='' ">
-            MEMBER_IMG1 = #{member_img1} 
-            </if>
-            <if test="member_img2 != null  and member_img2 !='' ">
-            MEMBER_IMG2 = #{member_img2} 
-            </if>
-            <if test="member_img3 != null and member_img3 !='' ">
-            MEMBER_IMG3 = #{member_img3} 
-            </if>
-        WHERE MEMBER_ID = #{member_id}
-        
-	</update>
-	
-	<update id="introductionUpdate" parameterType="member">
-	
+
 		UPDATE MEMBER SET
-			MEMBER_INTRODUCTION = #{member_introduction}
+		<if test="member_img1 != null and member_img1 !='' ">
+			MEMBER_IMG1 = #{member_img1}
+		</if>
+		<if test="member_img2 != null  and member_img2 !='' ">
+			MEMBER_IMG2 = #{member_img2}
+		</if>
+		<if test="member_img3 != null and member_img3 !='' ">
+			MEMBER_IMG3 = #{member_img3}
+		</if>
 		WHERE MEMBER_ID = #{member_id}
-	
+
 	</update>
 
-<!-- 	<insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 타입 alias정의
-        <![CDATA[  
-        INSERT INTO member(member_id,member_password,member_nickname,member_sex,
-        					member_country,member_birth,member_introduction,member_level) 
-        VALUES(#{member_id},
-        	#{member_password},
-        	#{member_nickname},
-        	#{member_sex},
-        	#{member_country},
-        	TO_DATE(#{member_birth}, 'YYYY-MM-DD'),
-        	#{member_introduction},
-        	1)
-        ]]>
-	</insert>
+	<update id="introductionUpdate" parameterType="member">
 
-	<update id="updateMember" parameterType="member">
-        <![CDATA[
-        UPDATE member SET
-            member_id = #{member_id}, 
-        	member_password = #{member_password},
-        	member_nickname = #{member_nickname},
-        	member_sex = #{member_sex},
-        	member_country = #{member_country},
-        	member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'),
-        	member_introduction = #{member_introduction}
-        WHERE member_id = #{member_id}
-        ]]>
+		UPDATE MEMBER SET
+		MEMBER_INTRODUCTION = #{member_introduction}
+		WHERE MEMBER_ID = #{member_id}
+
 	</update>
-
-	<delete id="deleteUser">
-        <![CDATA[
-        DELETE users
-        WHERE id = #{id}
-        ]]>
-	</delete> -->
-
-<!-- 	<select id="getMember" resultType="member">
-        <![CDATA[
-        SELECT *
-        FROM member
-        WHERE member_id = #{member_id}
-        ]]>
-	</select> -->
-
 	
-<!-- 	<select id="getBestMemberList" resultType="map">
-		SELECT m.member_id as "member_id", count(1) as "heart_count"
-		from member m, heart h
-		where m.member_id = h.heart_to_id
-		group by member_id
-		order by count(h.heart_to_id) desc
-	</select>  -->
-	
-	
-	<!-- <select id="getUserListVO" resultMap="userMap">
-		SELECT *
-		FROM users
-		ORDER BY id DESC
+	<!-- 페이지 로딩된 후 기본 조건검색 -->
+	<select id="getMemberList" resultType="map">
+		SELECT 	MEMBER_ID
+				,MEMBER_PASSWORD
+				,MEMBER_NICKNAME
+				,MEMBER_SEX
+				,MEMBER_COUNTRY
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "MEMBER_BIRTH"
+				,MEMBER_INTRODUCTION
+				,MEMBER_LEVEL
+				,MEMBER_PROFILE_IMG
+				,MEMBER_INTEREST1
+				,MEMBER_INTEREST2
+				,MEMBER_INTEREST3
+				,MEMBER_NAME
+				,MEMBER_WARNING
+		FROM MEMBER
+		WHERE MEMBER_COUNTRY = #{member_country}
+		AND MEMBER_SEX ^= #{member_sex}
+ 		AND MEMBER_INTEREST1 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
+		OR	MEMBER_INTEREST2 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
+		OR	MEMBER_INTEREST3 IN (#{member_interest1}, #{member_interest2}, #{member_interest3}) 
+		ORDER BY MEMBER_BIRTH ASC
 	</select>
 	
+	<!-- 검색값 변경될 때마다 조건검색 -->
+	<select id="realMatching" parameterType="hashmap" resultType="map">
+		SELECT 	MEMBER_ID
+				,MEMBER_PASSWORD
+				,MEMBER_NICKNAME
+				,MEMBER_SEX
+				,MEMBER_COUNTRY
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "MEMBER_BIRTH"
+				,MEMBER_INTRODUCTION
+				,MEMBER_LEVEL
+				,MEMBER_PROFILE_IMG
+				,MEMBER_INTEREST1
+				,MEMBER_INTEREST2
+				,MEMBER_INTEREST3
+				,MEMBER_NAME
+				,MEMBER_WARNING
+		FROM MEMBER
+		WHERE MEMBER_COUNTRY = #{member_country}
+		AND MEMBER_SEX ^= #{member_sex}
+<!-- 		AND MEMBER_INTEREST1 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
+		OR	MEMBER_INTEREST2 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
+		OR	MEMBER_INTEREST3 IN (#{member_interest1}, #{member_interest2}, #{member_interest3}) -->
+<!-- 		AND ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 BETWEEN #{minage} AND #{maxage}; -->
+	</select>
 	
-	<resultMap type="member" id="userMap">
-		<result property="name" column="NAME" />
-		<result property="id" column="ID" />
-		<result property="password" column="PASSWORD" />
-		<result property="role" column="ROLE" />
-	</resultMap> -->
+	<!-- <insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 
+		타입 alias정의 <![CDATA[ INSERT INTO member(member_id,member_password,member_nickname,member_sex, 
+		member_country,member_birth,member_introduction,member_level) VALUES(#{member_id}, 
+		#{member_password}, #{member_nickname}, #{member_sex}, #{member_country}, 
+		TO_DATE(#{member_birth}, 'YYYY-MM-DD'), #{member_introduction}, 1) ]]> </insert> 
+		<update id="updateMember" parameterType="member"> <![CDATA[ UPDATE member 
+		SET member_id = #{member_id}, member_password = #{member_password}, member_nickname 
+		= #{member_nickname}, member_sex = #{member_sex}, member_country = #{member_country}, 
+		member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'), member_introduction 
+		= #{member_introduction} WHERE member_id = #{member_id} ]]> </update> <delete 
+		id="deleteUser"> <![CDATA[ DELETE users WHERE id = #{id} ]]> </delete> -->
+
+	<!-- <select id="getMember" resultType="member"> <![CDATA[ SELECT * FROM 
+		member WHERE member_id = #{member_id} ]]> </select> -->
+
+
+	<!-- <select id="getBestMemberList" resultType="map"> SELECT m.member_id 
+		as "member_id", count(1) as "heart_count" from member m, heart h where m.member_id 
+		= h.heart_to_id group by member_id order by count(h.heart_to_id) desc </select> -->
+
+
+	<!-- <select id="getUserListVO" resultMap="userMap"> SELECT * FROM users 
+		ORDER BY id DESC </select> <resultMap type="member" id="userMap"> <result 
+		property="name" column="NAME" /> <result property="id" column="ID" /> <result 
+		property="password" column="PASSWORD" /> <result property="role" column="ROLE" 
+		/> </resultMap> -->
 
 </mapper>

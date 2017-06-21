@@ -32,5 +32,16 @@ public class MatchingServiceImpl implements MatchingService{
 	public void introductionUpdate(MemberVO vo) {
 		MatchingDAO.introductionUpdate(vo);
 	}
+	
+	//전체 매칭리스트
+	@Override
+	public List<Map<String, Object>> getMemberList(MemberVO vo) {
+		return MatchingDAO.getMemberList(vo);
+	}
+
+	@Override
+	public List<Map<String, Object>> realMatching(Map<String, Object> map) {
+		return MatchingDAO.realMatching(map);
+	}
 
 }
