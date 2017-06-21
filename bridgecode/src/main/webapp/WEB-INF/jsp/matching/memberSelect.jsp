@@ -84,8 +84,7 @@ ul, menu, dir {
 				<div class="description text-center">
 					<form action="${pageContext.request.contextPath}/profile/introductionUpdate.do?member_id=${profile.member_id}"
 						id="introsubmit" method="post">
-						<textarea id="form-control" class="form-control" readonly="readonly" name="member_introduction" rows="2" cols="5">
-							${profile.member_introduction }</textarea>
+						<textarea id="form-control" class="form-control" readonly="readonly" name="member_introduction" rows="2" cols="5">${profile.member_introduction }</textarea>
 						<br>
 						<c:set var="loginSession" value="${login}" />
 						<c:if test="${loginSession.member_id == profile.member_id }">

@@ -62,6 +62,9 @@
 	<select id="getMemberList" resultType="map">
 		SELECT *
 		FROM MEMBER
+		WHERE MEMBER_COUNTRY = #{}
+		AND MEMBER_SEX = #{}
+		WHERE SUBSTR(MEMBER_BIRTH-SYSDATE, 1, 2)+1 ={}
 	</select>
 	
 	<!-- <insert id="insertMember" parameterType="member">sql-map-config-spring.xml에서 
