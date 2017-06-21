@@ -60,8 +60,9 @@ public class MemberController {
 	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
 		MemberVO vo = new MemberVO();
 		vo.setMember_id(member_id);
+		System.out.println(member_id);
 		MemberVO result = memberService.getMember(vo);
-		
+		System.out.println(result);
 		if(result == null){ 
 			return "true";
 		}else{

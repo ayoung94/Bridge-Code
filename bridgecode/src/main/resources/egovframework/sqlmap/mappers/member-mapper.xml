@@ -90,11 +90,6 @@
         WHERE member_id = #{member_id}
         ]]>
 	</select>
-
-	<select id="getMemberList" resultType="map">
-		SELECT *
-		FROM member
-	</select> 
 	
 	<select id="getNewMemberList" resultType="map">
 		SELECT *

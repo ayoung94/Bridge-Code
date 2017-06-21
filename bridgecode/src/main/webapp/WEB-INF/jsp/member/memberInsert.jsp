@@ -56,18 +56,20 @@ $(function(){
 		 		 var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 				if(regEmail.test($("#member_id").val())){	
 					//email형식이 맞을 시, member_id 중복 여부 확인
-					$.get(
+					$.get(	
 							'${pageContext.request.contextPath}/ajaxMemberId.json',
 							{member_id:$("#member_id").val()},
 							function(data){
-								if(data == 'true'){ //중복 없음
+								console.log(data);
+								if(data == true){ //중복 없음
+									console.log("여기!");
 									$("#member_id_div").attr('class','form-group label-floating has-success');
 									$("#idNOTOK").hide();
 									$("#idOK").show();		
 									$("#member_id_label").text("");
 									$("#member_id_check").attr('value','true');
-								} else{
-													//중복 있음
+								} else{				//중복 있음
+								console.log("false로 될시에 오는곳");
 								$("#member_id_div").attr('class','form-group label-floating has-error');
 								$("#idOK").hide();
 								$("#idNOTOK").show();
@@ -76,6 +78,7 @@ $(function(){
 								} 
 							});
 				} else{
+					console.log("이메일 아니면 오는곳.");
 					$("#member_id_div").attr('class','form-group label-floating has-error');
 					$("#idOK").hide();
 					$("#idNOTOK").show();

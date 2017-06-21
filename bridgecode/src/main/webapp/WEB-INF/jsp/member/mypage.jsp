@@ -47,23 +47,24 @@ function checkTime(i) {
 </head>
 <body onload="startTime()">
 <!--  <h3><i class="material-icons">account_circle</i>마이 페이지</h3> -->
-<div class="w3-bar w3-white">
-  <button class="w3-bar-item w3-button w3-light-gray"  onclick="openCity('London')">마이 페이지</button>
-  <button class="w3-bar-item w3-button" onclick="openCity('Paris')">내 하트 내역</button>
-  <button class="w3-bar-item w3-button" onclick="openCity('Tokyo')">내 회원 정보</button>
-</div>
-  <div class="w3-row">
-    <a href="javascript:void(0)" onclick="openCity(event, 'London');">
-      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding ">London</div>
-    </a>
-    <a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red">Paris</div>
-    </a>
-    <a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
-      <div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Tokyo</div>
-    </a>
-  </div>
 
+<div class="w3-bar">
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none;">마이 페이지</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none">내 하트 내역</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-black" style="text-decoration:none">내 회원 정보</a>
+</div>
+<ul class="nav nav-tabs" style="background: white;width: 900px;" >
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">Menu 1</a></li>
+  <li><a href="#">Menu 2</a></li>
+  <li><a href="#">Menu 3</a></li>
+</ul>	
+<div class="w3-bar">
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue"
+  style="border-bottom: 3px solid red;">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-hover-none w3-border-white w3-bottombar w3-hover-border-blue w3-hover-text-blue">Link 3</a>
+</div>
 <hr>
 <br>
 
