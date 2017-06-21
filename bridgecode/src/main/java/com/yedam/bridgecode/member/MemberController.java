@@ -124,7 +124,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/member/memberSelect.do";
+		return "redirect:/member/mypage.do";
 	}
 	
 	@RequestMapping("/member/memberList.do")
@@ -148,7 +148,9 @@ public class MemberController {
 	public String memberSelect(MemberVO vo,
 							   Model model,
 							   HttpSession session){
-		
+		CodeVO cv = new CodeVO();
+		List<Map<String, Object>> interest = MatchingService.getCodeList(cv);
+		model.addAttribute("list", interest);
 		vo = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member",vo);
 		
