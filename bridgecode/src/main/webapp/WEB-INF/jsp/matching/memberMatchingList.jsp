@@ -18,7 +18,7 @@ table td {
 	margin-left: 0;
 }
 
-img {
+#matchimg {
 	width: 200px;
 }
 
@@ -39,6 +39,7 @@ img {
 }
 </style>
 <!-- In <head> -->
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -47,28 +48,64 @@ img {
 	$(function() {	
 		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
 			for(i=0 ; i<data.length; i++){
-				var today = new Date();
-				var birthday = new Date(data[i].MEMBER_BIRTH);
-				var years = today.getFullYear() - birthday.getFullYear() + 1;
 				if(data[i].MEMBER_SEX == '1'){
 		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
 		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
 		    		+data[i].MEMBER_NICKNAME +"<br>"
-		    		+years+"<br>"
+		    		+data[i].MEMBER_BIRTH+" 살<br>"
 		    		+"남성</td>")  	} 
 		    	else {
 		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
 				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
 				    		+data[i].MEMBER_NICKNAME +"<br>"
-				    		+years+"<br>"
+				    		+data[i].MEMBER_BIRTH+" 살<br>"
 				    		+"여성</td>")  	}
 		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")
 		    		}
 					}
 				});
+		// 실시간 조건 검색 ajax처리
+		$("#matchingfrm").change(function(){
+			var params = $("#matchingfrm").serialize();
+			$.post("${pageContext.request.contextPath}/matching/realMatching.do"
+					, params
+					, function(data,status){  //서버 url주소
+			            var jData = eval("(" + data +")");  //json으로 변환
+			            if(status == "success") {
+			               if( jData.length == 1) {
+			                  alert("등록완료");
+			                  for(i=0 ; i<jData.length; i++){
+			      				if(jData[i].MEMBER_SEX == '1'){
+			      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+			      		    		+jData[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+			      		    		+jData[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+			      		    		+jData[i].MEMBER_NICKNAME +"<br>"
+			      		    		+jData[i].MEMBER_BIRTH+" 살<br>"
+			      		    		+"남성</td>")  	} 
+			      		    	else {
+			      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+			      				    		+jData[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+			      				    		+jData[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+			      				    		+jData[i].MEMBER_NICKNAME +"<br>"
+			      				    		+jData[i].MEMBER_BIRTH+" 살<br>"
+			      				    		+"여성</td>")  	}
+			      		    	if((i+1)%5 == 0){
+			      		    		$('#result').append("</tr><tr>")
+			      		    		}
+			      				}
+			               }
+			               } else {
+			                  alert("등록에러");
+			               }
+			             
+			         });
+			         return false;    //event.preventDefault()
+			      });
 
+		
+		
 		//체크박스 등록 갯수 확인
 		$(':checkbox').click(function() {
 			var checkboxs = $("[name='interest']:checked"); // :checked
@@ -88,7 +125,7 @@ img {
 			$("#member_interest1").attr('value', arr[0]);
 			$("#member_interest2").attr('value', arr[1]);
 			$("#member_interest3").attr('value', arr[2]);
-			console.log(arr)
+
 	});
 
 
@@ -114,7 +151,7 @@ img {
 	<form id="matchingfrm">
 		<div class="wrapper">
 			<h1>커플매칭</h1>
-			<h3>나의 짝을 찾아보세요!</h3>
+			<h3>나의 짝을 찾아보세요! </h3>
 			<table>
 				<tr>
 					<%
@@ -160,7 +197,7 @@ img {
 
 			<p>이성만 검색하기</p>
 			<div class="togglebutton">
-				<label><input type="checkbox" checked="checked" name="toggle"> on/off </label>
+				<label><input type="checkbox" checked="checked" name="toggle" value="1"> on/off </label>
 			</div><br>	
 			<table border="1">
 				<tr>

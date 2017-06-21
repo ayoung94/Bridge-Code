@@ -18,4 +18,7 @@ public interface MatchingService {
 	
 	//자기 소개 수정
 	public void introductionUpdate(MemberVO vo);
+	
+	// 실시간 ajax 조건검색 
+	public List<Map<String,Object>> realMatching(Map<String,Object> map);
 }

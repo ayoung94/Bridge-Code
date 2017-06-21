@@ -19,4 +19,7 @@ public interface MatchingMapper {
 	
 	//매칭전체 리스트
 	public List<Map<String, Object>> getMemberList(MemberVO vo);
+	
+	// 실시간 ajax 조건검색  
+	public List<Map<String, Object>> realMatching(Map<String,Object> map);
 }

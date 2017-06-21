@@ -39,4 +39,9 @@ public class MatchingServiceImpl implements MatchingService{
 		return MatchingDAO.getMemberList(vo);
 	}
 
+	@Override
+	public List<Map<String, Object>> realMatching(Map<String, Object> map) {
+		return MatchingDAO.realMatching(map);
+	}
+
 }
