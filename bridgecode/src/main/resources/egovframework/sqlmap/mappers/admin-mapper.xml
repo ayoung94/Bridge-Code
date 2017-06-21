@@ -52,5 +52,10 @@
          ]]>
 	</select>
 	
+	<select id="countUserApplication" resultType="int">
+		SELECT COUNT(MEMBER_LEVEL)
+		FROM MEMBER
+		WHERE member_level = 1
+	</select>
 	
 </mapper>

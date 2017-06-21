@@ -27,7 +27,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void updateUserReject(MemberVO vo) {
 		adminDAO.updateUserReject(vo);
-		
+
 	}
 
+	@Override
+	public int countUserApplication(MemberVO vo) {
+		int count = 0;
+		count = adminDAO.countUserApplication(vo);
+		return count;
+	}
 }

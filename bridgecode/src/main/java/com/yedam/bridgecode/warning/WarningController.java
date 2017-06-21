@@ -1,5 +1,6 @@
 package com.yedam.bridgecode.warning;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,13 +31,22 @@ public class WarningController {
 
 	//유저 경고 횟수 증가 메소드
 	@RequestMapping("/updateWarningApplication.do")
-	public String updateMemberWarning(MemberVO vo, WarningVO vo2){
-		
-		System.out.println(vo2);
-		warningService.updateWarningApplicationWarning(vo2);
-		System.out.println("11111 : "+vo);
+	public String updateMemberWarning(WarningVO vo){
+		warningService.updateWarningApplicationWarning(vo);
 		warningService.updateWarningApplicationMember(vo);
-		
+
 		return "redirect:/getWarningList.do";
+	}
+
+	@RequestMapping("/CountWarning.do")
+	public int countWarning(WarningVO vo){
+		return (Integer)warningDAO.countWarning(vo);
+	}
+	
+	@RequestMapping("selChatContext.do")
+	public String selChatContext(Model model, WarningVO vo){
+		model.addAttribute("chatContext", warningDAO.selChatContext(vo));
+		return "redirect:/warningApplication";
+		
 	}
 }

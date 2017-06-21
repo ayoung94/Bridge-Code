@@ -31,7 +31,7 @@
         <![CDATA[
         UPDATE MEMBER SET
         	MEMBER_WARNING = MEMBER_WARNING +1
-        WHERE MEMBER_ID = (SELECT WARNING_FROM_ID
+        WHERE MEMBER_ID = (SELECT WARNING_TO_ID
          					FROM WARNING
          					WHERE WARNING_ID = #{warningId})
          ]]>
@@ -52,5 +52,27 @@
          WHERE WARNING_ID = #{warningId}
          ]]>
 	</update>
+
+	<select id="countWarning" resultType="int">
+		<![CDATA[
+		 SELECT COUNT(WARNING_STATUS)
+		 FROM WARNING
+		 WHERE WARNING_STATUS = 'd1'
+		]]>
+	</select>
+
+	<select id="selChatContext" resultType="Map">
+		<![CDATA[
+		 SELECT * FROM CHAT
+		 WHERE ((CHAT_FROM_ID AND CHAT_TO_ID)
+		 OR (CHAT_FROM_ID AND CHAT_TO_ID))
+		 AND TO_CHAR(CHAT_TIME,'YYYY-MM-DD HH24:MI:SS')>=(SELECT TO_CHAR(WARNING_TIME-1/24,'YYYY-MM-DD HH24:MI:SS')
+		  													FROM WARNING
+		 													WHERE WARNING_ID = #{warningId})
+		 AND TO_CHAR(CHAT_TIME,'YYYY-MM-DD HH24:MI:SS')<=(SELECT TO_CHAR(WARNING_TIME+1/24,'YYYY-MM-DD HH24:MI:SS')
+															FROM WARNING
+															WHERE WARNING_ID = #{warningId})
+		]]>
+	</select>
 
 </mapper>

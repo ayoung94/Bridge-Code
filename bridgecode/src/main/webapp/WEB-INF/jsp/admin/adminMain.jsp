@@ -33,10 +33,6 @@ a {
           </div>
         </div>
         <div class="w3-container">
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>ex@mail.com</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>1224435534</p>
-          <hr>
-          
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Menu</b></p>
           <p><a href="getUserList.do?member_level=1">새로운 회원 신청 현황</a></p>
           <p><a href="getWarningList.do">비매너 신고 현황</a></p>
@@ -55,11 +51,11 @@ a {
       <div class="w3-container w3-card-2 w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>회원 관리</h2>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b><a href="getUserList.do?member_level=1">새로운 회원 신청 ?건</a></b></h5>
+          <h5 class="w3-opacity"><b><a href="getUserList.do?member_level=1">새로운 회원 신청 ${countUserApplication}건</a></b></h5>
           <hr>
         </div>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b>신고 ?건</b></h5>
+          <h5 class="w3-opacity"><b><a href="getWarningList.do">신고 ${count}건</a></b></h5>
           <hr>
         </div>
       </div>

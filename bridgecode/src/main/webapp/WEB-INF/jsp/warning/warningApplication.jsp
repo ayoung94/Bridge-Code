@@ -65,7 +65,7 @@
 					<td>${warnList.WARNING_TO_ID}</td>
 					<td>${warnList.WARNING_TIME}</td>
 					<td>${warnList.WARNING_REASON}</td>
-					<td>상세보기</td>
+					<td><a href="selChatContext.do?warningId=" 상세보기</td>
 					<td><a
 						onClick="if(confirm('해당 회원에게 경고하시겠습니까?')) location.href='updateWarningApplication.do?warningId=${warnList.WARNING_ID}'">승인</a></td>
 					<td><a
@@ -82,6 +82,11 @@
 	<div class="modal-dialog modal-sm">
 		Modal content
 		<div class="modal-content" ></div>
+		<div class="modal-body">
+		</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
 	</div>
 </div> -->
 	</table>

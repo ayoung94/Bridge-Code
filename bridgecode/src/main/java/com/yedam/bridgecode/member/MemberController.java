@@ -2,6 +2,7 @@ package com.yedam.bridgecode.member;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -23,6 +24,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
@@ -52,6 +55,21 @@ public class MemberController {
 		return "home"; 
 		
 	}
+	
+	@RequestMapping("/ajaxMemberId.json")
+	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
+		MemberVO vo = new MemberVO();
+		vo.setMember_id(member_id);
+		System.out.println(member_id);
+		MemberVO result = memberService.getMember(vo);
+		System.out.println(result);
+		if(result == null){ 
+			return "true";
+		}else{
+			return "false";
+		}
+	}
+	
 	
 	@RequestMapping("/member/memberInsert.do")
 	public String memberInsertForm(Model model){
@@ -107,7 +125,7 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/member/memberSelect.do";
+		return "redirect:/member/mypage.do";
 	}
 	
 	@RequestMapping("/member/memberList.do")
@@ -131,7 +149,9 @@ public class MemberController {
 	public String memberSelect(MemberVO vo,
 							   Model model,
 							   HttpSession session){
-		
+		CodeVO cv = new CodeVO();
+		List<Map<String, Object>> interest = MatchingService.getCodeList(cv);
+		model.addAttribute("list", interest);
 		vo = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member",vo);
 		

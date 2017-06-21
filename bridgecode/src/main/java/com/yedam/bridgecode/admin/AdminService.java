@@ -8,4 +8,5 @@ public interface AdminService {
 	public MemberVO getUserSel(MemberVO vo);
 	public void updateUserApplication(MemberVO vo);
 	public void updateUserReject(MemberVO vo);
+	public int countUserApplication(MemberVO vo);
 }

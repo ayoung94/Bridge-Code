@@ -8,12 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yedam.bridgecode.member.MemberVO;
+import com.yedam.bridgecode.warning.WarningMapper;
+import com.yedam.bridgecode.warning.WarningVO;
 
 @Controller
 public class AdminController {
 
 	@Autowired AdminService adminService;
 	@Autowired AdminMapper adminDAO;
+	@Autowired WarningMapper warningDAO;
 
 	//유저 리스트 조회
 	@RequestMapping("/getUserList.do")
@@ -41,7 +44,13 @@ public class AdminController {
 
 	//관리자 페이지 이동
 	@RequestMapping("/goAdminMain.do")
-	public String goAdminMain(){
+	public String goAdminMain(Model model){
+		int count = 0;
+		int countUserApplication = 0;
+		countUserApplication = adminDAO.countUserApplication(null);
+		count = warningDAO.countWarning(null);
+		model.addAttribute("countUserApplication", countUserApplication);
+		model.addAttribute("count", count);
 		return "/popup/admin/adminMain";
 	}
 

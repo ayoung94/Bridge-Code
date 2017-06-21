@@ -86,6 +86,11 @@ public class MemberServiceImpl implements MemberService{
 		MemberDAO.memberProfileUpdate(vo);
 	}
 
+	@Override
+	public List<Map<String,Object>> getMemberId() {
+		return MemberDAO.getMemberId();
+	}
+
 
 
 	

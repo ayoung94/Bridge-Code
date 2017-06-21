@@ -3,7 +3,6 @@ package com.yedam.bridgecode.warning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yedam.bridgecode.member.MemberVO;
 
 @Service("warningService")
 public class WarningServiceImpl implements WarningService{
@@ -11,14 +10,14 @@ public class WarningServiceImpl implements WarningService{
 	//DAO를 호출하는 부분
 	@Autowired
 	private WarningMapper warningDAO;
-	
+
 	@Override
 	public WarningVO getWarningSel(WarningVO vo) {
 		return warningDAO.getWarningSel(vo);
 	}
 
 	@Override
-	public void updateWarningApplicationMember(MemberVO vo) {
+	public void updateWarningApplicationMember(WarningVO vo) {
 		warningDAO.updateWarningApplicationMember(vo);
 	}
 
@@ -30,7 +29,19 @@ public class WarningServiceImpl implements WarningService{
 	@Override
 	public void updateWarningApplicationWarning(WarningVO vo) {
 		warningDAO.updateWarningApplicationWarning(vo);
-		
+
+	}
+
+	@Override
+	public int countWarning(WarningVO vo) {
+		int count = 0;
+		count = warningDAO.countWarning(vo);
+		return count;
+	}
+
+	@Override
+	public WarningVO selChatContext(WarningVO vo) {
+		return warningDAO.selChatContext(vo);
 	}
 
 }
