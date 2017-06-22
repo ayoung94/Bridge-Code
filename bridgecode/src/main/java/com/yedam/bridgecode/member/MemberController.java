@@ -44,7 +44,7 @@ public class MemberController {
 	MatchingService MatchingService;
 
 	
-	@RequestMapping("/")
+/*	@RequestMapping("/")
 	public String home(MemberVO vo,Model model) {
 		
 		List<Map<String,Object>> list = memberService.getBestMemberList(vo);
@@ -52,7 +52,7 @@ public class MemberController {
 		return "home"; 
 		
 	}
-	
+	*/
 	@RequestMapping("/ajaxMemberId.json")
 	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
 		MemberVO vo = new MemberVO();
@@ -253,6 +253,7 @@ public class MemberController {
 		MemberVO member = memberService.getMember(((MemberVO)session.getAttribute("login")));
 		HeartVO heartfrom = heartService.checkHeart(member);
 		List<Map<String,Object>> heartTo = heartService.getToHeartList(member);
+		session.setAttribute("hertto", heartTo);
 		
 		model.addAttribute("member",member);
 		model.addAttribute("heartfrom",heartfrom);
@@ -264,9 +265,9 @@ public class MemberController {
 	
 	@RequestMapping("/member/memberUpdate.do")
 	public String memberUpdateForm(MemberVO vo
-						,Model model
-						,HttpSession session){
-		
+									,Model model
+									,HttpSession session){
+	
 		MemberVO member = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member", member);
 		
@@ -274,20 +275,32 @@ public class MemberController {
 		model.addAttribute("list", interest);
 		
 		
-		session.setAttribute("member", member);
+		//session.setAttribute("member", member);
 		return "member/memberUpdate";
 	}
 	
 	@RequestMapping(value="/member/memberUpdate.do", 
             		method = RequestMethod.POST)
-	public String memberUpdate(@ModelAttribute("member") MemberVO member
+	public String memberUpdate(@ModelAttribute("member") MemberVO vo
 						,Model model
 						,SessionStatus status
 						,HttpSession session){
-		memberService.updateMember(member);
+		MemberVO old = (MemberVO)session.getAttribute("login");
+		System.out.println(old);
+		System.out.println("여기보세요 ★★★★★"+vo.getMember_birth());
+		if(vo.getMember_birth() == null || vo.getMember_birth().equals("")){
+			vo.setMember_birth(old.getMember_birth());
+			System.out.println("새로 등록"+old.getMember_birth());
+		}
+		
+		
+		
+		
+		memberService.updateMember(vo);
 		status.setComplete();
-		member = memberService.getMember(member);
-		session.setAttribute("login", member);
+		
+		vo = memberService.getMember(vo);
+		session.setAttribute("login", vo);
 		return "redirect:/member/memberSelect.do";
 	}
 	

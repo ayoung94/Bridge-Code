@@ -10,8 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.yedam.bridgecode.board.BoardVO;
 import com.yedam.bridgecode.member.MemberService;
 import com.yedam.bridgecode.member.MemberVO;
 
@@ -136,8 +138,7 @@ public class HeartController {
 		
 		heartService.heartNO(vo);
 		
-		MemberVO to = new MemberVO();
-		to.setMember_id(vo.getHeart_to_id());
+		MemberVO to = (MemberVO)session.getAttribute("login");
 		
 		List<Map<String,Object>> heartTo = heartService.getToHeartList(to);
 		session.setAttribute("heartto",heartTo);
@@ -181,9 +182,44 @@ public class HeartController {
 		partner.setMember_id(vo.getMember_partner_id());
 		partner = memberService.getMember(partner);
 		HeartVO heart = heartService.getCoupleHeart(vo, partner);
-
+		
+		model.addAttribute("boardlist",heartService.getCoupleBoardList(vo));
 		model.addAttribute("partner", partner);
 		model.addAttribute("heart",heart);
 		return "couple/couplePage";
+	}
+	
+	@RequestMapping("/couple/boardInsert.do")
+	public String boardInsert(BoardVO vo,
+							 Model model,
+							 HttpSession session){
+		heartService.boardInsert(vo);
+		return "redirect:/couple/couplepage.do";
+	}
+	@RequestMapping("/couple/boardDelete.do")
+	public String boardDelete(@RequestParam String board_id,
+							 Model model,
+							 HttpSession session){
+		heartService.boardDelete(board_id);
+		return "redirect:/couple/couplepage.do";
+	}
+	
+	@RequestMapping("/couple/boardUpdateLike.json")
+	public @ResponseBody String boardUpdateLike(@RequestParam String board_id,
+								 @RequestParam String like,
+								 Model model,
+								 HttpSession session){
+		System.out.println(like);
+		if(like.equals("0")){
+			System.out.println("라이크!!!");
+			heartService.boardUpdateLike(board_id);
+			return "1";
+		}else if(like.equals("1")){
+			System.out.println("디스라이트!!!");
+			heartService.boardUpdateDislike(board_id);
+			return "0";
+		}
+		return null;
+		
 	}
 }

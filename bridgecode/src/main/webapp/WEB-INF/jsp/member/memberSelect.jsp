@@ -94,6 +94,13 @@ width: 300px;
 <td>${member.member_name}</td>
 </tr>
 <tr>
+<td>생년월일:</td>
+<td>
+	<fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
+	<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" />
+</td>
+</tr>
+<tr>
 <td>닉네임:
 </td>
 <td>
@@ -112,13 +119,6 @@ ${member.member_nickname}
 <td>국적:</td>
 <td>
 ${member.member_country}
-</td>
-</tr>
-<tr>
-<td>생년월일:</td>
-<td>
-	<fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
-	<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" />
 </td>
 </tr>
 <tr>
