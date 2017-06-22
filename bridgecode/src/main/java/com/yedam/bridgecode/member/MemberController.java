@@ -47,14 +47,14 @@ public class MemberController {
 	MatchingService MatchingService;
 
 	
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	public String home(MemberVO vo,Model model) {
 		
 		List<Map<String,Object>> list = memberService.getBestMemberList(vo);
 		model.addAttribute("list",list);
 		return "home"; 
 		
-	}
+	}*/
 	
 	@RequestMapping("/ajaxMemberId.json")
 	public @ResponseBody String ajaxChart(@RequestParam String member_id) {

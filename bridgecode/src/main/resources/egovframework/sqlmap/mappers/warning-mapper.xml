@@ -64,8 +64,8 @@
 	<select id="selChatContext" resultType="Map"> 
 		<![CDATA[
 		 SELECT * FROM CHAT
-		 WHERE ((CHAT_FROM_ID=#{WARNING_FROM_ID} AND CHAT_TO_ID=#{WARNING_TO_ID})
-		 OR (CHAT_FROM_ID=#{WARNING_FROM_ID} AND CHAT_TO_ID=#{WARNING_FROM_ID}))
+		 WHERE ((CHAT_FROM_ID=#{warningFromId} AND CHAT_TO_ID=#{warningToId})
+		 OR (CHAT_FROM_ID=#{warningToId} AND CHAT_TO_ID=#{warningFromId}))
 		 AND TO_CHAR(CHAT_TIME,'YYYY-MM-DD HH24:MI:SS')>=(SELECT TO_CHAR(WARNING_TIME-1/24,'YYYY-MM-DD HH24:MI:SS')
 		  													FROM WARNING
 		 													WHERE WARNING_ID = #{warningId})
