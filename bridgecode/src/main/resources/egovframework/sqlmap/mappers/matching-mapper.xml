@@ -101,10 +101,10 @@
 				,MEMBER_NAME
 				,MEMBER_WARNING
 		FROM MEMBER
-<!-- 		WHERE MEMBER_COUNTRY = #{optionsRadios}
+ 		WHERE MEMBER_COUNTRY = #{optionsRadios}
 		AND MEMBER_SEX = #{toggle}
- 		AND 6 BETWEEN #{minage} AND #{maxage}
-  		AND MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
+<!--  		AND 6 BETWEEN #{minage} AND #{maxage} -->
+  		<!--AND MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
  		OR	MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3})
 		OR	MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}
  		ORDER BY MEMBER_BIRTH ASC --> 

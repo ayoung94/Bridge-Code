@@ -9,7 +9,7 @@
 
 <style>
 table td {
-	padding: 10px;
+	padding: 5px;
 }
 
 #sliderRange {
@@ -107,25 +107,26 @@ table td {
 		$("#matchingfrm").change(function(){
 					var params = $("#matchingfrm").serialize();
 					console.log(params);
-			 	("${pageContext.request.contextPath}/matching/realMatching.do", params, function(data,status){  //서버 url주소
-			            var jData = eval('(' + data +')');  //json으로 변환
-			            if(status == "success") {
-			               if( jData.length == 1) {
-			                  alert("등록완료");
-			                  for(i=0 ; i<jData.length; i++){
-				      				if(jData[i].MEMBER_SEX == '1'){
+			 	$.getJSON("${pageContext.request.contextPath}/matching/realMatching.do", params, function(data,status){  //서버 url주소
+			        console.log(status);
+			        console.log(data);
+			 		if(status == "success") {
+			 			$('#result').html("");
+			               if( data.length > 0) {
+			                  for(i=0 ; i<data.length; i++){
+				      				if(data[i].MEMBER_SEX == '1'){
 				      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				      		    		+jData[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-				      		    		+jData[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-				      		    		+jData[i].MEMBER_NICKNAME +"<br>"
-				      		    		+jData[i].MEMBER_BIRTH+" 살<br>"
+				      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+				      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+				      		    		+data[i].MEMBER_NICKNAME +"<br>"
+				      		    		+data[i].MEMBER_BIRTH+" 살<br>"
 				      		    		+"남성</td>")  	} 
 				      		    	else {
 				      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				      				    		+jData[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-				      				    		+jData[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-				      				    		+jData[i].MEMBER_NICKNAME +"<br>"
-				      				    		+jData[i].MEMBER_BIRTH+" 살<br>"
+				      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+				      				    		+data[i].MEMBER_NICKNAME +"<br>"
+				      				    		+data[i].MEMBER_BIRTH+" 살<br>"
 				      				    		+"여성</td>")  	}
 				      		    	if((i+1)%5 == 0){
 				      		    		$('#result').append("</tr><tr>")
@@ -177,8 +178,49 @@ table td {
 		});
 		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
 		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
-
+console.log(sliderRange);
 	});
+	
+	
+	function ageSlider(){
+			var params = $("#matchingfrm").serialize();
+	 	$.getJSON("${pageContext.request.contextPath}/matching/realMatching.do", params, function(data,status){  //서버 url주소
+	        console.log(status);
+	        console.log(data);
+	 		if(status == "success") {
+	 			$('#result').html("");
+	               if( data.length > 0) {
+	                  for(i=0 ; i<data.length; i++){
+		      				if(data[i].MEMBER_SEX == '1'){
+		      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+		      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+		      		    		+data[i].MEMBER_NICKNAME +"<br>"
+		      		    		+data[i].MEMBER_BIRTH+" 살<br>"
+		      		    		+"남성</td>")  	} 
+		      		    	else {
+		      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+		      				    		+data[i].MEMBER_NICKNAME +"<br>"
+		      				    		+data[i].MEMBER_BIRTH+" 살<br>"
+		      				    		+"여성</td>")  	}
+		      		    	if((i+1)%5 == 0){
+		      		    		$('#result').append("</tr><tr>")
+		      		    		}
+		      				}
+	               }
+	               } else {
+	                  alert("등록에러");
+	               }
+	             
+	         });
+	         return false;    //event.preventDefault()
+	}
+	
+	
+	
+	
 </script>
 
 </head>
@@ -227,9 +269,9 @@ table td {
 			<br>
 
 			<div>연령선택</div>
-			<input type="text" id="age0" name="minage" readonly>세 ~ 
-			<input type="text" id="age1" name="maxage" readonly>세
-			<div id="sliderRange"></div>
+			<input type="text" id="age0" name="minage" >세 ~ 
+			<input type="text" id="age1" name="maxage" >세
+			<div id="sliderRange" onclick="ageSlider()"></div>
 			<br>
 
 			<p>이성만 검색하기</p>

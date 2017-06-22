@@ -74,6 +74,7 @@ public class MatchingController {
 		String minage = request.getParameter("minage");
 		String maxage = request.getParameter("maxage");
 		String toggle = request.getParameter("toggle");
+		String sliderRange = request.getParameter("sliderRange");		
 		String optionsRadios = request.getParameter("optionsRadios");
 		// 최소 검색나이
 		map.put("minage", minage);
@@ -81,6 +82,8 @@ public class MatchingController {
 		map.put("maxage", maxage);
 		// toggle(남 or 여)
 		map.put("toggle", toggle);
+		// 연령
+		map.put("sliderRange", sliderRange);
 		// 국적선택
 		map.put("optionsRadios", optionsRadios);
 		// 관심사
