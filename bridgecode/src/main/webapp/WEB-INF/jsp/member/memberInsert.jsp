@@ -60,16 +60,13 @@ $(function(){
 							'${pageContext.request.contextPath}/ajaxMemberId.json',
 							{member_id:$("#member_id").val()},
 							function(data){
-								console.log(data);
 								if(data == true){ //중복 없음
-									console.log("여기!");
 									$("#member_id_div").attr('class','form-group label-floating has-success');
 									$("#idNOTOK").hide();
 									$("#idOK").show();		
 									$("#member_id_label").text("");
 									$("#member_id_check").attr('value','true');
 								} else{				//중복 있음
-								console.log("false로 될시에 오는곳");
 								$("#member_id_div").attr('class','form-group label-floating has-error');
 								$("#idOK").hide();
 								$("#idNOTOK").show();

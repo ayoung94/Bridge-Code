@@ -7,11 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-비밀번호를 잊으셨나요?<br>
+<h4>비밀번호를 잊으셨나요?</h4>
 회원가입 때 등록하신 아이디로 임시 비밀번호가 담긴 메일을 보내드리겠습니다.<br>
+<hr>
 <form method="post">
-<input type="text" name="member_id"> 
-<button>입력</button>
+
+<div class="col-sm-3">
+<div class="form-group">
+<input type="text" name="member_id" class="form-control" placeholder="이메일을 입력해주세요..">
+</div>
+</div>
+<button class="btn btn-primary btn-sm" style="margin-top: 30px;">입력</button>
+
 </form>
 </body>
 </html>

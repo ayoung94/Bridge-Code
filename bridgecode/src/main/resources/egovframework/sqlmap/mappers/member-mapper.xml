@@ -54,11 +54,15 @@
         	member_nickname = #{member_nickname},
         	member_sex = #{member_sex},
         	member_country = #{member_country},
-        	member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'),
-        	member_introduction = #{member_introduction}
+        	member_introduction = #{member_introduction},
+        	member_interest1 = #{member_interest1},
+        	member_interest2 = #{member_interest2},
+        	member_interest3 = #{member_interest3}
+        	
         WHERE member_id = #{member_id}
         ]]>
-	</update>
+	</update><!-- member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'), -->
+	<!-- member_name= #{member_name}, -->
 
 	<update id="updateRejectMember" parameterType="member">
         <![CDATA[

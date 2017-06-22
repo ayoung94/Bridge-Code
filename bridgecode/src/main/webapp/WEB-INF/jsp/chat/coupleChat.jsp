@@ -7,9 +7,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
     var newName, n=0;
     //팝업 창 제목 만들기 함수(다중 팝업을 위한..)    
     function newWindow(value)
@@ -48,26 +48,57 @@ padding: 10px;
 </style>
 <script>
 $(function(){
+	console.log("작동"); 
 	$("#messageWindow").on("mouseenter","div",function(){ //수정
-									var THIS = $(this);
+				var THIS = $(this);
+				var partnerLang = "${partner.member_country}";
+				var myLang = "${login.member_country}";
+				var reqStr = ""; 
+				var translateText = "";
+					if(partnerLang != "ko" && myLang != "ko"){ //양쪽다 ko가 아닐경우
+						reqStr = "value="+THIS.children().first().text()+"&source=${partner.member_country}&target=ko";
+						//1.한국어로 번역
+						$.ajax({
+							type:'get',
+							url:'${pageContext.request.contextPath}/chat/chatTranslate.json',
+							data:reqStr,
+							dataType:'text',
+							success:
+									 function(data){
+									 translateText = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+									//2.해당 언어로 번역	
+										reqStr = "value="+translateText+"&source=ko&target=${login.member_country}";
+										$.ajax({
+											type:'get',
+											url:'${pageContext.request.contextPath}/chat/chatTranslate.json',
+											data:reqStr,
+											dataType:'text',
+											success:
+													 function(data){
+																text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+																THIS.children().last().text(text);
+																THIS.children().last().show();
+																},
+											error:
+												function(){
+												console.log("에러1");
+											}
+										});						 
+									}, error:
+											function(){
+											console.log("에러2");
+										}
+									});
 									
-									var partnerLang = "${partner.member_country}";
-									var myLang = "${login.member_country}";
-									
-									var reqStr = "";
-									var translateText = "";
-									
-									if(partnerLang != "ko" && myLang != "ko"){
-									console.log("TEXT = "+THIS.children().first().text());
-									reqStr = "value="+THIS.children().first().text()+"&source=${partner.member_country}&target=ko";
-									//1.한국어로 번역
-									$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
+									/* $.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
 												   reqStr,
 												   function(data,status){
-													if(status == "success") {
-															console.log(translateText);
+													console.log("한쪽이 한국ㄴㄴㄴㄴㄴ 떄 성공!!!11111");
+													if(status == "success"){
+														console.log("한쪽이 한국말ㄴㄴㄴㄴ  성공!!!22222");
+															
 														    translateText = decodeURIComponent((data + '').replace(/\+/g, '%20'));
-														    
+														    console.log(translateText);
 														  //2.해당 언어로 번역	
 															reqStr = "value="+translateText+"&source=ko&target=${login.member_country}";
 															$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
@@ -80,28 +111,36 @@ $(function(){
 																				}
 															});	
 														}
-									});	
+									}); */
 									}else{
-									
+										//한쪽이라도 언어가 ko인 경우 
+										console.log('else');
 									reqStr = "value="+THIS.children().first().text()+"&source=${partner.member_country}&target=${login.member_country}";
-									$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
-											   reqStr,
-											   function(data,status){
-												if(status == "success") {
-													    
-														text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
-														THIS.children().last().text(text);
-														THIS.children().last().show();
-													}
-											});
-									}
+									console.log(reqStr);
+									
+									$.ajax({
+										type:'get',
+										url:'${pageContext.request.contextPath}/chat/chatTranslate.json',
+										data:reqStr,
+										dataType:'text',
+										success:
+												 function(data){
+															text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
+															THIS.children().last().text(text);
+															THIS.children().last().show();
+															},
+										error:
+											function(){
+											console.log("에러3");
+										}
+									});}
 					});
 
-	$(".youTalk").on({"mouseleave":function(){
+ 	$(".youTalk").on({"mouseleave":function(){
 		var THIS = $(this);
 		THIS.children().last().hide();
 	  }});
-	
+	 
 });
 
 </script>
@@ -109,7 +148,7 @@ $(function(){
 <body style="width: 400px; height:600px;">
 <ul class="w3-ul w3-card-4">
   <li class="w3-padding-16">
-    <img src="img_avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
+    <!-- <img src="img_avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:50px"> -->
     <span class="w3-large">${partner.member_nickname }</span><br>
     <span>${partner.member_id }</span><span style="float: right;">
     
@@ -140,7 +179,7 @@ $(function(){
 
 </body>
 
-<script type="text/javascript"> 
+<script> 
 		
         var textarea = document.getElementById("messageWindow"); 
         var webSocket = new WebSocket('ws://192.168.0.79:8085/bridgecode/coupleChat.do'); 

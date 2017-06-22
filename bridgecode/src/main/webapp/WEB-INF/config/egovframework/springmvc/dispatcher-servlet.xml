@@ -29,19 +29,16 @@
     </bean>
     <!-- 웹 바인딩 처리 끝 -->
     
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-        <property name="interceptors">
-            <list>
-                <ref bean="localeChangeInterceptor" />
-            </list>
-        </property>
-    </bean>
-    
-    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
     <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
+    
+    
+    <mvc:interceptors>  
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
+    <bean id="LoginInterceptor" class="com.yedam.bridgecode.member.LoginInterceptor" />
+	</mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="defaultErrorView" value="cmmn/egovError"/>
@@ -94,7 +91,10 @@
 	<bean id="myHandler" class="com.yedam.bridgecode.chat.SocketHandler" />
 	<!-- 웹소켓 끝 -->
 	
-	<!-- json -->
+	
+
+	
+<!-- 	 json 06.21 주석처리 이후 오류 없으면 삭제처리 -아영-
 	<bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"></bean> 
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
 	<property name="messageConverters"> 
@@ -103,7 +103,7 @@
 	</list> 
 	</property> 
 	</bean> 
-	
+	 -->
 
     <mvc:view-controller path="/cmmn/validator.do" view-name="cmmn/validator"/>
 </beans>

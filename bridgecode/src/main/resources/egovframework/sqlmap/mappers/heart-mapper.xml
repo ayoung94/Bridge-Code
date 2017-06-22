@@ -177,12 +177,67 @@
 		and heart_status = 0
 	</select> 
 
+	<select id="getCoupleBoardList" resultType="map">
+		SELECT board_id,
+			   board_content,
+			   board_time,
+			   board_like,
+			   board_writer,
+			   member_nickname,
+			   member_profile_img
+		FROM board b,member m
+		where (board_writer = #{member_id}
+		or board_writer =  #{member_partner_id})
+		and b.board_writer = m.member_id
+		order by board_time desc
+	</select> 
 	
+	
+	<insert id="boardInsert" parameterType="board"><!-- sql-map-config-spring.xml에서 타입 alias정의 -->
+        <!-- heart_confirm_time는 빠져있음. -->
+        <![CDATA[  
+        INSERT INTO board(
+        	   board_id,
+        	   board_writer,
+			   board_content,
+			   board_like,
+			   board_time) 
+			   
+        VALUES(
+        	   board_seq.nextval,
+        	   #{board_writer},
+        	   #{board_content},
+        	   0,
+        	   sysdate)
+        ]]>
+	</insert>
+	
+	<delete id="boardDelete" parameterType="String">
+        <![CDATA[
+        DELETE board
+        WHERE board_id = #{id}
+        ]]>
+	</delete>
 
-	<select id="getMemberList" resultType="map">
+	<update id="boardUpdateLike" parameterType="String">
+        <![CDATA[
+        UPDATE board SET
+           board_like = 1
+        WHERE board_id = #{id}
+        ]]>
+	</update>
+	
+	<update id="boardUpdateDislike" parameterType="String">
+        <![CDATA[
+        UPDATE board SET
+           board_like = 0
+        WHERE board_id = #{id}
+        ]]>
+	</update>
+<!-- 	<select id="getMemberList" resultType="map">
 		SELECT *
 		FROM member
-	</select> 
+	</select>  -->
 	
 	
 	<!-- <select id="getUserListVO" resultMap="userMap">
