@@ -145,8 +145,7 @@
 		<div class="col-sm-8">
 			<div class="panel-group" style="width: 500px;">
 				<div class="panel panel-default">
-					<div class="panel-heading" style="background-color: lavender;">my
-						information</div>
+					<div class="panel-heading" style="background-color: lavender;">My Profile</div>
 					<div class="panel-body" style="height: 180px;">
 
 						<table>

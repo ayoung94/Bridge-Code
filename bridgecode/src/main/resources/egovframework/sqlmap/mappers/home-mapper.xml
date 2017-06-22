@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.bridgecode.home.HomeMapper">
+	<!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
+
+	<select id="bestMemberList" resultType="map">
+		SELECT m.member_id as "member_id", count(1) as "heart_count", m.member_profile_img
+		from member m, heart h
+		where m.member_id = h.heart_to_id 
+		and to_char(sysdate, 'mm')= to_char(h.heart_confirm_time,'mm')
+		group by member_id, member_profile_img
+		order by count(h.heart_to_id) desc
+	</select>
+
+</mapper>

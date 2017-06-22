@@ -9,7 +9,14 @@
 <title>Insert title here</title>
 <script>
 $(function(){ 
-	$(':checkbox').click(function(){
+	
+	$('#member_birth').blur(function(){
+		console.log($('#member_birth').attr('value'));
+		console.log("아");
+		
+	}); 
+	
+	$(':checkbox').click(function (){
 		var checkboxs = $("[name='interest']:checked"); // :checked
 		var checkValue = "";
 		for(i=0;i<checkboxs.length;i++){
@@ -26,8 +33,6 @@ $(function(){
 	
 	$("#member_password").bind("keypress blur",
 			function(){
-			console.log($("#member_password1").val());
-			console.log($("#member_password").val()); 
 			if($("#member_password").val() ==''){
 				$("#member_password_div").attr('class','form-group label-floating has-error');
 				$("#passwordOK").hide();
@@ -93,6 +98,18 @@ width: 300px;
 <td>아이디 :</td><td>${member.member_id}</td>
 </tr>
 <tr>
+<td>이름 :</td>
+<td>
+${member.member_name}</td>
+</tr>
+<tr>
+<td>생년월일:</td>
+<td>
+<fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
+<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" />
+</td>
+</tr>
+<tr>
 <td>비밀번호:<br><br><br><br>비밀번호 확인:</td>
 <td>
 <div class="col-sm-4">
@@ -108,13 +125,6 @@ width: 300px;
 </div>
 <input type="hidden" id="password_check" value="false">
 </td>
-</tr>
-<tr>
-<td>이름 :</td>
-<td>
-<div class="col-sm-4">
-<input type="text" name="member_name" class="form-control widthSmall" value="${member.member_name}">
-</div></td>
 </tr>
 <tr>
 <td>닉네임:
@@ -145,18 +155,6 @@ width: 300px;
 </div></td>
 </tr>
 <tr>
-<td>생년월일:</td>
-<td>
-<div class="col-sm-4">
-<c:set value="${member.member_birth }" var="birth"  />
-<input type="text" name="member_birth" class="datepicker form-control widthSmall" data-date-format="yyyy/mm/dd" value="
-<%-- <fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
-<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" /> --%>
-${member.member_birth}">
-</div>
-</td>
-</tr>
-<tr>
 <td>관심사:</td>
 <td>
 <br>
@@ -182,9 +180,9 @@ ${interest.code_name }
 %>
 </c:forEach> 
 <input type="hidden" id="interestLength" >
-<input type="hidden" id="member_interest1" name="member_interest1">
-<input type="hidden" id="member_interest2" name="member_interest2">
-<input type="hidden" id="member_interest3" name="member_interest3">
+<input type="hidden" id="member_interest1" name="member_interest1" value="${member.member_interest1}">
+<input type="hidden" id="member_interest2" name="member_interest2" value="${member.member_interest2}">
+<input type="hidden" id="member_interest3" name="member_interest3" value="${member.member_interest3}">
 </td>
 </tr>
 <tr>
