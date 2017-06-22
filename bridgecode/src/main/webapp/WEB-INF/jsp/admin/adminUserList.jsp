@@ -37,14 +37,23 @@
 	})
 </script>
 <style>
-    .modal-backdrop {
-        z-index: -1;
-    }
+.modal-backdrop {
+	z-index: -1;
+}
+</style>
+<style>
+td {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+}
 </style>
 </head>
 <body>
 	<h1>유저 리스트 목록</h1>
-	<table id="userListTable" >
+	<table id="userListTable">
 		<thead>
 			<tr>
 				<th>ID</th>
@@ -62,8 +71,7 @@
 		<tbody>
 			<c:forEach items="${userList}" var="user">
 				<tr>
-					<td><a href="getUserSel.do?member_id=${user.MEMBER_ID}"
-						data-toggle="modal" data-target="#userSelModal">${user.MEMBER_ID}</a></td>
+					<td><a href="getUserSel.do?member_id=${user.MEMBER_ID}" data-toggle="modal" data-target="#userSelModal">${user.MEMBER_ID}</a></td>
 					<td>${user.MEMBER_PASSWORD}</td>
 					<td>${user.MEMBER_NICKNAME}</td>
 					<td>${user.MEMBER_NAME}</td>
@@ -79,10 +87,11 @@
 	</table>
 
 	<!-- Modal -->
-	<div class="modal fade" id="userSelModal" style="padding: 20px 35px;" role="dialog">
+	<div class="modal fade" id="userSelModal" style="padding: 20px 35px;"
+		role="dialog">
 		<div class="modal-dialog modal-sm">
 			<!-- Modal content-->
-			<div class="modal-content" ></div>
+			<div class="modal-content"></div>
 		</div>
 	</div>
 </body>

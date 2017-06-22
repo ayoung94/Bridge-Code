@@ -6,7 +6,7 @@
 	<!-- 반드시 패키지명 이름 제대로 확인하세요..! -->
 
 	<select id="bestMemberList" resultType="map">
-		SELECT m.member_id as "member_id", count(1) as "heart_count", m.member_profile_img
+		SELECT m.member_id as "member_id", count(1) as "heart_count", m.member_profile_img as "member_profile_img"
 		from member m, heart h
 		where m.member_id = h.heart_to_id 
 		and to_char(sysdate, 'mm')= to_char(h.heart_confirm_time,'mm')

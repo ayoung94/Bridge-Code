@@ -33,6 +33,15 @@
 		location.href = "noticeInsertForm.do"
 	}
 </script>
+<style>
+td {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<h1>공지사항</h1>

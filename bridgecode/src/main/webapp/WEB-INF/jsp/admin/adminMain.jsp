@@ -34,6 +34,7 @@ a {
         </div>
         <div class="w3-container">
           <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i>Menu</b></p>
+          <p><a href="${pageContext.request.contextPath}/">HOME</a></p>
           <p><a href="getUserList.do?member_level=1">새로운 회원 신청 현황</a></p>
           <p><a href="getWarningList.do">비매너 신고 현황</a></p>
           <p><a href="getNoticeList.do">공지사항</a></p>
