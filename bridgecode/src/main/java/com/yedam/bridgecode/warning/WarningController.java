@@ -46,7 +46,7 @@ public class WarningController {
 	@RequestMapping("selChatContext.do")
 	public String selChatContext(Model model, WarningVO vo){
 		model.addAttribute("chatContext", warningDAO.selChatContext(vo));
-		return "redirect:/warningApplication";
+		return "/popup/warning/warningApplication";
 		
 	}
 }
