@@ -41,25 +41,52 @@ public class MatchingController {
 	}
 	//조건에 맞는 회원 찾기
 	@RequestMapping("/matching/memberMatching.do")
-	public @ResponseBody List<Map<String, Object>> getMemberList(MemberVO vo, Model model, HttpSession session)throws Exception{
-		//model.addAttribute("member", MatchingService.getMemberList(vo));
+	public @ResponseBody List<Map<String, Object>> getMemberList(MemberVO vo,
+								HttpSession session, HttpServletRequest request) throws Exception {
+		// model.addAttribute("member", MatchingService.getMemberList(vo));
 		vo = (MemberVO)session.getAttribute("login");
-		return MatchingService.getMemberList(vo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		String minage = request.getParameter("minage");
+		String maxage = request.getParameter("maxage");
+		String toggle = request.getParameter("toggle");
+		String optionsRadios = request.getParameter("optionsRadios");
+		// 최소 검색나이
+		map.put("minage", minage);
+		// 최대 검색나이
+		map.put("maxage", maxage);
+		// toggle(남 or 여)
+		map.put("toggle", toggle);
+		// 국적선택
+		map.put("optionsRadios", optionsRadios);
+		System.out.println(map);
+		return MatchingService.getMemberList(map);
 
 	}
 	// 실시간 ajax 조건검색  
 	@RequestMapping("/matching/realMatching.do")
-	public @ResponseBody List<Map<String, Object>> realMatchingList(MemberVO vo, HttpServletRequest request)throws Exception{
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("vo",vo);
-		//최소 검색나이
-		map.put("minage", request.getParameter("minage"));
-		//최대 검색나이
-		map.put("maxage", request.getParameter("maxage"));
-		//toggle(남 or 여)
-		map.put("toggle", request.getParameter("toggle"));
-		
-		return MatchingService.realMatching(map);
+	public @ResponseBody List<Map<String, Object>> realMatchingList(
+								MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+		vo = (MemberVO)session.getAttribute("login");
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", vo);
+		// 변수 선언
+		String minage = request.getParameter("minage");
+		String maxage = request.getParameter("maxage");
+		String toggle = request.getParameter("toggle");
+		String optionsRadios = request.getParameter("optionsRadios");
+		// 최소 검색나이
+		map.put("minage", minage);
+		// 최대 검색나이
+		map.put("maxage", maxage);
+		// toggle(남 or 여)
+		map.put("toggle", toggle);
+		// 국적선택
+		map.put("optionsRadios", optionsRadios);
+		// 관심사
+	
+		System.out.println(map);
+		return MatchingService.realMatchingList(map);
 	}
 
 	// 상세프로필 보기로 이동

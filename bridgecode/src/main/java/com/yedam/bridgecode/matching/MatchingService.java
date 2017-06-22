@@ -11,7 +11,7 @@ public interface MatchingService {
 	public List<Map<String,Object>> getCodeList(CodeVO vo);
 	
 	//전체 매칭리스트
-	public List<Map<String,Object>> getMemberList(MemberVO vo);
+	public List<Map<String,Object>> getMemberList(Map<String,Object> map);
 	
 	//서브 프로필 사진 추가 
 	public void profileUpdate(MemberVO vo);
@@ -20,5 +20,5 @@ public interface MatchingService {
 	public void introductionUpdate(MemberVO vo);
 	
 	// 실시간 ajax 조건검색 
-	public List<Map<String,Object>> realMatching(Map<String,Object> map);
+	public List<Map<String,Object>> realMatchingList(Map<String,Object> map);
 }
