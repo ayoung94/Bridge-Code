@@ -37,6 +37,7 @@
     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="language" />
     </bean>
+    <bean id="LoginInterceptor" class="com.yedam.bridgecode.member.LoginInterceptor" />
 	</mvc:interceptors>
 
     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">

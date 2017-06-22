@@ -14,5 +14,5 @@ public interface WarningMapper {
 	public void updateWarningApplicationWarning(WarningVO vo);
 	public void updateWarningReject(WarningVO vo);
 	public int countWarning(WarningVO vo);
-	public WarningVO selChatContext(WarningVO vo);
+	public List<WarningVO> selChatContext(WarningVO vo);
 }

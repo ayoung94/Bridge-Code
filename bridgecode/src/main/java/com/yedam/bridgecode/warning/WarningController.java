@@ -38,15 +38,19 @@ public class WarningController {
 		return "redirect:/getWarningList.do";
 	}
 
+	//비매너 유저 신고 수 카운트
 	@RequestMapping("/CountWarning.do")
 	public int countWarning(WarningVO vo){
 		return (Integer)warningDAO.countWarning(vo);
 	}
 	
+	//비매너 유저 신고 정황 채팅 내역 조회
 	@RequestMapping("selChatContext.do")
 	public String selChatContext(Model model, WarningVO vo){
+		System.out.println(vo);
 		model.addAttribute("chatContext", warningDAO.selChatContext(vo));
-		return "/popup/warning/warningApplication";
+		System.out.println("chatContext : " + warningDAO.selChatContext(vo));
+		return "/popup/warning/selChatContext";
 		
 	}
 }

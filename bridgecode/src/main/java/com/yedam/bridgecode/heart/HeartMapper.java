@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.yedam.bridgecode.board.BoardVO;
 import com.yedam.bridgecode.member.MemberVO;
 
 
@@ -36,4 +37,11 @@ public interface HeartMapper {
 	public List<Map<String,Object>> getMyHeartList(MemberVO vo); //받은 하트 리스트(승인 대기중인 하트만)
 	
 	public List<HeartVO> getHeartListVO(HeartVO vo); 
+	
+	public List<Map<String,Object>> getCoupleBoardList(MemberVO vo); //커플의 게시판 내역 받아오기.
+	
+	public void boardInsert(BoardVO vo);
+	public void boardDelete(String id);
+	public void boardUpdateLike(String id);
+	public void boardUpdateDislike(String id);
 }

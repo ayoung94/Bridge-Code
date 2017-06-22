@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.yedam.bridgecode.board.BoardVO;
 import com.yedam.bridgecode.member.MemberVO;
 
  
@@ -109,6 +110,31 @@ public class HeartServiceImpl implements HeartService{
 		map.put("to", to);
 
 		return HeartDAO.getCoupleHeart(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> getCoupleBoardList(MemberVO vo) {
+		return HeartDAO.getCoupleBoardList(vo);
+	}
+
+	@Override
+	public void boardInsert(BoardVO vo) {
+		HeartDAO.boardInsert(vo);
+	}
+
+	@Override
+	public void boardDelete(String id) {
+		HeartDAO.boardDelete(id);
+	}
+
+	@Override
+	public void boardUpdateLike(String id) {
+		HeartDAO.boardUpdateLike(id);
+	}
+
+	@Override
+	public void boardUpdateDislike(String id) {
+		HeartDAO.boardUpdateDislike(id);
 	}
 
 }

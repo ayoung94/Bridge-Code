@@ -66,48 +66,27 @@
 			<c:forEach items="${warningList}" var="warnList">
 				<tr>
 					<td>${warnList.WARNING_ID}</td>
-					<td>{warnList.WARNING_FROM_ID}</td>
+					<td>${warnList.WARNING_FROM_ID}</td>
 					<td>${warnList.WARNING_TO_ID}</td>
 					<td>${warnList.WARNING_TIME}</td>
 					<td>${warnList.WARNING_REASON}</td>
 					<td><a
-						href="selChatContext.do?warningId=${warnList.WARNING_ID}"
+						href="selChatContext.do?warningId=${warnList.WARNING_ID}&warningFromId=${warnList.WARNING_FROM_ID}&warningToId=${warnList.WARNING_TO_ID}"
 						data-toggle="modal" data-target="#userSelModal">상세보기</a></td>
 					<td><a
-						onClick="if(confirm('해당 회원에게 경고하시겠습니까?')) location.href='updateWarningApplication.do?warningId=${warnList.WARNING_ID}&{warnList.WARNING_FROM_ID}&${warnList.WARNING_TO_ID}'">승인</a></td>
+						onClick="if(confirm('해당 회원에게 경고하시겠습니까?')) location.href='updateWarningApplication.do?warningId=${warnList.WARNING_ID}'">승인</a></td>
 					<td><a
 						onClick="if(confirm('신고를 기각하시겠습니까?')) location.href='updateWarningReject.do?warningId=${warnList.WARNING_ID}'">기각</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>
-
-		<!-- Modal -->
-
-
-		<div class="modal fade" id="userSelModal" style="padding: 50px 35px;" role="dialog">
-			<div class="modal-dialog modal-sm">
-				Modal content
-				<div class="modal-content"></div>
-				<div class="modal-body">
-
-					<div class="w3-row">
-						<div class="w3-col s6 w3-green w3-center">
-							<p>신고한 회원 : $chatContext.CHAT_FROM_ID}</p>
-						</div>
-						<div class="w3-col s6 w3-dark-grey w3-center">
-							<p>신고 당한 회원 : ${chatContext.CHAT_TO_FROM_ID}</p>
-						</div>
-					</div>
-					<div>
-					<P>${chatContext.CHAT_CONTENT}</P>
-					
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				</div>
-			</div>
-		</div>
 	</table>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="userSelModal" style="padding: 50px 35px;" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content -->
+			<div class="modal-content"></div>
 </body>
 </html>

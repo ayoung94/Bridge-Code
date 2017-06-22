@@ -1,5 +1,7 @@
 package com.yedam.bridgecode.warning;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +42,7 @@ public class WarningServiceImpl implements WarningService{
 	}
 
 	@Override
-	public WarningVO selChatContext(WarningVO vo) {
+	public List<WarningVO> selChatContext(WarningVO vo) {
 		return warningDAO.selChatContext(vo);
 	}
 
