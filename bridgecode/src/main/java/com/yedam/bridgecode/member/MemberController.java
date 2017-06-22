@@ -2,12 +2,9 @@ package com.yedam.bridgecode.member;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -141,7 +138,7 @@ public class MemberController {
 		List<Map<String,Object>> list = memberService.getNewMemberList();
 		model.addAttribute("list",list);
 		System.out.println(list);
-		return "member/memberNewList";
+		return "member/memberNewList"; 
 	}
 	
 	
@@ -168,7 +165,7 @@ public class MemberController {
 		
 		MemberVO result = memberService.getMember(vo);
 		if(result == null){
-			model.addAttribute("msg", vo.getMember_id()+"해당 회원이 존재하지 않습니다."); 
+			model.addAttribute("msg","해당 회원이 존재하지 않습니다."); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -200,7 +197,8 @@ public class MemberController {
 	      // Get the Session object.
 	      Session session = Session.getInstance(props,
 	      new javax.mail.Authenticator() {
-	         protected PasswordAuthentication getPasswordAuthentication() {
+	         @Override
+			protected PasswordAuthentication getPasswordAuthentication() {
 	            return new PasswordAuthentication(username, password);
 	         }
 	      });
@@ -258,7 +256,7 @@ public class MemberController {
 		
 		model.addAttribute("member",member);
 		model.addAttribute("heartfrom",heartfrom);
-		model.addAttribute("heartto",heartTo);
+		model.addAttribute("heartTo",heartTo);
 		
 
 		return "member/mypage";
@@ -271,6 +269,11 @@ public class MemberController {
 		
 		MemberVO member = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member", member);
+		
+		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
+		model.addAttribute("list", interest);
+		
+		
 		session.setAttribute("member", member);
 		return "member/memberUpdate";
 	}
@@ -279,9 +282,12 @@ public class MemberController {
             		method = RequestMethod.POST)
 	public String memberUpdate(@ModelAttribute("member") MemberVO member
 						,Model model
-						,SessionStatus status){
+						,SessionStatus status
+						,HttpSession session){
 		memberService.updateMember(member);
 		status.setComplete();
+		member = memberService.getMember(member);
+		session.setAttribute("login", member);
 		return "redirect:/member/memberSelect.do";
 	}
 	
