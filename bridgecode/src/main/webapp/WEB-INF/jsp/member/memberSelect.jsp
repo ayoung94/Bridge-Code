@@ -20,6 +20,40 @@
 	}
 </script>
 <style>
+.myPageMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+	margin-bottom: 20px;
+}
+
+.myPageMenu li {
+    float: left;
+}
+
+.myPageMenu li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    border-bottom: 5px #DCDCDC solid;
+}
+.myPageMenu li:last-child {
+    width : 540px;
+    border-bottom: 5px #DCDCDC solid;
+   margin-top: 49px;
+}
+
+.changeBG:hover {
+   background-color: #DCDCDC;
+   color: white;
+}
+.active{
+	cursor: default;
+}
+
 .widthSmall{
 width:200px; 
 }
@@ -39,14 +73,20 @@ width: 300px;
 </style>
 </head>
 <body>
+<ul class="myPageMenu">
+  <li><a href="${pageContext.request.contextPath}/member/mypage.do" class="changeBG">마이 페이지</a></li>
+  <li><a href="${pageContext.request.contextPath}/heart/heartFromList.do" class="changeBG">내 하트 내역</a></li>
+  <li><a class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;">내 회원정보</a></li>
+  <li></li>
+</ul>
+
+
 <h3><i class="material-icons">account_circle</i>내 회원정보</h3>
 <hr>
 <table id="joinForm">
 <tr>
 <td>아이디 :</td><td>
  ${member.member_id}
-</div>
-</div>
 </td>
 </tr>
 <tr>
@@ -102,7 +142,7 @@ ${member.member_country}
 </table>
 <br><br>
 	<div style="margin-left: 500px;">
-	<button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberUpdate.do'";>회원 정보 수정</button>
+	<button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/member/memberUpdate.do'">회원 정보 수정</button>
 	<button class="btn btn-white" onclick="memberDelete()">회원 탈퇴</button>
 	</div>
 </body>
