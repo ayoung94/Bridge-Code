@@ -25,6 +25,9 @@
 	align: center;
 	padding: 5px;
 }
+.color{
+	background-color: #80D9F2;
+}
 </style>
 </head>
 <body>
@@ -36,13 +39,13 @@
 				</c:if>
 				<c:set value="${chatContext.CHAT_FROM_ID}" var="user2" />
 				<c:if test="${user1 eq user2}">
-					<div class="w3-col s12 w3-green w3-center">
+					<div class="w3-col s12 w3-center color">
 						<p class="fromId">${chatContext.CHAT_FROM_ID}</p>
 						<P class="fromId">${chatContext.CHAT_CONTENT}</P>
 					</div>
 				</c:if>
 				<c:if test="${user1 ne user2}">
-					<div class="w3-col s12 w3-grey w3-center">
+					<div class="w3-col s12 w3-center">
 						<p class="toId">${chatContext.CHAT_FROM_ID}</p>
 						<P class="toId">${chatContext.CHAT_CONTENT}</P>
 					</div>
