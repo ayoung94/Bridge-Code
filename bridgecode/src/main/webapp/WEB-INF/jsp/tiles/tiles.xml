@@ -34,7 +34,7 @@
 <put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp" />  <!-- 팝업창 뜬 후 tile 제거 -->
 </definition> 
 
-<definition name="/login" template="/WEB-INF/jsp/tiles/layoutBlank.jsp" >
+<definition name="login" template="/WEB-INF/jsp/tiles/layoutBlank.jsp" >
 <put-attribute name="content" value="/WEB-INF/jsp/tiles/login.jsp" />  <!-- alert 안뜬 후 뒤로가기(예:로그인 등) -->
 </definition>
 

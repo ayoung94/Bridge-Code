@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.yedam.bridgecode.heart.HeartService;
 import com.yedam.bridgecode.heart.HeartVO;
 import com.yedam.bridgecode.matching.CodeVO;
@@ -46,16 +47,6 @@ public class MemberController {
 	@Autowired
 	MatchingService MatchingService;
 
-	
-	/*@RequestMapping("/")
-	public String home(MemberVO vo,Model model) {
-		
-		List<Map<String,Object>> list = memberService.getBestMemberList(vo);
-		model.addAttribute("list",list);
-		return "home"; 
-		
-	}*/
-	
 	@RequestMapping("/ajaxMemberId.json")
 	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
 		MemberVO vo = new MemberVO();
@@ -269,6 +260,10 @@ public class MemberController {
 						,Model model
 						,HttpSession session){
 		
+		
+		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
+		model.addAttribute("list", interest);
+		
 		MemberVO member = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member", member);
 		session.setAttribute("member", member);
@@ -282,7 +277,7 @@ public class MemberController {
 						,SessionStatus status){
 		memberService.updateMember(member);
 		status.setComplete();
-		return "redirect:/member/memberSelect.do";
+		return "redirect:/member/memberSelect.do?language="+member.getMember_country();
 	}
 	
 	@RequestMapping(value="member/memberRejectJoin.do", 
@@ -329,9 +324,7 @@ public class MemberController {
 			if ( result.getMember_level().equals("0")){
 				session.setAttribute("login", result);	
 				return "redirect:/goAdminMain.do";  	
-			}
-			
-			if( result.getMember_level().equals("1") ){
+			}else if( result.getMember_level().equals("1") ){
 				return "member/memberBeforeJoin";
 			}else if( result.getMember_level().equals("3") ){
 				model.addAttribute("member", result);
@@ -341,10 +334,8 @@ public class MemberController {
 			
 			
 			session.setAttribute("login", result);
-			List<Map<String,Object>> heartTo = heartService.getToHeartList(result);	//로그인 되었을때 부분
-			session.setAttribute("heartto",heartTo);
-			
-			return "redirect:/loginOK.do?language="+result.getMember_country();
+
+			return "redirect:/?language="+result.getMember_country();
 			
 		} else {
 
@@ -356,8 +347,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/loginOK.do")
-		public String loginOK() {
-			return "/login";
+		public String loginOK(HttpSession session) {
+			return "login";
 		}
 
 	//로그아웃

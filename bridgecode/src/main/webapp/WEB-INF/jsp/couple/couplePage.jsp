@@ -22,7 +22,6 @@ function coupleDelete(){
 $(function(){
 	$("button[name='likeBtn']").on("click",function(){
 		var THIS = $(this);
-		console.log(THIS.attr('value'));
 		var reqStr = THIS.attr('value');
 		$.ajax({
 			type:'get',
@@ -31,13 +30,18 @@ $(function(){
 			dataType:'text',
 			success:
 					 function(data){
-						console.log(data);
 						if(data == '1'){
 							//좋아해 
+							var newVal = THIS.val().substring(0,THIS.val().length-1);
+							newVal += 1;
+							THIS.val(newVal);
 							THIS.html('<i class="material-icons" style="color: #CC3D3D;">favorite</i>');
 							
 						}else{
-							//안좋아해 
+							//안좋아해
+							var newVal = THIS.val().substring(0,THIS.val().length-1);
+							newVal += 0;
+							THIS.val(newVal);
 							THIS.html('<i class="material-icons" style="color: #CC3D3D;">favorite_border</i>');
 						}
 					}, error:
@@ -179,6 +183,7 @@ $(function(){
 		</c:if>
 		<c:if test="${bo.BOARD_LIKE == 1}"> 
 		<button class="btn btn-white btn-fab btn-fab-mini btn-round" style="float:right;"
+		 data-toggle="tooltip" data-placement="top" title="like!"  name="likeBtn"
 		 value="board_id=${bo.BOARD_ID}&like=${bo.BOARD_LIKE}" name="likeBtn">
 			<i class="material-icons" style="color: #CC3D3D;">favorite</i>
 		</button>

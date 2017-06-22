@@ -148,9 +148,9 @@ ${member.member_name}</td>
 <td>
 <div class="col-sm-4">
 <select name="member_country" class="form-control">
-<option value="ko">한국</option>
-<option value="cn">중국</option>
-<option value="jp">일본</option>
+<option value="ko" <c:if test="${member.member_country == 'ko'}">selected</c:if>  >한국</option>
+<option value="cn" <c:if test="${member.member_country == 'cn'}">selected</c:if>>중국</option>
+<option value="jp" <c:if test="${member.member_country == 'jp'}">selected</c:if>>일본</option>
 </select>
 </div></td>
 </tr>
