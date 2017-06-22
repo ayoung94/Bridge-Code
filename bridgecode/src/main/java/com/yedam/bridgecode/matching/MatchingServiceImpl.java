@@ -35,13 +35,13 @@ public class MatchingServiceImpl implements MatchingService{
 	
 	//전체 매칭리스트
 	@Override
-	public List<Map<String, Object>> getMemberList(MemberVO vo) {
-		return MatchingDAO.getMemberList(vo);
+	public List<Map<String, Object>> getMemberList(Map<String, Object> map) {
+		return MatchingDAO.getMemberList(map);
 	}
 
 	@Override
-	public List<Map<String, Object>> realMatching(Map<String, Object> map) {
-		return MatchingDAO.realMatching(map);
+	public List<Map<String, Object>> realMatchingList(Map<String, Object> map) {
+		return MatchingDAO.realMatchingList(map);
 	}
 
 }
