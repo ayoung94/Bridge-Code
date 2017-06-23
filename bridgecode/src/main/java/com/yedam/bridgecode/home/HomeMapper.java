@@ -9,5 +9,7 @@ import com.yedam.bridgecode.member.MemberVO;
 
 @MapperScan
 public interface HomeMapper {
-	public List<Map<String,Object>> bestMemberList(MemberVO vo);
+	public List<Map<String,Object>> bestMemberMonthList(MemberVO vo);
+	public List<Map<String,Object>> bestMemberWeekList(MemberVO vo);
+	public List<Map<String,Object>> bestMemberAllList(MemberVO vo);
 }

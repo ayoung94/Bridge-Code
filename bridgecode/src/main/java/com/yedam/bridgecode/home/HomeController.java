@@ -19,10 +19,18 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public String home(MemberVO vo,Model model) {
-		System.out.println(homeService.bestMemberList(vo));
-		List<Map<String,Object>> list = homeService.bestMemberList(vo);
+		System.out.println(homeService.bestMemberMonthList(vo));
+		System.out.println("주단위" +homeService.bestMemberWeekList(vo));
+		System.out.println("베스트" +homeService.bestMemberAllList(vo));
+		List<Map<String,Object>> list = homeService.bestMemberMonthList(vo);
+		List<Map<String,Object>> list2 = homeService.bestMemberWeekList(vo);
+		List<Map<String,Object>> list3 = homeService.bestMemberAllList(vo);
 		model.addAttribute("list",list);
+		model.addAttribute("list2",list2);
+		model.addAttribute("list3",list3);
 		return "home"; 
-
 	}
+	
+	
+	
 }

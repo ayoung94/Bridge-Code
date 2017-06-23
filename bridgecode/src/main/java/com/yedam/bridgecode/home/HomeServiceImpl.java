@@ -15,9 +15,21 @@ public class HomeServiceImpl implements HomeService{
 	@Autowired private HomeMapper homeDAO;
 
 	@Override
-	public List<Map<String, Object>> bestMemberList(MemberVO vo) {
-		return homeDAO.bestMemberList(vo);
+	public List<Map<String, Object>> bestMemberMonthList(MemberVO vo) {
+		return homeDAO.bestMemberMonthList(vo);
 	}
+
+	@Override
+	public List<Map<String, Object>> bestMemberWeekList(MemberVO vo) {
+		return homeDAO.bestMemberWeekList(vo);
+	}
+	
+	@Override
+	public List<Map<String, Object>> bestMemberAllList(MemberVO vo) {
+		return homeDAO.bestMemberAllList(vo);
+	}
+
+	
 
 
 
