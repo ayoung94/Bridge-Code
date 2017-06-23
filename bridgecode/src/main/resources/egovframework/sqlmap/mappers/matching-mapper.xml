@@ -101,14 +101,18 @@
 				,MEMBER_NAME
 				,MEMBER_WARNING
 		FROM MEMBER
- 		WHERE MEMBER_COUNTRY = #{optionsRadios}
-		AND MEMBER_SEX = #{toggle}
-<!--  		AND 6 BETWEEN #{minage} AND #{maxage} -->
+ 		WHERE MEMBER_COUNTRY = #{optionsRadios} 
+  		<if test="toggle==1">
+		AND MEMBER_SEX != #{vo.member_sex}
+		</if>
+		<if test="toggle==0">
+		AND MEMBER_SEX = #{vo.member_sex}
+		</if> 
+		AND ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 BETWEEN #{minage} AND #{maxage}
   		<!--AND MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
  		OR	MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3})
 		OR	MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}
  		ORDER BY MEMBER_BIRTH ASC --> 
- 		
 	</select>
 	
 	

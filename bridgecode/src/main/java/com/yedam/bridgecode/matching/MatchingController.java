@@ -33,7 +33,12 @@ public class MatchingController {
 
 	//코드리스트 출력
 	@RequestMapping("/matching/memberMatchingList.do")
-	public String getCodeList(CodeVO vo, Model model) {
+	public String getCodeList(CodeVO vo, Model model,HttpSession session) {
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		List<Map<String, Object>> interest = MatchingService.getCodeList(vo);
 		model.addAttribute("list", interest);
 		return "matching/memberMatchingList";

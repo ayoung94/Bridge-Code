@@ -47,6 +47,7 @@ table td {
 
 <script>
 	$(function() {	
+		
 		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
 			for(i=0 ; i<data.length; i++){
 				if(data[i].MEMBER_SEX == '1'){
@@ -67,49 +68,11 @@ table td {
 		    		}
 					}
 				});
-		
-		// 실시간 조건 검색 ajax처리
-		/* $("#matchingfrm").change(function(){
-			var params = $("#matchingfrm").serialize();
-			console.log(params);
-			$.ajax({
-				type: "POST",
-				url:"${pageContext.request.contextPath}/matching/realMatching.do",
-				data: matchingfrm,
-				dataType: "json",
-				success : function(data){
-					console.log(data);
-					for(i=0 ; i<data.length; i++){
-	      				if(jData[i].MEMBER_SEX == '1'){
-	      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-	      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-	      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-	      		    		+data[i].MEMBER_NICKNAME +"<br>"
-	      		    		+data[i].MEMBER_BIRTH+" 살<br>"
-	      		    		+"남성</td>")  	} 
-	      		    	else {
-	      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-	      				    		+Data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-	      				    		+Data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-	      				    		+Data[i].MEMBER_NICKNAME +"<br>"
-	      				    		+Data[i].MEMBER_BIRTH+" 살<br>"
-	      				    		+"여성</td>")  	}
-	      		    	if((i+1)%5 == 0){
-	      		    		$('#result').append("</tr><tr>")
-	      		    		}	
-					}},
-	      		    		error:
-	      	                  function(){
-	      	                  console.log("에러1");}
-  		    		})
-			}); */
 	
 		$("#matchingfrm").change(function(){
 					var params = $("#matchingfrm").serialize();
 					console.log(params);
 			 	$.getJSON("${pageContext.request.contextPath}/matching/realMatching.do", params, function(data,status){  //서버 url주소
-			        console.log(status);
-			        console.log(data);
 			 		if(status == "success") {
 			 			$('#result').html("");
 			               if( data.length > 0) {
@@ -168,9 +131,9 @@ table td {
 	// 슬라이드 범위바 시작
 		$("#sliderRange").slider({	
 			range : true,
-			min : 10,
+			min : 1,
 			max : 50,
-			values : [ 20, 40 ],
+			values : [ 10, 40 ],
 			slide : function(event, ui) {
 				$("#age0").val(ui.values[0]) + "세 ~";
 				$("#age1").val(ui.values[1]) + "세";
@@ -178,15 +141,19 @@ table td {
 		});
 		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
 		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
-console.log(sliderRange);
+		
+		
+		
+		
+		
 	});
 	
 	
+	// 연령대 선택시 이벤트 함수
 	function ageSlider(){
 			var params = $("#matchingfrm").serialize();
+			console.log(params);
 	 	$.getJSON("${pageContext.request.contextPath}/matching/realMatching.do", params, function(data,status){  //서버 url주소
-	        console.log(status);
-	        console.log(data);
 	 		if(status == "success") {
 	 			$('#result').html("");
 	               if( data.length > 0) {
@@ -217,8 +184,7 @@ console.log(sliderRange);
 	         });
 	         return false;    //event.preventDefault()
 	}
-	
-	
+
 	
 	
 </script>
@@ -255,9 +221,9 @@ console.log(sliderRange);
 				</tr>
 			</table>
 
- 			<input type="hidden" id="member_interest1" name="member_interest1" value="${login.member_interest1}">
-			<input type="hidden" id="member_interest2" name="member_interest2" value="${login.member_interest2}">
-			<input type="hidden" id="member_interest3" name="member_interest3" value="${login.member_interest3}">
+ 			<input type="hidden" id="member_interest1" name="member_interest1" >
+			<input type="hidden" id="member_interest2" name="member_interest2" >
+			<input type="hidden" id="member_interest3" name="member_interest3" >
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
 			<p>국적선택</p>
@@ -275,9 +241,24 @@ console.log(sliderRange);
 			<br>
 
 			<p>이성만 검색하기</p>
-			<div class="togglebutton">
-				<label><input type="checkbox" checked="checked" name="toggle" value="1"> on/off </label>
+			<div class="togglebutton" >
+				<label><input type="checkbox" name="togglebutton" onclick="checkToggle()" checked> ON/OFF </label>
+				<input type="hidden" id="toggle" name="toggle" value="1">
 			</div><br>	
+<script>
+ function checkToggle(){
+	 if($('#toggle').attr('value') == 1){
+		 $('#toggle').attr('value', 0)
+		 }
+	 else if($('#toggle').attr('value') == 0){
+ 		$('#toggle').attr('value', 1)
+ 		}
+ 	}
+</script>
+
+
+
+
 
 			<h4>추천회원 리스트</h4>
 			<table border="1">
