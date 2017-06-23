@@ -47,23 +47,24 @@ table td {
 
 <script>
 	$(function() {	
-		
 		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
 			for(i=0 ; i<data.length; i++){
 				if(data[i].MEMBER_SEX == '1'){
 		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'</a><br>"
 		    		+data[i].MEMBER_NICKNAME +"<br>"
 		    		+data[i].MEMBER_BIRTH+" 살<br>"
-		    		+"남성</td>")  	} 
+		    		+"남성<br>"
+		    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	} 
 		    	else {
 		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
 				    		+data[i].MEMBER_NICKNAME +"<br>"
 				    		+data[i].MEMBER_BIRTH+" 살<br>"
-				    		+"여성</td>")  	}
+				    		+"여성<br>"
+				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	}
 		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")
 		    		}
 					}
@@ -80,17 +81,19 @@ table td {
 				      				if(data[i].MEMBER_SEX == '1'){
 				      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-				      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+				      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
 				      		    		+data[i].MEMBER_NICKNAME +"<br>"
 				      		    		+data[i].MEMBER_BIRTH+" 살<br>"
-				      		    		+"남성</td>")  	} 
+				      		    		+"남성<br>"
+				      		    		+" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>"	)  	} 
 				      		    	else {
 				      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
+				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
 				      				    		+data[i].MEMBER_NICKNAME +"<br>"
 				      				    		+data[i].MEMBER_BIRTH+" 살<br>"
-				      				    		+"여성</td>")  	}
+				      				    		+"여성<br>"
+				      				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	}
 				      		    	if((i+1)%5 == 0){
 				      		    		$('#result').append("</tr><tr>")
 				      		    		}
@@ -121,9 +124,9 @@ table td {
 			}
  			//배열로 저장
 			var arr = checkValue.split(',');
- 			$("#member_interest1").attr('value', arr[0]);
-			$("#member_interest2").attr('value', arr[1]);
-			$("#member_interest3").attr('value', arr[2]);
+ 			$("#interest1").attr('value', arr[0]);
+			$("#interest2").attr('value', arr[1]);
+			$("#interest3").attr('value', arr[2]);
 
 	});
 
@@ -221,9 +224,9 @@ table td {
 				</tr>
 			</table>
 
- 			<input type="hidden" id="member_interest1" name="member_interest1" >
-			<input type="hidden" id="member_interest2" name="member_interest2" >
-			<input type="hidden" id="member_interest3" name="member_interest3" >
+ 			<input type="hidden" id="interest1" name="interest1" >
+			<input type="hidden" id="interest2" name="interest2" >
+			<input type="hidden" id="interest3" name="interest3" >
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
 			<p>국적선택</p>
@@ -242,7 +245,7 @@ table td {
 
 			<p>이성만 검색하기</p>
 			<div class="togglebutton" >
-				<label><input type="checkbox" name="togglebutton" onclick="checkToggle()" checked> ON/OFF </label>
+				<label><input type="checkbox" onclick="checkToggle()" checked> ON/OFF </label>
 				<input type="hidden" id="toggle" name="toggle" value="1">
 			</div><br>	
 <script>

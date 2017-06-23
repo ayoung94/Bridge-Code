@@ -78,15 +78,13 @@
 		FROM MEMBER
 		WHERE MEMBER_COUNTRY = #{vo.member_country}
 		AND MEMBER_SEX != #{vo.member_sex}
- 		<!-- AND MEMBER_INTEREST1 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
-		OR	MEMBER_INTEREST2 IN (#{member_interest1}, #{member_interest2}, #{member_interest3})
-		OR	MEMBER_INTEREST3 IN (#{member_interest1}, #{member_interest2}, #{member_interest3}) --> 
 		ORDER BY MEMBER_BIRTH ASC
 	</select>
 	
+	
 	<!-- 검색값 변경될 때마다 조건검색 -->
 	<select id="realMatchingList" parameterType="hashmap" resultType="map">
-		SELECT 	MEMBER_ID
+	      SELECT MEMBER_ID
 				,MEMBER_PASSWORD
 				,MEMBER_NICKNAME
 				,MEMBER_SEX
@@ -100,19 +98,22 @@
 				,MEMBER_INTEREST3
 				,MEMBER_NAME
 				,MEMBER_WARNING
+				,(CASE WHEN MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3}) THEN 1 else 0 END +
+        		CASE WHEN MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3}) THEN 1 else 0 END +
+       			CASE WHEN MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}) THEN 1 else 0 END) AS "COUNT"
 		FROM MEMBER
  		WHERE MEMBER_COUNTRY = #{optionsRadios} 
-  		<if test="toggle==1">
-		AND MEMBER_SEX != #{vo.member_sex}
-		</if>
-		<if test="toggle==0">
-		AND MEMBER_SEX = #{vo.member_sex}
-		</if> 
-		AND ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 BETWEEN #{minage} AND #{maxage}
-  		<!--AND MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
- 		OR	MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3})
-		OR	MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}
- 		ORDER BY MEMBER_BIRTH ASC --> 
+  			<if test="toggle==1">
+  			AND MEMBER_SEX != #{vo.member_sex}	</if>
+			<if test="toggle==0">
+			AND MEMBER_SEX = #{vo.member_sex} </if> 
+			AND ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 BETWEEN #{minage} AND #{maxage}
+ 			
+ 			AND (MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
+   			OR MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3})
+			OR MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}))
+ 			
+		ORDER BY COUNT DESC
 	</select>
 	
 	

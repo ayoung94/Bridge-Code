@@ -71,7 +71,7 @@ public class MatchingController {
 	// 실시간 ajax 조건검색  
 	@RequestMapping("/matching/realMatching.do")
 	public @ResponseBody List<Map<String, Object>> realMatchingList(
-								MemberVO vo, HttpSession session, HttpServletRequest request) throws Exception {
+								MemberVO vo, Model model, HttpSession session, HttpServletRequest request) throws Exception {
 		vo = (MemberVO)session.getAttribute("login");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("vo", vo);
@@ -81,6 +81,9 @@ public class MatchingController {
 		String toggle = request.getParameter("toggle");
 		String sliderRange = request.getParameter("sliderRange");		
 		String optionsRadios = request.getParameter("optionsRadios");
+		String interest1 = request.getParameter("interest1");
+		String interest2 = request.getParameter("interest2");		
+		String interest3 = request.getParameter("interest3");
 		// 최소 검색나이
 		map.put("minage", minage);
 		// 최대 검색나이
@@ -91,6 +94,12 @@ public class MatchingController {
 		map.put("sliderRange", sliderRange);
 		// 국적선택
 		map.put("optionsRadios", optionsRadios);
+		// 관심사
+		map.put("interest1", interest1);
+		// 관심사
+		map.put("interest2", interest2);
+		// 관심사
+		map.put("interest3", interest3);
 		// 관심사
 	
 		System.out.println(map);
@@ -146,7 +155,7 @@ public class MatchingController {
 		}
 		MatchingService.profileUpdate(vo);
 
-		return "/login";
+		return "login";
 	}
 
 	// 자기 소개글 수정
@@ -156,7 +165,7 @@ public class MatchingController {
 									,HttpServletRequest request){
 
 		MatchingService.introductionUpdate(vo);
-		return "/login";
+		return "login";
 
 	}
 }
