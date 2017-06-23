@@ -38,9 +38,8 @@ table td {
 	font-weight: bold;
 	text-align: center;
 }
-</style>
-<!-- In <head> -->
 
+</style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -85,7 +84,7 @@ table td {
 				      		    		+data[i].MEMBER_NICKNAME +"<br>"
 				      		    		+data[i].MEMBER_BIRTH+" 살<br>"
 				      		    		+"남성<br>"
-				      		    		+" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>"	)  	} 
+				      		    		+data[i].MEMBER_INTEREST1+" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>"	)  	} 
 				      		    	else {
 				      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
@@ -130,6 +129,8 @@ table td {
 
 	});
 
+		
+		
 
 	// 슬라이드 범위바 시작
 		$("#sliderRange").slider({	
@@ -144,11 +145,6 @@ table td {
 		});
 		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
 		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
-		
-		
-		
-		
-		
 	});
 	
 	
@@ -167,14 +163,16 @@ table td {
 		      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
 		      		    		+data[i].MEMBER_NICKNAME +"<br>"
 		      		    		+data[i].MEMBER_BIRTH+" 살<br>"
-		      		    		+"남성</td>")  	} 
+		      		    		+"남성<br>"
+		      		    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>") 	} 
 		      		    	else {
 		      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
 		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
 		      				    		+data[i].MEMBER_NICKNAME +"<br>"
 		      				    		+data[i].MEMBER_BIRTH+" 살<br>"
-		      				    		+"여성</td>")  	}
+		      				    		+"여성<br>"
+		      				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>") 	}
 		      		    	if((i+1)%5 == 0){
 		      		    		$('#result').append("</tr><tr>")
 		      		    		}
@@ -204,6 +202,7 @@ table td {
 					<%
 						int j = 0;
 					%>
+					<!-- 코드 리스트 출력 -->
 					<c:forEach items="${list}" var="interest">
 						<td>
 							<div class="checkbox">
@@ -227,6 +226,12 @@ table td {
  			<input type="hidden" id="interest1" name="interest1" >
 			<input type="hidden" id="interest2" name="interest2" >
 			<input type="hidden" id="interest3" name="interest3" >
+			<script>
+			var checkboxs = $("[name='interest']:checked");
+				$("#interest1").val(checkboxs[0].value);
+				$("#interest2").val(checkboxs[1].value);
+				$("#interest3").val(checkboxs[2].value);
+			</script>
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
 			<p>국적선택</p>
@@ -238,8 +243,8 @@ table td {
 			<br>
 
 			<div>연령선택</div>
-			<input type="text" id="age0" name="minage" >세 ~ 
-			<input type="text" id="age1" name="maxage" >세
+			<input type="text" id="age0" name="minage" value="10">세 ~ 
+			<input type="text" id="age1" name="maxage" value="40">세
 			<div id="sliderRange" onclick="ageSlider()"></div>
 			<br>
 
@@ -258,9 +263,6 @@ table td {
  		}
  	}
 </script>
-
-
-
 
 
 			<h4>추천회원 리스트</h4>

@@ -102,7 +102,6 @@ public class MatchingController {
 		map.put("interest3", interest3);
 		// 관심사
 	
-		System.out.println(map);
 		return MatchingService.realMatchingList(map);
 	}
 
