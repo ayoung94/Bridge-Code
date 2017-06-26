@@ -37,7 +37,8 @@
 	<update id="heartYES2" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = #{to.member_id}
+           member_partner_id = #{to.member_id},
+           member_level = 4
         WHERE member_id = #{from.member_id}
         ]]>
 	</update> 
@@ -45,7 +46,8 @@
 	<update id="heartYES3" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = #{from.member_id}
+           member_partner_id = #{from.member_id},
+           member_level = 4
         WHERE member_id = #{to.member_id}
         ]]>
 	</update> 
@@ -55,17 +57,7 @@
          UPDATE heart SET
            heart_status = 3,
            heart_confirm_time = sysdate
-        WHERE heart_from_id = #{from.member_id}
-        and heart_status = 0
-        ]]>
-	</update> 
-	
-	<update id="heartYES5" parameterType="hashmap">
-        <![CDATA[
-       UPDATE heart SET
-           heart_status = 3,
-           heart_confirm_time = sysdate
-        WHERE heart_from_id = #{to.member_id}
+        WHERE heart_from_id in (#{from.member_id}, #{to.member_id})
         and heart_status = 0
         ]]>
 	</update> 
@@ -82,7 +74,7 @@
 	<update id="coupleDelete" parameterType="hashmap">
         <![CDATA[
         UPDATE heart SET
-           heart_status = 2,
+           heart_status = 3,
            heart_confirm_time = sysdate
         WHERE heart_from_id in(#{from.member_id},#{to.member_id})
         and heart_to_id in (#{to.member_id},#{from.member_id})
@@ -92,7 +84,8 @@
 	<update id="coupleDelete2" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = null 
+           member_partner_id = null,
+           member_level = 2
         WHERE member_id = #{from.member_id}
         ]]>
 	</update>
@@ -100,10 +93,19 @@
 	<update id="coupleDelete3" parameterType="hashmap">
         <![CDATA[
         UPDATE member SET
-           member_partner_id = null 
+           member_partner_id = null,
+           member_level = 2
         WHERE member_id = #{to.member_id}
         ]]>
 	</update>
+	
+	<delete id="coupleDelete4" parameterType="hashmap">
+        <![CDATA[
+        delete from board
+        where board_writer in (#{to.member_id},#{from.member_id})
+        ]]>
+	</delete>
+
 	
 
 	<select id="getFromHeart" resultType="heart"> 

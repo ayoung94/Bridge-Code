@@ -69,6 +69,7 @@
         UPDATE member SET
             member_id = #{member_id}, 
         	member_password = #{member_password},
+        	member_name = #{member_name},
         	member_nickname = #{member_nickname},
         	member_sex = #{member_sex},
         	member_country = #{member_country},

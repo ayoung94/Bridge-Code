@@ -30,6 +30,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		
 		System.out.println(vo);
 		if(vo != null){ //로그인 되어있는 상태이면
+			System.out.println("로그인 되어있어서 정보 갱신하는중.............");
 		MemberVO result = memberDAO.getMember(vo); //멤버정보를 result에 담고
 		request.getSession().setAttribute("login", result); //result를 다시 login에 담는다.
 		

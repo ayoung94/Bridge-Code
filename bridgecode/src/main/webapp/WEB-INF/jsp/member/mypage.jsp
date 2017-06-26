@@ -70,7 +70,7 @@
 		h = checkTime(h);
 		m = checkTime(m);
 		s = checkTime(s);
-		document.getElementById('clock').innerHTML = h + ":" + m + ":" + s;
+		document.getElementById('clock').innerHTML =  h + ":" + m + ":" + s;
 		var t = setTimeout(startTime, 500);
 	}
 	function checkTime(i) {
@@ -100,17 +100,16 @@
 	
 	
 	<div class="row">
-		<div class="col-sm-4">
-
-			<div class="panel panel-danger" style="width: 350px;">
-				<div class="panel-heading" style="background-color: lavenderblush;">my
-					heart</div>
-				<div class="panel-body" style="height: 180px;">
+		<div class="col-sm-4" style="padding: 10px;">
+		<div class="w3-panel w3-border w3-round-large">
+<!-- 
+			<div class="panel panel-danger" style="width: 350px;"> -->
+				<div class="panel-heading" style="border-bottom: 1px dotted #bbb;"><i class="material-icons">favorite_border</i><b>My heart</b></div><!--  style="background-color: #DCDCDC; -->
+				<div class="panel-body" >
 					<c:set var="Heart" value="${heartfrom.heart_from_time}" />
 					<c:choose>
 						<c:when test="${!empty Heart }">
-							<div
-								style="border: 1px solid black; margin-top: 50px; width: 500px; height: 130px;">
+							
 								<div
 									style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heartColor.png') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100px; PADDING-TOP: 0px; HEIGHT: 100px;">
 									<p id="heartColor"
@@ -118,17 +117,24 @@
 									</p>
 								</div>
 								<br>
-								<br> 다음 하트 까지
-								<div id="clock" style="font-size: 20px;"></div>
-								<br> <a
-									href="${pageContext.request.contextPath}/heart/heartFromList.do"
-									style="margin-left: 100px;">하트 사용 내역</a>
-							</div>
+								<br>
+								
+								<div class="row">
+									<br><br>
+								    <div class="col-sm-6" style="font:1em;" >다음 하트까지</div>
+								    <div class="col-sm-8" ><div id="clock" style="font-size: 20px;"></div></div>
+								</div>
+								
+								
+								<button class="btn btn-simple btn-primary btn-sm"
+								onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
+								style="float: right;">하트 사용 내역</button>
+						
 						</c:when>
 						<c:otherwise>
 							<img
 								src="${pageContext.servletContext.contextPath}/images/heartColor.png">
-하트를 사용해보세요!<br>
+									하트를 사용해보세요!<br>
 							<br>
 							<button class="btn btn-simple btn-primary btn-sm"
 								onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
@@ -137,16 +143,16 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-			</div>
-
+</div>
 
 
 		</div>
-		<div class="col-sm-8">
-			<div class="panel-group" style="width: 500px;">
-				<div class="panel panel-default">
-					<div class="panel-heading" style="background-color: lavender;">My Profile</div>
-					<div class="panel-body" style="height: 180px;">
+		<div class="col-sm-5" style="padding: 10px;">
+		<div class="w3-panel w3-border w3-round-large"> <!-- style="border: 1px solid #bbb;" -->
+	<!-- 		<div class="panel-group" >
+				<div class="panel panel-default"> -->
+					<div class="panel-heading" style="border-bottom: 1px dotted #bbb;"><i class="material-icons">face</i><b>My Profile</b></div> <!-- style="background-color: #bbb;" -->
+					<div class="panel-body">
 
 						<table>
 							<tr>
@@ -166,7 +172,7 @@
 											onchange="submit();" />
 									</form></td>
 
-								<td width="400px;" style="padding: 10px; padding-left: 20px;"><br>
+								<td width="400px;" style="padding: 5px; padding-left: 20px;"><br>
 									${member.member_nickname }님<br>
 								<br> <!-- 나이 처리 시작--> <jsp:useBean id="toDay"
 										class="java.util.Date" /> <fmt:formatDate value="${toDay}"
@@ -178,47 +184,67 @@
 								<br>
 									<button class="btn btn-simple btn-primary btn-sm"
 										onclick="location.href='${pageContext.request.contextPath}/member/memberSelect.do'"
-										style="margin-left: 200px;">회원 정보 상세보기</button></td>
+										style="float: right;">회원 정보 상세보기</button></td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+			</div>
+<!-- 		</div>
+	</div> -->
 
 	<br>
-
-	<div class="panel panel-default" style="width: 890px ;background-color:#FFFAFA;">
+<div class="col-sm-9">
+	<div class="panel panel-default" style="background-color:#FFFAFA;">
 		<div class="panel-body">
 
-				새로 도착한 ♥<br><br>
-
-				<div class="w3-container" style="padding-left: 80px;padding-bottom: 50px;" >
-					<ul class="w3-ul w3-card-4" style="width: 500px;">
-						<c:if test="${empty heartto}">
+				<i class="material-icons">favorite</i><b>My new heart</b><br>
+		
+				<div class="w3-container" ><!-- style="padding-left: 80px;padding-bottom: 50px;"  -->
+				<c:if test="${empty heartto}">
+			<br>
 			새로 도착한 하트가 없습니다. 
+			<br>
 			</c:if>
+							<div class="col-sm-12"> <!-- dd -->
+					<ul class="w3-ul w3-card-4">
+					
 						<c:forEach items="${heartto}" var="heartTo">
-							<li class="w3-display-container" style="background-color: white; width: 700px;">
-							<br>
 
-							<img onclick="location.href='${pageContext.request.contextPath}/matching/memberSelect.do?id=${heartTo.HEART_FROM_ID}'"alt="Circle Image" class="img-circle img-responsive" 
+							<li class="w3-display-container" style="background-color: white; margin: 30px;">
+							<span onclick="this.parentElement.style.display='none'"
+								class="w3-button w3-transparent" style="float: right;">&times;</span>
+							<br>
+						
+								<div class="row">
+								    <div class="col-sm-2"> <img onclick="location.href='${pageContext.request.contextPath}/matching/memberSelect.do?id=${heartTo.HEART_FROM_ID}'"alt="Circle Image" class="img-circle img-responsive" 
 							src="${pageContext.request.contextPath}/profile_img/${heartTo.MEMBER_PROFILE_IMG}" 
-							style="height: 80px; width: 80px;cursor:pointer;">
-								${heartTo.HEART_FROM_ID}님께서 하트를 보내셨습니다. <br>
+							style="height: 80px; width: 80px;cursor:pointer;"> </div>
+							
+							
+								    <div class="col-sm-8"><br><br>${heartTo.HEART_FROM_ID}님께서 하트를 보내셨습니다.</div>
+								</div>
+								
+
+
+
+							
+								
 								<div class="w3-right-align">
 									<button class="btn btn-white btn-sm"
 										onclick="location.href='${pageContext.request.contextPath}/heart/heartYES.do?heart_id=${heartTo.HEART_ID}'">수락</button>
 									<button class="btn btn-white btn-sm"
 										onclick="location.href='${pageContext.request.contextPath}/heart/heartNO.do?heart_id=${heartTo.HEART_ID}'">거절</button>
-								</div> <span onclick="this.parentElement.style.display='none'"
-								class="w3-button w3-transparent w3-display-right">&times;</span></li>
+								</div></li>
+								
 						</c:forEach>
 					</ul>
 			</div>
+			</div>
 		</div>
 	</div>
+</div>
 
 
 

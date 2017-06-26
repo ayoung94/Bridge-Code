@@ -9,6 +9,12 @@
 <title>Insert title here</title>
 <script>
 $(function(){ 
+	var mb = "${member.member_birth}";
+	mb = mb.substring(0,10);
+	mb = mb.replace('-', '/');
+	mb = mb.replace('-', '/');
+	$( "#member_birth" ).val(mb.substring(0, 10));
+	
 	
 	$('#member_birth').blur(function(){
 		console.log($('#member_birth').attr('value'));
@@ -105,8 +111,9 @@ ${member.member_name}</td>
 <tr>
 <td>생년월일:</td>
 <td>
-<fmt:parseDate value="${member.member_birth }" pattern="yyyy-MM-dd" var="memberBirth" scope="page" />
-<fmt:formatDate value="${memberBirth}" pattern="yyyy/MM/dd" />
+<div class="col-sm-4">
+<input type="text" id="member_birth" name="member_birth" class="datepicker form-control widthSmall" data-date-format="yyyy/mm/dd">
+</div>
 </td>
 </tr>
 <tr>

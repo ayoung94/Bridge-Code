@@ -266,7 +266,7 @@ public class MemberController {
 		
 		MemberVO member = (MemberVO)session.getAttribute("login");
 		model.addAttribute("member", member);
-		session.setAttribute("member", member);
+		//session.setAttribute("member", member);
 		return "member/memberUpdate";
 	}
 	
@@ -284,10 +284,24 @@ public class MemberController {
 				method = RequestMethod.POST)
 	public String rejectMemberUpdate(@ModelAttribute("member") MemberVO member
 					,Model model
-					,SessionStatus status){
+					,SessionStatus status,HttpSession session){
 	memberService.updateRejectMember(member);
 	status.setComplete();
+	session.invalidate();
 	return "member/memberBeforeJoin";
+	}
+	
+	@RequestMapping("member/memberRejectJoin.do")
+	public String rejectMemberUpdateForm(@ModelAttribute("member") MemberVO member
+					,Model model
+					,SessionStatus status,
+					HttpSession session){
+		
+		//model.addAttribute("member", result);
+		model.addAttribute("member",session.getAttribute("member"));
+		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
+		model.addAttribute("list", interest);
+	return "member/memberRejectJoin";
 	}
 	
 	@RequestMapping("/member/memberDelete.do")
@@ -327,9 +341,13 @@ public class MemberController {
 			}else if( result.getMember_level().equals("1") ){
 				return "member/memberBeforeJoin";
 			}else if( result.getMember_level().equals("3") ){
-				model.addAttribute("member", result);
-				session.setAttribute("member", result);
-				return "member/memberRejectJoin";
+				//model.addAttribute("member", result);
+				/*session.removeAttribute("member");
+				session.setAttribute("member", result);*/
+				model.addAttribute("member",result);
+				/*List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
+				model.addAttribute("list", interest);*/
+				return "redirect:member/memberRejectJoin.do";
 			}
 			
 			

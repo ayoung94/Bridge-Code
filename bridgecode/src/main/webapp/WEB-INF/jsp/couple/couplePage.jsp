@@ -53,19 +53,17 @@ $(function(){
 });
 </script>
 </head>
-
-<body class="w3-theme-l5">
-
+<body>
 <!-- Page Container -->
-<div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">    
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:30px;">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
     <div class="w3-col m3">
       <!-- Profile -->
-      <div class="w3-card-2 w3-round w3-white">
-        <div class="w3-container">
-         <h4 class="w3-center">My partner</h4>
+<div class="w3-panel w3-border w3-round-large" style="background-color: white;">
+        <div class="w3-container" >
+         <h4 class="w3-center"><b>My partner</b></h4>
          <p class="w3-center"><img src="${pageContext.request.contextPath}/profile_img/${partner.member_profile_img}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <button onclick="coupleDelete()" style="float: right;" class="btn btn-default btn-sm btn-simple">커플 해제</button><br>
          <hr>
@@ -78,7 +76,8 @@ $(function(){
         </div>
       </div>
       <br>
-       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
+       <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"  
+       >
         <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
           <i class="fa fa-remove"></i>
         </span>
@@ -132,24 +131,19 @@ $(function(){
     
     <!-- Middle Column -->
     <div class="w3-col m7">
-      <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card-2 w3-round w3-white">
-            <div class="w3-container w3-padding" style="text-align:center;">
-              <button type="button" class="w3-button w3-theme" onclick="window.open('${pageContext.request.contextPath}/chat/coupleChat.do',
+        <div class="w3-col m12" style="text-align:center;">
+         <!--  <div class="w3-card-2 w3-round w3-white"> -->
+              <button type="button" onclick="window.open('${pageContext.request.contextPath}/chat/coupleChat.do',
 							'window',
-							'width=400,height=600,left=800,top=0')"> 1:1채팅 바로가기</button> 
-              
+							'width=400,height=600,left=800,top=0')" class="btn btn-primary" style="width: 600px;"> 1:1채팅 바로가기</button> 
             </div>
-          </div>
-        </div>
-      </div>
+
       <br>
         <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card-2 w3-round w3-white">
+          <div class="w3-panel w3-border w3-round-large" style="background-color: white;">
             <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">오늘 하루는 어땠나요?</h6>
+              <h6 class="w3-opacity"><b>오늘 하루는 어땠나요?</b></h6>
               <form action="${pageContext.request.contextPath}/couple/boardInsert.do">
               <input type="hidden" name="board_writer" value="${login.member_id }">
               <input type="text" name="board_content" style="width: 100%;height: 40px;border: 1px #bbb solid;padding: 10px;" placeholder="이야기를 나누어보세요..." ><br>
