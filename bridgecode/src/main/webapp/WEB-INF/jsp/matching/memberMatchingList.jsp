@@ -8,16 +8,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
-a { color : black;}
+#result td { margin:0px; padding : 0px;
+	width:228px;
+	height:	228px;}
+
 a:hover {
 	 weight:bold;
 	 text-decoration: none; 
 	}
+.thumbnail { color : black;}
 	
 .thumbnail img{
-	width : 200px;
-	height: 160px;
-	padding:7px;}
+	display: inline-block;
+	width : 220px;
+	height: 200px;
+	padding: 10px;}
 
 p {	margin:0px;
 	text-align: center;}
@@ -32,10 +37,6 @@ p {	margin:0px;
 	margin-left: 0;
 }
 
-#matchimg {
-	width: 200px;
-	margin:1px;
-}
 
 #age0 {
 	width: 50px;
@@ -63,15 +64,15 @@ p {	margin:0px;
 		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
 			for(i=0 ; i<data.length; i++){
 				if(data[i].MEMBER_SEX == '1'){
-		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 			    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
       		    		+data[i].MEMBER_NICKNAME +"</p><p>"
       		    		+data[i].MEMBER_BIRTH+" 세</p>"
 				    		+"<p>남성</p></a></td>")  	}
 		    	else {
-		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
   				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
 	      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 	      		    		+data[i].MEMBER_BIRTH+" 세</p>"
@@ -90,15 +91,15 @@ p {	margin:0px;
 			               if( data.length > 0) {
 			                  for(i=0 ; i<data.length; i++){
 				      				if(data[i].MEMBER_SEX == '1'){
-				      		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+				      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+				      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
 		      				    		+"<p>남성</p></td>")  	}
 				      		    	else {
-				      		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-				      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+				      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+				      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
 						      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 						      		    		+data[i].MEMBER_BIRTH+" 세</p>"
@@ -173,15 +174,15 @@ p {	margin:0px;
 	               if( data.length > 0) {
 	                  for(i=0 ; i<data.length; i++){
 		      				if(data[i].MEMBER_SEX == '1'){
-		      		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-		      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
+		      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
       				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
       				    		+"<p>남성</p></td>")  	} 
 		      		    	else {
-		      		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
-		      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
+		      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
@@ -279,12 +280,18 @@ p {	margin:0px;
 </script>
 
 
-			<h4>추천회원 리스트</h4>
+			<h4>회원 리스트</h4>
+			<ul class="nav nav-tabs">
+			  <li role="presentation" class="active"><a href="#">검색결과</a></li>
+			  <li role="presentation"><a href="#">이성회원</a></li>
+			  <li role="presentation"><a href="#">전체회원</a></li>
+			</ul>	
 			<table class="memberlist" id="memberlist">
 				<tr>
 						<div id="result"></div>
 				</tr>		
 			</table>
+			
 		</div>
 </form>		
 </body>
