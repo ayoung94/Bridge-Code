@@ -8,7 +8,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
-table td {
+a { color : black;}
+a:hover {
+	 weight:bold;
+	 text-decoration: none; 
+	}
+	
+.thumbnail img{
+	width : 200px;
+	height: 160px;
+	padding:7px;}
+
+p {	margin:0px;
+	text-align: center;}
+
+#codelist td {
 	padding: 5px;
 }
 
@@ -49,21 +63,19 @@ table td {
 		$.getJSON("${pageContext.request.contextPath}/matching/memberMatching.do", function(data){		
 			for(i=0 ; i<data.length; i++){
 				if(data[i].MEMBER_SEX == '1'){
-		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'</a><br>"
-		    		+data[i].MEMBER_NICKNAME +"<br>"
-		    		+data[i].MEMBER_BIRTH+" 살<br>"
-		    		+"남성<br>"
-		    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	} 
+			    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+				    		+"<p>남성</p></a></td>")  	}
 		    	else {
-		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
-				    		+data[i].MEMBER_NICKNAME +"<br>"
-				    		+data[i].MEMBER_BIRTH+" 살<br>"
-				    		+"여성<br>"
-				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	}
+  				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+	      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+	      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+  				    		+"<p>여성</p></a></td>")  	}
 		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")
 		    		}
 					}
@@ -78,21 +90,19 @@ table td {
 			               if( data.length > 0) {
 			                  for(i=0 ; i<data.length; i++){
 				      				if(data[i].MEMBER_SEX == '1'){
-				      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+				      		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-				      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
-				      		    		+data[i].MEMBER_NICKNAME +"<br>"
-				      		    		+data[i].MEMBER_BIRTH+" 살<br>"
-				      		    		+"남성<br>"
-				      		    		+data[i].MEMBER_INTEREST1+" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>"	)  	} 
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+		      				    		+"<p>남성</p></td>")  	}
 				      		    	else {
-				      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+				      		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><br>"
-				      				    		+data[i].MEMBER_NICKNAME +"<br>"
-				      				    		+data[i].MEMBER_BIRTH+" 살<br>"
-				      				    		+"여성<br>"
-				      				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>")  	}
+				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+						      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+						      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+				      				    		+"<p>여성</p></td>")  	}
 				      		    	if((i+1)%5 == 0){
 				      		    		$('#result').append("</tr><tr>")
 				      		    		}
@@ -145,6 +155,11 @@ table td {
 		});
 		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
 		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
+		
+		
+		
+	//마우스 이벤트
+	$('#mouseenter')
 	});
 	
 	
@@ -158,21 +173,19 @@ table td {
 	               if( data.length > 0) {
 	                  for(i=0 ; i<data.length; i++){
 		      				if(data[i].MEMBER_SEX == '1'){
-		      		        $('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      		        $('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      		    		+data[i].MEMBER_ID+"'><img id='matchimg'src='${pageContext.request.contextPath}/profile_img/"
-		      		    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-		      		    		+data[i].MEMBER_NICKNAME +"<br>"
-		      		    		+data[i].MEMBER_BIRTH+" 살<br>"
-		      		    		+"남성<br>"
-		      		    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>") 	} 
+      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+      				    		+"<p>남성</p></td>")  	} 
 		      		    	else {
-		      		    		$('#result').append("<td><a href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      		    		$('#result').append("<td><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      				    		+data[i].MEMBER_ID+"'><img id='matchimg' src='${pageContext.request.contextPath}/profile_img/"
-		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a>"
-		      				    		+data[i].MEMBER_NICKNAME +"<br>"
-		      				    		+data[i].MEMBER_BIRTH+" 살<br>"
-		      				    		+"여성<br>"
-		      				    		+data[i].MEMBER_INTEREST1 +" "+data[i].MEMBER_INTEREST2 +" "+ data[i].MEMBER_INTEREST3+"</td>") 	}
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+		      				    		+"<p>여성</p></td>")  	}
 		      		    	if((i+1)%5 == 0){
 		      		    		$('#result').append("</tr><tr>")
 		      		    		}
@@ -187,7 +200,6 @@ table td {
 	}
 
 	
-	
 </script>
 
 </head>
@@ -197,7 +209,7 @@ table td {
 
 			<h1>커플매칭</h1>
 			<h3>나의 짝을 찾아보세요! </h3>
-			<table>
+			<table id="codelist">
 				<tr>
 					<%
 						int j = 0;
@@ -234,11 +246,13 @@ table td {
 			</script>
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
-			<p>국적선택</p>
+			<div>국적선택</div>
 			<div class="radio">
-				<label> <input type="radio" name="optionsRadios" value="ko" checked="checked"> 한국 </label> 
-				<label> <input type="radio" name="optionsRadios" value="jp"> 일본 </label> 
-				<label> <input type="radio" name="optionsRadios" value="cn"> 중국</label>
+				
+				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> 한국 </label> 
+				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> 일본 </label> 
+				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> 중국</label>
+				
 			</div>
 			<br>
 
@@ -248,7 +262,7 @@ table td {
 			<div id="sliderRange" onclick="ageSlider()"></div>
 			<br>
 
-			<p>이성만 검색하기</p>
+			<div>이성만 보기</div>
 			<div class="togglebutton" >
 				<label><input type="checkbox" onclick="checkToggle()" checked> ON/OFF </label>
 				<input type="hidden" id="toggle" name="toggle" value="1">
@@ -266,11 +280,9 @@ table td {
 
 
 			<h4>추천회원 리스트</h4>
-			<table border="1">
+			<table class="memberlist" id="memberlist">
 				<tr>
-					<td>
-						<div id="result" ></div>
-					</td>
+						<div id="result"></div>
 				</tr>		
 			</table>
 		</div>

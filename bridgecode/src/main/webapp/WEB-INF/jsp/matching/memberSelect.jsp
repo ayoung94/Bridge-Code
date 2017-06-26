@@ -61,7 +61,7 @@ ul, menu, dir {
 				<div class="row">
 					<div class="profile">
 						<div class="avatar">
-							<img style="max-width: 180px; margin: -80px auto 0;"
+							<img style="width:180px; height:180px; margin: -80px auto 0;"
 								src="${pageContext.request.contextPath}/profile_img/${profile.member_profile_img}"
 								class="img-circle img-responsive img-raised">
 						</div>
@@ -85,11 +85,15 @@ ul, menu, dir {
 					<form action="${pageContext.request.contextPath}/profile/introductionUpdate.do?member_id=${profile.member_id}"
 						id="introsubmit" method="post">
 						<textarea id="form-control" class="form-control" readonly="readonly" name="member_introduction" rows="2" cols="5">${profile.member_introduction }</textarea>
-						<br>
 						<c:set var="loginSession" value="${login}" />
 						<c:if test="${loginSession.member_id == profile.member_id }">
-							<a href="#" id="introEdit">edit <input type="hidden" id="hidden" value="attr"></a>
+							<a href="#" id="introEdit">edit <input type="hidden" id="hidden" value="attr"></a><br><br>
 						</c:if>
+						<c:forEach var="interest" items="${list}" >
+						<c:if test="${interest.code_id == profile.member_interest1}">${interest.code_name}</c:if>
+						<c:if test="${interest.code_id == profile.member_interest2}">${interest.code_name}</c:if>
+						<c:if test="${interest.code_id == profile.member_interest3}">${interest.code_name}</c:if>
+						</c:forEach>
 					</form>
 				</div>
 				<br>
@@ -207,7 +211,7 @@ ul, menu, dir {
 								<c:if test="${loginSession.member_id != profile.member_id }">
 									<c:set var="subimg" value="${profile }" />
 									<c:if test="${empty subimg.member_img1 }">
-										<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"
+										<li><img src="${pageContext.request.contextPath}/resources/img/examples/no-image.gif"
 											class="img-thumbnail" /></li>
 									</c:if>
 									<c:if test="${!empty subimg.member_img1 }">
@@ -215,7 +219,7 @@ ul, menu, dir {
 											class="img-thumbnail" /></li>
 									</c:if>
 									<c:if test="${empty subimg.member_img2 }">
-										<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"
+										<li><img src="${pageContext.request.contextPath}/resources/img/examples/no-image.gif"
 											class="img-thumbnail" /></li>
 									</c:if>
 									<c:if test="${!empty subimg.member_img2 }">
@@ -223,7 +227,7 @@ ul, menu, dir {
 											class="img-thumbnail" /></li>
 									</c:if>
 									<c:if test="${empty subimg.member_img3 }">
-										<li><img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png"
+										<li><img src="${pageContext.request.contextPath}/resources/img/examples/no-image.gif"
 											class="img-thumbnail" /></li>
 									</c:if>
 									<c:if test="${!empty subimg.member_img3 }">

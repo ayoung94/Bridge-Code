@@ -107,11 +107,13 @@ public class MatchingController {
 
 	// 상세프로필 보기로 이동
 	@RequestMapping("/matching/memberSelect.do")
-	public String memberSelect(MemberVO vo, @RequestParam String id, Model model) {
+	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model) {
 		vo.setMember_id(id);
 		MemberVO member = memberService.getMember(vo);
 		model.addAttribute("profile", member);
-
+		
+		List<Map<String, Object>> interest = MatchingService.getCodeList(co);
+		model.addAttribute("list", interest);
 		return "matching/memberSelect";
 	}
 
