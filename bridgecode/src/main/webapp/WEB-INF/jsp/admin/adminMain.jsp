@@ -9,11 +9,97 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+html, body, h1, h2, h3, h4, h5, h6 {
+	font-family: "Roboto", sans-serif
+}
+
 a {
-  text-decoration: none;
+	text-decoration: none;
 }
 </style>
+<style>
+.right {
+	float:right;
+	margin:20px;
+}
+</style>
+<script src="//www.google.com/jsapi"></script>
+<script type="text/javascript" src="./resources/adminjs/jquery-3.2.1.min.js"/></script>
+<script>
+	google.load('visualization', '1.0', {
+		'packages' : [ 'corechart' ]
+	});
+	google.setOnLoadCallback(function() {
+		var chart = new google.visualization.PieChart(document
+				.querySelector('#sexRatio_div'));
+		$.getJSON("sexRatio.do", function(data, status) {
+			if (status == "success") {
+				console.dir(data);
+				//1. 차트 데이터 
+				var charData = new google.visualization.DataTable();
+				charData.addColumn('string', '성');
+				charData.addColumn('number', '인원수');
+				for (i = 0; i < data.length; i++) {
+					var arr = [ data[i].MEMBER_SEX, data[i].HUMANNUM ];
+					console.log(arr);
+					//charData.push(arr);
+					charData.addRow(arr);
+				}
+				//2. 차트옵션
+				var options = {
+					title : '전체 유저의 성비',
+					width : 420,
+					height : 250
+				};
+				//chart.draw(google.visualization.PieChart(document.getElementById('piechart'));
+				chart.draw(charData, options);
+			} else {
+				alert("오류!!!");
+			}
+		});
+	});
+</script>
+<script>
+google.load('visualization', '1.0', {
+	'packages' : [ 'corechart' ]
+});
+google.setOnLoadCallback(function() {
+	var chart = new google.visualization.PieChart(document
+			.querySelector('#countryRatio_div'));
+	$.getJSON("countryRatio.do", function(data, status) {
+		if (status == "success") {
+			console.dir(data);
+			//1. 차트 데이터 
+			var charData = new google.visualization.DataTable();
+			charData.addColumn('string', '국적');
+			charData.addColumn('number', '인원수');
+			for (i = 0; i < data.length; i++) {
+				var arr2 = [ data[i].COUNTRY, data[i].HUMANNUM ];
+				console.log(arr2);
+				//charData.push(arr);
+				charData.addRow(arr2);
+			}
+			//2. 차트옵션
+			var options = {
+				title : '국가별 인원수',
+				width : 420,
+				height : 250
+			};
+			//chart.draw(google.visualization.PieChart(document.getElementById('piechart'));
+			chart.draw(charData, options);
+		} else {
+			alert("오류!!!");
+		}
+	});
+});
+</script>
+<script>
+function goChart(){
+	location.href="Ratioview.do"
+}
+
+
+</script>
 <body class="w3-light-grey">
 
 <!-- Page Container -->
@@ -40,7 +126,7 @@ a {
           <p><a href="getNoticeList.do">공지사항</a></p>
           <p><a href="getEventList.do">이벤트</a></p>
           <p><a href="getUserList.do?member_level=2">유저 리스트</a></p>
-          <p>Site 통계</p>
+          <p><a href="Ratioview.do">Site 통계</a></p>
         </div>
       </div><br>
 
@@ -61,44 +147,21 @@ a {
         </div>
       </div>
       <div class="w3-container w3-card-2 w3-white">
-        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Homepage management</h2>
+        <h2 class="w3-text-grey w3-padding-16" style="width:600px; display:inline-block;"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>Homepage management</h2>
+        <button class="w3-button w3-xlarge w3-circle w3-disabled right" onclick="goChart()">+</button>
         <div class="w3-container">
-          <h5 class="w3-opacity"><b><a href="getNoticeList.do">공지사항</a></b></h5>
-           <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b><a href="getEventList.do">이벤트</a></b></h5>
-           <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b><a href="getUserList.do?member_level=2">유저 리스트</a></b></h5>
-           <hr>
-        </div>
-        <div class="w3-container">
-          <h5 class="w3-opacity"><b>Site 통계</b></h5>
-           <hr>
+         	<div id="sexRatio_div" style="width:420px; height:252px; display:inline-block;"></div>
+			<div id="countryRatio_div" style="width:420px; height:252px; display:inline-block;"></div>
         </div>
       </div>
-
+      
     <!-- End Right Column -->
     </div>
-    
+  
   <!-- End Grid -->
   </div>
   
   <!-- End Page Container -->
 </div>
-
-<footer class="w3-container w3-teal w3-center w3-margin-top">
-  <p>Find me on social media.</p>
-  <i class="fa fa-facebook-official w3-hover-opacity"></i>
-  <i class="fa fa-instagram w3-hover-opacity"></i>
-  <i class="fa fa-snapchat w3-hover-opacity"></i>
-  <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-  <i class="fa fa-twitter w3-hover-opacity"></i>
-  <i class="fa fa-linkedin w3-hover-opacity"></i>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-</footer>
-
 </body>
 </html>

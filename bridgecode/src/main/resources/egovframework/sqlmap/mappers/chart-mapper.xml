@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.bridgecode.chart.ChartMapper">
+
+	<select id="sexRatio" resultType="map">
+		<![CDATA[
+	 		select case when member_sex=1 then '남자'
+            else '여자' end as MEMBER_SEX, HUMANNUM
+			from (
+      			SELECT  MEMBER_SEX ,
+       		     	COUNT(MEMBER_SEX) AS HUMANNUM
+        		    FROM MEMBER
+        		    WHERE MEMBER_LEVEL = 2
+       			    GROUP BY MEMBER_SEX)
+		]]>
+	</select>
+
+	<select id="countryRatio" resultType="map">
+		<![CDATA[
+	 		select case when member_country='ko' then '한국'
+            when member_country='jp' then '일본'
+            else '중국' end as country, humannum
+			from ( 
+     			 select member_country, count(member_country) as humannum
+     			   from member
+     			   where member_level=2
+   				   group by member_country)
+		]]>
+	</select>
+
+
+
+
+
+
+</mapper>

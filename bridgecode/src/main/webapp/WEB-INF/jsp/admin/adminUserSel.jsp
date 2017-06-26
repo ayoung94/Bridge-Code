@@ -8,12 +8,31 @@
 <style>
 .modal-backdrop {
 	z-index: -1;
-	}
+}
 </style>
-<style>	
-.test th{border:1px solid blue; text-align: center; padding: 5px;}
-.test td{border:1px solid black; text-align: center; padding: 5px;}
-}	
+<style>
+.test th {
+	box-shadow: 5px 0px 5px #888888;
+	text-align: center;
+	padding: 5px;
+}
+
+.test td {
+	box-shadow: 5px 0px 5px #888888;
+	text-align: center;
+	padding: 5px;
+}
+}
+</style>
+<style>
+.margin {
+	margin:auto;
+}
+</style>	
+<style>
+.shadow {
+	box-shadow: 5px 5px 5px #888888;
+}
 </style>
 </head>
 <body>
@@ -21,15 +40,11 @@
 		<button type="button" class="close" data-dismiss="modal">&times;</button>
 	</div>
 	<div class="modal-body">
-		<table class="test">
+		<table class="test margin">
 
 			<tr>
 				<th>아이디</th>
 				<td>${userList.member_id}</td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td>${userList.member_password}</td>
 			</tr>
 			<tr>
 				<th>닉네임</th>
@@ -65,7 +80,9 @@
 			</tr>
 			<tr>
 				<th>프로필 이미지</th>
-				<td><img src="${pageContext.request.contextPath}/profile_img/${userList.member_profile_img}"></td>
+				<td><img
+					src="${pageContext.request.contextPath}/profile_img/${userList.member_profile_img}"
+					style="width: 350px; height: 250px"></td>
 			</tr>
 			<tr>
 				<th>경고횟수</th>

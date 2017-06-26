@@ -16,21 +16,20 @@
         <![CDATA[
         SELECT 
         	  MEMBER_ID as member_id
-        	, MEMBER_PASSWORD as member_password
         	, MEMBER_NICKNAME as member_nickname
         	, MEMBER_NAME as member_name
         	, MEMBER_BIRTH as member_birth
         	, MEMBER_LAST_CONNECTION as member_last_connection
-        	, MEMBER_INTEREST1 as member_interest1
-        	, MEMBER_INTEREST2 as member_interest2
-        	, MEMBER_INTEREST3 as member_interest3
-        	, MEMBER_LEVEL as member_level
+        	, find_code_name(MEMBER_INTEREST1) as member_interest1
+        	, find_code_name(MEMBER_INTEREST2) as member_interest2
+        	, find_code_name(MEMBER_INTEREST3) as member_interest3
         	, MEMBER_PROFILE_IMG as member_profile_img
         	, MEMBER_WARNING as member_warning
-        	, MEMBER_SEX as member_sex
+            , case when MEMBER_SEX=1 then '남자'
+              else '여자' end as member_sex
         	, MEMBER_PARTNER_ID as member_partner_id
         	, MEMBER_INTRODUCTION as member_introduction
-        	, MEMBER_COUNTRY as member_country
+        	,  find_code_name(MEMBER_COUNTRY) as member_country
         FROM member
         WHERE member_id = #{member_id}
         ]]>
