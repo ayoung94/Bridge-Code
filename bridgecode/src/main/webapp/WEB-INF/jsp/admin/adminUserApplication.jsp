@@ -36,6 +36,17 @@
 .appth th{text-align:center;}
 .apptd td{text-align:center;}
 </style>
+<style>
+.modalcss {
+	width:580;
+	heigh:720;
+}
+</style>
+<style>
+.margin {
+	margin:auto;
+}
+</style>
 </head>
 <body>
 	<h1>새로운 회원 신청 리스트</h1>
@@ -65,13 +76,12 @@
 					<td><a onClick="if(confirm('회원 가입 신청을 거부하시겠습니까?')) location.href='updateUserReject.do?member_id=${userList.MEMBER_ID}'">거부</a></td>
 				</tr>
 			</c:forEach>
-		</tbody>
-		
+		</tbody>		
 	<!-- Modal -->
 <div class="modal fade" id="userSelModal" style="padding: 20px 35px;" role="dialog">
-	<div class="modal-dialog modal-sm">
+	<div class="modal-dialog margin">
 		<!-- Modal content-->
-		<div class="modal-content" ></div>
+		<div class="modal-content " ></div>
 	</div>
 </div>
 </table>

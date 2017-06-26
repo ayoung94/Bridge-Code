@@ -1,12 +1,17 @@
 package com.yedam.bridgecode.admin;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yedam.bridgecode.chart.ChartMapper;
 import com.yedam.bridgecode.member.MemberVO;
 import com.yedam.bridgecode.warning.WarningMapper;
 import com.yedam.bridgecode.warning.WarningVO;
@@ -17,6 +22,7 @@ public class AdminController {
 	@Autowired AdminService adminService;
 	@Autowired AdminMapper adminDAO;
 	@Autowired WarningMapper warningDAO;
+	@Autowired ChartMapper chartDAO;
 
 	//유저 리스트 조회
 	@RequestMapping("/getUserList.do")
@@ -60,11 +66,12 @@ public class AdminController {
 		adminService.updateUserApplication(vo);
 		return "redirect:/getUserList.do?member_level=1";
 	}
-	
+
 	//회원 신청 거부
 	@RequestMapping("/updateUserReject.do")
 	public String updateUserReject(MemberVO vo){
 		adminService.updateUserReject(vo);
 		return "redirect:/getUserList.do?member_level=1";
 	}
+
 }

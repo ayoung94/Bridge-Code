@@ -50,6 +50,12 @@ th {
 	text-align: center;
 }
 </style>
+<style>
+.modalcss {
+	width:580;
+	heigh:720;
+}
+</style>
 </head>
 <body>
 	<h1>유저 리스트 목록</h1>
@@ -89,7 +95,7 @@ th {
 	<!-- Modal -->
 	<div class="modal fade" id="userSelModal" style="padding: 20px 35px;"
 		role="dialog">
-		<div class="modal-dialog modal-sm">
+		<div class="modal-dialog modalcss">
 			<!-- Modal content-->
 			<div class="modal-content"></div>
 		</div>
