@@ -54,6 +54,17 @@ td {
 .active {
 	cursor: default;
 }
+a:hover {
+	weight: bold;
+	text-decoration: none;
+}
+p {
+	margin: 0px;
+	text-align: center;
+}
+.thumbnail {
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -77,7 +88,7 @@ td {
 				<c:forEach var="memberlist" items="${list}">
 					<td class="col-md-4"><a class="thumbnail" href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${memberlist.member_id}">
 							<img src="${pageContext.request.contextPath}/profile_img/${memberlist.member_profile_img}" class="thumb-image">
-							<p>${memberlist.member_nickname}</p>
+							<p style='font-size:18px; font-weight:bold;'>${memberlist.member_nickname}</p>
 							<p>${memberlist.member_birth}세</p>
 							<c:if test="${memberlist.member_sex == '1' }"><p>남성</p></c:if>
 							<c:if test="${memberlist.member_sex == '2' }"><p>여성</p></c:if>

@@ -107,7 +107,12 @@ public class MatchingController {
 
 	// 상세프로필 보기로 이동
 	@RequestMapping("/matching/memberSelect.do")
-	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model) {
+	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model, HttpSession session) {
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		vo.setMember_id(id);
 		MemberVO member = memberService.getMember(vo);
 		model.addAttribute("profile", member);

@@ -30,7 +30,7 @@
 }
 
 .myPageMenu li:last-child {
-	width: 540px;
+	width: 780px;
 	border-bottom: 5px #DCDCDC solid;
 	margin-top: 48px;
 }
@@ -104,14 +104,14 @@ p {
 				if(data[i].MEMBER_SEX == '1'){
 		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-			    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+			    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
       		    		+data[i].MEMBER_NICKNAME +"</p><p>"
       		    		+data[i].MEMBER_BIRTH+" 세</p>"
 				    		+"<p>남성</p></a></td>")  	}
 		    	else {
 		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-  				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+  				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 	      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 	      		    		+data[i].MEMBER_BIRTH+" 세</p>"
   				    		+"<p>여성</p></a></td>")  	}
@@ -131,14 +131,14 @@ p {
 				      				if(data[i].MEMBER_SEX == '1'){
 				      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
 		      				    		+"<p>남성</p></a></td>")  	}
 				      		    	else {
 				      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 						      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 						      		    		+data[i].MEMBER_BIRTH+" 세</p>"
 				      				    		+"<p>여성</p></a></td>")  	}
@@ -210,14 +210,14 @@ p {
 		      				if(data[i].MEMBER_SEX == '1'){
 		      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
       				    		+"<p>남성</p></a></td>")  	} 
 		      		    	else {
 		      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
 		      				    		+"<p>여성</p></a></td>")  	}
