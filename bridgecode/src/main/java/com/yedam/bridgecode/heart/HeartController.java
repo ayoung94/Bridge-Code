@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.yedam.bridgecode.board.BoardVO;
+import com.yedam.bridgecode.matching.CodeVO;
+import com.yedam.bridgecode.matching.MatchingService;
 import com.yedam.bridgecode.member.MemberService;
 import com.yedam.bridgecode.member.MemberVO;
 
 @Controller
 @SessionAttributes("heart")
 public class HeartController {
-	
+	@Autowired
+	MatchingService MatchingService;
 	@Autowired
 	HeartService heartService;
 	@Autowired
@@ -120,7 +123,7 @@ public class HeartController {
 		session.setAttribute("heartto",heartTo);
 		
 		model.addAttribute("msg", "하트 수락 완료!"); 
-		model.addAttribute("url", "/member/mypage.do"); 
+		model.addAttribute("url", "/couple/couplepage.do"); 
 		
 		to = memberService.getMember(to);
 		session.setAttribute("login", to);
@@ -159,7 +162,14 @@ public class HeartController {
 
 		return "heart/heartFromList";
 	}
-	
+	@RequestMapping("/couple/noCouplePage.do")
+	public String noCouplePageForm(MemberVO vo,Model model,HttpSession session){
+		
+		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
+		model.addAttribute("list", interest);
+		return "couple/noCouplePage";
+	}
+
 	@RequestMapping("/couple/couplepage.do")
 	public String couplePage(MemberVO vo,
 							 MemberVO partner,
@@ -176,7 +186,7 @@ public class HeartController {
 		
 		
 		if(vo.getMember_partner_id() == null){
-			return "couple/noCouplePage";
+			return "redirect:/couple/noCouplePage.do";
 		}
 		
 		partner.setMember_id(vo.getMember_partner_id());
@@ -209,13 +219,10 @@ public class HeartController {
 								 @RequestParam String like,
 								 Model model,
 								 HttpSession session){
-		System.out.println(like);
 		if(like.equals("0")){
-			System.out.println("라이크!!!");
 			heartService.boardUpdateLike(board_id);
 			return "1";
 		}else if(like.equals("1")){
-			System.out.println("디스라이트!!!");
 			heartService.boardUpdateDislike(board_id);
 			return "0";
 		}

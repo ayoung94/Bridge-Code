@@ -78,7 +78,7 @@ public class HeartServiceImpl implements HeartService{
 		HeartDAO.heartYES2(map);
 		HeartDAO.heartYES3(map);
 		HeartDAO.heartYES4(map);
-		HeartDAO.heartYES5(map);
+		//HeartDAO.heartYES5(map);
 		
 	}
 
@@ -101,6 +101,7 @@ public class HeartServiceImpl implements HeartService{
 		HeartDAO.coupleDelete(map);  
 		HeartDAO.coupleDelete2(map);
 		HeartDAO.coupleDelete3(map);
+		HeartDAO.coupleDelete4(map);
 	}
 
 	@Override

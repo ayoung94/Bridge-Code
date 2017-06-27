@@ -44,6 +44,7 @@ text-align: left;
 border: 1px solid black;
 width: 200px;
 padding: 10px;
+margin: 10px;
 }
 </style>
 <script>
@@ -157,7 +158,7 @@ $(function(){
   </li>
 </ul>
 
-<div style="overflow-y:auto; height:470px; overflow-x:hidden;" id="messageWindow">
+<div style="overflow-y:auto; height:470px; overflow-x:hidden;border:1px solid black;" id="messageWindow">
 <c:forEach items="${chatlist}" var="chat" >
 <c:set var="sender" value="${chat.CHAT_FROM_ID}" />
 
@@ -165,7 +166,7 @@ $(function(){
 <div class='meTalk'>${chat.CHAT_CONTENT }</div>
 </c:if>
 <c:if test="${sender ne login.member_id }">  
-<div class='youTalk'>
+<div class='youTalk w3-panel w3-round-xlarge'>
 <p>${chat.CHAT_CONTENT }</p>
 <p></p>
 </div>
@@ -173,9 +174,10 @@ $(function(){
 
 </c:forEach>
 </div>
-<input id="inputMessage" type="text" style="width: 320px;" onkeydown="if(event.keyCode==13) send();"/> 
-<input type="submit" value="send" onclick="send()" /> 
-
+<input id="inputMessage" type="text" style="width: 320px;margin: 6px;margin-top: 10px;" onkeydown="if(event.keyCode==13) send();"
+placeholder="텍스트를 입력하세요..."/> 
+<!-- <input type="submit" value="send" onclick="send()" />  -->
+<button onclick="send()" class="w3-button w3-purple w3-round w3-small">전송</button>
 
 </body>
 
