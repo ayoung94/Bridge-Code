@@ -146,10 +146,12 @@
 			   heart_confirm_time,
 			   heart_id
         FROM heart
-        WHERE (heart_from_id = #{from.member_id}
-        and heart_to_id = #{to.member_id}) OR
+        WHERE ((heart_from_id = #{from.member_id}
+        and heart_to_id = #{to.member_id})
+         OR
         (heart_from_id = #{to.member_id}
-        and heart_to_id = #{from.member_id})
+        and heart_to_id = #{from.member_id}))
+        AND heart_status = 1
         ]]>
 	</select>
 	
