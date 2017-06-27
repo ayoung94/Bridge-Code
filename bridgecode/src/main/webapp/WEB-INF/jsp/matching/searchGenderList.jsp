@@ -62,6 +62,8 @@ p {
 }
 .thumbnail {
 	color: black;
+	border-radius:20px;
+	box-shadow:2px 2px 2px #e6e6e6;
 }
 </style>
 </head>

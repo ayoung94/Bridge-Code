@@ -53,6 +53,7 @@ a:hover {
 
 .thumbnail {
 	color: black;
+	border-radius:20px;
 }
 
 .thumbnail img {
@@ -60,6 +61,7 @@ a:hover {
 	width: 220px;
 	height: 200px;
 	padding: 10px;
+	margin:0px;
 }
 
 p {
