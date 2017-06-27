@@ -10,7 +10,7 @@ public interface MatchingService {
 	//관심사 리스트 출력
 	public List<Map<String,Object>> getCodeList(CodeVO vo);
 	
-	//전체 매칭리스트
+	//매칭 리스트(페이지 로딩후 기본 검색조건)
 	public List<Map<String,Object>> getMemberList(Map<String,Object> map);
 	
 	//서브 프로필 사진 추가 
@@ -21,4 +21,10 @@ public interface MatchingService {
 	
 	// 실시간 ajax 조건검색 
 	public List<Map<String,Object>> realMatchingList(Map<String,Object> map);
+	
+	// 이성멤버 검색
+	public List<Map<String,Object>> searchGenderList(MemberVO vo);
+	
+	// 전체회원 검색
+	public List<Map<String,Object>> allmemberList(MemberVO vo);
 }

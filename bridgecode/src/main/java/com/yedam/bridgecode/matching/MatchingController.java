@@ -167,6 +167,21 @@ public class MatchingController {
 
 		MatchingService.introductionUpdate(vo);
 		return "login";
-
+	}
+	
+	// 이성 멤버 리스트
+	@RequestMapping(value="/matching/searchGenderList.do")
+	public String searchGenderList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		List<Map<String, Object>> memberlist = MatchingService.searchGenderList(vo);
+		model.addAttribute("list", memberlist);
+		return "matching/searchGenderList";
+	}
+	
+	// 전체 멤버 리스트
+	@RequestMapping(value="/matching/allmemberList.do")
+	public String memberList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		List<Map<String, Object>> memberlist = MatchingService.allmemberList(vo);
+		model.addAttribute("list", memberlist);
+		return "matching/allmemberList";
 	}
 }

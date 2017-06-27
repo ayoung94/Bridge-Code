@@ -8,24 +8,64 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
-#result td { margin:0px; padding : 0px;
-	width:228px;
-	height:	228px;}
+.myPageMenu {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	margin-bottom: 20px; 
+}
+
+.myPageMenu li {
+	float: left;
+}
+
+.myPageMenu li a {
+	display: block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	border-bottom: 5px #DCDCDC solid;
+}
+
+.myPageMenu li:last-child {
+	width: 540px;
+	border-bottom: 5px #DCDCDC solid;
+	margin-top: 48px;
+}
+
+#result td {
+	margin: 0px;
+	padding: 0px;
+	width: 228px;
+	height: 228px;
+}
 
 a:hover {
-	 weight:bold;
-	 text-decoration: none; 
-	}
-.thumbnail { color : black;}
-	
-.thumbnail img{
-	display: inline-block;
-	width : 220px;
-	height: 200px;
-	padding: 10px;}
+	weight: bold;
+	text-decoration: none;
+}
 
-p {	margin:0px;
-	text-align: center;}
+.active {
+	cursor: default;
+}
+
+.thumbnail {
+	color: black;
+}
+
+.thumbnail img {
+	display: inline-block;
+	width: 220px;
+	height: 200px;
+	padding: 10px;
+}
+
+p {
+	margin: 0px;
+	text-align: center;
+}
 
 #codelist td {
 	padding: 5px;
@@ -36,7 +76,6 @@ p {	margin:0px;
 	margin: 15px;
 	margin-left: 0;
 }
-
 
 #age0 {
 	width: 50px;
@@ -53,7 +92,6 @@ p {	margin:0px;
 	font-weight: bold;
 	text-align: center;
 }
-
 </style>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -93,17 +131,17 @@ p {	margin:0px;
 				      				if(data[i].MEMBER_SEX == '1'){
 				      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-		      				    		+"<p>남성</p></td>")  	}
+		      				    		+"<p>남성</p></a></td>")  	}
 				      		    	else {
 				      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
 						      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 						      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-				      				    		+"<p>여성</p></td>")  	}
+				      				    		+"<p>여성</p></a></td>")  	}
 				      		    	if((i+1)%5 == 0){
 				      		    		$('#result').append("</tr><tr>")
 				      		    		}
@@ -154,14 +192,10 @@ p {	margin:0px;
 				$("#age1").val(ui.values[1]) + "세";
 			}
 		});
+	});
 		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
 		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
 		
-		
-		
-	//마우스 이벤트
-	$('#mouseenter')
-	});
 	
 	
 	// 연령대 선택시 이벤트 함수
@@ -176,17 +210,17 @@ p {	margin:0px;
 		      				if(data[i].MEMBER_SEX == '1'){
 		      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-      				    		+"<p>남성</p></td>")  	} 
+      				    		+"<p>남성</p></a></td>")  	} 
 		      		    	else {
 		      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
-		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'></a><p>"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
 				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-		      				    		+"<p>여성</p></td>")  	}
+		      				    		+"<p>여성</p></a></td>")  	}
 		      		    	if((i+1)%5 == 0){
 		      		    		$('#result').append("</tr><tr>")
 		      		    		}
@@ -198,19 +232,35 @@ p {	margin:0px;
 	             
 	         });
 	         return false;    //event.preventDefault()
-	}
+	};
+	
 
 	
 </script>
 
 </head>
 <body>
+ 
 <form id="matchingfrm">
 	<div class="wrapper">
-
-			<h1>커플매칭</h1>
-			<h3>나의 짝을 찾아보세요! </h3>
-			<table id="codelist">
+	
+	
+	<ul class="myPageMenu">
+		<li><a class="activeMenu" href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
+			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;">회원 찾기</a></li>
+		<li><a href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
+			class="changeBG">이성회원 보기</a></li>
+		<li><a href="${pageContext.request.contextPath}/matching/allmemberList.do"
+			class="changeBG" style="text-align: left;">전체회원 보기</a></li>
+		<li></li>
+	</ul>
+	
+	
+		<h1>커플매칭</h1>
+		<h3>나의 짝을 찾아보세요! </h3>
+		<div class="row" >
+			<div class="col-md-6">
+			  <table id="codelist">
 				<tr>
 					<%
 						int j = 0;
@@ -235,16 +285,17 @@ p {	margin:0px;
 					</c:forEach>
 				</tr>
 			</table>
-
+		  </div>
+		</div>
  			<input type="hidden" id="interest1" name="interest1" >
 			<input type="hidden" id="interest2" name="interest2" >
 			<input type="hidden" id="interest3" name="interest3" >
-			<script>
-			var checkboxs = $("[name='interest']:checked");
-				$("#interest1").val(checkboxs[0].value);
-				$("#interest2").val(checkboxs[1].value);
-				$("#interest3").val(checkboxs[2].value);
-			</script>
+<script>
+	var checkboxs = $("[name='interest']:checked");
+	$("#interest1").val(checkboxs[0].value);
+	$("#interest2").val(checkboxs[1].value);
+	$("#interest3").val(checkboxs[2].value);
+</script>
 			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
 			
 			<div>국적선택</div>
@@ -254,14 +305,12 @@ p {	margin:0px;
 				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> 일본 </label> 
 				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> 중국</label>
 				
-			</div>
-			<br>
+			</div><br>
 
 			<div>연령선택</div>
-			<input type="text" id="age0" name="minage" value="10">세 ~ 
-			<input type="text" id="age1" name="maxage" value="40">세
-			<div id="sliderRange" onclick="ageSlider()"></div>
-			<br>
+				<input type="text" id="age0" name="minage" value="10">세 ~ 
+				<input type="text" id="age1" name="maxage" value="40">세
+			<div id="sliderRange" onclick="ageSlider()"></div><br>
 
 			<div>이성만 보기</div>
 			<div class="togglebutton" >
@@ -282,11 +331,9 @@ p {	margin:0px;
 
 			<h4>회원 리스트</h4>
 			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="#">검색결과</a></li>
-			  <li role="presentation"><a href="#">이성회원</a></li>
-			  <li role="presentation"><a href="#">전체회원</a></li>
+			  <li role="presentation" class="active"><a href="#" onClick="return false;">검색결과</a></li>
 			</ul>	
-			<table class="memberlist" id="memberlist">
+			<table>
 				<tr>
 						<div id="result"></div>
 				</tr>		
