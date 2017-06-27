@@ -33,15 +33,26 @@ public class MatchingServiceImpl implements MatchingService{
 		MatchingDAO.introductionUpdate(vo);
 	}
 	
-	//전체 매칭리스트
+	//매칭 리스트(페이지 로딩후 기본 검색조건)
 	@Override
 	public List<Map<String, Object>> getMemberList(Map<String, Object> map) {
 		return MatchingDAO.getMemberList(map);
 	}
-
+	
+	//실시간 조건 검색 리스트(ajax)
 	@Override
 	public List<Map<String, Object>> realMatchingList(Map<String, Object> map) {
 		return MatchingDAO.realMatchingList(map);
 	}
 
+	//이성 멤버 리스트
+	public List<Map<String,Object>> searchGenderList(MemberVO vo){
+		return MatchingDAO.searchGenderList(vo);
+	}
+		
+	//전체 멤버 리스트
+	public List<Map<String,Object>> allmemberList(MemberVO vo){
+		return MatchingDAO.allmemberList(vo);
+	}
+	
 }

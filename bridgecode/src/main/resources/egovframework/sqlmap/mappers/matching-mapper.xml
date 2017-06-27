@@ -24,6 +24,50 @@
 		</resultMap> -->
 
 
+	<!-- 이성 리스트 출력 -->
+	<select id="searchGenderList" resultType="map">
+		SELECT 	MEMBER_ID AS "member_id"
+				,MEMBER_PASSWORD AS "member_password"
+				,MEMBER_NICKNAME AS "member_nickname"
+				,MEMBER_SEX AS "member_sex"
+				,MEMBER_COUNTRY AS  "member_country"
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "member_birth"
+				,MEMBER_INTRODUCTION AS "member_introduction"
+				,MEMBER_LEVEL AS "member_level"
+				,MEMBER_PROFILE_IMG AS "member_profile_img"
+				,MEMBER_INTEREST1 AS "member_interest1"
+				,MEMBER_INTEREST2 AS "member_interest2"
+				,MEMBER_INTEREST3 AS "member_interest3"
+				,MEMBER_NAME AS "member_name"
+				,MEMBER_WARNING AS "member_warning"
+		FROM MEMBER
+		WHERE MEMBER_SEX != #{member_sex}
+		AND MEMBER_LEVEL = '2'
+		ORDER BY MEMBER_BIRTH ASC
+	</select>
+	
+	<!-- 전체회원 리스트 출력 -->	
+		<select id="allmemberList" resultType="map">
+		SELECT 	MEMBER_ID AS "member_id"
+				,MEMBER_PASSWORD AS "member_password"
+				,MEMBER_NICKNAME AS "member_nickname"
+				,MEMBER_SEX AS "member_sex"
+				,MEMBER_COUNTRY AS  "member_country"
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "member_birth"
+				,MEMBER_INTRODUCTION AS "member_introduction"
+				,MEMBER_LEVEL AS "member_level"
+				,MEMBER_PROFILE_IMG AS "member_profile_img"
+				,MEMBER_INTEREST1 AS "member_interest1"
+				,MEMBER_INTEREST2 AS "member_interest2"
+				,MEMBER_INTEREST3 AS "member_interest3"
+				,MEMBER_NAME AS "member_name"
+				,MEMBER_WARNING AS "member_warning"
+		FROM MEMBER
+		WHERE MEMBER_LEVEL = '2'
+		ORDER BY MEMBER_NICKNAME ASC
+	</select>
+
+
 	<!-- 관심사 리스트 출력 -->
 	<select id="getCodeList" resultType="map">
 		SELECT CODE_ID AS "code_id"

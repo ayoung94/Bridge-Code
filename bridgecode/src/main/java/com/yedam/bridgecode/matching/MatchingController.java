@@ -107,7 +107,12 @@ public class MatchingController {
 
 	// 상세프로필 보기로 이동
 	@RequestMapping("/matching/memberSelect.do")
-	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model) {
+	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model, HttpSession session) {
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		vo.setMember_id(id);
 		MemberVO member = memberService.getMember(vo);
 		model.addAttribute("profile", member);
@@ -167,6 +172,21 @@ public class MatchingController {
 
 		MatchingService.introductionUpdate(vo);
 		return "login";
-
+	}
+	
+	// 이성 멤버 리스트
+	@RequestMapping(value="/matching/searchGenderList.do")
+	public String searchGenderList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		List<Map<String, Object>> memberlist = MatchingService.searchGenderList(vo);
+		model.addAttribute("list", memberlist);
+		return "matching/searchGenderList";
+	}
+	
+	// 전체 멤버 리스트
+	@RequestMapping(value="/matching/allmemberList.do")
+	public String memberList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		List<Map<String, Object>> memberlist = MatchingService.allmemberList(vo);
+		model.addAttribute("list", memberlist);
+		return "matching/allmemberList";
 	}
 }

@@ -17,9 +17,16 @@ public interface MatchingMapper {
 	//자기 소개 수정
 	public void introductionUpdate(MemberVO vo);
 	
-	//매칭전체 리스트
+	//매칭 리스트(페이지 로딩후 기본 검색조건)
 	public List<Map<String, Object>> getMemberList(Map<String, Object> map);
 	
 	// 실시간 ajax 조건검색  
 	public List<Map<String, Object>> realMatchingList(Map<String,Object> map);
+	
+	//이성 멤버 리스트
+	public List<Map<String,Object>> searchGenderList(MemberVO vo);
+	
+	//전체 멤버 리스트
+	public List<Map<String,Object>> allmemberList(MemberVO vo);
+	
 }
