@@ -105,28 +105,6 @@ $(function(){
 										}
 									});
 									
-									/* $.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
-												   reqStr,
-												   function(data,status){
-													console.log("한쪽이 한국ㄴㄴㄴㄴㄴ 떄 성공!!!11111");
-													if(status == "success"){
-														console.log("한쪽이 한국말ㄴㄴㄴㄴ  성공!!!22222");
-															
-														    translateText = decodeURIComponent((data + '').replace(/\+/g, '%20'));
-														    console.log(translateText);
-														  //2.해당 언어로 번역	
-															reqStr = "value="+translateText+"&source=ko&target=${login.member_country}";
-															$.get('${pageContext.request.contextPath}/chat/chatTranslate.json',
-																		   reqStr,
-																		   function(data,status){
-																			if(status == "success") {
-																					text = decodeURIComponent((data + '').replace(/\+/g, '%20'));
-																					THIS.children().last().text(text);
-																					THIS.children().last().show();
-																				}
-															});	
-														}
-									}); */
 									}else{
 										//한쪽이라도 언어가 ko인 경우 
 										console.log('else');
@@ -271,7 +249,7 @@ placeholder="텍스트를 입력하세요..."/>
     		textarea.innerHTML += "<div style='float: right;margin-top: 30px;vertical-align: bottom;display: inline;'>"+
     		"<span style='font-size: xx-small;font-style: italic;'>"+hour+":"+min+"</span></div>";
     	}else{
-    		textarea.innerHTML += "<div class='youTalk w3-round-xlarge'><p>" + msg[2] + "</p></div>"; 
+    		textarea.innerHTML += "<div class='youTalk w3-round-xlarge'><p>" + msg[2] + "</p><p></p></div>"; 
     		textarea.innerHTML += "<div style='float: left;margin-top: 30px;vertical-align: bottom;'>"+
     		"<span style='font-size: xx-small;font-style: italic;'>"+hour+":"+min+"</span></div>";
     	}

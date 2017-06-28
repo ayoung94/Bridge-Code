@@ -175,10 +175,18 @@
 	</select> 
 
 	<select id="getToHeartList" resultType="map">
-		SELECT * 
-		FROM heart
+		SELECT heart_id,
+			   member_nickname,
+			   member_profile_img,
+			   heart_from_id,
+			   heart_status,
+			   heart_from_time,
+			   heart_confirm_time,
+			   heart_to_id
+		FROM heart h, member m
 		where heart_to_id = #{member_id}
 		and heart_status = 0
+		and h.heart_from_id = m.member_id
 	</select> 
 
 	<select id="getCoupleBoardList" resultType="map">

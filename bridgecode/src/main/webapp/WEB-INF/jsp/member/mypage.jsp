@@ -109,23 +109,20 @@
 					<c:set var="Heart" value="${heartfrom.heart_from_time}" />
 					<c:choose>
 						<c:when test="${!empty Heart }">
-							
+							<br>
 								<div
 									style="CLEAR: both; PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heartColor.png') 0px 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100px; PADDING-TOP: 0px; HEIGHT: 100px;">
 									<p id="heartColor"
 										style="WIDTH: 100px; PADDING-RIGHT:0px; PADDING-LEFT:0px; BACKGROUND: url('${pageContext.servletContext.contextPath}/images/heart.png') 0px 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; ">
 									</p>
-								</div>
-								<br>
-								<br>
-								
-								<div class="row">
-									<br><br>
-								    <div class="col-sm-6" style="font:1em;" >다음 하트까지</div>
-								    <div class="col-sm-8" ><div id="clock" style="font-size: 20px;"></div></div>
+								</div>		
+								<br>		
+								<div>
+								    <div style="font:1em;float: right;width: 60%;">다음 하트까지</div>
+								    <div><div id="clock" style="font-size: 40px;"></div></div>
 								</div>
 								
-								
+								<br>
 								<button class="btn btn-simple btn-primary btn-sm"
 								onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
 								style="float: right;">하트 사용 내역</button>
@@ -223,7 +220,7 @@
 							style="height: 80px; width: 80px;cursor:pointer;"> </div>
 							
 							
-								    <div class="col-sm-8"><br><br>${heartTo.HEART_FROM_ID}님께서 하트를 보내셨습니다.</div>
+								    <div class="col-sm-8"><br><br>${heartTo.MEMBER_NICKNAME}님께서 하트를 보내셨습니다.</div>
 								</div>
 								
 
