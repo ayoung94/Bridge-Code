@@ -15,6 +15,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+
+
 
 
 import com.yedam.bridgecode.heart.HeartService;
@@ -82,7 +85,6 @@ public class MemberController {
 
 		MultipartFile file = vo.getUploadFile();
 		
-		System.out.println("★★★★"+realPath);
 		File saveFile = new File(realPath+"profile_img/",randomName);
 		
 		file.transferTo(saveFile);  //서버에 파일 저장
@@ -284,11 +286,23 @@ public class MemberController {
 				method = RequestMethod.POST)
 	public String rejectMemberUpdate(@ModelAttribute("member") MemberVO member
 					,Model model
-					,SessionStatus status,HttpSession session){
-	memberService.updateRejectMember(member);
-	status.setComplete();
-	session.invalidate();
-	return "member/memberBeforeJoin";
+					,SessionStatus status,HttpSession session,HttpServletRequest request) throws IllegalStateException, IOException{
+		long t = System.currentTimeMillis();
+		String randomName = t+""; 				//랜덤 이름 정하기
+		String realPath = request.getSession().getServletContext().getRealPath("/"); //서블릿 내의 realPath 
+
+		MultipartFile file = member.getUploadFile();
+ 
+		File saveFile = new File(realPath+"profile_img/",randomName);
+		
+		file.transferTo(saveFile);  //서버에 파일 저장
+		member.setMember_profile_img(randomName); //파일명 저장 file.getOriginalFilename()
+		
+		memberService.updateRejectMember(member);
+		status.setComplete();
+		session.invalidate();
+		return "member/memberBeforeJoin";
+		
 	}
 	
 	@RequestMapping("member/memberRejectJoin.do")
@@ -297,7 +311,6 @@ public class MemberController {
 					,SessionStatus status,
 					HttpSession session){
 		
-		//model.addAttribute("member", result);
 		model.addAttribute("member",session.getAttribute("member"));
 		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
 		model.addAttribute("list", interest);

@@ -18,6 +18,12 @@
 <put-attribute name="footer" value="/WEB-INF/jsp/tiles/footer.jsp" /> 
 </definition> 
 
+
+<definition name="/ADMIN/*/*" template="/WEB-INF/jsp/tiles/adminLayout.jsp" >
+<put-attribute name="content" value="/WEB-INF/jsp/{1}/{2}.jsp" /> 		<!-- 관리자용 -->
+</definition>
+
+
 <definition name="home" extends="mainTemplate"> 
  <put-attribute name="content" value="/WEB-INF/jsp/home.jsp" />  <!-- 메인화면 -->
 </definition> 

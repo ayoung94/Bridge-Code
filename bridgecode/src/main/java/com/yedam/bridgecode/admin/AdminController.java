@@ -30,12 +30,12 @@ public class AdminController {
 		//정식 등록 인가된 유저 리스트 조회
 		if(rq.getParameter("member_level").equals("2")) {
 			model.addAttribute("userList", adminDAO.getUserList(vo));
-			return "admin/adminUserList";
+			return "/ADMIN/admin/adminUserList";
 		}
 		//새로운 회원 신청인 조회 리스트
 		else if(rq.getParameter("member_level").equals("1")) {
 			model.addAttribute("userList", adminDAO.getUserList(vo));
-			return "admin/adminUserApplication";
+			return "/ADMIN/admin/adminUserApplication";
 		}
 		return null;
 
@@ -57,7 +57,7 @@ public class AdminController {
 		count = warningDAO.countWarning(null);
 		model.addAttribute("countUserApplication", countUserApplication);
 		model.addAttribute("count", count);
-		return "/popup/admin/adminMain";
+		return "/ADMIN/admin/adminMain";
 	}
 
 	//회원 신청 승인

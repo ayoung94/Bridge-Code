@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -10,6 +10,32 @@
 <title>Insert title here</title>
 <script>
 $(function(){ 
+	$("#fileUpload").on('change', function () {
+		console.log('sdsdaf');
+        if ($('#fileUpload').val() != "") {
+  			
+            var image_holder = $("#image-holder");
+            image_holder.empty();
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("<img />", {
+                    "src": e.target.result,
+                    "class": "thumb-image",
+                    "onclick":"document.getElementById('fileUpload').click();",
+                    "title":"프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다.",
+                    "style":"cursor:pointer; width:200px; height:200px;border:1px dotted #bbb;"
+                }).appendTo(image_holder);
+
+            }
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+			$(".thumb-image").attr('src','${pageContext.request.contextPath}/resources/img/examples/addimage.png');
+            //alert("This browser does not support FileReader.");
+        }
+    });
+
 	var mb = "${member.member_birth}";
 	mb = mb.substring(0,10);
 	mb = mb.replace('-', '/');
@@ -112,6 +138,19 @@ width: 300px;
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
 <table id="joinForm">
+<tr>
+<td>프로필 사진 :</td>
+<td>
+<div id="wrapper">
+	<input id="fileUpload" type="file" name="uploadFile"  style="display: none;" /><br>
+		<div id="image-holder"> 
+		<img src="${pageContext.request.contextPath}/profile_img/${member.member_profile_img}" class="thumb-image" onclick="document.getElementById('fileUpload').click();"
+		data-toggle="tooltip" data-placement="top" title="프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다."
+		width="200px" height="200px" style="cursor:pointer">
+		</div>
+
+</div></td>
+</tr>
 <tr>
 <td>아이디 :</td><td>${member.member_id}</td>
 </tr>

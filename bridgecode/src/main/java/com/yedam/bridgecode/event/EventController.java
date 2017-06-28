@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.googlecode.charts4j.Color;
 import com.googlecode.charts4j.GCharts;
 import com.googlecode.charts4j.PieChart;
 import com.googlecode.charts4j.Slice;
+import com.yedam.bridgecode.member.MemberVO;
 
 
 @Controller
@@ -29,7 +31,14 @@ public class EventController {
 	//등록폼
 	@RequestMapping(value="/eventInsertForm.do")
 	//값(value)을 사용하면 배열로도 가능
-	public String eventInsert() {
+	public String eventInsert(HttpSession session) {
+		
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		if(member != null){
+			if(member.getMember_level().equals("0")){
+				return "/ADMIN/event/eventInsert";
+			}
+			}
 		return "event/eventInsert";
 	}
 
@@ -51,17 +60,31 @@ public class EventController {
 
 	//단건조회
 	@RequestMapping(value="/getEvent.do")
-	public String getUser(EventVO vo, Model model) {
+	public String getUser(EventVO vo, Model model,HttpSession session) {
 		eventService.updateCnt(vo);
 		EventVO list = eventService.getEvent(vo);
 		model.addAttribute("event", list);
+		
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		if(member != null){
+			if(member.getMember_level().equals("0")){
+				return "/ADMIN/event/getEvent";
+			}
+			}
 		return "event/getEvent";
 	}
 
 	//다건조회(datatable()사용)
 	@RequestMapping("/getEventList.do")
-	public String getEventList(Model model) {
+	public String getEventList(Model model,HttpSession session) {
 		model.addAttribute("eventList", eventDAO.getEventList());
+		
+		MemberVO member = (MemberVO)session.getAttribute("login");
+		if(member != null){
+			if(member.getMember_level().equals("0")){	
+				return "/ADMIN/event/eventList";
+			}
+			}
 		return "event/eventList";
 	}
 

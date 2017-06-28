@@ -2331,7 +2331,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .alert.alert-with-icon {
   padding-left: 65px;
 }
-
+/* 
 .table > thead > tr > th {
   border-bottom-width: 1px;
   font-size: 1em;
@@ -2370,7 +2370,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 }
 .table > tbody > tr {
   position: relative;
-}
+} */
 
 .checkbox label {
   cursor: pointer;

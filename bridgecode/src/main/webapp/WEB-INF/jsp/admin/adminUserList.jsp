@@ -6,15 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>유저 리스트 목록</title>
+<title>유저 리스트 목록</title> 
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-<script>
+<script> 
 	$(function() {
 		$("#userListTable").DataTable({
 			"columns" : [ {
 				"data" : "MEMBER_ID"
-			}, {
+			}, { 
 				"data" : "MEMBER_PASSWORD"
 			}, {
 				"data" : "MEMBER_NICKNAME"
@@ -59,7 +59,7 @@ th {
 </head>
 <body>
 	<h1>유저 리스트 목록</h1>
-	<table id="userListTable">
+	<table id="userListTable" class="table"> 
 		<thead>
 			<tr>
 				<th>ID</th>
