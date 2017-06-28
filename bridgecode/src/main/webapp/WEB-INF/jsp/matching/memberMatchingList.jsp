@@ -53,14 +53,17 @@ a:hover {
 
 .thumbnail {
 	color: black;
-	border-radius:20px;
+	border-radius:10px;
+}
+.thumbnail :hover {
+	transform:scale(1.01, 1.03);
 }
 
 .thumbnail img {
 	display: inline-block;
 	width: 220px;
 	height: 200px;
-	padding: 10px;
+	padding: 5px;
 	margin:0px;
 }
 
@@ -256,10 +259,7 @@ p {
 			class="changeBG" style="text-align: left;">전체회원 보기</a></li>
 		<li></li>
 	</ul>
-	
-	
-		<h1>커플매칭</h1>
-		<h3>나의 짝을 찾아보세요! </h3>
+	<h3>나의 짝을 찾아보세요! </h3>
 		<div class="row" >
 			<div class="col-md-6">
 			  <table id="codelist">

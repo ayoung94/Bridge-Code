@@ -149,15 +149,12 @@ public class MatchingController {
 		file.transferTo(saveFile); // 서버에 파일 저장
 		if (image.equals("member_img1")) {
 			vo.setMember_img1(randomName); // 파일명 저장 file.getOriginalFilename()
-			System.out.println("1번11111111");
 		}
 		if (image.equals("member_img2")) {
 			vo.setMember_img2(randomName); // 파일명 저장 file.getOriginalFilename()
-			System.out.println("2번222222222");
 		}
 		if (image.equals("member_img3")) {
 			vo.setMember_img3(randomName); // 파일명 저장 file.getOriginalFilename()
-			System.out.println("3번333333333");
 		}
 		MatchingService.profileUpdate(vo);
 
@@ -177,16 +174,43 @@ public class MatchingController {
 	// 이성 멤버 리스트
 	@RequestMapping(value="/matching/searchGenderList.do")
 	public String searchGenderList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		List<Map<String, Object>> memberlist = MatchingService.searchGenderList(vo);
 		model.addAttribute("list", memberlist);
 		return "matching/searchGenderList";
 	}
 	
+	// 이성 멤버 리스트(ajax)
+	@RequestMapping(value="/matching/ajaxsearchGenderList.do")
+	public @ResponseBody List<Map<String, Object>> ajaxsearchGenderList(MemberVO vo, Model model, 
+										HttpSession session, HttpServletRequest request)throws Exception {
+			return MatchingService.ajaxsearchGenderList(vo);
+	}
+	
 	// 전체 멤버 리스트
 	@RequestMapping(value="/matching/allmemberList.do")
 	public String memberList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
+		if(session.getAttribute("login") == null){
+			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("url", "/"); 
+			return "/popup/alert";
+		}
 		List<Map<String, Object>> memberlist = MatchingService.allmemberList(vo);
 		model.addAttribute("list", memberlist);
 		return "matching/allmemberList";
 	}
+	
+	// 전체 멤버 리스트 (ajax처리)
+	@RequestMapping(value="/matching/ajaxallmemberList.do")
+	public @ResponseBody List<Map<String, Object>> ajaxallmemberList(MemberVO vo, Model model, 
+																	HttpSession session, HttpServletRequest request)throws Exception {
+		
+		return MatchingService.ajaxallmemberList(vo);
+	}
+
+	
 }

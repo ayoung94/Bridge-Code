@@ -26,7 +26,13 @@ public interface MatchingMapper {
 	//이성 멤버 리스트
 	public List<Map<String,Object>> searchGenderList(MemberVO vo);
 	
+	//이성 멤버 리스트(ajax)
+	public List<Map<String,Object>> ajaxsearchGenderList(MemberVO vo);
+	
 	//전체 멤버 리스트
 	public List<Map<String,Object>> allmemberList(MemberVO vo);
+	
+	//전체 멤버 리스트
+	public List<Map<String,Object>> ajaxallmemberList(MemberVO vo);
 	
 }

@@ -44,6 +44,14 @@
         WHERE WARNING_ID = #{warningId}
          ]]>
 	</update>
+	
+	<update id="updateWarningApplicationLevel">
+        <![CDATA[
+       	UPDATE MEMBER set
+	   		MEMBER_LEVEL = 6
+		WHERE MEMBER_WARNING >= 4
+        ]]>
+	</update>
 
 	<update id="updateWarningReject">
         <![CDATA[

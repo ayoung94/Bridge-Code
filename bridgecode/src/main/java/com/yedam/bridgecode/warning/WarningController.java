@@ -32,9 +32,7 @@ public class WarningController {
 	//유저 경고 횟수 증가 메소드
 	@RequestMapping("/updateWarningApplication.do")
 	public String updateMemberWarning(WarningVO vo){
-		warningService.updateWarningApplicationWarning(vo);
-		warningService.updateWarningApplicationMember(vo);
-
+		warningService.updateWarningApplication(vo);
 		return "redirect:/getWarningList.do";
 	}
 

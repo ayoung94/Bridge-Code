@@ -14,8 +14,7 @@ td {
 }
 
 .thumbnail img{
-	padding: 10px;
-	widht:300px;
+	widht:350px;
 	height:250px;
 }
 
@@ -64,8 +63,13 @@ p {
 }
 .thumbnail {
 	color: black;
-	border-radius:20px;
 	box-shadow:2px 2px 2px #e6e6e6;
+}
+.thumbnail :hover {
+	transform:scale(1.01, 1.03);
+}
+button {
+	width:100%; 
 }
 </style>
 </head>
@@ -87,23 +91,64 @@ p {
 		<table>
 			<tr>
 				<%	int j = 0;	%>
-				<c:forEach var="memberlist" items="${list}">
-					<td class="col-md-4"><a class="thumbnail" href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${memberlist.member_id}">
-							<img src="${pageContext.request.contextPath}/profile_img/${memberlist.member_profile_img}" class="thumb-image">
+				<c:forEach var="memberlist" items="${list}" end="8">
+					<td class="col-md-4"><a id="thumbnail" class="thumbnail" href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${memberlist.member_id}">
+							<img src="${pageContext.request.contextPath}/profile_img/${memberlist.member_profile_img}" class="thumb-image"><br>
 							<p style='font-size:18px; font-weight:bold;'>${memberlist.member_nickname}</p>
 							<p>${memberlist.member_birth}세</p>
 							<c:if test="${memberlist.member_sex == '1' }"><p>남성</p></c:if>
 							<c:if test="${memberlist.member_sex == '2' }"><p>여성</p></c:if>
- 							</a>
+ 							<br></a>
 					</td>
 						<%	j++;
-							if (j % 3 == 0 ) {
+							if (j % 3 == 0 ) { 
 							out.print("</tr><tr>");
 								}
 						%>
 				</c:forEach>
-			<tr>
+				
+			</tr>
 		</table>
+		<td><button onclick="moreList()" class='btn btn-primary' id="morebtn">더많은 회원보기 </button></td>
+<script>
+function moreList(){
+	var Cnt = $(".thumb-image");
+	var j =0;
+	console.log("갯수"+Cnt.length);
+ 	$.getJSON("${pageContext.request.contextPath}/matching/ajaxallmemberList.do", function(data, status){
+ 		if(status == "success") {
+ 			if( data.length > 0) {
+ 				console.log(data.length);
+ 				if(Cnt.length >= data.length){
+					$('#morebtn').hide();
+					alert("마지막 회원입니다.")
+					 }
+				for(i=Cnt.length ; i< Cnt.length+9 ; i++){
+					if(data[i].MEMBER_SEX == '1'){
+						$("tbody").append("<td class='col-md-4'><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+					    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+						    	+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'><br>"
+		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+						    		+"<p>남성</p></a><br></td>") }
+					else {
+				    		$('tbody').append("<td class='col-md-4'><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+						    	+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+						    	+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'><br>"
+		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
+						    		+"<p>여성</p></a><br></td>")  }
+					j++;
+					if(j%3 == 0){  $('tbody').append("</tr><tr>")
+		    		}
+			}	}
+			} else {
+	            alert("등록에러");
+	        }
+  });
+  return false;    //event.preventDefault()
+};
+</script>
 	</div>
 </body>
 </html>
