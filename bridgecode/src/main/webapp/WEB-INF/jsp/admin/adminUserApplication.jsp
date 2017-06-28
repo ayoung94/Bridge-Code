@@ -7,8 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>새로운 회원 신청 리스트</title>
+
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	
 <script>
 	$(function() {
 		$("#userListTable").DataTable({
@@ -49,8 +51,15 @@
 </style>
 </head>
 <body>
-	<h1>새로운 회원 신청 리스트</h1>
-	<table id="userListTable">
+ 
+	<div class="col-md-12">
+    <div class="card card-plain">
+        <div class="card-header" data-background-color="purple">
+            <h4 class="title">새로운 회원 리스트</h4>
+            <p class="category">새로 가입하여 처리 대기 중인 회원들 입니다.</p>
+        </div>
+	 <div class="card-content table-responsive">
+	<table id="userListTable" class="table table-hover">  
 		<thead class="appth">
 			<tr>
 				<th>ID</th>
@@ -62,8 +71,8 @@
 				<th>승인</th>
 				<th>거부</th>
 			</tr>
-		</thead>
-		<tbody class="apptd">
+		</thead> 
+		<tbody class="apptd"> 
 			<c:forEach items="${userList}" var="userList">
 				<tr>
 					<td>${userList.MEMBER_ID}</td>
@@ -76,14 +85,18 @@
 					<td><a onClick="if(confirm('회원 가입 신청을 거부하시겠습니까?')) location.href='updateUserReject.do?member_id=${userList.MEMBER_ID}'">거부</a></td>
 				</tr>
 			</c:forEach>
-		</tbody>		
-	<!-- Modal -->
+		</tbody>	 
+</table> 
+</div>
+</div>
+</div>
+
 <div class="modal fade" id="userSelModal" style="padding: 20px 35px;" role="dialog">
 	<div class="modal-dialog margin">
 		<!-- Modal content-->
-		<div class="modal-content " ></div>
-	</div>
+		<div class="modal-content" ></div>
+	</div> 
 </div>
-</table>
+
 </body>
 </html>

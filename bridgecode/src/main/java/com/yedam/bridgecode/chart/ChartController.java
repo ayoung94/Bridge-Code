@@ -19,7 +19,7 @@ public class ChartController {
 	//sie 차트 보기
 	@RequestMapping("/Ratioview.do")
 	public String ratioView(MemberVO vo) {
-		return "/popup/chart/siteStats";
+		return "/ADMIN/chart/siteStats";
 	}
 
 	//성비 차트

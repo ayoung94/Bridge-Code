@@ -19,7 +19,7 @@ public class WarningController {
 	@RequestMapping("/getWarningList.do")
 	public String getWarningList(Model model) {
 		model.addAttribute("warningList", warningDAO.getWarningList());
-		return "warning/warningApplication";
+		return "/ADMIN/warning/warningApplication";
 	}
 
 	//비매너 신고 기각

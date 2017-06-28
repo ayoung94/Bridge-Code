@@ -75,6 +75,7 @@
         	member_country = #{member_country},
         	member_birth = TO_DATE(substr(#{member_birth},0,10), 'YYYY-MM-DD'),
         	member_introduction = #{member_introduction},
+        	member_profile_img = #{member_profile_img},
         	member_level = 1
         WHERE member_id = #{member_id}
         ]]>
