@@ -25,7 +25,8 @@
 	align: center;
 	padding: 5px;
 }
-.color{
+
+.color {
 	background-color: #80D9F2;
 }
 </style>
@@ -54,7 +55,8 @@
 		</c:forEach>
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			id="myReset">Close</button>
 	</div>
 </body>
 </html>

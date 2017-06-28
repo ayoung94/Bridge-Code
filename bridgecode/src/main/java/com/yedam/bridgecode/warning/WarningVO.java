@@ -12,12 +12,19 @@ public class WarningVO {
 	private String warningFromId;
 	private String warningStatus;
 	private String memberWarning;
+	private String memberLevel;
 	private String chatContent;
 	private String chatFromId;
 	private String chatToId;
 	private String chatTime;
 
-
+	
+	public String getMemberLevel() {
+		return memberLevel;
+	}
+	public void setMemberLevel(String memberLevel) {
+		this.memberLevel = memberLevel;
+	}
 	public String getMemberWarning() {
 		return memberWarning;
 	}
@@ -97,8 +104,8 @@ public class WarningVO {
 				+ ", warningReason=" + warningReason + ", warningTime="
 				+ warningTime + ", warningFromId=" + warningFromId
 				+ ", warningStatus=" + warningStatus + ", memberWarning="
-				+ memberWarning + ", chatContent=" + chatContent
-				+ ", chatFromId=" + chatFromId + ", chatToId=" + chatToId
-				+ ", chatTime=" + chatTime + "]";
+				+ memberWarning + ", memberLevel=" + memberLevel
+				+ ", chatContent=" + chatContent + ", chatFromId=" + chatFromId
+				+ ", chatToId=" + chatToId + ", chatTime=" + chatTime + "]";
 	}
 }

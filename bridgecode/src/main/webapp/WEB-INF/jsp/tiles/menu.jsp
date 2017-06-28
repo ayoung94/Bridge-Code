@@ -95,7 +95,7 @@
         			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">description</i> <spring:message code="게시판" /><b class="caret"></b></a>
         			<ul class="dropdown-menu">
 					  <li><a href="${pageContext.request.contextPath}/getNoticeList.do"> <spring:message code="공지사항" /></a></li>
-					  <li><a href="#"> <spring:message code="이벤트" /></a></li>
+					  <li><a href="${pageContext.request.contextPath}/getEventList.do"> <spring:message code="이벤트" /></a></li>
         			</ul>
         		</li>
 				
