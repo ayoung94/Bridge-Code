@@ -54,5 +54,15 @@ public class MatchingServiceImpl implements MatchingService{
 	public List<Map<String,Object>> allmemberList(MemberVO vo){
 		return MatchingDAO.allmemberList(vo);
 	}
+	//전체 멤버 리스트(ajax)
+	@Override
+	public List<Map<String, Object>> ajaxallmemberList(MemberVO vo) {
+		return MatchingDAO.ajaxallmemberList(vo);
+	}
+	//이성 멤버 리스트(ajax)
+	@Override
+	public List<Map<String, Object>> ajaxsearchGenderList(MemberVO vo) {
+		return MatchingDAO.ajaxsearchGenderList(vo);
+	}
 	
 }

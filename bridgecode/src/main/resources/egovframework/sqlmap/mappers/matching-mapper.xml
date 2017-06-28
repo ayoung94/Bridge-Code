@@ -46,6 +46,28 @@
 		ORDER BY MEMBER_BIRTH ASC
 	</select>
 	
+	<!-- 이성 리스트 출력 (ajax)-->
+	<select id="ajaxsearchGenderList" resultType="map">
+		SELECT 	MEMBER_ID
+				,MEMBER_PASSWORD 
+				,MEMBER_NICKNAME
+				,MEMBER_SEX 
+				,MEMBER_COUNTRY
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "MEMBER_BIRTH"
+				,MEMBER_INTRODUCTION
+				,MEMBER_LEVEL
+				,MEMBER_PROFILE_IMG
+				,MEMBER_INTEREST1
+				,MEMBER_INTEREST2
+				,MEMBER_INTEREST3
+				,MEMBER_NAME
+				,MEMBER_WARNING
+		FROM MEMBER
+		WHERE MEMBER_SEX != #{member_sex}
+		AND MEMBER_LEVEL = '2'
+		ORDER BY MEMBER_ID ASC
+	</select>	
+	
 	<!-- 전체회원 리스트 출력 -->	
 		<select id="allmemberList" resultType="map">
 		SELECT 	MEMBER_ID AS "member_id"
@@ -62,6 +84,27 @@
 				,MEMBER_INTEREST3 AS "member_interest3"
 				,MEMBER_NAME AS "member_name"
 				,MEMBER_WARNING AS "member_warning"
+		FROM MEMBER
+		WHERE MEMBER_LEVEL = '2'
+		ORDER BY MEMBER_NICKNAME ASC
+	</select>
+	
+		<!-- 전체회원 리스트 출력 (ajax)-->	
+		<select id="ajaxallmemberList" resultType="map">
+		SELECT 	MEMBER_ID 
+				,MEMBER_PASSWORD 
+				,MEMBER_NICKNAME 
+				,MEMBER_SEX  
+				,MEMBER_COUNTRY
+				,ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 AS "MEMBER_BIRTH"
+				,MEMBER_INTRODUCTION 
+				,MEMBER_LEVEL 
+				,MEMBER_PROFILE_IMG
+				,MEMBER_INTEREST1
+				,MEMBER_INTEREST2
+				,MEMBER_INTEREST3
+				,MEMBER_NAME 
+				,MEMBER_WARNING
 		FROM MEMBER
 		WHERE MEMBER_LEVEL = '2'
 		ORDER BY MEMBER_NICKNAME ASC

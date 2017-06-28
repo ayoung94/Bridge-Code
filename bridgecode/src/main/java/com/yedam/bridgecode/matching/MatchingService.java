@@ -25,6 +25,12 @@ public interface MatchingService {
 	// 이성멤버 검색
 	public List<Map<String,Object>> searchGenderList(MemberVO vo);
 	
+	//이성 멤버 리스트
+	public List<Map<String,Object>> ajaxsearchGenderList(MemberVO vo);
+	
 	// 전체회원 검색
 	public List<Map<String,Object>> allmemberList(MemberVO vo);
+	
+	// 전체회원 검색
+	public List<Map<String,Object>> ajaxallmemberList(MemberVO vo);
 }
