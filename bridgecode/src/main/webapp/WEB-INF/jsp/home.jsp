@@ -8,9 +8,7 @@
 <style>
 .headfont {@import
 	url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);font-family: 
-	'Nanum Pen Script ', serif ;
-text-align:center ;
-
+	 'Nanum Pen Script ', serif ; text-align:center ;
 	
 }
 
@@ -96,7 +94,6 @@ text-align:center ;
 	</div>
 	<br />
 	<h3 class="headfont">Week Start</h3>
-	>
 	<div class="w3-row">
 		<div class="w3-col m6 w3-center">
 			<p>

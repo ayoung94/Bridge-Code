@@ -32,6 +32,7 @@
 		});
 	})
 </script>
+
 <style>
 .appth th {
 	text-align: center;
@@ -46,6 +47,13 @@
 	z-index: -1;
 }
 </style>
+<script>
+	$(function() {
+		$('body').on('hidden.bs.modal', '.modal', function() {
+			$(this).removeData('bs.modal');
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>새로운 회원 신청 리스트</h1>
@@ -84,7 +92,8 @@
 
 
 	<!-- Modal -->
-	<div class="modal fade" id="userSelModal" style="padding: 50px 35px;" role="dialog">
+	<div class="modal fade" id="userSelModal" style="padding: 50px 35px;"
+		role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content -->
 			<div class="modal-content"></div>
