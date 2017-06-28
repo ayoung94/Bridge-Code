@@ -19,20 +19,22 @@ public class WarningServiceImpl implements WarningService{
 	}
 
 	@Override
-	public void updateWarningApplicationMember(WarningVO vo) {
+	public void updateWarningApplication(WarningVO vo) {
 		warningDAO.updateWarningApplicationMember(vo);
+		warningDAO.updateWarningApplicationWarning(vo);
+		warningDAO.updateWarningApplicationLevel(vo);
 	}
 
 	@Override
 	public void updateWarningReject(WarningVO vo) {
 		warningDAO.updateWarningReject(vo);
 	}
-
+/*
 	@Override
 	public void updateWarningApplicationWarning(WarningVO vo) {
 		warningDAO.updateWarningApplicationWarning(vo);
 
-	}
+	}*/
 
 	@Override
 	public int countWarning(WarningVO vo) {
