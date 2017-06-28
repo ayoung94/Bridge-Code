@@ -33,4 +33,10 @@ public class ChartController {
 	public @ResponseBody List<Map<String, Object>> countryRatio(MemberVO vo) {
 		return chartDAO.countryRatio(vo);
 	}
+
+	//월별 가입자 수 차트
+	@RequestMapping("/monthRatio.do")
+	public @ResponseBody List<Map<String, Object>> monthRatio(MemberVO vo) {
+		return chartDAO.monthRatio(vo);
+	}
 }

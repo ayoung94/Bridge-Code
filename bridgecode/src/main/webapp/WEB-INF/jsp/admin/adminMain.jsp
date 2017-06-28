@@ -6,8 +6,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel='stylesheet'
+	href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 html, body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Roboto", sans-serif
@@ -16,15 +18,20 @@ html, body, h1, h2, h3, h4, h5, h6 {
 a {
 	text-decoration: none;
 }
+
+.fontC {
+	text-align: center;
+}
 </style>
 <style>
 .right {
-	float:right;
-	margin:20px;
+	float: right;
+	margin: 20px;
 }
 </style>
 <script src="//www.google.com/jsapi"></script>
-<script type="text/javascript" src="./resources/adminjs/jquery-3.2.1.min.js"/></script>
+<script type="text/javascript"
+	src="./resources/adminjs/jquery-3.2.1.min.js" /></script>
 <script>
 	google.load('visualization', '1.0', {
 		'packages' : [ 'corechart' ]
@@ -102,117 +109,107 @@ function goChart(){
 </script>
 <body class="w3-light-grey">
 
-<br><br><br><br>
-					<div class="row">
-						<div class="col-lg-1 col-md-3 col-sm-3">
-						</div>
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="orange">
-									<i class="material-icons">face</i>
-								</div>
-								<div class="card-content">
-									<p class="category">새로 가입한 회원</p>
-									<h3 class="title">${countUserApplication}<small>명</small></h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">description</i> <a href="${pageContext.request.contextPath}/getUserList.do?member_level=1">회원 신청 처리</a>
-									</div>
-								</div> 
-							</div>
-						</div>
-						
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="red">
-									<i class="material-icons">report_problem</i>
-								</div>
-								<div class="card-content"> 
-									<p class="category">신고처리</p>
-									<h3 class="title">${count}<small>건</small></h3>
-								</div> 
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">description</i> <a href="${pageContext.request.contextPath}/getWarningList.do">신고 내역 처리</a>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-3 col-md-6 col-sm-6">
-							<div class="card card-stats">
-								<div class="card-header" data-background-color="blue">
-									<i class="material-icons">group</i>
-								</div>
-								<div class="card-content">
-									<p class="category">총 회원수</p>
-									<h3 class="title">+245</h3>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">update</i> Just Updated
-									</div>
-								</div>
-							</div>
-						</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-lg-1 col-md-3 col-sm-3"></div>
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-header" data-background-color="orange">
+					<i class="material-icons">face</i>
+				</div>
+				<div class="card-content">
+					<p class="category">회원가입 List</p>
+					<h3 class="title">${countUserApplication}<small>명</small>
+					</h3>
+				</div>
+				<div class="card-footer">
+					<div class="stats">
+						<i class="material-icons">description</i> <a
+							href="${pageContext.request.contextPath}/getUserList.do?member_level=1">회원
+							신청 처리</a>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-header" data-background-color="red">
+					<i class="material-icons">report_problem</i>
+				</div>
+				<div class="card-content">
+					<p class="category">신고처리</p>
+					<h3 class="title">${count}<small>건</small>
+					</h3>
+				</div>
+				<div class="card-footer">
+					<div class="stats">
+						<i class="material-icons">description</i> <a
+							href="${pageContext.request.contextPath}/getWarningList.do">신고
+							내역 처리</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-6 col-sm-6">
+			<div class="card card-stats">
+				<div class="card-header" data-background-color="blue">
+					<i class="material-icons">group</i>
+				</div>
+				<div class="card-content">
+					<p class="category">총 회원수</p>
+					<h3 class="title">+245</h3>
+				</div>
+				<div class="card-footer">
+					<div class="stats">
+						<i class="material-icons">update</i> Just Updated
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-				<!-- 차트 부분 -->
-					<div class="row">
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" style="background-color: white;">
-									<div id="sexRatio_div" style="width:420px; height:252px; display:inline-block;"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">전체 유저 성비</h4>
-									<p class="category"><span class="text-success"><i class="fa fa-long-arrow-up"></i> 55%  </span> increase in today sales.</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> updated 4 minutes ago
-									</div>
-								</div>
-							</div>
-						</div>
+	<!-- 차트 부분 -->
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header card-chart" style="background-color: white;">
+					<div id="sexRatio_div"
+						style="width: 420px; height: 252px; display: inline-block;"></div>
+				</div>
+				<div class="card-content">
+					<h4 class="title fontC">전체 유저 성비</h4>
+				</div>
+			</div>
+		</div>
 
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" style="background-color: white;" >
-									<div id="countryRatio_div" style="width:420px; height:252px; display:inline-block;"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">국가별 인원 수</h4>
-									<p class="category">Last Campaign Performance</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> campaign sent 2 days ago
-									</div>
-								</div>
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header card-chart" style="background-color: white;">
+					<div id="countryRatio_div"
+						style="width: 420px; height: 252px; display: inline-block;"></div>
+				</div>
+				<div class="card-content">
+					<h4 class="title fontC">국가별 인원 수</h4>
+				</div>
+			</div>
+		</div>
 
-							</div>
-						</div>
-
-						<div class="col-md-4">
-							<div class="card">
-								<div class="card-header card-chart" data-background-color="orange">
-									<div class="ct-chart" id="completedTasksChart"></div>
-								</div>
-								<div class="card-content">
-									<h4 class="title">Completed Tasks</h4>
-									<p class="category">Last Campaign Performance</p>
-								</div>
-								<div class="card-footer">
-									<div class="stats">
-										<i class="material-icons">access_time</i> campaign sent 2 days ago
-									</div>
-								</div>
-							</div>
-						</div>	
-
- 
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header card-chart" style="background-color: white;">
+					<div id="monthRatio_div"
+						style="width: 420px; height: 252px; display: inline-block;"></div>
+				</div>
+				<div class="card-content">
+					<h4 class="title">월별 가입자수</h4>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
