@@ -11,4 +11,5 @@ import com.yedam.bridgecode.member.MemberVO;
 public interface ChartMapper {
 	public List<Map<String, Object>> sexRatio(MemberVO vo);
 	public List<Map<String, Object>> countryRatio(MemberVO vo);
+	public List<Map<String, Object>> monthRatio(MemberVO vo);
 }
