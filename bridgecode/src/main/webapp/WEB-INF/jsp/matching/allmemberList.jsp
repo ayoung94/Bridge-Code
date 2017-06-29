@@ -41,7 +41,7 @@ td {
 }
 
 .myPageMenu li:last-child {
-	width: 780px;
+	width: 700px;
 	border-bottom: 5px #DCDCDC solid;
 	margin-top: 48px;
 }
@@ -85,7 +85,7 @@ button {
 				class="changeBG"><spring:message code='이성회원보기'/></a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/matching/allmemberList.do"
-				class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code='전체회원보기'/></a></li>
+				class="active" style="margin-left:10px; border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code='전체회원보기'/></a></li>
 			<li></li>
 		</ul>
 		<table>
