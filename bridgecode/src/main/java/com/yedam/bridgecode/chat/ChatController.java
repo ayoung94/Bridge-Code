@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -97,7 +99,7 @@ public class ChatController {
 	
 	
 	@RequestMapping("/chat/coupleChat.do")
-	public String getCodeList(Model model,
+	public String getCoupleChat(Model model,
 							  MemberVO partner,
 							  MemberVO vo,
 							  HttpSession session) {
@@ -108,6 +110,22 @@ public class ChatController {
 		model.addAttribute("chatlist",chatService.getCoupleChatList(vo));
 		model.addAttribute("partner", partner);	
 		return "/popup/chat/coupleChat";
+	}
+	
+	@RequestMapping("/chat/ajaxcoupleChat.do")
+	public @ResponseBody List<Map<String, Object>> getAjaxCoupleChat(Model model,
+							  MemberVO partner,
+							  MemberVO vo,
+							  HttpSession session,
+							  @RequestParam String start,
+							  @RequestParam String end) {
+		vo = (MemberVO)session.getAttribute("login");
+		System.out.println(vo);
+/*		partner.setMember_id(vo.getMember_partner_id());
+		partner = memberService.getMember(partner);
+		*/
+		
+		return chatService.getAjaxCoupleChatList(vo, start, end);
 	}
 	
 	@RequestMapping(value="/warning/warningInsert.do",method= RequestMethod.POST)

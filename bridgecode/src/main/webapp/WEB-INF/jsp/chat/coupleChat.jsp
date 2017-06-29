@@ -1,13 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%-- <%@ attribute name="paginationInfo" required="true" type="com.yedam.bridgecode.chat.ChatVO"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<title>Couple Chat</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script>
     var newName, n=0;
@@ -25,38 +28,41 @@
 				newName,
 				'width=450,height=200,left=1000,top=200');
     }
-</script>   
+</script>
 <style>
-.meTalk{
-background-color: white;
-border: 1px solid black;
-padding: 10px;
- max-width: 60%;
-    clear: both;
-    float: right;
-    margin: 5px;
+.meTalk {
+	background-color: white;
+	border: 1px solid black;
+	padding: 10px;
+	max-width: 60%;
+	clear: both;
+	float: right;
+	margin: 5px;
 }
-.alertTalk{
-border-bottom: 2px solid #bbb;
-border-top: 2px solid #bbb;
-padding:5px;
-margin: 5px;
-clear: both;
-text-align: center;
+
+.alertTalk {
+	border-bottom: 2px solid #bbb;
+	border-top: 2px solid #bbb;
+	padding: 5px;
+	margin: 5px;
+	clear: both;
+	text-align: center;
 }
-.youTalk{
-background-color: white;
- max-width: 60%;
-    clear: both;
-    float: left;
-border: 1px solid black;
-/* display:inline-block; */
-padding: 5px;
-margin: 5px;
+
+.youTalk {
+	background-color: white;
+	max-width: 60%;
+	clear: both;
+	float: left;
+	border: 1px solid black;
+	/* display:inline-block; */
+	padding: 5px;
+	margin: 5px;
 }
 </style>
 <script>
 $(function(){
+	
 	console.log("작동"); 
 	$("#messageWindow").on("mouseenter",".youTalk",function(){ //수정
 				var THIS = $(this);
@@ -123,92 +129,158 @@ $(function(){
 									});}
 					});
 
- 	$(".youTalk").on({"mouseleave":function(){
+ 	$("#messageWindow").on("mouseleave",".youTalk",function(){
 		var THIS = $(this);
 		THIS.children().last().hide();
-	  }});
+	  });
 	 
 });
+function moreRead(){
+	var start =  $('#startNum').val();
+	var end =  $('#endNum').val();
+	var me = "${login.member_id}";
+	var you = "${partner.member_id}";
+	if(start<0){
+		alert("채팅 내역이 모두 load되었습니다.");
+		$('#readMoreBtn').remove();
+		return;
+	}
+	console.log($('#startNum').val());
+	console.log($('#endNum').val());
+	$.getJSON("${pageContext.request.contextPath}/chat/ajaxcoupleChat.do?start="+start+"&end="+end, function(data, status){
 
+			$('#startNum').val(start-10);
+			$('#endNum').val(end-10);
+
+			$.each(data,function(key,value){
+				var time = new Date(value.CHAT_TIME);
+		    	
+				function getTimeStamp(a) {
+		    		  var d = new Date(a);
+		    		  var s =
+		    		    leadingZeros(d.getFullYear(), 4) + '-' +
+		    		    leadingZeros(d.getMonth() + 1, 2) + '-' +
+		    		    leadingZeros(d.getDate(), 2);
+		    		  return s;
+		    		}
+
+		    		function leadingZeros(n, digits) {
+		    		  var zero = '';
+		    		  n = n.toString();
+
+		    		  if (n.length < digits) {
+		    		    for (i = 0; i < digits - n.length; i++)
+		    		      zero += '0';
+		    		  }
+		    		  return zero + n;
+		    		}
+				var timeStr = getTimeStamp(value.CHAT_TIME);
+				if(value.CHAT_FROM_ID == "${login.member_id}"){
+					//보낸 사람이 나
+					$("#readMore").prepend("<div class='meTalk w3-round-xlarge'>"+value.CHAT_CONTENT+"</div><div style='float: right;margin-top: 30px;vertical-align: bottom;display: inline;'>"
+					+"<span style='font-size: xx-small;font-style: italic;'>"+timeStr+"</span></div>");
+	
+				}else{
+					//보낸 사람이 상대방
+					$("#readMore").prepend("<div class='youTalk w3-round-xlarge'><p>"+value.CHAT_CONTENT+"</p><p></p></div><div> <div style='float: left;margin-top: 30px;vertical-align: bottom;display: inline;'>"
+							+"<span style='font-size: xx-small;font-style: italic;'>"+timeStr+"</span></div>");
+				}
+			});
+			
+});
+}
 </script>
 </head>
-<body style="width: 400px; height:600px;">
-<ul class="w3-ul w3-card-4">
-  <li class="w3-padding-16">
-    <img src="${pageContext.request.contextPath}/profile_img/${partner.member_profile_img}" class="w3-left w3-circle w3-margin-right" style="width:50px;height: 50px;">
-    <span class="w3-large">${partner.member_nickname }</span><br>
-	<div style="text-align: right;">
-    <a href="#" onclick="MyOpenWindow()">신고하기</a>
+<body style="width: 400px; height: 600px;">
+	<ul class="w3-ul w3-card-4">
+		<li class="w3-padding-16"><img
+			src="${pageContext.request.contextPath}/profile_img/${partner.member_profile_img}"
+			class="w3-left w3-circle w3-margin-right"
+			style="width: 50px; height: 50px;"> <span class="w3-large">${partner.member_nickname }</span><br>
+			<div style="text-align: right;">
+				<a href="#" onclick="MyOpenWindow()"><spring:message code="신고하기" /></a>
+			</div></li>
+	</ul>
+
+
+	<div
+		style="overflow-y:auto; height:470px; overflow-x:hidden;background-image: url('${pageContext.request.contextPath}/resources/img/chatBG.JPG');"
+		id="messageWindow">
+
+		<br> <div style="width: 100%;text-align: center;"><a href="#" onclick="moreRead();" id="readMoreBtn">더보기</a></div>
+		<div  id="readMore"></div>
+
+		<br>
+
+		<!--  endNumber에 채팅 end row Number 입력 -->
+		<c:forEach items="${chatlist}" var="chatNO" varStatus="Number">
+			<c:set var="endNumber" value="${Number.count }" />
+		</c:forEach>
+
+		<input type="hidden" id="endNum" value="${endNumber -30}">
+		<input type="hidden" id="startNum" value="${endNumber -40}">
+		
+		
+		<!-- 로딩 시 채팅 출력 -->
+		<c:forEach items="${chatlist}" var="chat" begin="${endNumber - 30 }">
+			<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
+			<c:if test="${sender eq login.member_id }">
+				<div class='meTalk w3-round-xlarge'>${chat.CHAT_CONTENT }</div>
+				<div
+					style="float: right; margin-top: 30px; vertical-align: bottom; display: inline;">
+					<span style="font-size: xx-small; font-style: italic;"> <jsp:useBean
+							id="Today" class="java.util.Date" /> <fmt:formatDate
+							value="${Today}" pattern="yyyy-MM-dd" var="date" /> <fmt:parseDate
+							value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss"
+							var="chatTime" scope="page" /> <fmt:formatDate
+							value="${chatTime}" pattern="yyyy-MM-dd" var="chatt" /> <c:if
+							test="${date eq chatt}">
+							<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
+						</c:if> <c:if test="${date ne chatt}">
+							<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
+						</c:if>
+					</span>
+				</div>
+
+
+			</c:if>
+			<c:if test="${sender ne login.member_id }">
+
+
+				<div class='youTalk w3-round-xlarge'>
+					<p>${chat.CHAT_CONTENT }</p>
+					<p></p>
+				</div>
+
+
+				<div style="float: left; margin-top: 30px; vertical-align: bottom;">
+					<span style="font-size: xx-small; font-style: italic;"> <jsp:useBean
+							id="toDay" class="java.util.Date" /> <fmt:formatDate
+							value="${toDay}" pattern="yyyy-MM-dd" var="date" /> <fmt:parseDate
+							value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss"
+							var="chatTime" scope="page" /> <fmt:formatDate
+							value="${chatTime}" pattern="yyyy-MM-dd" var="chat" /> <c:if
+							test="${date eq chat}">
+							<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
+						</c:if> <c:if test="${date ne chat}">
+							<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
+						</c:if>
+					</span>
+				</div>
+
+			</c:if>
+		</c:forEach>
+
 	</div>
-  </li>
-</ul>
 
-
-<div style="overflow-y:auto; height:470px; overflow-x:hidden;background-image: url('${pageContext.request.contextPath}/resources/img/chatBG.JPG');" id="messageWindow">
-
-<br>
-<a href="#" onclick="">더보기</a>
-<c:forEach begin="${paginationInfo.firstPageNoOnPageList}"            
-            end="${paginationInfo.lastPageNoOnPageList}" var="p"> 
-       <a href="#" onclick="fn_egov_link_page(${p})">${p}</a> 
-</c:forEach>
-<br>
-
-<c:forEach items="${chatlist}" var="chat" >
-<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
-<c:if test="${sender eq login.member_id }">  
-<div class='meTalk w3-round-xlarge'>${chat.CHAT_CONTENT }</div>
-<div style="float: right;margin-top: 30px;vertical-align: bottom;display: inline;">
-<span style="font-size: xx-small;font-style: italic;">
-<jsp:useBean id="Today" class="java.util.Date" />
-<fmt:formatDate value="${Today}" pattern="yyyy-MM-dd" var="date" />
-<fmt:parseDate value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss" var="chatTime" scope="page" />
-<fmt:formatDate value="${chatTime}" pattern="yyyy-MM-dd" var="chatt" />
-<c:if test="${date eq chatt}">
-<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
-</c:if>
-<c:if test="${date ne chatt}">
-<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
-</c:if>
-</span>
-</div>
-
-
-</c:if>
-<c:if test="${sender ne login.member_id }">  
-
-
-<div class='youTalk w3-round-xlarge'>
-<p>${chat.CHAT_CONTENT }</p>
-<p></p>
-</div>
-
-
-<div style="float: left;margin-top: 30px;vertical-align: bottom;">
-<span style="font-size: xx-small;font-style: italic;">
-<jsp:useBean id="toDay" class="java.util.Date" /> 
-<fmt:formatDate value="${toDay}" pattern="yyyy-MM-dd" var="date" />
-<fmt:parseDate value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss" var="chatTime" scope="page" />
-<fmt:formatDate value="${chatTime}" pattern="yyyy-MM-dd" var="chat" />
-
-<c:if test="${date eq chat}">
-<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
-</c:if>
-<c:if test="${date ne chat}">
-<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
-</c:if>
-</span>
-</div>
-
-</c:if>
-</c:forEach>
-
-</div>
-
-<input id="inputMessage" type="text" style="width: 320px;margin: 6px;margin-top: 10px;" onkeydown="if(event.keyCode==13) send();"
-placeholder="텍스트를 입력하세요..."/> 
-<!-- <input type="submit" value="send" onclick="send()" />  -->
-<button onclick="send()" class="w3-button w3-purple w3-round w3-small">전송</button>
+	<input id="inputMessage" type="text"
+		style="width: 300px; margin: 5px; margin-top: 10px;"
+		onkeydown="if(event.keyCode==13) send();"
+		placeholder="<spring:message code="텍스트를입력하세요" />" />
+	<!-- <input type="submit" value="send" onclick="send()" />  -->
+	<button onclick="send()" class="w3-button w3-purple w3-round w3-small">
+		<spring:message code="전송" />
+	</button>
 
 </body>
 
@@ -254,7 +326,7 @@ placeholder="텍스트를 입력하세요..."/>
         textarea.scrollTop = textarea.scrollHeight;
     } 
     function onOpen(event) {
-    	textarea.innerHTML += "<br><div class='alertTalk'>연결이 되었습니다.</div>"; 
+    	textarea.innerHTML += "<br><div class='alertTalk'><spring:message code='연결이되었습니다' /></div>"; 
     	textarea.scrollTop = textarea.scrollHeight;
     } 
     function onError(event) { 
@@ -269,6 +341,6 @@ placeholder="텍스트를 입력하세요..."/>
         inputMessage.value = "";
         textarea.scrollTop = textarea.scrollHeight;
     } 
-  </script> 
+  </script>
 
 </html>

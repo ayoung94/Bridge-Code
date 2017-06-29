@@ -9,5 +9,5 @@ public interface ChatService {
 	public List<Map<String,Object>> getCoupleChatList(MemberVO vo);
 	public void insertChat(ChatVO vo);
 	public void insertWarning(MemberVO vo,String content);
-	
+	public List<Map<String,Object>> getAjaxCoupleChatList(MemberVO vo,String start,String end);
 }

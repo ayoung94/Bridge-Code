@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,7 +40,7 @@ $(function(){
                     "width" : "200px",
                     "height" : "200px",
                     "onclick":"document.getElementById('fileUpload').click();",
-                    "title":"프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다."
+                    "title":"<spring:message code='프로필사진.tooltip' />"
              
                 }).appendTo(image_holder);
 
@@ -156,27 +158,27 @@ width: 300px;
 </head>
 
 <body>
-<h3><i class="material-icons">people</i>회원 가입</h3>
+<h3><i class="material-icons">people</i><spring:message code="회원가입" /></h3>
 <p class="text-muted"> 
-	브릿지 코드의 회원이 되어주세요! 무성의한 정보 기입은 회원 승인 거부사유가 될 수 있습니다.
+	<spring:message code="회원가입.sub" />
 </p>
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
 <table id="joinForm">
 <tr>
-<td>프로필 사진 :</td>
+<td><spring:message code="프로필사진" /> :</td>
 <td>
 <div id="wrapper">
 	<input id="fileUpload" type="file" name="uploadFile"  style="display: none;" /><br>
 		<div id="image-holder"> 
 		<img src="${pageContext.request.contextPath}/resources/img/examples/addimage.png" class="thumb-image" onclick="document.getElementById('fileUpload').click();"
-		data-toggle="tooltip" data-placement="top" title="프로필 사진을 등록하지 않으면, 승인 거부 사유가 됩니다.">
+		data-toggle="tooltip" data-placement="top" title="<spring:message code="프로필사진.tooltip" />">
 		</div>
 
 </div></td>
 </tr>
 <tr>
-<td>아이디 :</td><td>
+<td><spring:message code="아이디" /> :</td><td>
 <div class="col-sm-4">
 <div class="form-group label-floating" id="member_id_div">
 <label id="member_id_label" class="control-label">이메일을 입력해주세요.</label>
@@ -191,7 +193,7 @@ width: 300px;
 </td>
 </tr>
 <tr>
-<td>비밀번호:<br><br><br><br>비밀번호 확인:</td>
+<td><spring:message code="비밀번호" />:<br><br><br><br><spring:message code="비밀번호확인" />:</td>
 <td>
 <div class="col-sm-4">
 <input type="password" id="member_password1" class="form-control widthSmall">
@@ -208,14 +210,14 @@ width: 300px;
 </td>
 </tr>
 <tr>
-<td>이름 :</td>
+<td><spring:message code="이름" /> :</td>
 <td>
 <div class="col-sm-4">
 <input type="text" name="member_name" class="form-control widthSmall" >
 </div></td>
 </tr>
 <tr>
-<td>닉네임:
+<td><spring:message code="닉네임" />:
 </td>
 <td>
 <div class="col-sm-4">
@@ -224,7 +226,7 @@ width: 300px;
 </td>
 </tr>
 <tr>
-<td>성별:</td>
+<td><spring:message code="성별" />:</td>
 <td> 
 <div class="radio" style="margin-left: 20px;">
 <label><input type="radio" name="member_sex" value="1">남</label>
@@ -232,7 +234,7 @@ width: 300px;
 </div></td>
 </tr>
 <tr>
-<td>국적:</td>
+<td><spring:message code="국적" />:</td>
 <td>
 <div class="col-sm-4">
 <select name="member_country" class="form-control">
@@ -243,7 +245,7 @@ width: 300px;
 </div></td>
 </tr>
 <tr>
-<td>생년월일:</td>
+<td><spring:message code="생년월일" />:</td>
 <td>
 <div class="col-sm-4">
 <input type="text" name="member_birth" class="datepicker form-control widthSmall" data-date-format="yyyy/mm/dd">
@@ -251,7 +253,7 @@ width: 300px;
 </td>
 </tr>
 <tr>
-<td>관심사:</td>
+<td><spring:message code="관심사" />:</td>
 <td>
 <br>
 <div class="radio">
@@ -282,7 +284,7 @@ ${interest.code_name }
 </td>
 </tr>
 <tr>
-<td>자기소개:</td>
+<td><spring:message code="자기소개" />:</td>
 <td>
 <div class="col-sm-7">
 <textarea class="form-control"cols="30" rows="5" name="member_introduction"></textarea>
@@ -291,7 +293,7 @@ ${interest.code_name }
 </tr>
 </table>
 
-<button class="btn btn-primary" style="margin-left: 800px;"> 등록 </button>
+<button class="btn btn-primary" style="margin-left: 800px;"><spring:message code="전송" /></button>
 
 </form>
 

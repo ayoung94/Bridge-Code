@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -47,9 +48,9 @@ $('[data-toggle="tooltip"]').tooltip();
 </script>
 <body>
 <ul class="myPageMenu">
-  <li><a href="${pageContext.request.contextPath}/member/mypage.do" class="changeBG">마이 페이지</a></li>
-  <li><a href="${pageContext.request.contextPath}/heart/heartFromList.do" class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;">내 하트 내역</a></li>
-  <li><a href="${pageContext.request.contextPath}/member/memberSelect.do" class="changeBG" style="text-align: left;">내 회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/member/mypage.do" class="changeBG"><spring:message code="마이페이지" /></a></li>
+  <li><a href="${pageContext.request.contextPath}/heart/heartFromList.do" class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code="내하트내역" /></a></li>
+  <li><a href="${pageContext.request.contextPath}/member/memberSelect.do" class="changeBG" style="text-align: left;"><spring:message code="내회원정보" /></a></li>
   <li></li>
 </ul>
 
@@ -57,9 +58,9 @@ $('[data-toggle="tooltip"]').tooltip();
     <thead>
         <tr>
             <th class="text-center">#</th>
-            <th class="text-center">받은 사람</th>
-            <th class="text-center">보낸 시각</th>
-            <th class="text-center">처리 상황</th>
+            <th class="text-center"><spring:message code="받은사람" /></th>
+            <th class="text-center"><spring:message code="보낸시각" /></th>
+            <th class="text-center"><spring:message code="처리상황" /></th>
         </tr>
     </thead>
     <tbody>
@@ -73,10 +74,10 @@ $('[data-toggle="tooltip"]').tooltip();
 			  <span class="label label-default">대기</span>
 			</c:if>
 			<c:if test="${heart.HEART_STATUS == 1 }">
-			  <span class="label label-primary">수락</span>
+			  <span class="label label-primary"><spring:message code="수락" /></span>
 			</c:if>
 			<c:if test="${heart.HEART_STATUS == 2 }">
-			  <span class="label label-default">거절</span>
+			  <span class="label label-default"><spring:message code="거절" /></span>
 			</c:if>
 			<c:if test="${heart.HEART_STATUS == 3 }">
 			  <span class="label label-default" data-toggle="tooltip" data-placement="top" title="커플성사,해제,유효기간 초과 등으로 만료됨을 의미합니다.">만료</span>

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -96,20 +97,20 @@ width: 300px;
 </style>
 </head>
 <body>
-<h3>내 회원 정보 수정</h3>
+<h3><spring:message code="회원정보수정" /></h3>
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
 <table id="joinForm">
 <tr>
-<td>아이디 :</td><td>${member.member_id}</td>
+<td><spring:message code="아이디" /> :</td><td>${member.member_id}</td>
 </tr>
 <tr>
-<td>이름 :</td>
+<td><spring:message code="이름" /> :</td>
 <td>
 ${member.member_name}</td>
 </tr>
 <tr>
-<td>생년월일:</td>
+<td><spring:message code="생년월일" /> :</td>
 <td>
 <div class="col-sm-4">
 <input type="text" id="member_birth" name="member_birth" class="datepicker form-control widthSmall" data-date-format="yyyy/mm/dd">
@@ -117,7 +118,7 @@ ${member.member_name}</td>
 </td>
 </tr>
 <tr>
-<td>비밀번호:<br><br><br><br>비밀번호 확인:</td>
+<td><spring:message code="비밀번호" />:<br><br><br><br><spring:message code="비밀번호확인" />:</td>
 <td>
 <div class="col-sm-4">
 <input type="password" id="member_password1" class="form-control widthSmall">
@@ -134,7 +135,7 @@ ${member.member_name}</td>
 </td>
 </tr>
 <tr>
-<td>닉네임:
+<td><spring:message code="닉네임" /> :
 </td>
 <td>
 <div class="col-sm-4">
@@ -143,7 +144,7 @@ ${member.member_name}</td>
 </td>
 </tr>
 <tr>
-<td>성별:</td>
+<td><spring:message code="성별" />:</td>
 <td> 
 <div class="radio" style="margin-left: 20px;"> 
 <label><input type="radio" name="member_sex" value="1" <c:if test="${member.member_sex == 1}">checked</c:if> >남</label>
@@ -151,7 +152,7 @@ ${member.member_name}</td>
 </div></td>
 </tr>
 <tr>
-<td>국적:</td>
+<td><spring:message code="국적" />:</td>
 <td>
 <div class="col-sm-4">
 <select name="member_country" class="form-control">
@@ -162,7 +163,7 @@ ${member.member_name}</td>
 </div></td>
 </tr>
 <tr>
-<td>관심사:</td>
+<td><spring:message code="관심사" /> :</td>
 <td>
 <br>
 <div class="radio">
@@ -193,7 +194,7 @@ ${interest.code_name }
 </td>
 </tr>
 <tr>
-<td>자기소개:</td>
+<td><spring:message code="자기소개" />:</td>
 <td>
 <div class="col-sm-7">
 <textarea class="form-control"cols="30" rows="5" name="member_introduction">${member.member_introduction}</textarea>
@@ -202,7 +203,7 @@ ${interest.code_name }
 </tr>
 </table>
 
-<button class="btn btn-primary" style="margin-left: 800px;"> 등록 </button>
+<button class="btn btn-primary" style="margin-left: 800px;"><spring:message code="전송" /></button>
 
 </form>
 

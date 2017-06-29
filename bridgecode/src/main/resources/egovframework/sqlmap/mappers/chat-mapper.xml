@@ -25,12 +25,23 @@
 	
 	<select id="getCoupleChatList" resultType="map">
 		SELECT *
-		FROM chat
-		where (chat_from_id = #{member_id}
-		and chat_to_id = #{member_partner_id})
-		or (chat_from_id = #{member_partner_id}
-		and chat_to_id = #{member_id})
-		order by chat_time
+		FROM (select * from chat
+			where (chat_from_id = #{member_id} and chat_to_id = #{member_partner_id})
+			or (chat_from_id = #{member_partner_id} and chat_to_id = #{member_id}) order by chat_time)
+	</select> 
+	
+	
+	
+	
+	<select id="getAjaxCoupleChatList" resultType="map">
+	SELECT * FROM 
+	 (select chat_from_id,chat_content,chat_to_id,chat_time,chat_id,rownum rnum
+	 from chat
+	where ((chat_from_id = #{vo.member_id} and chat_to_id = #{vo.member_partner_id})
+				or (chat_from_id = #{vo.member_partner_id} and chat_to_id = #{vo.member_id}))
+	 order by chat_time)
+	 where rnum between #{start} and #{end}	
+
 	</select> 
 	
 	

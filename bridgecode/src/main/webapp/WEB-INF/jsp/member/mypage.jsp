@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -86,14 +87,13 @@
 	<!--  <h3><i class="material-icons">account_circle</i>마이 페이지</h3> -->
 	<ul class="myPageMenu">
 		<li><a class="activeMenu"
-			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;">마이
-				페이지</a></li>
+			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code="마이페이지" /></a></li>
 		<li><a
 			href="${pageContext.request.contextPath}/heart/heartFromList.do"
-			class="changeBG">내 하트 내역</a></li>
+			class="changeBG"><spring:message code="내하트내역" /></a></li>
 		<li><a
 			href="${pageContext.request.contextPath}/member/memberSelect.do"
-			class="changeBG" style="text-align: left;">내 회원정보</a></li>
+			class="changeBG" style="text-align: left;"><spring:message code="내회원정보" /></a></li>
 		<li></li>
 	</ul>
 	
@@ -118,24 +118,24 @@
 								</div>		
 								<br>		
 								<div>
-								    <div style="font:1em;float: right;width: 60%;">다음 하트까지</div>
+								    <div style="font:1em;float: right;width: 60%;"><spring:message code="다음하트까지" /></div>
 								    <div><div id="clock" style="font-size: 40px;"></div></div>
 								</div>
 								
 								<br>
 								<button class="btn btn-simple btn-primary btn-sm"
 								onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
-								style="float: right;">하트 사용 내역</button>
+								style="float: right;"><spring:message code="하트사용내역" /></button>
 						
 						</c:when>
 						<c:otherwise>
 							<img
 								src="${pageContext.servletContext.contextPath}/images/heartColor.png">
-									하트를 사용해보세요!<br>
+									<spring:message code="하트를사용해보세요" /><br>
 							<br>
 							<button class="btn btn-simple btn-primary btn-sm"
 								onclick="location.href='${pageContext.request.contextPath}/heart/heartFromList.do'"
-								style="margin-left: 220px;">하트 사용 내역</button>
+								style="margin-left: 220px;"><spring:message code="하트사용내역" /></button>
 
 						</c:otherwise>
 					</c:choose>
@@ -158,8 +158,7 @@
 									style="height: 100px;" alt="Rounded Image"
 									class="img-rounded img-responsive">
 									<button class="btn btn-primary btn-sm"
-										onclick="document.getElementById('fileUpload').click();">프로필
-										사진 수정</button>
+										onclick="document.getElementById('fileUpload').click();"><spring:message code="프로필사진수정" /></button>
 
 									<form method="post" enctype="multipart/form-data"
 										action="${pageContext.request.contextPath}/member/memberProfileUpdate.do">
@@ -170,18 +169,18 @@
 									</form></td>
 
 								<td width="400px;" style="padding: 5px; padding-left: 20px;"><br>
-									${member.member_nickname }님<br>
+									${member.member_nickname }<spring:message code="님" /><br>
 								<br> <!-- 나이 처리 시작--> <jsp:useBean id="toDay"
 										class="java.util.Date" /> <fmt:formatDate value="${toDay}"
 										pattern="yyyy" var="date" /> <fmt:parseDate
 										value="${member.member_birth }" pattern="yyyy-mm-dd"
 										var="memberBirth" scope="page" /> <fmt:formatDate
 										value="${memberBirth}" pattern="yyyy" var="birth" /> <!-- 나이 처리 끝 -->
-									${date - birth +1}세 / ${member.member_country }<br>
+									${date - birth +1}<spring:message code="세" /> / ${member.member_country }<br>
 								<br>
 									<button class="btn btn-simple btn-primary btn-sm"
 										onclick="location.href='${pageContext.request.contextPath}/member/memberSelect.do'"
-										style="float: right;">회원 정보 상세보기</button></td>
+										style="float: right;"><spring:message code="회원정보상세보기" /></button></td>
 							</tr>
 						</table>
 					</div>
@@ -201,7 +200,7 @@
 				<div class="w3-container" ><!-- style="padding-left: 80px;padding-bottom: 50px;"  -->
 				<c:if test="${empty heartto}">
 			<br>
-			새로 도착한 하트가 없습니다. 
+			<spring:message code="새로도착한하트가없습니다" />
 			<br>
 			</c:if>
 							<div class="col-sm-12"> <!-- dd -->
@@ -220,7 +219,7 @@
 							style="height: 80px; width: 80px;cursor:pointer;"> </div>
 							
 							
-								    <div class="col-sm-8"><br><br>${heartTo.MEMBER_NICKNAME}님께서 하트를 보내셨습니다.</div>
+								    <div class="col-sm-8"><br><br>${heartTo.MEMBER_NICKNAME}<spring:message code="님께서하트를보냈습니다" /></div>
 								</div>
 								
 

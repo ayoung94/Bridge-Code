@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -40,7 +41,7 @@ td {
 }
 
 .myPageMenu li:last-child {
-	width: 780px;
+	width: 700px;
 	border-bottom: 5px #DCDCDC solid;
 	margin-top: 48px;
 }
@@ -78,14 +79,13 @@ button {
 		<ul class="myPageMenu">
 			<li><a class="activeMenu"
 				href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-				class="changeBG">회원
-					찾기</a></li>
+				class="changeBG"><spring:message code='회원찾기'/></a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
-				class="changeBG">이성회원 보기</a></li>
+				class="changeBG"><spring:message code='이성회원보기'/></a></li>
 			<li><a
 				href="${pageContext.request.contextPath}/matching/allmemberList.do"
-				class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;">전체회원 보기</a></li>
+				class="active" style="margin-left:10px; border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code='전체회원보기'/></a></li>
 			<li></li>
 		</ul>
 		<table>
@@ -95,9 +95,9 @@ button {
 					<td class="col-md-4"><a id="thumbnail" class="thumbnail" href="${pageContext.request.contextPath}/matching/memberSelect.do?id=${memberlist.member_id}">
 							<img src="${pageContext.request.contextPath}/profile_img/${memberlist.member_profile_img}" class="thumb-image"><br>
 							<p style='font-size:18px; font-weight:bold;'>${memberlist.member_nickname}</p>
-							<p>${memberlist.member_birth}세</p>
-							<c:if test="${memberlist.member_sex == '1' }"><p>남성</p></c:if>
-							<c:if test="${memberlist.member_sex == '2' }"><p>여성</p></c:if>
+							<p>${memberlist.member_birth}<spring:message code='세'/></p>
+							<c:if test="${memberlist.member_sex == '1' }"><p><spring:message code='남성'/></p></c:if>
+							<c:if test="${memberlist.member_sex == '2' }"><p><spring:message code='여성'/></p></c:if>
  							<br></a>
 					</td>
 						<%	j++;
@@ -109,7 +109,7 @@ button {
 				
 			</tr>
 		</table>
-		<td><button onclick="moreList()" class='btn btn-primary' id="morebtn">더많은 회원보기 </button></td>
+		<td><button onclick="moreList()" class='btn btn-primary' id="morebtn"><spring:message code='더많은회원보기'/> </button></td>
 <script>
 function moreList(){
 	var Cnt = $(".thumb-image");
@@ -121,7 +121,7 @@ function moreList(){
  				console.log(data.length);
  				if(Cnt.length >= data.length){
 					$('#morebtn').hide();
-					alert("마지막 회원입니다.")
+					alert("<spring:message code='마지막회원입니다.'/>")
 					 }
 				for(i=Cnt.length ; i< Cnt.length+9 ; i++){
 					if(data[i].MEMBER_SEX == '1'){
@@ -129,15 +129,15 @@ function moreList(){
 					    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 						    	+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'><br>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-						    		+"<p>남성</p></a><br></td>") }
+		      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+						    		+"<p><spring:message code='남성'/></p></a><br></td>") }
 					else {
 				    		$('tbody').append("<td class='col-md-4'><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 						    	+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 						    	+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'><br>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-						    		+"<p>여성</p></a><br></td>")  }
+		      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+						    		+"<p><spring:message code='여성'/></p></a><br></td>")  }
 					j++;
 					if(j%3 == 0){  $('tbody').append("</tr><tr>")
 		    		}

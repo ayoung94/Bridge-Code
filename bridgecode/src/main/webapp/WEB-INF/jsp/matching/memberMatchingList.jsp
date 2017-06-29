@@ -31,7 +31,7 @@
 }
 
 .myPageMenu li:last-child {
-	width: 780px;
+	width: 700px;
 	border-bottom: 5px #DCDCDC solid;
 	margin-top: 48px;
 }
@@ -253,7 +253,7 @@ p {
 	
 	<ul class="myPageMenu">
 		<li><a class="activeMenu" href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code='회원찾기'/></a></li>
+			style="margin-left:10px;border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code='회원찾기'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
 			class="changeBG"><spring:message code='이성회원보기'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/allmemberList.do"
@@ -269,6 +269,7 @@ p {
 						int j = 0;
 					%>
 					<!-- 코드 리스트 출력 -->
+					<h4><spring:message code='관심사'/> </h4>
 					<c:forEach items="${list}" var="interest">
 						<td>
 							<div class="checkbox">
@@ -301,7 +302,7 @@ p {
 </script>
 			<span>*<spring:message code='관심사는최대3개까지등록가능합니다.'/> </span> <br><br>
 			
-			<div><spring:message code='국적선택'/></div>
+			<h4><spring:message code='국적선택'/></h4>
 			<div class="radio">
 				
 				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> <spring:message code='한국'/> </label> 
@@ -311,12 +312,12 @@ p {
 				
 			</div><br>
 
-			<div><spring:message code='연령선택'/></div>
+			<h4><spring:message code='연령선택'/></g4>
 				<input type="text" id="age0" name="minage" value="10"><spring:message code='세'/> ~ 
 				<input type="text" id="age1" name="maxage" value="40"><spring:message code='세'/>
 			<div id="sliderRange" onclick="ageSlider()"></div><br>
 
-			<div><spring:message code='이성만보기'/></div>
+			<h4><spring:message code='이성만보기'/></h4>
 			<div class="togglebutton" >
 				<label><input type="checkbox" onclick="checkToggle()" checked> ON/OFF </label>
 				<input type="hidden" id="toggle" name="toggle" value="1">
