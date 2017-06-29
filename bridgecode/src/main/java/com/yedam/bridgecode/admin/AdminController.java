@@ -57,6 +57,7 @@ public class AdminController {
 		count = warningDAO.countWarning(null);
 		model.addAttribute("countUserApplication", countUserApplication);
 		model.addAttribute("count", count);
+		model.addAttribute("countAllUser", adminDAO.countAllUser(null));
 		return "/ADMIN/admin/adminMain";
 	}
 

@@ -30,6 +30,21 @@
 		]]>
 	</select>
 
+	<select id="monthRatio" resultType="map">
+		<![CDATA[
+	 		SELECT TO_CHAR(HEART_FROM_TIME, 'month') as month, COUNT(TO_CHAR(HEART_FROM_TIME, 'month')) as count
+			FROM HEART
+			group by TO_CHAR(HEART_FROM_TIME, 'month')
+		]]>
+	</select>
+	
+	<select id="monthCoupleRatio" resultType="map">
+		<![CDATA[
+	 		SELECT TO_CHAR(HEART_CONFIRM_TIME, 'month') as month, COUNT(TO_CHAR(HEART_CONFIRM_TIME, 'month')) as couplecount
+			FROM HEART
+			group by TO_CHAR(HEART_CONFIRM_TIME, 'month')
+		]]>
+	</select>
 
 
 

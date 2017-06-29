@@ -16,7 +16,7 @@ public class ChartController {
 
 	@Autowired ChartMapper chartDAO;
 
-	//sie 차트 보기
+	//site 차트 보기
 	@RequestMapping("/Ratioview.do")
 	public String ratioView(MemberVO vo) {
 		return "/ADMIN/chart/siteStats";
@@ -34,9 +34,15 @@ public class ChartController {
 		return chartDAO.countryRatio(vo);
 	}
 
-	//월별 가입자 수 차트
+	//월별 사용 하트 수
 	@RequestMapping("/monthRatio.do")
 	public @ResponseBody List<Map<String, Object>> monthRatio(MemberVO vo) {
 		return chartDAO.monthRatio(vo);
 	}
+	
+	//월별 사용 하트 수
+		@RequestMapping("/monthCoupleRatio.do")
+		public @ResponseBody List<Map<String, Object>> monthCoupleRatio(MemberVO vo) {
+			return chartDAO.monthCoupleRatio(vo);
+		}
 }

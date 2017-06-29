@@ -13,4 +13,5 @@ public interface AdminMapper {
 	public void updateUserApplication(MemberVO vo);
 	public void updateUserReject(MemberVO vo);
 	public int countUserApplication(MemberVO vo);
+	public int countAllUser(MemberVO vo);
 }

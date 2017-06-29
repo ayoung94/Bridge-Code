@@ -49,56 +49,73 @@ a {
 				for (i = 0; i < data.length; i++) {
 					var arr = [ data[i].MEMBER_SEX, data[i].HUMANNUM ];
 					console.log(arr);
-					//charData.push(arr);
 					charData.addRow(arr);
 				}
 				//2. 차트옵션
 				var options = {
 					title : '전체 유저의 성비',
-					width : 420,
+					width : 280,
 					height : 250
 				};
-				//chart.draw(google.visualization.PieChart(document.getElementById('piechart'));
 				chart.draw(charData, options);
 			} else {
 				alert("오류!!!");
 			}
 		});
-	});
-</script>
-<script>
-google.load('visualization', '1.0', {
-	'packages' : [ 'corechart' ]
-});
-google.setOnLoadCallback(function() {
-	var chart = new google.visualization.PieChart(document
-			.querySelector('#countryRatio_div'));
-	$.getJSON("countryRatio.do", function(data, status) {
-		if (status == "success") {
-			console.dir(data);
-			//1. 차트 데이터 
-			var charData = new google.visualization.DataTable();
-			charData.addColumn('string', '국적');
-			charData.addColumn('number', '인원수');
-			for (i = 0; i < data.length; i++) {
-				var arr2 = [ data[i].COUNTRY, data[i].HUMANNUM ];
-				console.log(arr2);
-				//charData.push(arr);
-				charData.addRow(arr2);
+
+
+		var chart1 = new google.visualization.PieChart(document
+				.querySelector('#countryRatio_div'));
+		$.getJSON("countryRatio.do", function(data, status) {
+			if (status == "success") {
+				console.dir(data);
+				//1. 차트 데이터 
+				var charData = new google.visualization.DataTable();
+				charData.addColumn('string', '국적');
+				charData.addColumn('number', '인원수');
+				for (i = 0; i < data.length; i++) {
+					var arr2 = [ data[i].COUNTRY, data[i].HUMANNUM ];
+					console.log(arr2);
+					charData.addRow(arr2);
+				}
+				//2. 차트옵션
+				var options = {
+					title : '국가별 인원수',
+					width : 280,
+					height : 250
+				};
+				chart1.draw(charData, options);
+			} else {
+				alert("오류!!!");
 			}
-			//2. 차트옵션
-			var options = {
-				title : '국가별 인원수',
-				width : 420,
-				height : 250
-			};
-			//chart.draw(google.visualization.PieChart(document.getElementById('piechart'));
-			chart.draw(charData, options);
-		} else {
-			alert("오류!!!");
-		}
+		});
+
+		var chart2 = new google.visualization.ColumnChart(document
+				.querySelector('#monthRatio_div'));
+		$.getJSON("monthRatio.do", function(data, status) {
+			if (status == "success") {
+				console.dir(data);
+				//1. 차트 데이터 
+				var charData = new google.visualization.DataTable();
+				charData.addColumn('string', '월');
+				charData.addColumn('number', '가입자수');
+				for (i = 0; i < data.length; i++) {
+					var arr3 = [ data[i].MONTH, data[i].COUNT ];
+					console.log(arr3);
+					charData.addRow(arr3);
+				}
+				//2. 차트옵션
+				var options = {
+					title : '월별 가입자수',
+					width : 280,
+					height : 250
+				};
+				chart2.draw(charData, options);
+			} else {
+				alert("오류!!!");
+			}
+		});
 	});
-});
 </script>
 <script>
 function goChart(){
@@ -162,11 +179,12 @@ function goChart(){
 				</div>
 				<div class="card-content">
 					<p class="category">총 회원수</p>
-					<h3 class="title">+245</h3>
+					<h3 class="title">${countAllUser}<small>명</small></h3>
 				</div>
 				<div class="card-footer">
 					<div class="stats">
-						<i class="material-icons">update</i> Just Updated
+						<i class="material-icons">update</i> <a
+							href="${pageContext.request.contextPath}/getUserList.do?member_level=2">유저 리스트</a>
 					</div>
 				</div>
 			</div>
@@ -180,7 +198,7 @@ function goChart(){
 			<div class="card">
 				<div class="card-header card-chart" style="background-color: white;">
 					<div id="sexRatio_div"
-						style="width: 420px; height: 252px; display: inline-block;"></div>
+						style="width: 285px; height: 252px; display: inline-block;"></div>
 				</div>
 				<div class="card-content">
 					<h4 class="title fontC">전체 유저 성비</h4>
@@ -192,7 +210,7 @@ function goChart(){
 			<div class="card">
 				<div class="card-header card-chart" style="background-color: white;">
 					<div id="countryRatio_div"
-						style="width: 420px; height: 252px; display: inline-block;"></div>
+						style="width: 285px; height: 252px; display: inline-block;"></div>
 				</div>
 				<div class="card-content">
 					<h4 class="title fontC">국가별 인원 수</h4>
@@ -204,7 +222,7 @@ function goChart(){
 			<div class="card">
 				<div class="card-header card-chart" style="background-color: white;">
 					<div id="monthRatio_div"
-						style="width: 420px; height: 252px; display: inline-block;"></div>
+						style="width: 285px; height: 252px; display: inline-block;"></div>
 				</div>
 				<div class="card-content">
 					<h4 class="title">월별 가입자수</h4>
