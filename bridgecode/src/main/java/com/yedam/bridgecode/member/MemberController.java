@@ -354,13 +354,12 @@ public class MemberController {
 			}else if( result.getMember_level().equals("1") ){
 				return "member/memberBeforeJoin";
 			}else if( result.getMember_level().equals("3") ){
-				//model.addAttribute("member", result);
-				/*session.removeAttribute("member");
-				session.setAttribute("member", result);*/
 				model.addAttribute("member",result);
-				/*List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
-				model.addAttribute("list", interest);*/
 				return "redirect:member/memberRejectJoin.do";
+			}else if( result.getMember_level().equals("6") ){
+				model.addAttribute("msg", result.getMember_name()+"회원님 께서는 신고횟수 초과로 인해 영구 블럭되었음을 알려드립니다."); 
+				model.addAttribute("url", "/"); 
+				return "/popup/alert";
 			}
 			
 			

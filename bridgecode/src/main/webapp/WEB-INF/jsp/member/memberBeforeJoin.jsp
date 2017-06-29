@@ -9,13 +9,10 @@
 <br>
 <div class="col-sm-9">
 <div class="jumbotron">
-  <h2><i class="material-icons" style="font-size: 50px;">error_outline</i>가입 승인 처리 중입니다...</h2>
-  <p>잠시만 기다려 주세요~</p>
-  <p><a 
-  class="btn btn-primary btn-lg"
-  href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-  role="button"
-  style="float:right;">회원 매칭하기</a></p>
+  <h2><i class="material-icons" style="font-size: 50px;">error_outline</i>가입 승인 처리 중...</h2>
+  <br>
+  관리자가 회원님의 정보를 검토 중 입니다. 잠시만 기다려 주세요.<br>
+  고객센터 : <b>bridgecode.com@gmail.com</b>
   <br><br>
 </div>
 </div>

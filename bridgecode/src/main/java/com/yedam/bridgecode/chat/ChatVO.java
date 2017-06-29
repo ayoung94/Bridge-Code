@@ -1,6 +1,6 @@
 package com.yedam.bridgecode.chat;
 
-public class ChatVO {
+public class ChatVO extends PagingVO{
 
 	private String chat_content;
 	private String chat_group;

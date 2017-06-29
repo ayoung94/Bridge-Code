@@ -156,7 +156,7 @@ $(function(){
         </div>
       </div>
       <br>
-      
+      <div class="w3-container" style="padding-left: 20px;border-bottom: 1px dotted #bbb;"><i class="material-icons">favorite_border</i>커플 담벼락</div>
       <c:forEach items="${boardlist}" var="bo">
       
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
@@ -230,41 +230,6 @@ function openNav() {
     }
 }
 </script>
-<%-- 
-      
-<div class="panel panel-danger" style="width: 700px;">
-	<div class="panel-heading" style="background-color: lavenderblush;color:black;">Couple Page</div>
-	<div class="panel-body">
-		
-		내 커플 <br> 
-		이름 ${partner.member_id }<br>
-		${partner.member_birth }<br>
-		${partner.member_country }<br>
-		<br>
-		커플 된지
-		
-		<fmt:parseDate value="${heart.heart_confirm_time }" var="strPlanDate" pattern="yyyy-MM-dd"/>
-		<fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
-		 
-		<jsp:useBean id="toDay" class="java.util.Date" />
-		<fmt:formatDate value='${toDay}' pattern='yyyy-MM-dd' var="nowDate"/>
-		<fmt:parseDate value="${nowDate}" var="endPlanDate" pattern="yyyy-MM-dd"/>
-		
-		<fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
-		${(endDate - strDate)+1}
-		
-		 ${heart.heart_confirm_time }일째! <br>
-		<a href="#" 
-		onclick="window.open('${pageContext.request.contextPath}/chat/coupleChat.do',
-							'window',
-							'width=400,height=600,left=800,top=0')">1:1대화</a>
-		<br>
-		<button onclick="coupleDelete()">커플 해제</button>
-	
-		
-	</div>
-</div>
- --%>
 
 </body>
 </html>

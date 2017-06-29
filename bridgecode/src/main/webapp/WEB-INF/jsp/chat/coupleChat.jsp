@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%-- <%@ attribute name="paginationInfo" required="true" type="com.yedam.bridgecode.chat.ChatVO"%> --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,13 +27,7 @@
     }
 </script>   
 <style>
-
 .meTalk{
-/* margin-left: 180px; */
-/* margin-right: 20px; */
-/* text-align: right; */
-/* display:inline-block; */
-/* float:right; */
 background-color: white;
 border: 1px solid black;
 padding: 10px;
@@ -150,16 +144,20 @@ $(function(){
 </ul>
 
 
-
 <div style="overflow-y:auto; height:470px; overflow-x:hidden;background-image: url('${pageContext.request.contextPath}/resources/img/chatBG.JPG');" id="messageWindow">
+
+<br>
+<a href="#" onclick="">더보기</a>
+<c:forEach begin="${paginationInfo.firstPageNoOnPageList}"            
+            end="${paginationInfo.lastPageNoOnPageList}" var="p"> 
+       <a href="#" onclick="fn_egov_link_page(${p})">${p}</a> 
+</c:forEach>
+<br>
 
 <c:forEach items="${chatlist}" var="chat" >
 <c:set var="sender" value="${chat.CHAT_FROM_ID}" />
 <c:if test="${sender eq login.member_id }">  
-
 <div class='meTalk w3-round-xlarge'>${chat.CHAT_CONTENT }</div>
-
-
 <div style="float: right;margin-top: 30px;vertical-align: bottom;display: inline;">
 <span style="font-size: xx-small;font-style: italic;">
 <jsp:useBean id="Today" class="java.util.Date" />
