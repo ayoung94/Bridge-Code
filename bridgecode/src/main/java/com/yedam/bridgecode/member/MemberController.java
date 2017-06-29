@@ -230,7 +230,7 @@ public class MemberController {
 		
 		
 		
-		model.addAttribute("msg", vo.getMember_id()+"님께 임시 비밀번호를 발송했습니다."); 
+		model.addAttribute("msg", vo.getMember_id()+"<spring:message code='님께임시비밀번호를발송했습니다.'/>"); 
 		model.addAttribute("url", "/"); 
 		return "/popup/url";
 	} 
@@ -240,7 +240,7 @@ public class MemberController {
 						,Model model
 						,HttpSession session){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "로그인 해주세요"); 
+			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -326,7 +326,7 @@ public class MemberController {
 		member = (MemberVO)session.getAttribute("login");
 		memberService.deleteMember(member);
 		
-		model.addAttribute("msg", "정상적으로 처리되었습니다. 이용해주셔서 감사합니다."); 
+		model.addAttribute("msg", "<spring:message code='정상적으로처리되었습니다.이용해주셔서감사합니다.'/>"); 
 		model.addAttribute("url", "/"); 
 		
 		session.invalidate();
@@ -357,7 +357,7 @@ public class MemberController {
 				model.addAttribute("member",result);
 				return "redirect:member/memberRejectJoin.do";
 			}else if( result.getMember_level().equals("6") ){
-				model.addAttribute("msg", result.getMember_name()+"회원님 께서는 신고횟수 초과로 인해 영구 블럭되었음을 알려드립니다."); 
+				model.addAttribute("msg", result.getMember_name()+"<spring:message code='회원님께서는신고횟수초과로인해영구블럭되었음을알려드립니다.'/>"); 
 				model.addAttribute("url", "/"); 
 				return "/popup/alert";
 			}
@@ -369,7 +369,7 @@ public class MemberController {
 			
 		} else {
 
-			model.addAttribute("msg", "로그인 실패."); 
+			model.addAttribute("msg", "<spring:message code='로그인실패'/>"); 
 			model.addAttribute("url", "/"); 
 			
 			return "/popup/alert";

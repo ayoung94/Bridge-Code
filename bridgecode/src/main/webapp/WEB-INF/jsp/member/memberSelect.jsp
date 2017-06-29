@@ -136,7 +136,7 @@ ${member.member_country}
 :</td>
 <td>
 <c:forEach items="${list}" var="interest">
-<c:if test="${login.member_interest1 == interest.code_id or login.member_interest2 == interest.code_id or login.member_interest3 == interest.code_id}">${interest.code_name }</c:if>
+<c:if test="${login.member_interest1 == interest.code_id or login.member_interest2 == interest.code_id or login.member_interest3 == interest.code_id}"><spring:message code="${interest.code_name}" /></c:if>
 </c:forEach> 
 <input type="hidden" id="interestLength" >
 <input type="hidden" id="member_interest1" name="member_interest1">
