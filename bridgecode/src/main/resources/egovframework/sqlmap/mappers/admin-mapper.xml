@@ -57,4 +57,10 @@
 		WHERE member_level = 1
 	</select>
 	
+	<select id="countAllUser" resultType="int">
+		SELECT COUNT(MEMBER_ID)
+		FROM MEMBER
+		WHERE MEMBER_LEVEL = 2
+	</select>
+	
 </mapper>
