@@ -142,7 +142,7 @@ function moreRead(){
 	var you = "${partner.member_id}";
 	if(start<0){
 		alert("채팅 내역이 모두 load되었습니다.");
-		$('readMoreBtn').remove
+		$('#readMoreBtn').remove();
 		return;
 	}
 	console.log($('#startNum').val());
@@ -154,38 +154,36 @@ function moreRead(){
 
 			$.each(data,function(key,value){
 				var time = new Date(value.CHAT_TIME);
-				var d = new Date();
-		    	var min = time.getMinutes();
-		    	var hour = time.getHours();
-		    	var day = time.getDay();
-		    	var month = time.getMonth();
-		    	var year = time.getFullYear();
 		    	
-		    	console.log(time.getUTCMonth()+"월"+time.getUTCDay()+"일");
-		    
-				if(d.getMonth() == time.getMonth() && d.getDay() == time.getDay()){
-					console.log("오늘");
-					var chatTime = hour+":"+min;
-				}else{
-					console.log("예전에 한ㅁ라");
-					var chatTime = year+"-"+month+"-"+day;
-				}
-		    	if(hour > 12){
-		    		hour -= 12;
-		    		var newhour = "0"+hour;
-		    		hour = newhour;
-		    	}
+				function getTimeStamp(a) {
+		    		  var d = new Date(a);
+		    		  var s =
+		    		    leadingZeros(d.getFullYear(), 4) + '-' +
+		    		    leadingZeros(d.getMonth() + 1, 2) + '-' +
+		    		    leadingZeros(d.getDate(), 2);
+		    		  return s;
+		    		}
 
+		    		function leadingZeros(n, digits) {
+		    		  var zero = '';
+		    		  n = n.toString();
+
+		    		  if (n.length < digits) {
+		    		    for (i = 0; i < digits - n.length; i++)
+		    		      zero += '0';
+		    		  }
+		    		  return zero + n;
+		    		}
+				var timeStr = getTimeStamp(value.CHAT_TIME);
 				if(value.CHAT_FROM_ID == "${login.member_id}"){
 					//보낸 사람이 나
-
 					$("#readMore").prepend("<div class='meTalk w3-round-xlarge'>"+value.CHAT_CONTENT+"</div><div style='float: right;margin-top: 30px;vertical-align: bottom;display: inline;'>"
-					+"<span style='font-size: xx-small;font-style: italic;'>"+chatTime+"</span></div>");
+					+"<span style='font-size: xx-small;font-style: italic;'>"+timeStr+"</span></div>");
 	
 				}else{
 					//보낸 사람이 상대방
 					$("#readMore").prepend("<div class='youTalk w3-round-xlarge'><p>"+value.CHAT_CONTENT+"</p><p></p></div><div> <div style='float: left;margin-top: 30px;vertical-align: bottom;display: inline;'>"
-							+"<span style='font-size: xx-small;font-style: italic;'>"+chatTime+"</span></div>");
+							+"<span style='font-size: xx-small;font-style: italic;'>"+timeStr+"</span></div>");
 				}
 			});
 			
@@ -209,7 +207,7 @@ function moreRead(){
 		style="overflow-y:auto; height:470px; overflow-x:hidden;background-image: url('${pageContext.request.contextPath}/resources/img/chatBG.JPG');"
 		id="messageWindow">
 
-		<br> <a href="#" onclick="moreRead();" id="readMoreBtn">더보기</a>
+		<br> <div style="width: 100%;text-align: center;"><a href="#" onclick="moreRead();" id="readMoreBtn">더보기</a></div>
 		<div  id="readMore"></div>
 
 		<br>
@@ -219,12 +217,12 @@ function moreRead(){
 			<c:set var="endNumber" value="${Number.count }" />
 		</c:forEach>
 
-		<input type="hidden" id="endNum" value="${endNumber -10}">
-		<input type="hidden" id="startNum" value="${endNumber -20}">
+		<input type="hidden" id="endNum" value="${endNumber -30}">
+		<input type="hidden" id="startNum" value="${endNumber -40}">
 		
 		
 		<!-- 로딩 시 채팅 출력 -->
-		<c:forEach items="${chatlist}" var="chat" begin="${endNumber-10 }">
+		<c:forEach items="${chatlist}" var="chat" begin="${endNumber - 30 }">
 			<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
 			<c:if test="${sender eq login.member_id }">
 				<div class='meTalk w3-round-xlarge'>${chat.CHAT_CONTENT }</div>
