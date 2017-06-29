@@ -44,14 +44,14 @@ th {
 </style>
 </head>
 <body>
-	<h1>EVENT</h1>
+	<h1><spring:message code='이벤트'/></h1>
 	<table id="eventListTable">
 		<thead>
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th><spring:message code='글번호'/></th>
+				<th><spring:message code='제목'/></th>
+				<th><spring:message code='작성일'/></th>
+				<th><spring:message code='조회수'/></th>
 			</tr>
 		</thead>
 		<tbody>
