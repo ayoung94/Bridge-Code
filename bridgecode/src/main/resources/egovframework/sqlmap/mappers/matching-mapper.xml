@@ -168,7 +168,8 @@
 				,MEMBER_NAME
 				,MEMBER_WARNING
 		FROM MEMBER
-		WHERE MEMBER_COUNTRY = #{vo.member_country}
+		WHERE 
+		MEMBER_COUNTRY = #{vo.member_country}
 		AND MEMBER_SEX != #{vo.member_sex}
 		AND MEMBER_LEVEL = '2'
 		ORDER BY MEMBER_LAST_CONNECTION DESC
@@ -195,13 +196,12 @@
         		CASE WHEN MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3}) THEN 1 else 0 END +
        			CASE WHEN MEMBER_INTEREST3 IN (#{interest1}, #{interest2}, #{interest3}) THEN 1 else 0 END) AS "COUNT"
 		FROM MEMBER
- 		WHERE MEMBER_COUNTRY = #{optionsRadios} 
-  			<if test="toggle==1">
-  			AND MEMBER_SEX != #{vo.member_sex}	</if>
-			<if test="toggle==0">
-			AND MEMBER_SEX = #{vo.member_sex} </if> 
+ 		WHERE MEMBER_LEVEL = '2'
+ 			<if test="optionsRadios!='on'"> AND MEMBER_COUNTRY = #{optionsRadios} </if> 
+ 			<if test="toggle==1">AND MEMBER_SEX != #{vo.member_sex}	</if>
+			<if test="toggle==0">AND MEMBER_SEX = #{vo.member_sex} </if> 
 			AND ROUND(MONTHS_BETWEEN(SYSDATE,MEMBER_BIRTH)/12) + 1 BETWEEN #{minage} AND #{maxage}
-			AND MEMBER_LEVEL = '2'
+			
  			
  			AND (MEMBER_INTEREST1 IN (#{interest1}, #{interest2}, #{interest3})
    			OR MEMBER_INTEREST2 IN (#{interest1}, #{interest2}, #{interest3})
