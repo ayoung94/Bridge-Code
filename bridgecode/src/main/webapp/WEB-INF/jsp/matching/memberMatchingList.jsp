@@ -112,15 +112,15 @@ p {
 		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 			    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
       		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-				    		+"<p>남성</p></a></td>")  	}
+      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+				    		+"<p><spring:message code='남성'/></p></a></td>")  	}
 		    	else {
 		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
   				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 	      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-	      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-  				    		+"<p>여성</p></a></td>")  	}
+	      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+  				    		+"<p><spring:message code='여성'/></p></a></td>")  	}
 		    	if((i+1)%5 == 0){  $('#result').append("</tr><tr>")
 		    		}
 					}
@@ -139,15 +139,15 @@ p {
 				      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-		      				    		+"<p>남성</p></a></td>")  	}
+				      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+		      				    		+"<p><spring:message code='남성'/></p></a></td>")  	}
 				      		    	else {
 				      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 				      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 				      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 						      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-						      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-				      				    		+"<p>여성</p></a></td>")  	}
+						      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+				      				    		+"<p><spring:message code='여성'/></p></a></td>")  	}
 				      		    	if((i+1)%5 == 0){
 				      		    		$('#result').append("</tr><tr>")
 				      		    		}
@@ -168,7 +168,7 @@ p {
 			var checkValue ="";			
 			for(i=0 ; i<checkboxs.length ; i++){
 				if(checkboxs.length >3){
-					alert("관심사는 최대 3개까지 등록 가능합니다.");
+					alert("<spring:message code='관심사는최대3개까지등록가능합니다.'/>");
 					return false;	
 				}
 				checkValue += checkboxs[i].value;
@@ -194,13 +194,13 @@ p {
 			max : 50,
 			values : [ 10, 40 ],
 			slide : function(event, ui) {
-				$("#age0").val(ui.values[0]) + "세 ~";
-				$("#age1").val(ui.values[1]) + "세";
+				$("#age0").val(ui.values[0]) + "<spring:message code='세'/> ~";
+				$("#age1").val(ui.values[1]) + "<spring:message code='세'/>";
 			}
 		});
 	});
-		$("#age0").val($("#sliderRange").slider("values", 0)) + "세 - ";
-		$("#age1").val($("#sliderRange").slider("values", 1)) + "세";
+		$("#age0").val($("#sliderRange").slider("values", 0)) + "<spring:message code='세'/> - ";
+		$("#age1").val($("#sliderRange").slider("values", 1)) + "<spring:message code='세'/>";
 		
 	
 	
@@ -218,15 +218,15 @@ p {
 		      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
       				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-		      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-      				    		+"<p>남성</p></a></td>")  	} 
+		      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+      				    		+"<p><spring:message code='남성'/></p></a></td>")  	} 
 		      		    	else {
 		      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
 		      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
 		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
 				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
-				      		    		+data[i].MEMBER_BIRTH+" 세</p>"
-		      				    		+"<p>여성</p></a></td>")  	}
+				      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+		      				    		+"<p><spring:message code='여성'/></p></a></td>")  	}
 		      		    	if((i+1)%5 == 0){
 		      		    		$('#result').append("</tr><tr>")
 		      		    		}
@@ -253,14 +253,14 @@ p {
 	
 	<ul class="myPageMenu">
 		<li><a class="activeMenu" href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;">회원 찾기</a></li>
+			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code='회원찾기'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
-			class="changeBG">이성회원 보기</a></li>
+			class="changeBG"><spring:message code='이성회원보기'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/allmemberList.do"
-			class="changeBG" style="text-align: left;">전체회원 보기</a></li>
+			class="changeBG" style="text-align: left;"><spring:message code='전체회원보기'/></a></li>
 		<li></li>
 	</ul>
-	<h3>나의 짝을 찾아보세요! </h3>
+	<h3><spring:message code='나의짝을찾아보세요!'/> </h3>
 		<div class="row" >
 			<div class="col-md-6">
 			  <table id="codelist">
@@ -275,7 +275,7 @@ p {
 								<label> <input type="checkbox" name="interest" value="${interest.code_id }"
 									<c:if test="${login.member_interest1 == interest.code_id or login.member_interest2 == interest.code_id 
 						  				or login.member_interest3 == interest.code_id}">checked </c:if>>
-										${interest.code_name }
+										<spring:message code='${interest.code_name }'/>
 								</label>
 							</div>
 						</td>
@@ -299,24 +299,24 @@ p {
 	$("#interest2").val(checkboxs[1].value);
 	$("#interest3").val(checkboxs[2].value);
 </script>
-			<span>*관심사는 최대 3개까지 등록이 가능합니다. </span> <br><br>
+			<span>*<spring:message code='관심사는최대3개까지등록가능합니다.'/> </span> <br><br>
 			
-			<div>국적선택</div>
+			<div><spring:message code='국적선택'/></div>
 			<div class="radio">
 				
-				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> 한국 </label> 
-				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> 일본 </label> 
-				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> 중국</label>
-				<label> <input type="radio" name="optionsRadios" > 상관없음</label>
+				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> <spring:message code='한국'/> </label> 
+				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> <spring:message code='일본'/> </label> 
+				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> <spring:message code='중국'/></label>
+				<label> <input type="radio" name="optionsRadios" > <spring:message code='상관없음'/></label>
 				
 			</div><br>
 
-			<div>연령선택</div>
-				<input type="text" id="age0" name="minage" value="10">세 ~ 
-				<input type="text" id="age1" name="maxage" value="40">세
+			<div><spring:message code='연령선택'/></div>
+				<input type="text" id="age0" name="minage" value="10"><spring:message code='세'/> ~ 
+				<input type="text" id="age1" name="maxage" value="40"><spring:message code='세'/>
 			<div id="sliderRange" onclick="ageSlider()"></div><br>
 
-			<div>이성만 보기</div>
+			<div><spring:message code='이성만보기'/></div>
 			<div class="togglebutton" >
 				<label><input type="checkbox" onclick="checkToggle()" checked> ON/OFF </label>
 				<input type="hidden" id="toggle" name="toggle" value="1">
@@ -333,9 +333,9 @@ p {
 </script>
 
 
-			<h4>회원 리스트</h4>
+			<h4><spring:message code='회원리스트'/></h4>
 			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="#" onClick="return false;">검색결과</a></li>
+			  <li role="presentation" class="active"><a href="#" onClick="return false;"><spring:message code='검색결과'/></a></li>
 			</ul>	
 			<table>
 				<tr>

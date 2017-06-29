@@ -46,7 +46,7 @@
 		       				  <c:set var="heartcount" value="${i.count}" />
 		  					   </c:forEach>
   							<!-- 알람처리 끝 -->
- 								 ${login.member_nickname } 님 
+ 								 ${login.member_nickname } <spring:message code='님'/>
  								 
  							<!-- 알람 뱃지 시작 -->
  								 <c:if test="${!empty heartcount }"> 
@@ -55,7 +55,7 @@
  							<!-- 알람 뱃지 끝 -->	 
  								 
  								 <br>
- 								 <a href="${pageContext.request.contextPath}/logout.do">로그아웃</a>
+ 								 <a href="${pageContext.request.contextPath}/logout.do"><spring:message code='로그아웃'/></a>
  								<c:if test="${login.member_id == 'admin'}">
  								 <a href="${pageContext.request.contextPath}/goAdminMain.do">관리자페이지</a>
  								</c:if>
@@ -63,7 +63,7 @@
   							<c:if test="${empty loginSession }"> 
 
   	 							<a href="#" data-toggle="modal" data-target="#myModal">
-  	 							로그인 해주세요.
+  	 							<spring:message code='로그인해주세요'/>
   	 							</a>
   							</c:if>
 	             </div>
@@ -128,7 +128,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">로그인</h4>
+        <h4 class="modal-title" id="myModalLabel"><spring:message code="로그인" /></h4>
       </div>
 		<form action="${pageContext.request.contextPath}/login.do" method="post">
 			<div class="modal-body">
@@ -142,11 +142,11 @@
 				</div>
 			</div>
 			<div style="margin-left: 30px;">
-			<a href="${pageContext.request.contextPath}/member/passwordMissing.do">비밀번호를 잊으셨나요?</a><br>
-			<a href="${pageContext.request.contextPath}/member/memberInsert.do">저희 사이트를 처음 이용하시나요?</a>
+			<a href="${pageContext.request.contextPath}/member/passwordMissing.do"><spring:message code="비밀번호를잊으셨나요?" /></a><br>
+			<a href="${pageContext.request.contextPath}/member/memberInsert.do"><spring:message code="저희사이트를처음이용하시나요?" /></a>
 			</div>
 			<div class="modal-footer">
-				<input type="submit" class="btn btn-info btn-simple" value="로그인">
+				<input type="submit" class="btn btn-info btn-simple" value="<spring:message code="로그인" />">
 			</div>
 		</form>
 	</div>

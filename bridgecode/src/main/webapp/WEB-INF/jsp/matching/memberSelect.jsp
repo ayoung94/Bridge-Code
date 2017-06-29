@@ -3,6 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!doctype html>
 <html>
 <head>
@@ -52,7 +53,6 @@ ul, menu, dir {
 	display: inline-block;
 }
 </style>
-<title>Profile Page - Material Kit by Creative Tim</title>
 </head>
 <body class="profile-page">
 	<div class="wrapper">
@@ -74,10 +74,10 @@ ul, menu, dir {
 								<fmt:parseDate value="${profile.member_birth }" pattern="yyyy-mm-dd" var="memberBirth" scope="page" />
 								<fmt:formatDate value="${memberBirth}" pattern="yyyy" var="birth" />
 								<!-- 나이 처리 끝 -->
-								${date - birth +1}세
+								${date - birth +1}<spring:message code='세'/>
 							</h5>
 							<br>
-							<h6 style="text-align:center">자기소개란</h6>
+							<h6 style="text-align:center"><spring:message code='자기소개란'/></h6>
 						</div>
 					</div>
 				</div>
@@ -90,9 +90,9 @@ ul, menu, dir {
 							<a href="#" id="introEdit">edit <input type="hidden" id="hidden" value="attr"></a><br><br>
 						</c:if>
 						<c:forEach var="interest" items="${list}" >
-						<c:if test="${interest.code_id == profile.member_interest1}">${interest.code_name}</c:if>
-						<c:if test="${interest.code_id == profile.member_interest2}">${interest.code_name}</c:if>
-						<c:if test="${interest.code_id == profile.member_interest3}">${interest.code_name}</c:if>
+						<c:if test="${interest.code_id == profile.member_interest1}"><spring:message code='${interest.code_name}'/></c:if>
+						<c:if test="${interest.code_id == profile.member_interest2}"><spring:message code='${interest.code_name}'/></c:if>
+						<c:if test="${interest.code_id == profile.member_interest3}"><spring:message code='${interest.code_name}'/></c:if>
 						</c:forEach>
 					</form>
 				</div>
@@ -241,7 +241,7 @@ ul, menu, dir {
 							<ul class="nav nav-pills">
 								<li><c:if test="${loginSession.member_id != profile.member_id }">
 										<a href="${pageContext.request.contextPath}/heart/heartInsert.do?id=${profile.member_id}">
-											<i class="material-icons">favorite</i> 하트보내기
+											<i class="material-icons">favorite</i> <spring:message code='하트보내기'/>
 										</a>
 									</c:if> <c:if test="${loginSession.member_id == profile.member_id }">
 										<br><br><br><br>
@@ -262,7 +262,7 @@ ul, menu, dir {
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="profileModalLabel">프로필 상세보기</h4>
+					<h4 class="modal-title" id="profileModalLabel"><spring:message code='프로필상세보기'/></h4>
 				</div>
 				<form action="${pageContext.request.contextPath}/profile/profileUpdate.do" method="post" enctype="multipart/form-data">
 					<div class="modal-body">
@@ -270,12 +270,12 @@ ul, menu, dir {
 						<img><hr>
 						<div id="imgchange"></div><br> 
 						<input type="hidden" name="member_id" value="${loginSession.member_id}"><br>
-						<br> 프로필 사진: <input type="file" id="uploadFile" name="uploadFile" alt="이미지선택"><br>
+						<br> <spring:message code='프로필사진'/>: <input type="file" id="uploadFile" name="uploadFile" value="이미지선택"><br>
 					</div>
 					<div class="modal-footer">
 						<!-- <input type="button" class="btn btn-default btn-simple" data-dismiss="modal" value="취소"> -->
-						<input type="button" class="close btn btn-warning" data-dismiss="modal" value="취소"> 
-						<input type="submit" class="btn btn-success" value="사진등록 및 변경">
+						<input type="button" class="close btn btn-warning" data-dismiss="modal" value="<spring:message code='취소'/>"> 
+						<input type="submit" class="btn btn-success" value="<spring:message code='사진등록및변경'/>">
 					</div>
 				</form>
 			</div>
