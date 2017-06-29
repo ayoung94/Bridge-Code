@@ -55,7 +55,7 @@ public class MatchingController {
 		String minage = request.getParameter("minage");
 		String maxage = request.getParameter("maxage");
 		String toggle = request.getParameter("toggle");
-		String optionsRadios = request.getParameter("optionsRad	ios");
+		String optionsRadios = request.getParameter("optionsRadios");
 		// 최소 검색나이
 		map.put("minage", minage);
 		// 최대 검색나이
@@ -207,10 +207,17 @@ public class MatchingController {
 	// 전체 멤버 리스트 (ajax처리)
 	@RequestMapping(value="/matching/ajaxallmemberList.do")
 	public @ResponseBody List<Map<String, Object>> ajaxallmemberList(MemberVO vo, Model model, 
-																	HttpSession session, HttpServletRequest request)throws Exception {
-		
+																	HttpSession session, HttpServletRequest request) throws Exception {
 		return MatchingService.ajaxallmemberList(vo);
 	}
 
+	// 직접 회원ID/NICKNAME으로 찾기(ajax처리)
+	@RequestMapping(value="/matching/searchMember.do")
+	public @ResponseBody List<Map<String, Object>> searchMember(MemberVO vo, Model model, HttpServletRequest request) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String find = request.getParameter("find");
+		map.put("find", find);
+		return MatchingService.searchMember(map);			
+		}
 	
 }

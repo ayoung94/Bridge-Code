@@ -33,4 +33,7 @@ public interface MatchingService {
 	
 	// 전체회원 검색
 	public List<Map<String,Object>> ajaxallmemberList(MemberVO vo);
+	
+	//직접 회원 검색하기
+	public List<Map<String,Object>> searchMember(Map<String, Object> map);
 }

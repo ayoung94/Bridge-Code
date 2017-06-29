@@ -75,14 +75,11 @@ button {
 <body>
 	<div class="wrapper">
 		<ul class="myPageMenu">
-			<li><a class="activeMenu"
-				href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-				class="changeBG"><spring:message code='회원찾기'/></a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
-				class="active" style="margin-left:10px; border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code='이성회원보기'/></a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/matching/allmemberList.do"
+			<li><a href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
+				class="changeBG"><spring:message code='회원매칭'/></a></li>
+			<li><a href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
+				class="active" style="border-bottom: 5px #8B008B solid; font:bold;color:#8B008B;"><spring:message code='이성회원보기'/></a></li>
+			<li><a href="${pageContext.request.contextPath}/matching/allmemberList.do"
 				class="changeBG" style="text-align: left;"><spring:message code='전체회원보기'/></a></li>
 			<li></li>
 		</ul>

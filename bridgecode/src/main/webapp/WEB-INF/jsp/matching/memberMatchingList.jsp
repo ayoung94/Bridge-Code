@@ -9,6 +9,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <style>
+#nav1 {
+	border: 1px solid silver;
+	border-radius:10px;
+	padding:10px;
+}
+#nav2 {
+	border: 1px solid silver;
+	border-radius:10px;
+	padding:10px;
+}
 .myPageMenu {
 	list-style-type: none;
 	margin: 0;
@@ -239,27 +249,69 @@ p {
 	         });
 	         return false;    //event.preventDefault()
 	};
-	
 
+	/* 토글버튼에 값 지정 */
+	 function checkToggle(){
+		 if($('#toggle').attr('value') == 1){
+			 $('#toggle').attr('value', 0)
+			 }
+		 else if($('#toggle').attr('value') == 0){
+	 		$('#toggle').attr('value', 1)
+	 		}
+	 	}
 	
+		/*  검색버튼 클릭시 해당되는 아이디 검색하여 출력(ajax) */
+		function showSearch(){
+			var param = $("#IDfrm").serialize();
+			$.getJSON("${pageContext.request.contextPath}/matching/searchMember.do?member_id=", param, function(data,status){  //서버 url주소
+				if(status == "success") {
+					$('#result').html("");
+		           if( data.length > 0) {
+		              for(i=0 ; i<data.length; i++){
+		      				if(data[i].MEMBER_SEX == '1'){
+		      		        $('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      		    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+						    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
+		      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+		      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+						    		+"<p><spring:message code='남성'/></p></a></td>")  	}
+		      		    	else {
+		      		    		$('#result').append("<td ><a class='thumbnail' href='${pageContext.request.contextPath}/matching/memberSelect.do?id="
+		      				    		+data[i].MEMBER_ID+"'><img src='${pageContext.request.contextPath}/profile_img/"
+		      				    		+data[i].MEMBER_PROFILE_IMG + "' class='thumb-image'><p style='font-size:18px; font-weight:bold;'>"
+				      		    		+data[i].MEMBER_NICKNAME +"</p><p>"
+				      		    		+data[i].MEMBER_BIRTH+" <spring:message code='세'/></p>"
+		      				    		+"<p><spring:message code='여성'/></p></a></td>")  	}
+		      		    	if((i+1)%6 == 0){
+		      		    		$('#result').append("</tr><tr>")
+		      		    		}
+		      				}
+		           } else {$('#result').append("<spring:message code='검색결과가없습니다.'/>")}
+		           } else {
+		              alert("등록에러");
+		           }
+		     });
+		     return false;    //event.preventDefault()
+		  };
 </script>
 
 </head>
 <body>
- 
-<form id="matchingfrm">
-	<div class="wrapper">
+<div class="wrapper">
+	<form id="matchingfrm">
+
 	
 	
 	<ul class="myPageMenu">
 		<li><a class="activeMenu" href="${pageContext.request.contextPath}/matching/memberMatchingList.do"
-			style="margin-left:10px;border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code='회원찾기'/></a></li>
+			style="border-bottom: 5px #8B008B solid; font: bold; color: #8B008B;"><spring:message code='회원매칭'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/searchGenderList.do?member_sex=${login.member_sex}"
 			class="changeBG"><spring:message code='이성회원보기'/></a></li>
 		<li><a href="${pageContext.request.contextPath}/matching/allmemberList.do"
 			class="changeBG" style="text-align: left;"><spring:message code='전체회원보기'/></a></li>
 		<li></li>
 	</ul>
+	<div id="nav1">
 	<h3><spring:message code='나의짝을찾아보세요!'/> </h3>
 		<div class="row" >
 			<div class="col-md-6">
@@ -269,7 +321,7 @@ p {
 						int j = 0;
 					%>
 					<!-- 코드 리스트 출력 -->
-					<h4><spring:message code='관심사'/> </h4>
+					<h4><spring:message code='관심사'/></h4>
 					<c:forEach items="${list}" var="interest">
 						<td>
 							<div class="checkbox">
@@ -301,18 +353,15 @@ p {
 	$("#interest3").val(checkboxs[2].value);
 </script>
 			<span>*<spring:message code='관심사는최대3개까지등록가능합니다.'/> </span> <br><br>
-			
 			<h4><spring:message code='국적선택'/></h4>
 			<div class="radio">
-				
 				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> <spring:message code='한국'/> </label> 
 				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> <spring:message code='일본'/> </label> 
 				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> <spring:message code='중국'/></label>
 				<label> <input type="radio" name="optionsRadios" > <spring:message code='상관없음'/></label>
-				
 			</div><br>
 
-			<h4><spring:message code='연령선택'/></g4>
+			<h4><spring:message code='연령선택'/></h4>
 				<input type="text" id="age0" name="minage" value="10"><spring:message code='세'/> ~ 
 				<input type="text" id="age1" name="maxage" value="40"><spring:message code='세'/>
 			<div id="sliderRange" onclick="ageSlider()"></div><br>
@@ -321,30 +370,26 @@ p {
 			<div class="togglebutton" >
 				<label><input type="checkbox" onclick="checkToggle()" checked> ON/OFF </label>
 				<input type="hidden" id="toggle" name="toggle" value="1">
-			</div><br>	
-<script>
- function checkToggle(){
-	 if($('#toggle').attr('value') == 1){
-		 $('#toggle').attr('value', 0)
-		 }
-	 else if($('#toggle').attr('value') == 0){
- 		$('#toggle').attr('value', 1)
- 		}
- 	}
-</script>
-
-
-			<h4><spring:message code='회원리스트'/></h4>
-			<ul class="nav nav-tabs">
-			  <li role="presentation" class="active"><a href="#" onClick="return false;"><spring:message code='검색결과'/></a></li>
-			</ul>	
-			<table>
-				<tr>
-						<div id="result"></div>
-				</tr>		
-			</table>
-			
+			</div><br>
 		</div>
-</form>		
+	</form>	
+	<div id="nav2">
+		<form id="IDfrm" style="margin: 10px;">
+			<h3> <spring:message code='id검색'/> </h3>
+			<input type="text" id="find" style="width:20%; margin-bottom:10px;" name="find" data-toggle="popover" data-placement="left" data-content="<spring:message code='찾고싶은회원의아이디나닉네임을입력하세요!'/>" placeholder="<spring:message code='아이디나닉네임을입력하세요!'/>">	
+			<a href="javascript:;" onClick="showSearch()"><spring:message code='찾기'/></a>		
+		</form>
+	</div>
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active" style="margin-right:50px;">
+			<a href="#" onClick="return false;" data-container="body" data-toggle="popover" data-placement="left" data-content="<spring:message code='검색결과는하단에보여집니다.'/>"><spring:message code='검색결과'/></a></li>	 
+		</ul>
+		<table>
+			<tr>
+				<div id="result"></div>
+			</tr>		
+		</table>	
+</div>
+
 </body>
 </html>
