@@ -306,6 +306,7 @@ p {
 				<label> <input type="radio" name="optionsRadios" value="ko" <c:if test="${login.member_country =='ko'}"> checked</c:if>> 한국 </label> 
 				<label> <input type="radio" name="optionsRadios" value="jp" <c:if test="${login.member_country =='jp'}"> checked</c:if>> 일본 </label> 
 				<label> <input type="radio" name="optionsRadios" value="cn" <c:if test="${login.member_country =='cn'}"> checked</c:if>> 중국</label>
+				<label> <input type="radio" name="optionsRadios" > 상관없음</label>
 				
 			</div><br>
 

@@ -55,7 +55,7 @@ public class MatchingController {
 		String minage = request.getParameter("minage");
 		String maxage = request.getParameter("maxage");
 		String toggle = request.getParameter("toggle");
-		String optionsRadios = request.getParameter("optionsRadios");
+		String optionsRadios = request.getParameter("optionsRad	ios");
 		// 최소 검색나이
 		map.put("minage", minage);
 		// 최대 검색나이
