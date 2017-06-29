@@ -1,12 +1,14 @@
 package com.yedam.bridgecode.member;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -25,6 +27,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("★★★★인터셉터 거치다.");
+		
+
 		
 		MemberVO vo = (MemberVO)request.getSession().getAttribute("login"); //로그인값에서 유저 정보 가져와서 
 		

@@ -12,4 +12,5 @@ public interface ChatMapper {
 	public void insertWarning(Map<String,Object> map);	
 	public void insertChat(ChatVO vo);
 	public List<Map<String,Object>> getCoupleChatList(MemberVO vo);
+	public List<Map<String,Object>> getAjaxCoupleChatList(Map<String,Object> map);
 }

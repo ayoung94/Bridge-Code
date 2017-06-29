@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -65,7 +66,7 @@ $(function(){
         <div class="w3-container" >
          <h4 class="w3-center"><b>My partner</b></h4>
          <p class="w3-center"><img src="${pageContext.request.contextPath}/profile_img/${partner.member_profile_img}" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-         <button onclick="coupleDelete()" style="float: right;" class="btn btn-default btn-sm btn-simple">커플 해제</button><br>
+         <button onclick="coupleDelete()" style="float: right;" class="btn btn-default btn-sm btn-simple"><spring:message code="커플해제" /></button><br>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>${partner.member_nickname}</p>
          <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> ${partner.member_country}</p>
@@ -82,7 +83,7 @@ $(function(){
           <i class="fa fa-remove"></i>
         </span>
         <p><strong>♥</strong></p>
-        <p>우리 지금 커플 된 지
+        <p><spring:message code="우리지금커플된지" />
         <fmt:parseDate value="${heart.heart_confirm_time }" var="strPlanDate" pattern="yyyy-MM-dd"/>
 		<fmt:parseNumber value="${strPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="strDate"></fmt:parseNumber>
 		 
@@ -93,7 +94,7 @@ $(function(){
 		<fmt:parseNumber value="${endPlanDate.time / (1000*60*60*24)}" integerOnly="true" var="endDate"></fmt:parseNumber>
 		${(endDate - strDate)+1}
 		
-		<%--  ${heart.heart_confirm_time } --%>일째!
+		<%--  ${heart.heart_confirm_time } --%><spring:message code="일째" />
         
         </p>
       </div>
@@ -135,7 +136,7 @@ $(function(){
          <!--  <div class="w3-card-2 w3-round w3-white"> -->
               <button type="button" onclick="window.open('${pageContext.request.contextPath}/chat/coupleChat.do',
 							'window',
-							'width=400,height=600,left=800,top=0')" class="btn btn-primary" style="width: 600px;"> 1:1채팅 바로가기</button> 
+							'width=400,height=600,left=800,top=0')" class="btn btn-primary" style="width: 600px;"><spring:message code="채팅바로가기" /></button> 
             </div>
 
       <br>
@@ -143,10 +144,10 @@ $(function(){
         <div class="w3-col m12">
           <div class="w3-panel w3-border w3-round-large" style="background-color: white;">
             <div class="w3-container w3-padding">
-              <h6 class="w3-opacity"><b>오늘 하루는 어땠나요?</b></h6>
+              <h6 class="w3-opacity"><b><spring:message code="오늘하루는어땠나요?" /></b></h6>
               <form action="${pageContext.request.contextPath}/couple/boardInsert.do">
               <input type="hidden" name="board_writer" value="${login.member_id }">
-              <input type="text" name="board_content" style="width: 100%;height: 40px;border: 1px #bbb solid;padding: 10px;" placeholder="이야기를 나누어보세요..." ><br>
+              <input type="text" name="board_content" style="width: 100%;height: 40px;border: 1px #bbb solid;padding: 10px;" placeholder="<spring:message code="이야기를나누어보세요" />" ><br>
               <br>
               <button type="button" class="w3-button w3-theme" style="float: right;" onclick="submit();"><i class="fa fa-pencil"></i> Post</button> 
               </form>
@@ -156,7 +157,7 @@ $(function(){
         </div>
       </div>
       <br>
-      <div class="w3-container" style="padding-left: 20px;border-bottom: 1px dotted #bbb;"><i class="material-icons">favorite_border</i>커플 담벼락</div>
+      <div class="w3-container" style="padding-left: 20px;border-bottom: 1px dotted #bbb;"><i class="material-icons">favorite_border</i><spring:message code="커플담벼락" /></div>
       <c:forEach items="${boardlist}" var="bo">
       
       <div class="w3-container w3-card-2 w3-white w3-round w3-margin"><br>
@@ -185,7 +186,9 @@ $(function(){
 		</c:if>
 
 		<c:if test="${login.member_id == bo.BOARD_WRITER}">
-        <button onclick="location.href='${pageContext.request.contextPath}/couple/boardDelete.do?board_id=${bo.BOARD_ID}'"; style="float: right;" class="btn btn-default btn-sm btn-simple">삭제</button>
+        <button onclick="location.href='${pageContext.request.contextPath}/couple/boardDelete.do?board_id=${bo.BOARD_ID}'"; style="float: right;" class="btn btn-default btn-sm btn-simple">
+ 		delete
+        </button>
         </c:if>
 		<br>
 		<br>

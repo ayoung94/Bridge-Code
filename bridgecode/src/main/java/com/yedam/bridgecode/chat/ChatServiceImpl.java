@@ -37,6 +37,18 @@ public class ChatServiceImpl implements ChatService{
 		return chatDAO.getCoupleChatList(vo);
 	}
 
+	@Override
+	public List<Map<String, Object>> getAjaxCoupleChatList(MemberVO vo,
+			String start, String end) {
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("vo",vo);
+		map.put("start",start);
+		map.put("end", end);
+		
+		return chatDAO.getAjaxCoupleChatList(map);
+	}
+
 
 	
 	
