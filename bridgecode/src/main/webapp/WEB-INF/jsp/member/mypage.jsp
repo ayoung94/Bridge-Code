@@ -155,10 +155,11 @@
 							<tr>
 								<td><img
 									src="${pageContext.request.contextPath}/profile_img/${login.member_profile_img}"
-									style="height: 100px;" alt="Rounded Image"
-									class="img-rounded img-responsive">
+									style="height: 100px;cursor: pointer;" alt="Rounded Image" 
+									class="img-rounded img-responsive" onclick="document.getElementById('fileUpload').click();" 
+									data-toggle="tooltip" data-placement="top" title="프로필사진 바꾸기">
 									<button class="btn btn-primary btn-sm"
-										onclick="document.getElementById('fileUpload').click();"><spring:message code="프로필사진수정" /></button>
+										onclick="location.href='${pageContext.request.contextPath}/matching/memberSelect.do?id=${login.member_id }'">My profile Page</button>
 
 									<form method="post" enctype="multipart/form-data"
 										action="${pageContext.request.contextPath}/member/memberProfileUpdate.do">
