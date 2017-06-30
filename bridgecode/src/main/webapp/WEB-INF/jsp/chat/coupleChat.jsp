@@ -222,8 +222,8 @@ function moreRead(){
 		
 		
 		<!-- 로딩 시 채팅 출력 -->
-		<c:if test="${endNumber > 0}">
 		
+		<c:if test="${endNumber > 30}">
 		
 		<c:forEach items="${chatlist}" var="chat" begin="${endNumber - 30 }">
 			<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
@@ -260,6 +260,56 @@ function moreRead(){
 					<span style="font-size: xx-small; font-style: italic;"> <jsp:useBean
 							id="toDay" class="java.util.Date" /> <fmt:formatDate
 							value="${toDay}" pattern="yyyy-MM-dd" var="date" /> <fmt:parseDate
+							value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss"
+							var="chatTime" scope="page" /> <fmt:formatDate
+							value="${chatTime}" pattern="yyyy-MM-dd" var="chat" /> <c:if
+							test="${date eq chat}">
+							<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
+						</c:if> <c:if test="${date ne chat}">
+							<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
+						</c:if>
+					</span>
+				</div>
+
+			</c:if>
+		</c:forEach>
+</c:if>
+<c:if test="${endNumber <=30 }">
+<c:forEach items="${chatlist}" var="chat">  
+			<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
+			<c:if test="${sender eq login.member_id }">
+				<div class='meTalk w3-round-xlarge'>${chat.CHAT_CONTENT }</div>
+				<div
+					style="float: right; margin-top: 30px; vertical-align: bottom; display: inline;">
+					<span style="font-size: xx-small; font-style: italic;"> <jsp:useBean
+							id="Today1" class="java.util.Date" /> <fmt:formatDate
+							value="${Today1}" pattern="yyyy-MM-dd" var="date" /> <fmt:parseDate
+							value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss"
+							var="chatTime" scope="page" /> <fmt:formatDate
+							value="${chatTime}" pattern="yyyy-MM-dd" var="chatt" /> <c:if
+							test="${date eq chatt}">
+							<fmt:formatDate value="${chatTime }" pattern="hh:mm" />
+						</c:if> <c:if test="${date ne chatt}">
+							<fmt:formatDate value="${chatTime }" pattern="yyyy-MM-dd" />
+						</c:if> 
+					</span>
+				</div>
+
+	
+			</c:if>
+			<c:if test="${sender ne login.member_id }">
+
+
+				<div class='youTalk w3-round-xlarge'>
+					<p>${chat.CHAT_CONTENT }</p>
+					<p></p>
+				</div>
+
+ 
+				<div style="float: left; margin-top: 30px; vertical-align: bottom;">
+					<span style="font-size: xx-small; font-style: italic;"> <jsp:useBean
+							id="toDay2" class="java.util.Date" /> <fmt:formatDate
+							value="${toDay2}" pattern="yyyy-MM-dd" var="date" /> <fmt:parseDate
 							value="${chat.CHAT_TIME }" pattern="yyyy-MM-dd HH:mm:ss"
 							var="chatTime" scope="page" /> <fmt:formatDate
 							value="${chatTime}" pattern="yyyy-MM-dd" var="chat" /> <c:if
