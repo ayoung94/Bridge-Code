@@ -66,7 +66,7 @@ input.size {
 		<div class="w3-row">
 			<div class="w3-col m12 w3-grey w3-center">
 				<p>
-					<textarea cols="163" rows="10" style="border: none"
+					<textarea cols="110" rows="11" style="border: none"
 						onkeydown="resize(this)" onkeyup="resize(this)"
 						name="noticeContent">${notice.noticeContent}</textarea>
 				</p>

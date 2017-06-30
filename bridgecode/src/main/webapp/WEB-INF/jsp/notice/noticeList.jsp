@@ -68,7 +68,7 @@ th {
 	</table>
 	<div>
 		<c:if test="${login.member_id == 'admin'}">
-			<input type="button" class="w3-button w3-blue" value="등록" onclick="goNoticeInsertForm()">
+			&nbsp&nbsp<input type="button" class="w3-button w3-blue" value="등록" onclick="goNoticeInsertForm()">
 		</c:if>
 	</div>
 </body>
