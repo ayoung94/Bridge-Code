@@ -11,7 +11,7 @@
 <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
 <script>
 function coupleDelete(){
-	if(confirm("정말 커플 해제를 하시겠습니까?"))
+	if(confirm(document.getElementById("coupleOUT").getAttribute("value")))
 	{	
 		//alert("정상적으로 처리 되었습니다."); 
 		location.href='${pageContext.request.contextPath}/couple/coupleDelete.do';
@@ -55,6 +55,7 @@ $(function(){
 </script>
 </head>
 <body>
+<input id="coupleOUT" value="<spring:message code="정말커플해제를하시겠습니까" />" type="hidden" >
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;margin-top:30px;">    
   <!-- The Grid -->
