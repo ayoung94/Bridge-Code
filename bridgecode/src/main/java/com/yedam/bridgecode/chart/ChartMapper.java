@@ -13,4 +13,5 @@ public interface ChartMapper {
 	public List<Map<String, Object>> countryRatio(MemberVO vo);
 	public List<Map<String, Object>> monthRatio(MemberVO vo);
 	public List<Map<String, Object>> monthCoupleRatio(MemberVO vo);
+	public List<Map<String, Object>> coupleRatio(MemberVO vo);
 }

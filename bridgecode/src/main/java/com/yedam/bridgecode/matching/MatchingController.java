@@ -35,7 +35,7 @@ public class MatchingController {
 	@RequestMapping("/matching/memberMatchingList.do")
 	public String getCodeList(CodeVO vo, Model model,HttpSession session) {
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -109,7 +109,7 @@ public class MatchingController {
 	@RequestMapping("/matching/memberSelect.do")
 	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model, HttpSession session) {
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -175,7 +175,7 @@ public class MatchingController {
 	@RequestMapping(value="/matching/searchGenderList.do")
 	public String searchGenderList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -195,7 +195,7 @@ public class MatchingController {
 	@RequestMapping(value="/matching/allmemberList.do")
 	public String memberList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}

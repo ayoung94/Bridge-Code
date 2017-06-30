@@ -39,10 +39,16 @@ public class ChartController {
 	public @ResponseBody List<Map<String, Object>> monthRatio(MemberVO vo) {
 		return chartDAO.monthRatio(vo);
 	}
-	
-	//월별 사용 하트 수
-		@RequestMapping("/monthCoupleRatio.do")
-		public @ResponseBody List<Map<String, Object>> monthCoupleRatio(MemberVO vo) {
-			return chartDAO.monthCoupleRatio(vo);
-		}
+
+	//월별 커플 성사 수
+	@RequestMapping("/monthCoupleRatio.do")
+	public @ResponseBody List<Map<String, Object>> monthCoupleRatio(MemberVO vo) {
+		return chartDAO.monthCoupleRatio(vo);
+	}
+
+	//전체 유저 대비 커플 수
+	@RequestMapping("/coupleRatio.do")
+	public @ResponseBody List<Map<String, Object>> coupleRatio(MemberVO vo) {
+		return chartDAO.coupleRatio(vo);
+	}
 }

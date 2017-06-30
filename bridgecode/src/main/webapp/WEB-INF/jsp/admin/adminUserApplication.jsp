@@ -27,6 +27,10 @@
 .margin {
 	margin: auto;
 }
+
+a {
+	cursor: pointer;
+}
 </style>
 <script>
 	$(function() {
@@ -87,9 +91,9 @@
 								<td>${userList.MEMBER_COUNTRY}</td>
 								<td><a href="getUserSel.do?member_id=${userList.MEMBER_ID}"
 									data-toggle="modal" data-target="#userSelModal">상세보기</a></td>
-								<td><a
+								<td><a href="#"
 									onClick="if(confirm('정식 회원으로 승인하시겠습니까?')) location.href='updateUserApplication.do?member_id=${userList.MEMBER_ID}'">승인</a></td>
-								<td><a
+								<td><a href="#"
 									onClick="if(confirm('회원 가입 신청을 거부하시겠습니까?')) location.href='updateUserReject.do?member_id=${userList.MEMBER_ID}'">거부</a></td>
 							</tr>
 						</c:forEach>

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -44,14 +45,14 @@ th {
 </style>
 </head>
 <body>
-	<h1>공지사항</h1>
+	<h1><spring:message code='공지사항'/></h1>
 	<table id="noticeListTable">
 		<thead>
 			<tr>
-				<th>글번호</th>
-				<th>제목</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th><spring:message code='글번호'/></th>
+				<th><spring:message code='제목'/></th>
+				<th><spring:message code='작성일'/></th>
+				<th><spring:message code='조회수'/></th>
 			</tr>
 		</thead>
 		<tbody>

@@ -107,11 +107,38 @@
 				}
 				//2. 차트옵션
 				var options = {
-					title : '월별 커플 수',
+					title : '월별 커플 성사 수',
 					width : 450,
 					height : 380
 				};
 				chart3.draw(charData, options);
+			} else {
+				alert("오류!!!");
+			}
+		});
+
+		var chart4 = new google.visualization.ColumnChart(document
+				.querySelector('#monthCoupleRatio_div'));
+		$.getJSON("monthCoupleRatio.do", function(data, status) {
+			if (status == "success") {
+				console.dir(data);
+				//1. 차트 데이터 
+				var charData = new google.visualization.DataTable();
+				charData.addColumn('string', '전체 유저 수');
+				charData.addColumn('number', '수');
+				charData.addColumn('string', '');
+				for (i = 0; i < data.length; i++) {
+					var arr3 = [ data[i].MONTH, data[i].COUPLECOUNT ];
+					console.log(arr3);
+					charData.addRow(arr3);
+				}
+				//2. 차트옵션
+				var options = {
+					title : '월별 커플 성사 수',
+					width : 450,
+					height : 380
+				};
+				chart4.draw(charData, options);
 			} else {
 				alert("오류!!!");
 			}

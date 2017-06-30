@@ -44,6 +44,10 @@
 .apptd td {
 	text-align: center;
 }
+
+a {
+	cursor: pointer;
+}
 </style>
 <style>
 .modal-backdrop {
