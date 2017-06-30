@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -19,7 +21,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.MessageSourceResolvable;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,6 +39,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 
+
+
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 import com.yedam.bridgecode.heart.HeartService;
 import com.yedam.bridgecode.heart.HeartVO;
@@ -49,6 +59,7 @@ public class MemberController {
 	HeartService heartService;
 	@Autowired
 	MatchingService MatchingService;
+
 
 	@RequestMapping("/ajaxMemberId.json")
 	public @ResponseBody String ajaxChart(@RequestParam String member_id) {
@@ -240,8 +251,11 @@ public class MemberController {
 						,Model model
 						,HttpSession session){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
-			model.addAttribute("url", "/"); 
+			  
+			//String lang = (String)session.getAttribute(SessionLocaleResolver.LOCALE_SESSION_ATTRIBUTE_NAME);
+			//String msg = messageSource.getMessage("로그인해주세요",null,Locale.KOREA);
+			model.addAttribute("msg", "로그인해주세요");//<spring:message code='로그인해주세요'/> 
+			model.addAttribute("url", "/");  
 			return "/popup/alert";
 		}
 		

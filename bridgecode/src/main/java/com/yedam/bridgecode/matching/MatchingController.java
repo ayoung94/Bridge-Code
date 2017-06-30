@@ -35,7 +35,7 @@ public class MatchingController {
 	@RequestMapping("/matching/memberMatchingList.do")
 	public String getCodeList(CodeVO vo, Model model,HttpSession session) {
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -55,7 +55,7 @@ public class MatchingController {
 		String minage = request.getParameter("minage");
 		String maxage = request.getParameter("maxage");
 		String toggle = request.getParameter("toggle");
-		String optionsRadios = request.getParameter("optionsRad	ios");
+		String optionsRadios = request.getParameter("optionsRadios");
 		// 최소 검색나이
 		map.put("minage", minage);
 		// 최대 검색나이
@@ -109,7 +109,7 @@ public class MatchingController {
 	@RequestMapping("/matching/memberSelect.do")
 	public String memberSelect(CodeVO co, MemberVO vo, @RequestParam String id, Model model, HttpSession session) {
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -175,7 +175,7 @@ public class MatchingController {
 	@RequestMapping(value="/matching/searchGenderList.do")
 	public String searchGenderList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -195,7 +195,7 @@ public class MatchingController {
 	@RequestMapping(value="/matching/allmemberList.do")
 	public String memberList(MemberVO vo, Model model,HttpSession session,HttpServletRequest request){
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
@@ -207,10 +207,17 @@ public class MatchingController {
 	// 전체 멤버 리스트 (ajax처리)
 	@RequestMapping(value="/matching/ajaxallmemberList.do")
 	public @ResponseBody List<Map<String, Object>> ajaxallmemberList(MemberVO vo, Model model, 
-																	HttpSession session, HttpServletRequest request)throws Exception {
-		
+																	HttpSession session, HttpServletRequest request) throws Exception {
 		return MatchingService.ajaxallmemberList(vo);
 	}
 
+	// 직접 회원ID/NICKNAME으로 찾기(ajax처리)
+	@RequestMapping(value="/matching/searchMember.do")
+	public @ResponseBody List<Map<String, Object>> searchMember(MemberVO vo, Model model, HttpServletRequest request) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		String find = request.getParameter("find");
+		map.put("find", find);
+		return MatchingService.searchMember(map);			
+		}
 	
 }

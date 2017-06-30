@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yedam.bridgecode.member.MemberVO;
 
@@ -32,7 +33,9 @@ public interface MatchingMapper {
 	//전체 멤버 리스트
 	public List<Map<String,Object>> allmemberList(MemberVO vo);
 	
-	//전체 멤버 리스트
+	//전체 멤버 리스트(ajax)
 	public List<Map<String,Object>> ajaxallmemberList(MemberVO vo);
-	
+
+	//직접 회원 검색하기
+	public List<Map<String,Object>> searchMember(Map<String, Object> map);
 }
