@@ -51,7 +51,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="brand"> 
-						<h3>BRIDGE CODE 에서</h3>
+						<h3>BRIDGE CODE <spring:message code="에서" /></h3>
 						<h1 style="display: inline-block;">${countAllCouple}</h1><h2 style="display: inline-block;">&nbsp<spring:message code="쌍의커플이이루어졌습니다." /></h2> 
 					</div>
 				</div>
