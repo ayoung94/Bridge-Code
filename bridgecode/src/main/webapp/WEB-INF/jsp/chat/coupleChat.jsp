@@ -141,7 +141,7 @@ function moreRead(){
 	var me = "${login.member_id}";
 	var you = "${partner.member_id}";
 	if(start<0){
-		alert("채팅 내역이 모두 load되었습니다.");
+		alert("All chat history has been loaded.");
 		$('#readMoreBtn').remove();
 		return;
 	}
@@ -207,7 +207,7 @@ function moreRead(){
 		style="overflow-y:auto; height:470px; overflow-x:hidden;background-image: url('${pageContext.request.contextPath}/resources/img/chatBG.JPG');"
 		id="messageWindow">
 
-		<br> <div style="width: 100%;text-align: center;"><a href="#" onclick="moreRead();" id="readMoreBtn">더보기</a></div>
+		<br> <div style="width: 100%;text-align: center;"><a href="#" onclick="moreRead();" id="readMoreBtn">read more</a></div>
 		<div  id="readMore"></div>
 
 		<br>
@@ -222,6 +222,9 @@ function moreRead(){
 		
 		
 		<!-- 로딩 시 채팅 출력 -->
+		<c:if test="${endNumber > 0}">
+		
+		
 		<c:forEach items="${chatlist}" var="chat" begin="${endNumber - 30 }">
 			<c:set var="sender" value="${chat.CHAT_FROM_ID}" />
 			<c:if test="${sender eq login.member_id }">
@@ -242,7 +245,7 @@ function moreRead(){
 					</span>
 				</div>
 
-
+	
 			</c:if>
 			<c:if test="${sender ne login.member_id }">
 
@@ -270,7 +273,7 @@ function moreRead(){
 
 			</c:if>
 		</c:forEach>
-
+</c:if>
 	</div>
 
 	<input id="inputMessage" type="text"

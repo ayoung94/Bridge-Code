@@ -230,9 +230,9 @@
 								
 								<div class="w3-right-align">
 									<button class="btn btn-white btn-sm"
-										onclick="location.href='${pageContext.request.contextPath}/heart/heartYES.do?heart_id=${heartTo.HEART_ID}'">수락</button>
+										onclick="location.href='${pageContext.request.contextPath}/heart/heartYES.do?heart_id=${heartTo.HEART_ID}'"><spring:message code="수락" /></button>
 									<button class="btn btn-white btn-sm"
-										onclick="location.href='${pageContext.request.contextPath}/heart/heartNO.do?heart_id=${heartTo.HEART_ID}'">거절</button>
+										onclick="location.href='${pageContext.request.contextPath}/heart/heartNO.do?heart_id=${heartTo.HEART_ID}'"><spring:message code="거절" /></button>
 								</div></li>
 								
 						</c:forEach>
