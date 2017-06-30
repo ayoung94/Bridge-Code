@@ -55,14 +55,14 @@
  							<!-- 알람 뱃지 끝 -->	 
  								 
  								 <br>
- 								 <a href="${pageContext.request.contextPath}/logout.do"><spring:message code='로그아웃'/></a>
+ 								 <a href="${pageContext.request.contextPath}/logout.do"><small style="color:#E2A9F3;"><spring:message code='로그아웃'/></small></a>
  								<c:if test="${login.member_id == 'admin'}">
  								 <a href="${pageContext.request.contextPath}/goAdminMain.do">관리자페이지</a>
  								</c:if>
   							</c:if>
   							<c:if test="${empty loginSession }"> 
 
-  	 							<a href="#" data-toggle="modal" data-target="#myModal">
+  	 							<a href="#" data-toggle="modal" data-target="#myModal" style="color:#E2A9F3;">
   	 							<spring:message code='로그인해주세요'/>
   	 							</a>
   							</c:if>
