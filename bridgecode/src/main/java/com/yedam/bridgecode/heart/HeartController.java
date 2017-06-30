@@ -35,7 +35,7 @@ public class HeartController {
 				  			  HttpSession session){
 		
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/matching/memberSelect.do?id="+id); 
 			
 			return "/popup/alert";
@@ -45,7 +45,7 @@ public class HeartController {
 		MemberVO me = (MemberVO)session.getAttribute("login");
 
 		if(me.getMember_partner_id() != null){
-			model.addAttribute("msg", "<spring:message code='이미커플이존재합니다.커플을해제한후시도해주세요.'/>"); 
+			model.addAttribute("msg", "이미커플이존재합니다.커플을해제한후시도해주세요."); 
 			model.addAttribute("url", "/matching/memberSelect.do?id="+id); 
 			
 			return "/popup/alert";
@@ -109,7 +109,7 @@ public class HeartController {
 		vo.setHeart_id(heart_id);
 		
 		if(to.getMember_partner_id() != null){
-			model.addAttribute("msg", "<spring:message code='이미커플이존재합니다.커플을해제한후시도해주세요.'/>"); 
+			model.addAttribute("msg", "이미커플이존재합니다.커플을해제한후시도해주세요."); 
 			model.addAttribute("url", "/member/mypage.do"); 
 			
 			return "/popup/alert";
@@ -177,7 +177,7 @@ public class HeartController {
 							 HttpSession session){
 		
 		if(session.getAttribute("login") == null){
-			model.addAttribute("msg", "<spring:message code='로그인해주세요'/>"); 
+			model.addAttribute("msg", "로그인해주세요"); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		} 

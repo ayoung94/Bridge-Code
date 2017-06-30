@@ -32,6 +32,7 @@ $(function(){
 		}
 		
 		$("#interestLength").attr('value',checkboxs.length);
+		console.log($("#interestLength").attr('value'));
 		var arr = checkValue.split(',');
 		$("#member_interest1").attr('value',arr[0]);
 		$("#member_interest2").attr('value',arr[1]);
@@ -44,7 +45,7 @@ $(function(){
 				$("#member_password_div").attr('class','form-group label-floating has-error');
 				$("#passwordOK").hide();
 				$("#passwordNOTOK").show();
-				$("#password_label").text("비밀번호를 입력해주세요.");
+				$("#password_label").text("<spring:message code='비밀번호를입력해주세요' />");
 				$("#password_label").show();
 				$("#password_check").attr('value','false');
 			}else if($("#member_password1").val() == $("#member_password").val()){
@@ -58,7 +59,7 @@ $(function(){
 				$("#member_password_div").attr('class','form-group label-floating has-error');
 				$("#passwordOK").hide();
 				$("#passwordNOTOK").show();
-				$("#password_label").text("비밀번호가 다릅니다.");
+				$("#password_label").text("<spring:message code='비밀번호가다릅니다' />");
 				$("#password_label").show();
 				$("#password_check").attr('value','false');
 			}
@@ -68,18 +69,15 @@ $(function(){
 
 
 function aa(){
-	if($("#interestLength").attr('value')>3){
-	alert("관심사는 최대 3개까지 등록 가능합니다.");
-	return false;
-	}else if($("#member_id_check").attr('value') == 'false'){
-		alert("아이디를 다시 확인해 주세요.");
+	if($("#interestLength").attr('value')>3){ 
+		alert(document.getElementById("interesetMSG").getAttribute("value"));
 		return false;
-	}else if($("#password_check").attr('value') == 'false'){
-		alert("비밀번호를 다시 확인해 주세요.");
-		return false;
-	}else{
-	return true;
-	}
+		}else if($("#password_check").attr('value') == 'false'){
+			alert(document.getElementById("passwordMSG").getAttribute("value"));
+			return false;
+		}else{
+		return true;
+		} 
 }
 
 </script>
@@ -97,6 +95,9 @@ width: 300px;
 </style>
 </head>
 <body>
+<input type="hidden" id="interesetMSG" value="<spring:message code="관심사는최대3개까지등록가능합니다."/>">
+<input type="hidden" id="passwordMSG" value="<spring:message code="비밀번호를다시확인해주세요" />">
+
 <h3><spring:message code="회원정보수정" /></h3>
 <hr>
 <form method="post" enctype="multipart/form-data" onsubmit="return aa();">
@@ -123,7 +124,7 @@ ${member.member_name}</td>
 <div class="col-sm-4">
 <input type="password" id="member_password1" class="form-control widthSmall">
 <div class="form-group  label-floating" id="member_password_div">
-<label id="password_label" class="control-label" style="display: none;">비밀번호가 다릅니다.</label>
+<label id="password_label" class="control-label" style="display: none;"><spring:message code="비밀번호가다릅니다" /></label>
 <input type="password" id="member_password" name="member_password" class="form-control widthSmall">
 <span class="form-control-feedback">
 			<i id="passwordOK" class="material-icons" style="display: none;">done</i>
@@ -147,8 +148,8 @@ ${member.member_name}</td>
 <td><spring:message code="성별" />:</td>
 <td> 
 <div class="radio" style="margin-left: 20px;"> 
-<label><input type="radio" name="member_sex" value="1" <c:if test="${member.member_sex == 1}">checked</c:if> >남</label>
-<label><input type="radio" name="member_sex" value="2" <c:if test="${member.member_sex == 2}">checked</c:if> >여</label>
+<label><input type="radio" name="member_sex" value="1" <c:if test="${member.member_sex == 1}">checked</c:if> ><spring:message code='남성' /></label>
+<label><input type="radio" name="member_sex" value="2" <c:if test="${member.member_sex == 2}">checked</c:if> ><spring:message code='여성' /></label>
 </div></td>
 </tr>
 <tr>
@@ -156,9 +157,9 @@ ${member.member_name}</td>
 <td>
 <div class="col-sm-4">
 <select name="member_country" class="form-control">
-<option value="ko" <c:if test="${member.member_country == 'ko'}">selected</c:if>  >한국</option>
-<option value="cn" <c:if test="${member.member_country == 'cn'}">selected</c:if>>중국</option>
-<option value="jp" <c:if test="${member.member_country == 'jp'}">selected</c:if>>일본</option>
+<option value="ko" <c:if test="${member.member_country == 'ko'}">selected</c:if>  ><spring:message code='한국' /></option>
+<option value="cn" <c:if test="${member.member_country == 'cn'}">selected</c:if>><spring:message code='중국' /></option>
+<option value="jp" <c:if test="${member.member_country == 'jp'}">selected</c:if>><spring:message code='일본' /></option>
 </select>
 </div></td>
 </tr>
@@ -167,7 +168,7 @@ ${member.member_name}</td>
 <td>
 <br>
 <div class="radio">
-<label><i class="material-icons">done</i>관심사는 3개 까지 입력해주세요.</label>
+<label><i class="material-icons">done</i><spring:message code='관심사는최대3개까지등록가능합니다.' /></label>
 </div><br>
 <%
 	int j = 0;
@@ -177,7 +178,7 @@ ${member.member_name}</td>
 <label style="width: 100px;"> <input type="checkbox" name="interest" value="${interest.code_id }"
 <c:if test="${member.member_interest1 == interest.code_id or member.member_interest2 == interest.code_id 
 						  				or member.member_interest3 == interest.code_id}">checked</c:if>>
-${interest.code_name }
+<spring:message code='${interest.code_name }' />
 </label>
 </div>
 <%

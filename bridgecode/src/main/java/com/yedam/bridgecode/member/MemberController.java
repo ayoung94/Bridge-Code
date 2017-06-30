@@ -340,7 +340,7 @@ public class MemberController {
 		member = (MemberVO)session.getAttribute("login");
 		memberService.deleteMember(member);
 		
-		model.addAttribute("msg", "<spring:message code='정상적으로처리되었습니다.이용해주셔서감사합니다.'/>"); 
+		model.addAttribute("msg", "정상적으로처리되었습니다.이용해주셔서감사합니다."); 
 		model.addAttribute("url", "/"); 
 		
 		session.invalidate();
@@ -371,7 +371,7 @@ public class MemberController {
 				model.addAttribute("member",result);
 				return "redirect:member/memberRejectJoin.do";
 			}else if( result.getMember_level().equals("6") ){
-				model.addAttribute("msg", result.getMember_name()+"<spring:message code='회원님께서는신고횟수초과로인해영구블럭되었음을알려드립니다.'/>"); 
+				model.addAttribute("msg", result.getMember_name()+"회원님께서는신고횟수초과로인해영구블럭되었음을알려드립니다."); 
 				model.addAttribute("url", "/"); 
 				return "/popup/alert";
 			}
@@ -383,7 +383,7 @@ public class MemberController {
 			
 		} else {
 
-			model.addAttribute("msg", "<spring:message code='로그인실패'/>"); 
+			model.addAttribute("msg", "로그인실패"); 
 			model.addAttribute("url", "/"); 
 			
 			return "/popup/alert";

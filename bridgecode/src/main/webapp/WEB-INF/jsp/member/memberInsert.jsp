@@ -72,16 +72,15 @@ $(function(){
 								$("#member_id_div").attr('class','form-group label-floating has-error');
 								$("#idOK").hide();
 								$("#idNOTOK").show();
-								$("#member_id_label").text("중복된 아이디가 존재합니다.");
+								$("#member_id_label").text("<spring:message code='중복된아이디가존재합니다' />");
 								$("#member_id_check").attr('value','false');
 								} 
 							});
 				} else{
-					console.log("이메일 아니면 오는곳.");
 					$("#member_id_div").attr('class','form-group label-floating has-error');
 					$("#idOK").hide();
 					$("#idNOTOK").show();
-					$("#member_id_label").text("이메일을 입력해주세요.");
+					$("#member_id_label").text("<spring:message code='이메일을입력해주세요' />");
 					$("#member_id_check").attr('value','false');
 				}
 				
@@ -96,7 +95,7 @@ $(function(){
 				$("#member_password_div").attr('class','form-group label-floating has-error');
 				$("#passwordOK").hide();
 				$("#passwordNOTOK").show();
-				$("#password_label").text("비밀번호를 입력해주세요.");
+				$("#password_label").text("<spring:message code='비밀번호를입력해주세요' />");
 				$("#password_label").show();
 				$("#password_check").attr('value','false');
 			}else if($("#member_password1").val() == $("#member_password").val()){
@@ -110,7 +109,7 @@ $(function(){
 				$("#member_password_div").attr('class','form-group label-floating has-error');
 				$("#passwordOK").hide();
 				$("#passwordNOTOK").show();
-				$("#password_label").text("비밀번호가 다릅니다.");
+				$("#password_label").text("<spring:message code='비밀번호가다릅니다' />");
 				$("#password_label").show();
 				$("#password_check").attr('value','false');
 			}
@@ -123,13 +122,13 @@ $(function(){
 
 function aa(){
 	if($("#interestLength").attr('value')>3){
-	alert("관심사는 최대 3개까지 등록 가능합니다.");
+	alert(document.getElementById("interesetMSG").getAttribute("value"));
 	return false;
 	}else if($("#member_id_check").attr('value') == 'false'){
-		alert("아이디를 다시 확인해 주세요.");
+		alert(document.getElementById("idMSG").getAttribute("value"));
 		return false;
 	}else if($("#password_check").attr('value') == 'false'){
-		alert("비밀번호를 다시 확인해 주세요.");
+		alert(document.getElementById("passwordMSG").getAttribute("value"));
 		return false;
 	}else{
 	return true;
@@ -158,6 +157,10 @@ width: 300px;
 </head>
 
 <body>
+<input type="hidden" id="interesetMSG" value="<spring:message code="관심사는최대3개까지등록가능합니다." />">
+<input type="hidden" id="idMSG" value="<spring:message code="아이디를다시확인해주세요" />">
+<input type="hidden" id="passwordMSG" value="<spring:message code="비밀번호를다시확인해주세요" />">
+
 <h3><i class="material-icons">people</i><spring:message code="회원가입" /></h3>
 <p class="text-muted"> 
 	<spring:message code="회원가입.sub" />
@@ -181,7 +184,7 @@ width: 300px;
 <td><spring:message code="아이디" /> :</td><td>
 <div class="col-sm-4">
 <div class="form-group label-floating" id="member_id_div">
-<label id="member_id_label" class="control-label">이메일을 입력해주세요.</label>
+<label id="member_id_label" class="control-label"><spring:message code='이메일을입력해주세요' /></label>
 <input type="hidden" id="member_id_check" value="false" >
 <input type="text" name="member_id"  id="member_id" class="form-control">
 <span class="form-control-feedback">
@@ -229,8 +232,8 @@ width: 300px;
 <td><spring:message code="성별" />:</td>
 <td> 
 <div class="radio" style="margin-left: 20px;">
-<label><input type="radio" name="member_sex" value="1">남</label>
-<label><input type="radio" name="member_sex" value="2">여</label>
+<label><input type="radio" name="member_sex" value="1"><spring:message code='남성' /></label>
+<label><input type="radio" name="member_sex" value="2"><spring:message code='여성' /></label>
 </div></td>
 </tr>
 <tr>
@@ -238,9 +241,9 @@ width: 300px;
 <td>
 <div class="col-sm-4">
 <select name="member_country" class="form-control">
-<option value="ko">한국</option>
-<option value="cn">중국</option>
-<option value="jp">일본</option>
+<option value="ko"><spring:message code='한국' /></option> 
+<option value="cn"><spring:message code='중국' /></option>
+<option value="jp"><spring:message code='일본' /></option>
 </select>
 </div></td>
 </tr>
@@ -257,7 +260,7 @@ width: 300px;
 <td>
 <br>
 <div class="radio">
-<label><i class="material-icons">done</i>관심사는 3개 까지 입력해주세요.</label>
+<label><i class="material-icons">done</i><spring:message code='관심사는최대3개까지등록가능합니다.' /></label>
 </div><br>
 <%
 	int j = 0;
@@ -265,7 +268,7 @@ width: 300px;
 <c:forEach items="${list}" var="interest">
 <div class="checkbox" style="display: inline;padding: 10px; margin: 10px;" >
 <label style="width: 100px;"> <input type="checkbox" name="interest" value="${interest.code_id }">
-${interest.code_name }
+<spring:message code='${interest.code_name }' /> 
 </label>
 </div>
 <%

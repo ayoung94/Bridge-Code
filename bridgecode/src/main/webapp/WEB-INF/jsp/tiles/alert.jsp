@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<input id="msg" type="text" value="<spring:message code='${msg}'/>">
+<input id="msg" type="hidden" value="<spring:message code='${msg}'/>">
 
 <script type="text/javascript"> 
 var message = "${msg}";   
