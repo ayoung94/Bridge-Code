@@ -376,13 +376,13 @@ p {
 	<div id="nav2">
 		<form id="IDfrm" style="margin: 10px;">
 			<h3> <spring:message code='id검색'/> </h3>
-			<input type="text" id="find" style="width:20%; margin-bottom:10px;" name="find" data-toggle="popover" data-placement="left" data-content="<spring:message code='찾고싶은회원의아이디나닉네임을입력하세요!'/>" placeholder="<spring:message code='아이디나닉네임을입력하세요!'/>">	
+			<input type="text" id="find" style="width:20%; margin-bottom:10px;" name="find" data-toggle="popover" data-placement="top" data-content="<spring:message code='찾고싶은회원의아이디나닉네임을입력하세요!'/>" placeholder="<spring:message code='아이디나닉네임을입력하세요!'/>">	
 			<a href="javascript:;" onClick="showSearch()"><spring:message code='찾기'/></a>		
 		</form>
 	</div>
 		<ul class="nav nav-tabs">
 			<li role="presentation" class="active" style="margin-right:50px;">
-			<a href="#" onClick="return false;" data-container="body" data-toggle="popover" data-placement="left" data-content="<spring:message code='검색결과는하단에보여집니다.'/>"><spring:message code='검색결과'/></a></li>	 
+			<a href="#" onClick="return false;" data-container="body" data-toggle="popover" data-placement="right" data-content="<spring:message code='검색결과는하단에보여집니다.'/>"><spring:message code='검색결과'/></a></li>	 
 		</ul>
 		<table>
 			<tr>
