@@ -121,8 +121,6 @@ a {
 function goChart(){
 	location.href="Ratioview.do"
 }
-
-
 </script>
 <body class="w3-light-grey">
 
