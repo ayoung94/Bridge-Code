@@ -51,7 +51,8 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="brand"> 
-						<h1><spring:message code="총" />${countAllCouple}<spring:message code="커플탄생" /></h1> 
+						<h3>BRIDGE CODE 에서</h3>
+						<h2>${countAllCouple}<spring:message code="명의커플이이루어졌습니다." /></h2> 
 					</div>
 				</div>
 			</div>
