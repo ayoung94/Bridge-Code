@@ -382,7 +382,7 @@ public class MemberController {
 				model.addAttribute("member",result);
 				return "redirect:member/memberRejectJoin.do";
 			}else if( result.getMember_level().equals("6") ){
-				model.addAttribute("msg", result.getMember_name()+"회원님께서는신고횟수초과로인해영구블럭되었음을알려드립니다."); 
+				model.addAttribute("msg","회원님께서는신고횟수초과로인해영구블럭되었음을알려드립니다."); 
 				model.addAttribute("url", "/"); 
 				return "/popup/alert";
 			}
