@@ -140,7 +140,7 @@ function moreRead(){
 	var end =  $('#endNum').val();
 	var me = "${login.member_id}";
 	var you = "${partner.member_id}";
-	if(start<0){
+	if($('#endFlag').val() == 'false'){
 		alert("All chat history has been loaded.");
 		$('#readMoreBtn').remove();
 		return;
@@ -148,10 +148,17 @@ function moreRead(){
 	console.log($('#startNum').val());
 	console.log($('#endNum').val());
 	$.getJSON("${pageContext.request.contextPath}/chat/ajaxcoupleChat.do?start="+start+"&end="+end, function(data, status){
-
-			$('#startNum').val(start-10);
-			$('#endNum').val(end-10);
-
+				
+		
+			if(start-10<0){ 
+				$('#endNum').val(start+10);
+				$('#startNum').val(1);
+				$('#endFlag').val('false');
+			}else{
+				$('#startNum').val(start-10);
+				$('#endNum').val(end-10);
+			}
+			
 			$.each(data,function(key,value){
 				var time = new Date(value.CHAT_TIME);
 		    	
@@ -216,10 +223,11 @@ function moreRead(){
 		<c:forEach items="${chatlist}" var="chatNO" varStatus="Number">
 			<c:set var="endNumber" value="${Number.count }" />
 		</c:forEach>
-
+		
+		<input type="hidden" id="endFlag" value="true">
 		<input type="hidden" id="endNum" value="${endNumber -30}">
 		<input type="hidden" id="startNum" value="${endNumber -40}">
-		
+
 		
 		<!-- 로딩 시 채팅 출력 -->
 		
