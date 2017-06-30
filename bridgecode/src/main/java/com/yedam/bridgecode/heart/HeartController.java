@@ -54,7 +54,7 @@ public class HeartController {
 		
 		if(heartService.checkHeart(me) != null){
 			
-			model.addAttribute("msg", "가진 하트가 없습니다."); 
+			model.addAttribute("msg", "가진하트가없습니다"); 
 			model.addAttribute("url", "/matching/memberSelect.do?id="+id); 
 			
 			return "/popup/alert";
@@ -64,7 +64,7 @@ public class HeartController {
 		vo.setHeart_from_id(me.getMember_id());
 		heartService.insertHeart(vo);
 		
-		model.addAttribute("msg", "하트 보내기 완료!"); 
+		model.addAttribute("msg", "하트보내기완료"); 
 		model.addAttribute("url", "/matching/memberSelect.do?id="+id); 
 		
 		return "/popup/alert";
@@ -83,7 +83,7 @@ public class HeartController {
 		//heart, from_member, to_member
 		heartService.coupleDelete(from,to); 
 		
-		model.addAttribute("msg", "커플 해제가 완료되었습니다!"); 
+		model.addAttribute("msg", "커플해제가완료되었습니다"); 
 		model.addAttribute("url", "/member/mypage.do"); 
 		
 		to = memberService.getMember(to);
@@ -122,7 +122,7 @@ public class HeartController {
 		List<Map<String,Object>> heartTo = heartService.getToHeartList(to);
 		session.setAttribute("heartto",heartTo);
 		
-		model.addAttribute("msg", "하트 수락 완료!"); 
+		model.addAttribute("msg", "하트수락완료"); 
 		model.addAttribute("url", "/couple/couplepage.do"); 
 		
 		to = memberService.getMember(to);
@@ -146,7 +146,7 @@ public class HeartController {
 		List<Map<String,Object>> heartTo = heartService.getToHeartList(to);
 		session.setAttribute("heartto",heartTo);
 		
-		model.addAttribute("msg", "하트 거절 완료!"); 
+		model.addAttribute("msg", "하트거절완료"); 
 		model.addAttribute("url", "/member/mypage.do"); 
 		
 		return "/popup/alert";

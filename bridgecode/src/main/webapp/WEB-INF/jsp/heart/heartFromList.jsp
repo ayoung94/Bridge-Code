@@ -71,7 +71,7 @@ $('[data-toggle="tooltip"]').tooltip();
 			<td>${heart.HEART_FROM_TIME} </td>
 			<td>
 			<c:if test="${heart.HEART_STATUS == 0 }">
-			  <span class="label label-default">대기</span>
+			  <span class="label label-default"><spring:message code="대기" /></span>
 			</c:if>
 			<c:if test="${heart.HEART_STATUS == 1 }">
 			  <span class="label label-primary"><spring:message code="수락" /></span>
@@ -80,7 +80,7 @@ $('[data-toggle="tooltip"]').tooltip();
 			  <span class="label label-default"><spring:message code="거절" /></span>
 			</c:if>
 			<c:if test="${heart.HEART_STATUS == 3 }">
-			  <span class="label label-default" data-toggle="tooltip" data-placement="top" title="커플성사,해제,유효기간 초과 등으로 만료됨을 의미합니다.">만료</span>
+			  <span class="label label-default" data-toggle="tooltip" data-placement="top" title="<spring:message code="만료.tooltip" />"><spring:message code="만료" /></span>
 			</c:if>
 			
 			 </td>
