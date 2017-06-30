@@ -38,5 +38,10 @@
 			order by count(h.heart_to_id) DESC
 		]]>
 	</select>
+	
+	<select id="countAllCouple" resultType="int">
+			SELECT COUNT(HEART_CONFIRM_TIME) as coupleallcount
+			FROM HEART
+	</select>
 
 </mapper>

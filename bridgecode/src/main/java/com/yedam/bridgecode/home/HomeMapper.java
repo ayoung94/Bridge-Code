@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.annotation.MapperScan;
 
+import com.yedam.bridgecode.heart.HeartVO;
 import com.yedam.bridgecode.member.MemberVO;
 
 @MapperScan
@@ -12,4 +13,5 @@ public interface HomeMapper {
 	public List<Map<String,Object>> bestMemberMonthList(MemberVO vo);
 	public List<Map<String,Object>> bestMemberWeekList(MemberVO vo);
 	public List<Map<String,Object>> bestMemberAllList(MemberVO vo);
+	public int countAllCouple(HeartVO vo);
 }

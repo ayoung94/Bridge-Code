@@ -16,6 +16,7 @@ public class HomeController {
 
 	@Autowired MemberService memberService;
 	@Autowired HomeService homeService;
+	@Autowired HomeMapper homeDAO;
 	
 	@RequestMapping("/")
 	public String home(MemberVO vo,Model model) {
@@ -28,6 +29,7 @@ public class HomeController {
 		model.addAttribute("list",list);
 		model.addAttribute("list2",list2);
 		model.addAttribute("list3",list3);
+		model.addAttribute("countAllCouple", homeDAO.countAllCouple(null));
 		return "home"; 
 	}
 	

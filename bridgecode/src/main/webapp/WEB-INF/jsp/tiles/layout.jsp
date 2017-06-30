@@ -51,8 +51,7 @@
 			<div class="row">
 				<div class="col-md-8 col-md-offset-2">
 					<div class="brand"> 
-						<h1><spring:message code="test.test" /></h1> 
-						<h3>A Badass Bootstrap UI Kit based on Material Design.</h3>
+						<h1><spring:message code="총" />${countAllCouple}<spring:message code="커플탄생" /></h1> 
 					</div>
 				</div>
 			</div>
