@@ -27,12 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		System.out.println("★★★★인터셉터 거치다.");
-		
-
-		
 		MemberVO vo = (MemberVO)request.getSession().getAttribute("login"); //로그인값에서 유저 정보 가져와서 
-		
-		System.out.println(vo);
 		if(vo != null){ //로그인 되어있는 상태이면
 			System.out.println("로그인 되어있어서 정보 갱신하는중.............");
 		MemberVO result = memberDAO.getMember(vo); //멤버정보를 result에 담고

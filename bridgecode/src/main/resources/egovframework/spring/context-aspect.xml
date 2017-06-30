@@ -25,6 +25,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		</property>
 	</bean>
 
+
 	<bean id="defaultExceptionHandleManager" class="egovframework.rte.fdl.cmmn.exception.manager.DefaultExceptionHandleManager">
 		<property name="reqExpMatcher">
 			<ref bean="antPathMater"/>
