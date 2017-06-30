@@ -172,7 +172,7 @@ public class MemberController {
 		
 		MemberVO result = memberService.getMember(vo);
 		if(result == null){
-			model.addAttribute("msg", vo.getMember_id()+"해당 회원이 존재하지 않습니다."); 
+			model.addAttribute("msg","해당회원이존재하지않습니다."); 
 			model.addAttribute("url", "/"); 
 			return "/popup/alert";
 		}
