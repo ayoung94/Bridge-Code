@@ -221,15 +221,29 @@ public class MemberController {
 	         InternetAddress.parse(to));
 
 	         // Set Subject: header field
-	         message.setSubject("[Bridge Code]임시 비밀번호 안내 메일입니다.");
+	         if(result.getMember_country().equals("ko")){
+	        	   message.setSubject("[Bridge Code]임시 비밀번호 안내 메일입니다.");
 
-	         // Now set the actual message
-	         message.setContent("<html><body>안녕하세요 회원님! Bridge Code입니다.<br>"
-	            + "신청하신 임시 비밀번호를 발급해 드렸습니다. <hr> <b>"+newPasswd+"</b><br>"
-	            		+ "확인해 주시고, 로그인 후 임시 비밀번호 변경 꼭! 하시길 바랍니다.</body></html>","text/html; charset=UTF-8");
-	         
+	  	         // Now set the actual message
+	  	         message.setContent("<html><body>안녕하세요 회원님! Bridge Code입니다.<br>"
+	  	            + "신청하신 임시 비밀번호를 발급해 드렸습니다. <hr> <b>"+newPasswd+"</b><br>"
+	  	            		+ "확인해 주시고, 로그인 후 임시 비밀번호 변경 꼭! 하시길 바랍니다.</body></html>","text/html; charset=UTF-8");
+	         }else if(result.getMember_country().equals("jp")){
+	        	 message.setSubject("[Bridge Code]臨時暗証番号案内メールです。");
 
-	         // Send message
+	  	         // Now set the actual message
+	  	         message.setContent("<html><body>こんにちは 会員様!Bridge Codeです。<br>"
+	  	            + "申請した臨時パスワードを発給してあげました。 <hr> <b>"+newPasswd+"</b><br>"
+	  	            		+ "確認してくださって、ログイン後に臨時暗証番号の変更、きっとだよ!頑張ってください。</body></html>","text/html; charset=UTF-8");
+	         }else if(result.getMember_country().equals("cn")){
+	        	 message.setSubject("[Bridge Code]这是临时密码邮件。");
+
+	  	         // Now set the actual message
+	  	         message.setContent("<html><body>你好。 會員!。Bridge Code<br>"
+	  	            + "申請的臨時密碼發給的。 <hr> <b>"+newPasswd+"</b><br>"
+	  	            		+ "请确认一下,然后登录后更改密码句。</body></html>","text/html; charset=UTF-8");
+	         }
+
 	         Transport.send(message);
 
 	         System.out.println("Sent message successfully....");
@@ -238,10 +252,7 @@ public class MemberController {
 	            throw new RuntimeException(e);
 	      }
 
-		
-		
-		
-		model.addAttribute("msg", vo.getMember_id()+"<spring:message code='님께임시비밀번호를발송했습니다.'/>"); 
+		model.addAttribute("msg","님께임시비밀번호를발송했습니다."); 
 		model.addAttribute("url", "/"); 
 		return "/popup/url";
 	} 
@@ -328,7 +339,7 @@ public class MemberController {
 		model.addAttribute("member",session.getAttribute("member"));
 		List<Map<String, Object>> interest = MatchingService.getCodeList(new CodeVO());
 		model.addAttribute("list", interest);
-	return "member/memberRejectJoin";
+	return "member/memberRejectJoin";	
 	}
 	
 	@RequestMapping("/member/memberDelete.do")
